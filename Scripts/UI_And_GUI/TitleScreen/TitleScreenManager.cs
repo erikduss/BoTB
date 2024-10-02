@@ -30,7 +30,7 @@ namespace Erikduss
 
         public void CloseGame()
         {
-
+            GetTree().Quit();
         }
     }
 }

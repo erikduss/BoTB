@@ -1,52 +1,91 @@
-[gd_scene load_steps=3 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=13 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
-[ext_resource type="Texture2D" uid="uid://dx1tb0lq2mtos" path="res://icon.svg" id="1_f32qb"]
+[ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="3_ftwxo"]
+[ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="3_x23vw"]
+[ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="4_17xah"]
+[ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="5_3h1cd"]
+[ext_resource type="BitMap" uid="uid://cajmmonjyfu4s" path="res://Assets/UI/ExitButton_ClickMask.png" id="5_a0gga"]
+[ext_resource type="Texture2D" uid="uid://cipuu1vm6nomg" path="res://Assets/UI/OptionsButton.png" id="5_tgbea"]
+[ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="6_iqwi5"]
+[ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="7_06yab"]
+[ext_resource type="BitMap" uid="uid://c7hjfw6sw8lfl" path="res://Assets/UI/OptionsButton_ClickMask.png" id="8_1f7qf"]
+[ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="8_tvhyr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ro6ah"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
 
 [node name="TitleScreenUi" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7dscw")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 419.0
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("3_x23vw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="AspectRatioContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="AspectRatioContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/HBoxContainer/CenterContainer"]
 layout_mode = 2
-text = "Game Title"
+theme_override_constants/margin_left = 150
 
-[node name="PanelContainer2" type="PanelContainer" parent="AspectRatioContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="AspectRatioContainer/VBoxContainer/PanelContainer2"]
+[node name="Label" type="Label" parent="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_f32qb")
+size_flags_horizontal = 4
+text = "Battle Of The Bookworm"
+label_settings = SubResource("LabelSettings_ro6ah")
+vertical_alignment = 1
 
-[node name="PanelContainer3" type="PanelContainer" parent="AspectRatioContainer/VBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_ftwxo")
+texture_hover = ExtResource("4_17xah")
+texture_click_mask = ExtResource("5_3h1cd")
 
-[node name="TextureButton" type="TextureButton" parent="AspectRatioContainer/VBoxContainer/PanelContainer3"]
+[node name="TextureButton2" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_f32qb")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_tgbea")
+texture_hover = ExtResource("6_iqwi5")
+texture_click_mask = ExtResource("8_1f7qf")
 
-[node name="PanelContainer4" type="PanelContainer" parent="AspectRatioContainer/VBoxContainer"]
+[node name="TextureButton3" type="TextureButton" parent="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_06yab")
+texture_hover = ExtResource("8_tvhyr")
+texture_click_mask = ExtResource("5_a0gga")
 
-[node name="TextureButton" type="TextureButton" parent="AspectRatioContainer/VBoxContainer/PanelContainer4"]
-layout_mode = 2
-texture_normal = ExtResource("1_f32qb")
-
-[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/PanelContainer2/TextureButton" to="." method="StartGame"]
-[connection signal="pressed" from="AspectRatioContainer/VBoxContainer/PanelContainer3/TextureButton" to="." method="OpenOptions"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer/TextureButton" to="." method="StartGame"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer/TextureButton2" to="." method="OpenOptions"]
+[connection signal="pressed" from="AspectRatioContainer/HBoxContainer/CenterContainer/MarginContainer/VBoxContainer/TextureButton3" to="." method="CloseGame"]

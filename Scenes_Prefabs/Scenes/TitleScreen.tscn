@@ -4,4 +4,9 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TitleScreenUi" parent="." instance=ExtResource("1_fy65g")]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="TitleScreenUi" parent="Camera2D" instance=ExtResource("1_fy65g")]
+offset_right = 0.0
+offset_bottom = 0.0

@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=3 format=3 uid="uid://b21xq6kx61exu"]
+
+[ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
 
 [node name="GameSceneSingleplayer" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_lq1lr")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("mainCamera")]
+offset = Vector2(500, 700)
+zoom = Vector2(3, 3)
+script = ExtResource("2_ws16a")
+mainCamera = NodePath(".")
