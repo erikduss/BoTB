@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://0a5oqck0bqvb"]
+
+[ext_resource type="Script" path="res://Scripts/UI_And_GUI/TitleScreen/LoadingToGame.cs" id="1_uj1rn"]
+
+[node name="LoadingToGame" type="Node2D"]
+script = ExtResource("1_uj1rn")
+gameSceneName = "GameScene_Singleplayer"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "We're Loading the game, this is our epic loading screen :)"

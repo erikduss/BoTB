@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu6ivnqktjcap"]
+
+[ext_resource type="PackedScene" uid="uid://vkc7ljb7gne4" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/Titlescreen/TitleScreen_UI.tscn" id="1_fy65g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TitleScreenUi" parent="." instance=ExtResource("1_fy65g")]
