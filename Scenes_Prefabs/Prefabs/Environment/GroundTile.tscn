@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://darf8monhnptv"]
+
+[ext_resource type="Script" path="res://Scripts/Environment/TileSpriteRandomizer.cs" id="1_tva6o"]
+[ext_resource type="Texture2D" uid="uid://cjke3aoju2eis" path="res://Assets/Environment/Tiles/Grass_00.png" id="2_psd06"]
+[ext_resource type="Texture2D" uid="uid://ct15aq0y75yi" path="res://Assets/Environment/Tiles/Grass_01.png" id="3_kjrci"]
+[ext_resource type="Texture2D" uid="uid://d6mxbcu2m8yb" path="res://Assets/Environment/Tiles/Grass_02.png" id="4_6tkfl"]
+[ext_resource type="Texture2D" uid="uid://d2mynlqppduqt" path="res://Assets/Environment/Tiles/Grass_03.png" id="5_livl6"]
+[ext_resource type="Texture2D" uid="uid://siyk7h6qpis2" path="res://Assets/Environment/Tiles/Grass_04.png" id="6_53n0q"]
+[ext_resource type="Texture2D" uid="uid://b7hxtc5rh6128" path="res://Assets/Environment/Tiles/Grass_05.png" id="7_6p730"]
+[ext_resource type="Texture2D" uid="uid://bl6ptipakydhs" path="res://Assets/Environment/Tiles/Grass_06.png" id="8_1vaxc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1txqo"]
+size = Vector2(64, 48)
+
+[node name="GroundTile" type="Node2D"]
+script = ExtResource("1_tva6o")
+
+[node name="Grass_00" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_psd06")
+
+[node name="Grass_01" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_kjrci")
+
+[node name="Grass_02" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_6tkfl")
+
+[node name="Grass_03" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_livl6")
+
+[node name="Grass_04" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_53n0q")
+
+[node name="Grass_05" type="Sprite2D" parent="."]
+texture = ExtResource("7_6p730")
+
+[node name="Grass_06" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("8_1vaxc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1txqo")

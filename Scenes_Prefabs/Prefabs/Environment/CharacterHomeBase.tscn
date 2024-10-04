@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfp7h5i0papxy"]
+
+[ext_resource type="Texture2D" uid="uid://2kfy0qo6csog" path="res://Assets/Environment/cave.png" id="1_aid5j"]
+[ext_resource type="Script" path="res://Scripts/Environment/HomeBaseManager.cs" id="1_vm5ms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owsrj"]
+size = Vector2(128, 161)
+
+[node name="CharacterHomeBase" type="Node2D"]
+script = ExtResource("1_vm5ms")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aid5j")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-64, 33.5)
+shape = SubResource("RectangleShape2D_owsrj")

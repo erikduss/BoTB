@@ -12,6 +12,9 @@ namespace Erikduss
         private float step = 10;
 		private Vector2 viewport_size;
 
+		public float minimumCameraXValue = -1150f;
+		public float maximumCameraXValue = 2070f;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -25,13 +28,23 @@ namespace Erikduss
 		{
 			Vector2 local_mouse_pos = GetViewport().GetMousePosition();
 
+			//MOVE THE CAMERA TO THE LEFT
 			if(local_mouse_pos.X < threshold)
 			{
-				mainCamera.Position = new Vector2(mainCamera.Position.X - step, mainCamera.Position.Y);
+				//make sure we cant go off the map with the camera
+				if (mainCamera.Position.X > minimumCameraXValue)
+				{
+					mainCamera.Position = new Vector2(mainCamera.Position.X - step, mainCamera.Position.Y);
+				}
 			}
+			//MOVE THE CAMERA TO THE RIGHT
 			else if(local_mouse_pos.X > viewport_size.X - threshold)
 			{
-                mainCamera.Position = new Vector2(mainCamera.Position.X + step, mainCamera.Position.Y);
+                //make sure we cant go off the map with the camera
+                if (mainCamera.Position.X < maximumCameraXValue)
+				{
+                    mainCamera.Position = new Vector2(mainCamera.Position.X + step, mainCamera.Position.Y);
+                }
             }
         }
 	}

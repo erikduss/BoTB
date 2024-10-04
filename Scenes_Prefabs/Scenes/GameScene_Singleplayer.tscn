@@ -1,24 +1,317 @@
-[gd_scene load_steps=3 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=12 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
+[ext_resource type="Texture2D" uid="uid://cipr6s44htgep" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-1.png" id="3_k65fu"]
+[ext_resource type="Texture2D" uid="uid://g8xihpcp2l6m" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-2.png" id="4_w5bvh"]
+[ext_resource type="Texture2D" uid="uid://brgl8uueqobib" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-3.png" id="5_hwq2l"]
+[ext_resource type="Texture2D" uid="uid://rfww3d16mosx" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-1.png" id="6_g3wsg"]
+[ext_resource type="Texture2D" uid="uid://dpb1dr1k5jrmp" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-2.png" id="7_ndf5s"]
+[ext_resource type="Texture2D" uid="uid://clvt7celr8gp" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-3.png" id="8_4e362"]
+[ext_resource type="PackedScene" uid="uid://darf8monhnptv" path="res://Scenes_Prefabs/Prefabs/Environment/GroundTile.tscn" id="9_vx3u0"]
+[ext_resource type="PackedScene" uid="uid://bfp7h5i0papxy" path="res://Scenes_Prefabs/Prefabs/Environment/CharacterHomeBase.tscn" id="10_fujw8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykgj3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k65fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w5bvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hwq2l")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g3wsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ndf5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4e362")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
 
 [node name="GameSceneSingleplayer" type="Node2D"]
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 0
+[node name="Background" type="Control" parent="UI"]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Background"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("1_lq1lr")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Background"]
+layout_mode = 0
+offset_left = -1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_lq1lr")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect2"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Background"]
+layout_mode = 0
+offset_left = 1920.0
+offset_right = 3840.0
+offset_bottom = 1080.0
+texture = ExtResource("1_lq1lr")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect3"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("mainCamera")]
 offset = Vector2(500, 700)
 zoom = Vector2(3, 3)
 script = ExtResource("2_ws16a")
 mainCamera = NodePath(".")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(111, 842)
+sprite_frames = SubResource("SpriteFrames_ykgj3")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Grass" type="Node2D" parent="Environment"]
+
+[node name="GroundTile" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-1000, 850)
+
+[node name="GroundTile2" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-936, 850)
+
+[node name="GroundTile3" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-872, 850)
+
+[node name="GroundTile4" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-808, 850)
+
+[node name="GroundTile5" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-744, 850)
+
+[node name="GroundTile6" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-680, 850)
+
+[node name="GroundTile7" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-616, 850)
+
+[node name="GroundTile8" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-552, 850)
+
+[node name="GroundTile9" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-488, 850)
+
+[node name="GroundTile10" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-424, 850)
+
+[node name="GroundTile11" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-360, 850)
+
+[node name="GroundTile12" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-296, 850)
+
+[node name="GroundTile13" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-232, 850)
+
+[node name="GroundTile14" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-168, 850)
+
+[node name="GroundTile15" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-104, 850)
+
+[node name="GroundTile16" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(-40, 850)
+
+[node name="GroundTile17" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(24, 850)
+
+[node name="GroundTile18" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(88, 850)
+
+[node name="GroundTile19" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(152, 850)
+
+[node name="GroundTile20" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(216, 850)
+
+[node name="GroundTile21" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(280, 850)
+
+[node name="GroundTile22" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(344, 850)
+
+[node name="GroundTile23" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(408, 850)
+
+[node name="GroundTile24" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(472, 850)
+
+[node name="GroundTile25" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(536, 850)
+
+[node name="GroundTile26" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(600, 850)
+
+[node name="GroundTile27" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(664, 850)
+
+[node name="GroundTile28" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(728, 850)
+
+[node name="GroundTile29" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(792, 850)
+
+[node name="GroundTile30" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(856, 850)
+
+[node name="GroundTile31" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(920, 850)
+
+[node name="GroundTile32" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(984, 850)
+
+[node name="GroundTile33" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1048, 850)
+
+[node name="GroundTile34" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1112, 850)
+
+[node name="GroundTile35" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1176, 850)
+
+[node name="GroundTile36" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1240, 850)
+
+[node name="GroundTile37" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1304, 850)
+
+[node name="GroundTile38" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1368, 850)
+
+[node name="GroundTile39" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1432, 850)
+
+[node name="GroundTile40" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1496, 850)
+
+[node name="GroundTile41" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1560, 850)
+
+[node name="GroundTile42" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1624, 850)
+
+[node name="GroundTile43" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1688, 850)
+
+[node name="GroundTile44" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1752, 850)
+
+[node name="GroundTile45" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1816, 850)
+
+[node name="GroundTile46" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1880, 850)
+
+[node name="GroundTile47" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(1944, 850)
+
+[node name="GroundTile48" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2008, 850)
+
+[node name="GroundTile49" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2072, 850)
+
+[node name="GroundTile50" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2136, 850)
+
+[node name="GroundTile51" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2200, 850)
+
+[node name="GroundTile52" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2264, 850)
+
+[node name="GroundTile53" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2328, 850)
+
+[node name="GroundTile54" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2392, 850)
+
+[node name="GroundTile55" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2456, 850)
+
+[node name="GroundTile56" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2520, 850)
+
+[node name="GroundTile57" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2584, 850)
+
+[node name="GroundTile58" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2648, 850)
+
+[node name="GroundTile59" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2712, 850)
+
+[node name="GroundTile60" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2776, 850)
+
+[node name="GroundTile61" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2840, 850)
+
+[node name="GroundTile62" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2904, 850)
+
+[node name="GroundTile63" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(2968, 850)
+
+[node name="GroundTile64" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(3032, 850)
+
+[node name="GroundTile65" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
+position = Vector2(3096, 850)
+
+[node name="CharacterHomeBase" parent="Environment" instance=ExtResource("10_fujw8")]
+position = Vector2(-904, 730)
+
+[node name="CharacterHomeBase2" parent="Environment" instance=ExtResource("10_fujw8")]
+position = Vector2(2824, 730)
+requiresToBeFlipped = true
+
+[node name="GameManager" type="Node2D" parent="."]
+
+[node name="Spawners" type="Node2D" parent="GameManager"]
+
+[node name="Team_1_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]

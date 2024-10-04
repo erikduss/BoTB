@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "G:\\Godot\\Git\\BoTB\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\environment\\homebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\environment\\homebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\TileSpriteRandomizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\Environment\\TileSpriteRandomizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,19 +35,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HomeBaseManager.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\HomeBaseManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Environment\\HomeBaseManager.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\HomeBaseManager.cs",
+              "RelativeToolTip": "Scripts\\Environment\\HomeBaseManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T11:41:12.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TileSpriteRandomizer.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\TileSpriteRandomizer.cs",
+              "RelativeDocumentMoniker": "Scripts\\Environment\\TileSpriteRandomizer.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\TileSpriteRandomizer.cs",
+              "RelativeToolTip": "Scripts\\Environment\\TileSpriteRandomizer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T09:27:30.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "CameraMovement.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\CameraMovement.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\CameraMovement.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\CameraMovement.cs",
               "RelativeToolTip": "Scripts\\Utility_And_General\\CameraMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-02T14:07:32.584Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LoadingToGame.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\TitleScreen\\LoadingToGame.cs",
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\TitleScreen\\LoadingToGame.cs",
@@ -47,12 +81,11 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\TitleScreen\\LoadingToGame.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T10:25:10.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T10:25:10.226Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "TitleScreenManager.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
@@ -60,8 +93,7 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T10:23:06.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T10:23:06.654Z"
             }
           ]
         }
