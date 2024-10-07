@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=14 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
+[ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
 [ext_resource type="Texture2D" uid="uid://cipr6s44htgep" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-1.png" id="3_k65fu"]
 [ext_resource type="Texture2D" uid="uid://g8xihpcp2l6m" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-2.png" id="4_w5bvh"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://clvt7celr8gp" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-3.png" id="8_4e362"]
 [ext_resource type="PackedScene" uid="uid://darf8monhnptv" path="res://Scenes_Prefabs/Prefabs/Environment/GroundTile.tscn" id="9_vx3u0"]
 [ext_resource type="PackedScene" uid="uid://bfp7h5i0papxy" path="res://Scenes_Prefabs/Prefabs/Environment/CharacterHomeBase.tscn" id="10_fujw8"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/GameManager.cs" id="11_ofq7o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ykgj3"]
 animations = [{
@@ -311,7 +313,12 @@ position = Vector2(2824, 730)
 requiresToBeFlipped = true
 
 [node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("11_ofq7o")
 
 [node name="Spawners" type="Node2D" parent="GameManager"]
 
 [node name="Team_1_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="In-gameHud" parent="CanvasLayer" instance=ExtResource("2_iqt6u")]
