@@ -10,7 +10,7 @@ namespace Erikduss
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			GameManager.Instance.inGameHUDManager = this;
+
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,12 +25,17 @@ namespace Erikduss
 			//check for the current age the player is in, this will determine the cost of the soldier and which one it will spawn.
 
 			//check for gold requirement
+			if (GameManager.Instance.playerCurrentCurrencyAmount < 50) return; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
 
 			//other requirements?
 
+			//Attempt to spend the currency, if this fails we stop.
+			if (!GameManager.Instance.SpendPlayerCurrency(50)) return;
+
 			//add soldier to spawn queue in a (few) second(s).
 
-			GameManager.Instance.TestFunction();
+			//this is always team one due to the player having to click this. If going multiplayer, this needs to be adjusted and processed by the server.
+			GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
 		}
 
         #region Update the Player Currency Amount Label

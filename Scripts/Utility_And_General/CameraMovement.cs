@@ -26,6 +26,8 @@ namespace Erikduss
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
+			if (GameManager.Instance.gameIsPaused) return;
+
 			Vector2 local_mouse_pos = GetViewport().GetMousePosition();
 
 			//MOVE THE CAMERA TO THE LEFT

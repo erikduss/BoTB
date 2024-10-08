@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1vfnajg2txn3"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/SimpleSoldier.cs" id="1_vbjra"]
+[ext_resource type="Texture2D" uid="uid://cipr6s44htgep" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-1.png" id="2_2d4t6"]
+[ext_resource type="Texture2D" uid="uid://g8xihpcp2l6m" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-2.png" id="3_4ixbt"]
+[ext_resource type="Texture2D" uid="uid://brgl8uueqobib" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-3.png" id="4_5o1yv"]
+[ext_resource type="Texture2D" uid="uid://rfww3d16mosx" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-1.png" id="5_y66je"]
+[ext_resource type="Texture2D" uid="uid://dpb1dr1k5jrmp" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-2.png" id="6_sf8f5"]
+[ext_resource type="Texture2D" uid="uid://clvt7celr8gp" path="res://Assets/Characters/Warrior_Age_1/Warrior_Age_1-Frame-3.png" id="7_kqsky"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah70f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2d4t6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4ixbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5o1yv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y66je")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sf8f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kqsky")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
+size = Vector2(41, 43.5)
+
+[node name="SimpleSoldier" type="Node2D"]
+script = ExtResource("1_vbjra")
+
+[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ah70f")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1.5, -1.25)
+shape = SubResource("RectangleShape2D_gfs14")
