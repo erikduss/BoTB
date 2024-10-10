@@ -1,22 +1,25 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Erikduss
 {
-	public partial class BaseCharacter : Node2D
+	public partial class BaseCharacter : CharacterBody2D
 	{
 		public Enums.TeamOwner characterOwner = Enums.TeamOwner.NONE; //this will be set, this should NEVER be none.
 
 		public List<AnimatedSprite2D> animatedSpritesAgeBased = new List<AnimatedSprite2D>();
-		private AnimatedSprite2D currentAnimatedSprite;
+		public AnimatedSprite2D currentAnimatedSprite;
 
 		public Enums.Ages currentAge = Enums.Ages.AGE_01;
 
-		public float movementSpeed = 2f;
+		public float movementSpeed = 50f;
 		public float detectionRange = 2f;
 
         #region State Machine
+
+        [Export] public State initialStartingState;
 
 		public Dictionary<string, State> characterStates = new Dictionary<string, State>();
         public State currentState = null;
@@ -49,14 +52,26 @@ namespace Erikduss
 
             #region State Machine
 
-            foreach (Node state in this.GetChildren())
+            Node2D statesParentNode = GetNode<Node2D>("StateMachine_States");
+
+            //Get all the states from the fetched parent node.
+            if (statesParentNode != null)
             {
-                if (state is State)
+                foreach (Node state in statesParentNode.GetChildren())
                 {
-                    State fetchedState = (State)state;
-                    characterStates.Add(fetchedState.Name.ToString().ToLower(), fetchedState);
-                    fetchedState.Transitioned += OnStateTransition;
+                    if (state is State)
+                    {
+                        State fetchedState = (State)state;
+                        characterStates.Add(fetchedState.Name.ToString().ToLower(), fetchedState);
+                        fetchedState.Transitioned += OnStateTransition;
+                    }
                 }
+            }
+
+            if(initialStartingState != null)
+            {
+                initialStartingState.StateEnter(this);
+                currentState = initialStartingState;
             }
 
             #endregion
@@ -82,13 +97,33 @@ namespace Erikduss
 
             if(currentState != null)
             {
-                currentState.TickState();
+                currentState.TickState((float)delta, this);
             }
 		}
 
-        public void OnStateTransition(State newState, string newStateName)
+        public override void _PhysicsProcess(double delta)
         {
-            if (newState == currentState) return;
+            base._PhysicsProcess(delta);
+
+            if (currentState != null)
+            {
+                currentState.PhysicsTickState((float)delta, this);
+            }
+        }
+
+        public void OnStateTransition(State transitionFromThisState, string newStateName)
+        {
+            if (transitionFromThisState != currentState) return; //we can only transition from the state we are currently in.
+
+            State stateToTransitionTo = characterStates.First(a => a.Key == newStateName.ToLower()).Value;
+
+            if (stateToTransitionTo == null) return;
+
+            if (currentState != null) currentState.StateExit(this);
+
+            stateToTransitionTo.StateEnter(this);
+
+            currentState = stateToTransitionTo;
 
             //https://youtu.be/ow_Lum-Agbs?si=DD68-O0Y3B8puAAR&t=210
         }

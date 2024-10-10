@@ -34,7 +34,7 @@ namespace Erikduss
 
 			gameIsPaused = false;
 
-			playerCurrentCurrencyAmount = 0;
+			playerCurrentCurrencyAmount = 50;
 			inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
         }
 
