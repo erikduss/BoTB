@@ -124,8 +124,6 @@ namespace Erikduss
             stateToTransitionTo.StateEnter(this);
 
             currentState = stateToTransitionTo;
-
-            //https://youtu.be/ow_Lum-Agbs?si=DD68-O0Y3B8puAAR&t=210
         }
     }
 }

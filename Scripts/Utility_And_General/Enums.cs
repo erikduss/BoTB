@@ -17,5 +17,10 @@ namespace Erikduss
 			AGE_01,
 			AGE_02
 		}
+
+		public enum UnitTypes
+		{
+			SimpleSoldier
+		}
 	}
 }

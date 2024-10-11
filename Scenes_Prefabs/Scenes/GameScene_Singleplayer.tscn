@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=9 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
 [ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bfp7h5i0papxy" path="res://Scenes_Prefabs/Prefabs/Environment/CharacterHomeBase.tscn" id="10_fujw8"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/GameManager.cs" id="11_ofq7o"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/UnitsSpawner.cs" id="12_8j88c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akag0"]
+size = Vector2(56, 52)
 
 [node name="GameSceneSingleplayer" type="Node2D"]
 
@@ -283,9 +286,20 @@ team02UnitsSpawnerLocation = NodePath("Team_2_Character_Spawner")
 [node name="Team_1_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
 position = Vector2(-900, 820)
 
+[node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_1_Character_Spawner"]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker"]
+position = Vector2(-4, -12)
+shape = SubResource("RectangleShape2D_akag0")
+
 [node name="Team_2_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
 position = Vector2(2820, 820)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="In-gameHud" parent="CanvasLayer" instance=ExtResource("2_iqt6u")]
+
+[connection signal="body_entered" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionEnterCheckTeam01Spawner"]
+[connection signal="body_exited" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionExitCheckTeam01Spawner"]

@@ -12,9 +12,22 @@ namespace Erikduss
          * The only function of idling would be to wait for your attack cooldown.
          */
 
+        //if in team 1 we only need to check for layer 3 (bit 2) otherwise check for layer 2 (bit 1)
+        public uint raycastCollisionMask = 0b00000000_00000000_00000000_00000010;
+
+
         public override void StateEnter(BaseCharacter character)
         {
             base.StateEnter(character);
+
+            if(character.characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                raycastCollisionMask = 0b00000000_00000000_00000000_00000010;
+            }
+            else
+            {
+                raycastCollisionMask = 0b00000000_00000000_00000000_00000100;
+            }
 
             character.currentAnimatedSprite.Play("Walking");
         }
@@ -57,10 +70,9 @@ namespace Erikduss
 
             // Binary - set the bit corresponding to the layers you want to enable (1, 3, and 4) to 1, set all other bits to 0.
             // Note: Layer 32 is the first bit, layer 1 is the last. The mask for layers 4,3 and 1 is therefore
-            uint collisionMask = 0b00000000_00000000_00000000_00001101;
             // (This can be shortened to 0b1101)
 
-            var query = PhysicsRayQueryParameters2D.Create(character.Position, raycastDetectPosition, collisionMask);
+            var query = PhysicsRayQueryParameters2D.Create(character.Position, raycastDetectPosition, raycastCollisionMask);
             var result = spaceState.IntersectRay(query);
 
             #endregion
