@@ -78,8 +78,7 @@
               "RelativeToolTip": "Scripts\\Characters\\StateMachine\\WalkingState.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAgwB8AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T12:16:27.125Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T12:16:27.125Z"
             },
             {
               "$type": "Document",
@@ -115,8 +114,7 @@
               "RelativeToolTip": "Scripts\\Characters\\SimpleSoldier.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T09:49:52.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T09:49:52.467Z"
             },
             {
               "$type": "Document",
@@ -128,8 +126,7 @@
               "RelativeToolTip": "Scripts\\Characters\\BaseCharacter.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAiwEoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T09:49:51.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T09:49:51.393Z"
             },
             {
               "$type": "Document",
@@ -141,8 +138,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\Enums.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T09:01:54.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T09:01:54.665Z"
             },
             {
               "$type": "Document",
@@ -152,7 +148,7 @@
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\UnitsSpawner.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\UnitsSpawner.cs",
               "RelativeToolTip": "Scripts\\Utility_And_General\\UnitsSpawner.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBEAAACBAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAYwKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T08:58:44.319Z",
               "EditorCaption": ""
@@ -179,8 +175,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameManager.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwCQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T09:05:49.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T09:05:49.666Z"
             },
             {
               "$type": "Document",

@@ -297,9 +297,19 @@ shape = SubResource("RectangleShape2D_akag0")
 [node name="Team_2_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
 position = Vector2(2820, 820)
 
+[node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_2_Character_Spawner"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Spawners/Team_2_Character_Spawner/SpawnCollisionChecker"]
+position = Vector2(-4, -12)
+shape = SubResource("RectangleShape2D_akag0")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="In-gameHud" parent="CanvasLayer" instance=ExtResource("2_iqt6u")]
 
 [connection signal="body_entered" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionEnterCheckTeam01Spawner"]
 [connection signal="body_exited" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionExitCheckTeam01Spawner"]
+[connection signal="body_entered" from="GameManager/Spawners/Team_2_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionEnterCheckTeam02Spawner"]
+[connection signal="body_exited" from="GameManager/Spawners/Team_2_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionExitCheckTeam02Spawner"]
