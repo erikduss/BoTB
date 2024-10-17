@@ -44,6 +44,8 @@ namespace Erikduss
 
             idleTimer += delta;
 
+            if (character.currentTarget != null) { return; } //for now we stop for a bit, this should switch to an attack function
+
             if(idleTimer > idleDuration)
             {
                 //Switch to the new state

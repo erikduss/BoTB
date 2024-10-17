@@ -14,8 +14,10 @@ namespace Erikduss
 
 		public Enums.Ages currentAge = Enums.Ages.AGE_01;
 
-		public float movementSpeed = 50f;
-		public float detectionRange = 2f;
+		public float movementSpeed = 250f; //default 50f
+		public float detectionRange = 50f; //pixels
+
+        public BaseCharacter currentTarget;
 
         #region State Machine
 

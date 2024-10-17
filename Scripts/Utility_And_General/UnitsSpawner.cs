@@ -29,6 +29,8 @@ namespace Erikduss
 		private float team01UnitSpawnAttemptTimer = 0f;
         private float team02UnitSpawnAttemptTimer = 0f;
 
+		private int debugSpawnCounter = 0;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -55,12 +57,19 @@ namespace Erikduss
 
 			if(team02UnitSpawnAttemptTimer <= 0f)
 			{
-                if (team02HasSpawnSpace && team02UnitQueueDictionary.Count > 0)
-                {
-                    //Add a cooldown to prevent multiple units from spawning at the same time.
-                    team02UnitSpawnAttemptTimer = unitSpawnAttamptCooldown;
-                    GetAndRemoveUnitFromQueue(Enums.TeamOwner.TEAM_02);
-                }
+				if (team02HasSpawnSpace && team02UnitQueueDictionary.Count > 0)
+				{
+					//Add a cooldown to prevent multiple units from spawning at the same time.
+					team02UnitSpawnAttemptTimer = unitSpawnAttamptCooldown;
+					GetAndRemoveUnitFromQueue(Enums.TeamOwner.TEAM_02);
+				}
+				//debug, spawn some enemies
+				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
+				{
+					debugSpawnCounter = 10000;
+					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.SimpleSoldier, Enums.Ages.AGE_01);
+				}
+				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
             }
 			else
 			{
@@ -70,26 +79,26 @@ namespace Erikduss
 
 		public void OnCollisionEnterCheckTeam01Spawner(Node2D body)
 		{
-			GD.Print("Character entered 01");
+			//GD.Print("Character entered 01");
 			team01HasSpawnSpace = false;
 
         }
 
         public void OnCollisionExitCheckTeam01Spawner(Node2D body)
         {
-            GD.Print("Character exited 01");
+            //GD.Print("Character exited 01");
 			team01HasSpawnSpace = true;
         }
 
         public void OnCollisionEnterCheckTeam02Spawner(Node2D body)
         {
-            GD.Print("Character entered 02");
+            //GD.Print("Character entered 02");
 			team02HasSpawnSpace = false;
         }
 
         public void OnCollisionExitCheckTeam02Spawner(Node2D body)
         {
-            GD.Print("Character exited 02");
+            //GD.Print("Character exited 02");
 			team02HasSpawnSpace = true;
         }
 
@@ -107,7 +116,7 @@ namespace Erikduss
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
 				string uniqueIDString = team01UnitSpawnIDCurrentValue + "_" + ((uint)unitAge);
-				GD.Print(uniqueIDString);
+				//GD.Print(uniqueIDString);
 				team01UnitSpawnIDCurrentValue++;
 
                 team01UnitQueueDictionary.Add(uniqueIDString, unitType);
@@ -155,7 +164,7 @@ namespace Erikduss
 
 		private void SpawnUnitFromQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
 		{
-			GD.Print("We are spawning: " + unitType.ToString() + " for team: " + team.ToString() + " in age: " + unitAge.ToString());
+			//GD.Print("We are spawning: " + unitType.ToString() + " for team: " + team.ToString() + " in age: " + unitAge.ToString());
 
 			if(unitType == Enums.UnitTypes.SimpleSoldier)
 			{
