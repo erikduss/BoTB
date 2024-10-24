@@ -12,7 +12,7 @@ namespace Erikduss
 		public List<AnimatedSprite2D> animatedSpritesAgeBased = new List<AnimatedSprite2D>();
 		public AnimatedSprite2D currentAnimatedSprite;
 
-		public Enums.Ages currentAge = Enums.Ages.AGE_01;
+		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
 		public float movementSpeed = 250f; //default 50f
 		public float detectionRange = 50f; //pixels
@@ -41,6 +41,8 @@ namespace Erikduss
                     animatedSpritesAgeBased.Add(spriteComponent);
                 }
             }
+
+            GD.Print("Age: " + currentAge);
 
             //Get the correct animated sprite to enable.
             currentAnimatedSprite = animatedSpritesAgeBased[((int)currentAge)];

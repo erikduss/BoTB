@@ -81,6 +81,8 @@ namespace Erikduss
             {
                 result.TryGetValue("collider", out Godot.Variant output);
 
+                //fix issue: getting to the enemy base throws an error because it uses a staticbody 2D instead
+
                 CharacterBody2D enemyCharacterBody2D = output.As<CharacterBody2D>();
 
                 if(enemyCharacterBody2D != null)

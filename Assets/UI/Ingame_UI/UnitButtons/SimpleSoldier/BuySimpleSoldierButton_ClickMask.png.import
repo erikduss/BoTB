@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://esd2jqs3o7y4"
+path="res://.godot/imported/BuySimpleSoldierButton_ClickMask.png-20807e60b3490ed5cd2994a8caed687c.res"
+
+[deps]
+
+source_file="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png"
+dest_files=["res://.godot/imported/BuySimpleSoldierButton_ClickMask.png-20807e60b3490ed5cd2994a8caed687c.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

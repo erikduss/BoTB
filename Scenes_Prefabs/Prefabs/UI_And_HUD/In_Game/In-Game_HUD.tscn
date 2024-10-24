@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=11 format=3 uid="uid://bc6fmve3t0dyp"]
 
-[ext_resource type="Texture2D" uid="uid://cipr6s44htgep" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-1.png" id="1_kr63n"]
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
-[ext_resource type="Texture2D" uid="uid://g8xihpcp2l6m" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-2.png" id="2_o7by0"]
+[ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
+[ext_resource type="Texture2D" uid="uid://c5jba4nyv1ofv" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Default.png" id="3_x1l5c"]
+[ext_resource type="Texture2D" uid="uid://dam6a0c74d712" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Hover.png" id="4_dukw0"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="5_4048e"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="6_kca8r"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="6_rf28m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
+font_color = Color(0, 0, 0, 1)
 
 [node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel")]
 layout_mode = 3
@@ -23,25 +38,70 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Player_Control_HUD/MarginContainer"]
 layout_mode = 2
 
-[node name="CurrencyContainer" type="HBoxContainer" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+[node name="CurrencyContainer" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/CurrencyContainer"]
-layout_mode = 2
+texture = ExtResource("2_d1xrq")
 
 [node name="CurrencyAmount" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/CurrencyContainer"]
 layout_mode = 2
-text = "1000G"
+offset_left = 65.0
+offset_top = 23.0
+offset_right = 211.0
+offset_bottom = 68.0
+text = "10000000"
+label_settings = SubResource("LabelSettings_0l7uc")
 
 [node name="SimpleSoldierBuyButton" type="TextureButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_kr63n")
-texture_hover = ExtResource("2_o7by0")
+texture_normal = ExtResource("3_x1l5c")
+texture_hover = ExtResource("4_dukw0")
+texture_click_mask = ExtResource("5_4048e")
+script = ExtResource("6_kca8r")
 
+[node name="UnitInfo" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -74.0
+offset_top = 70.0
+offset_right = 182.0
+offset_bottom = 326.0
+pivot_offset = Vector2(128, 0)
+mouse_filter = 2
+texture = ExtResource("6_rf28m")
+
+[node name="UnitName" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 64.0
+text = "Simple Soldier"
+label_settings = SubResource("LabelSettings_wtaue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 85.0
+offset_right = 846.0
+offset_bottom = 125.0
+
+[node name="UnitDescription" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo/BoxContainer"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 2
+text = "This is where the information about the unit is displayed. This shows their unique powers if they have any."
+label_settings = SubResource("LabelSettings_2d86a")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" method="ShowUnitInfoOnHover"]
+[connection signal="mouse_exited" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" method="HideUnitInfoOnLoseHover"]
 [connection signal="pressed" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="." method="BuySimpleSoldierButton_Clicked"]

@@ -105,7 +105,7 @@ namespace Erikduss
         public void ProcessBuyingSimpleSoldier(Enums.TeamOwner team)
 		{
 			//spawn prefab
-			Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+			Enums.Ages currentAge = Enums.Ages.AGE_02; //This should first check the age of the specific team
 
 			//Add to queue
 			AddUnitToQueue(team, Enums.UnitTypes.SimpleSoldier, currentAge);
