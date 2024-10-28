@@ -1,0 +1,50 @@
+Warrior (club/2h heavy melee weapon) 
+-> High Damage
+-> Slow attack speed
+-> Slow movement speed
+-> On attack, create a shockwave that damages units behind the target (up to maximum 2 other units)
+-> Medium Health & Armor
+
+Ranger (2h ranged weapon)
+-> Medium/High Damage
+-> Slow attack speed
+-> normal movement speed
+-> On kill, double attack speed for a limited short time. The unit cannot move during this period.
+-> Medium health & Low Armor
+
+Assassin (dual wield melee weapons)
+-> Low/Medium Damage
+-> Fast attack speed
+-> Fast movement speed
+-> On attack, has a chance to inflict bleeding on the target (Doesn't stack, additional bleeding resets the duration. Armored targets have a smaller chance to be inflicted with bleeding).
+-> Low health & low armor
+
+Enforcer (Heavy stun weapon, example rock for age 1)
+-> Low damage
+-> slow attack speed
+-> Normal movement speed
+-> On attack, stun the target for a short amount of time.
+-> High health & Medium armor
+
+Tank (Shield)
+-> Low Damage
+-> Slow attack speed
+-> slow movement speed
+-> On attack, increase the attack speed of 2 units behind this.
+-> High Health & High Armor
+
+Mass Healer (2h mage staff)
+-> No Damage, instead heals 2 units in front of this and behind (in a certain range) this for a medium amount.
+-> Slow attack (heal) speed
+-> slow movement speed
+-> On spawn, Heal all allied units that are currently on the battlefield for a medium amount.
+-> low health & low armor
+
+Battlemage (offhand-wand & sword)
+-> Variable damage, Low/medium with sword, Medium/high with wand (magic)
+-> Variable (Medium when using sword, instant when using magic)
+-> Medium movement speed
+-> After 3 attacks with the sword, unleash an instant powerful magic attack dealing damage to 2 additional units.
+-> medium health & low armor
+
+

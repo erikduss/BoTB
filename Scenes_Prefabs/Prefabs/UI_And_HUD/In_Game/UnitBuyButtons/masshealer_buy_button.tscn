@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b77jk1f4m7mcw"]
+
+[ext_resource type="Texture2D" uid="uid://uh36gynkovkq" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Default.png" id="1_c0yy6"]
+[ext_resource type="Texture2D" uid="uid://c7f8gacke8mca" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Hover.png" id="2_pfae1"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_3fmw2"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_5kwd3"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_cv0op"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="MassHealerBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_c0yy6")
+texture_hover = ExtResource("2_pfae1")
+texture_click_mask = ExtResource("3_3fmw2")
+script = ExtResource("4_5kwd3")
+
+[node name="UnitInfo" type="TextureRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -74.0
+offset_top = 70.0
+offset_right = 182.0
+offset_bottom = 326.0
+pivot_offset = Vector2(128, 0)
+mouse_filter = 2
+texture = ExtResource("5_cv0op")
+
+[node name="UnitName" type="Label" parent="UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 64.0
+text = "Mass Healer"
+label_settings = SubResource("LabelSettings_wtaue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 85.0
+offset_right = 846.0
+offset_bottom = 125.0
+
+[node name="UnitDescription" type="Label" parent="UnitInfo/BoxContainer"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 2
+text = "Can't deal damage, insteads heals up to 4 units at once. On Spawn: Heal all allies currently on the battlefield."
+label_settings = SubResource("LabelSettings_2d86a")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
+[connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]

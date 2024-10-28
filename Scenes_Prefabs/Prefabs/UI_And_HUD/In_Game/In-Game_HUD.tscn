@@ -2,21 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
-[ext_resource type="Texture2D" uid="uid://c5jba4nyv1ofv" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Default.png" id="3_x1l5c"]
-[ext_resource type="Texture2D" uid="uid://dam6a0c74d712" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Hover.png" id="4_dukw0"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="5_4048e"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="6_kca8r"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="6_rf28m"]
+[ext_resource type="PackedScene" uid="uid://h20xvonbt2ea" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/simple_soldier_buy_button.tscn" id="3_lfsql"]
+[ext_resource type="PackedScene" uid="uid://drmrs6tw5u73j" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/assassin_buy_button.tscn" id="4_jb3w1"]
+[ext_resource type="PackedScene" uid="uid://bt5eeaeagj2gd" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/battlemage_buy_button.tscn" id="5_ywqc2"]
+[ext_resource type="PackedScene" uid="uid://bwcfulqter08n" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/enforcer_buy_button.tscn" id="6_fqsjn"]
+[ext_resource type="PackedScene" uid="uid://b77jk1f4m7mcw" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/masshealer_buy_button.tscn" id="7_tvlkl"]
+[ext_resource type="PackedScene" uid="uid://dtuemu2vdgf6j" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/ranger_buy_button.tscn" id="8_xlhkg"]
+[ext_resource type="PackedScene" uid="uid://bgxnc2s4kwdma" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/tank_buy_button.tscn" id="9_7c6bh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 32
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
-font_size = 24
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
 [node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel")]
@@ -55,53 +50,23 @@ offset_bottom = 68.0
 text = "10000000"
 label_settings = SubResource("LabelSettings_0l7uc")
 
-[node name="SimpleSoldierBuyButton" type="TextureButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+[node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("3_lfsql")]
 layout_mode = 2
-texture_normal = ExtResource("3_x1l5c")
-texture_hover = ExtResource("4_dukw0")
-texture_click_mask = ExtResource("5_4048e")
-script = ExtResource("6_kca8r")
 
-[node name="UnitInfo" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton"]
-visible = false
-z_index = -1
-layout_mode = 0
-offset_left = -74.0
-offset_top = 70.0
-offset_right = 182.0
-offset_bottom = 326.0
-pivot_offset = Vector2(128, 0)
-mouse_filter = 2
-texture = ExtResource("6_rf28m")
-
-[node name="UnitName" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo"]
-custom_minimum_size = Vector2(205, 0)
-layout_mode = 0
-offset_left = 23.0
-offset_top = 30.0
-offset_right = 228.0
-offset_bottom = 64.0
-text = "Simple Soldier"
-label_settings = SubResource("LabelSettings_wtaue")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BoxContainer" type="BoxContainer" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo"]
-custom_minimum_size = Vector2(205, 0)
-layout_mode = 0
-offset_left = 25.0
-offset_top = 85.0
-offset_right = 846.0
-offset_bottom = 125.0
-
-[node name="UnitDescription" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton/UnitInfo/BoxContainer"]
-custom_minimum_size = Vector2(205, 0)
+[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("4_jb3w1")]
 layout_mode = 2
-text = "This is where the information about the unit is displayed. This shows their unique powers if they have any."
-label_settings = SubResource("LabelSettings_2d86a")
-horizontal_alignment = 1
-autowrap_mode = 3
 
-[connection signal="mouse_entered" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" method="ShowUnitInfoOnHover"]
-[connection signal="mouse_exited" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" method="HideUnitInfoOnLoseHover"]
-[connection signal="pressed" from="Player_Control_HUD/MarginContainer/HBoxContainer/SimpleSoldierBuyButton" to="." method="BuySimpleSoldierButton_Clicked"]
+[node name="BattleMageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("5_ywqc2")]
+layout_mode = 2
+
+[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("6_fqsjn")]
+layout_mode = 2
+
+[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("7_tvlkl")]
+layout_mode = 2
+
+[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("8_xlhkg")]
+layout_mode = 2
+
+[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("9_7c6bh")]
+layout_mode = 2

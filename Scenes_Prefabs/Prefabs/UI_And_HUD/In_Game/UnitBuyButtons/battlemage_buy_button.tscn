@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt5eeaeagj2gd"]
+
+[ext_resource type="Texture2D" uid="uid://dbfdofoqiq5o" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Default.png" id="1_myb8d"]
+[ext_resource type="Texture2D" uid="uid://ba8ltenmuydca" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Hover.png" id="2_dxxah"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_mjm6q"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_q8x0u"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_unh8l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="BattleMageBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_myb8d")
+texture_hover = ExtResource("2_dxxah")
+texture_click_mask = ExtResource("3_mjm6q")
+script = ExtResource("4_q8x0u")
+
+[node name="UnitInfo" type="TextureRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -74.0
+offset_top = 70.0
+offset_right = 182.0
+offset_bottom = 326.0
+pivot_offset = Vector2(128, 0)
+mouse_filter = 2
+texture = ExtResource("5_unh8l")
+
+[node name="UnitName" type="Label" parent="UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 30.0
+offset_right = 228.0
+offset_bottom = 64.0
+text = "Battlemage"
+label_settings = SubResource("LabelSettings_wtaue")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 85.0
+offset_right = 846.0
+offset_bottom = 125.0
+
+[node name="UnitDescription" type="Label" parent="UnitInfo/BoxContainer"]
+custom_minimum_size = Vector2(205, 0)
+layout_mode = 2
+text = "After 3 attacks this unit will unleash an instant powerful magic attack that hits 2 additional units."
+label_settings = SubResource("LabelSettings_2d86a")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
+[connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
