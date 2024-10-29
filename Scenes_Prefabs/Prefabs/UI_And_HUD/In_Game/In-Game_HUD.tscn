@@ -1,20 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=18 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
-[ext_resource type="PackedScene" uid="uid://h20xvonbt2ea" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/simple_soldier_buy_button.tscn" id="3_lfsql"]
-[ext_resource type="PackedScene" uid="uid://bpkw6t72dibh" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Assassin_buy_button.tscn" id="4_d6m5t"]
-[ext_resource type="PackedScene" uid="uid://dgeiaakb3581l" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Battlemage_buy_button.tscn" id="5_nhp8b"]
-[ext_resource type="PackedScene" uid="uid://dce732621eai6" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Enforcer_buy_button.tscn" id="6_fw2ls"]
-[ext_resource type="PackedScene" uid="uid://ct16o8pm0l5rp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/MassHealer_buy_button.tscn" id="7_lc4p6"]
-[ext_resource type="PackedScene" uid="uid://1aha3mr6cllc" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Ranger_buy_button.tscn" id="8_74f22"]
-[ext_resource type="PackedScene" uid="uid://crdubskge1j78" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Tank_buy_button.tscn" id="9_0cs4e"]
+[ext_resource type="PackedScene" uid="uid://h20xvonbt2ea" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn" id="3_lfsql"]
+[ext_resource type="PackedScene" uid="uid://bpkw6t72dibh" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Assassin_buy_button.tscn" id="4_d6m5t"]
+[ext_resource type="PackedScene" uid="uid://dgeiaakb3581l" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Battlemage_buy_button.tscn" id="5_nhp8b"]
+[ext_resource type="PackedScene" uid="uid://dce732621eai6" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Enforcer_buy_button.tscn" id="6_fw2ls"]
+[ext_resource type="PackedScene" uid="uid://ct16o8pm0l5rp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/MassHealer_buy_button.tscn" id="7_lc4p6"]
+[ext_resource type="PackedScene" uid="uid://1aha3mr6cllc" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn" id="8_74f22"]
+[ext_resource type="PackedScene" uid="uid://crdubskge1j78" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn" id="9_0cs4e"]
+[ext_resource type="Texture2D" uid="uid://gngs4i322ulf" path="res://Assets/UI/Ingame_UI/refreshButton_Default.png" id="10_2ns0e"]
+[ext_resource type="Texture2D" uid="uid://d3417sfy3r2oj" path="res://Assets/UI/Ingame_UI/refreshButton_Hover.png" id="11_ks4ek"]
+[ext_resource type="Texture2D" uid="uid://bw56go5wcquhp" path="res://Assets/UI/Ingame_UI/refreshButton_Info.png" id="12_x7md2"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="12_yp65u"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="13_ws1d2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel")]
+[sub_resource type="LabelSettings" id="LabelSettings_vgmk3"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sd6kg"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xnpt7")
 currencyAmountLabel = NodePath("Player_Control_HUD/MarginContainer/HBoxContainer/CurrencyContainer/CurrencyAmount")
+unitShopParentNode = NodePath("Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer")
 
 [node name="Player_Control_HUD" type="Control" parent="."]
 anchors_preset = 0
@@ -50,23 +63,75 @@ offset_bottom = 68.0
 text = "10000000"
 label_settings = SubResource("LabelSettings_0l7uc")
 
-[node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("3_lfsql")]
+[node name="UnitShopContainer" type="HBoxContainer" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("4_d6m5t")]
+[node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("3_lfsql")]
 layout_mode = 2
 
-[node name="BattlemageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("5_nhp8b")]
+[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("4_d6m5t")]
 layout_mode = 2
 
-[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("6_fw2ls")]
+[node name="BattlemageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("5_nhp8b")]
 layout_mode = 2
 
-[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("7_lc4p6")]
+[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("6_fw2ls")]
 layout_mode = 2
 
-[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("8_74f22")]
+[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("7_lc4p6")]
 layout_mode = 2
 
-[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("9_0cs4e")]
+[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("8_74f22")]
 layout_mode = 2
+
+[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("9_0cs4e")]
+layout_mode = 2
+
+[node name="ShopRefreshButton" type="TextureButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("10_2ns0e")
+texture_hover = ExtResource("11_ks4ek")
+texture_click_mask = ExtResource("12_yp65u")
+
+[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 25.0
+offset_right = 149.0
+offset_bottom = 89.0
+mouse_filter = 2
+texture = ExtResource("12_x7md2")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 55.0
+offset_bottom = 23.0
+text = "Refresh"
+label_settings = SubResource("LabelSettings_vgmk3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 19.0
+offset_right = 55.0
+offset_bottom = 42.0
+text = "5"
+label_settings = SubResource("LabelSettings_sd6kg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 30.0
+offset_bottom = 44.0
+mouse_filter = 2
+texture = ExtResource("13_ws1d2")
+expand_mode = 3
+
+[connection signal="pressed" from="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]

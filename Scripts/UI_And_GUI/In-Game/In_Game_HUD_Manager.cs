@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Erikduss
 {
@@ -7,10 +8,38 @@ namespace Erikduss
 	{
 		[Export] Label currencyAmountLabel;
 
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
-		{
+		[Export] Control unitShopParentNode;
 
+		//Load this from data file later
+		private int shopRefreshCost = 5;
+		private int amountOfUnitsInShop = 3;
+
+		private List<PackedScene> availableUnitsBuyButtons = new List<PackedScene>();
+
+        #region Buy Buttons
+
+        public PackedScene warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn");
+        public PackedScene assassinBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Assassin_buy_button.tscn");
+        public PackedScene battlemageBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Battlemage_buy_button.tscn");
+        public PackedScene enforcerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Enforcer_buy_button.tscn");
+        public PackedScene masshealerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/MassHealer_buy_button.tscn");
+        public PackedScene rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn");
+        public PackedScene tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn");
+
+        #endregion
+
+        // Called when the node enters the scene tree for the first time.
+        public override void _Ready()
+		{
+			availableUnitsBuyButtons.Add(warriorBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(assassinBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(battlemageBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(enforcerBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(masshealerBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
+
+            RefreshUnitShop(false);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,24 +47,25 @@ namespace Erikduss
 		{
 		}
 
-		public void BuySimpleSoldierButton_Clicked()
+		public bool BuyUnitButtonClicked(Enums.UnitTypes unitType, int unitCost)
 		{
-			GD.Print("Requesting to buy a Simple Soldier");
 
 			//check for the current age the player is in, this will determine the cost of the soldier and which one it will spawn.
 
 			//check for gold requirement
-			if (GameManager.Instance.playerCurrentCurrencyAmount < 50) return; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
+			if (GameManager.Instance.playerCurrentCurrencyAmount < unitCost) return false; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
 
 			//other requirements?
 
 			//Attempt to spend the currency, if this fails we stop.
-			if (!GameManager.Instance.SpendPlayerCurrency(50)) return;
+			if (!GameManager.Instance.SpendPlayerCurrency(unitCost)) return false;
 
 			//add soldier to spawn queue in a (few) second(s).
 
 			//this is always team one due to the player having to click this. If going multiplayer, this needs to be adjusted and processed by the server.
 			GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
+
+			return true;
 		}
 
         #region Update the Player Currency Amount Label
@@ -45,5 +75,48 @@ namespace Erikduss
 		}
 
         #endregion
+
+		public void RefreshUnitShop(bool spendPlayerGold = true)
+		{
+			if (spendPlayerGold)
+			{
+                if (GameManager.Instance.playerCurrentCurrencyAmount < shopRefreshCost) return;
+
+                //Attempt to spend the currency, if this fails we stop.
+                if (!GameManager.Instance.SpendPlayerCurrency(shopRefreshCost)) return;
+            }
+
+			for (int i = unitShopParentNode.GetChildren().Count-1; i >= 0; i--)
+			{
+				unitShopParentNode.GetChild(i).QueueFree();
+            }
+
+			for(int i = 0; i < amountOfUnitsInShop; i++)
+			{
+				int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count - 1));
+
+                Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
+
+                unitShopParentNode.AddChild(instantiatedBuyButton);
+            }
+		}
+
+		public void RefreshUnitShopSpecificButton(ulong id)
+		{
+            for (int i = unitShopParentNode.GetChildren().Count - 1; i >= 0; i--)
+            {
+				if(unitShopParentNode.GetChild(i).GetInstanceId() == id)
+				{
+                    unitShopParentNode.GetChild(i).QueueFree();
+
+                    int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count - 1));
+
+                    Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
+
+                    unitShopParentNode.AddChild(instantiatedBuyButton);
+					unitShopParentNode.MoveChild(instantiatedBuyButton, i);
+                }
+            }
+        }
     }
 }

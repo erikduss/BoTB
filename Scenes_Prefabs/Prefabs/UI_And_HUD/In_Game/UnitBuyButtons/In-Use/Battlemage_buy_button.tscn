@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpkw6t72dibh"]
+[gd_scene load_steps=16 format=3 uid="uid://dgeiaakb3581l"]
 
-[ext_resource type="Texture2D" uid="uid://bl5iw20le78ih" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Default.png" id="1_dymak"]
-[ext_resource type="Texture2D" uid="uid://c5tfsqy2fdui6" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Hover.png" id="2_nx0ou"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_u02nj"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_dbgai"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_hjl5w"]
-[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_778nm"]
-[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_cyhhy"]
-[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_1hci5"]
-[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_06nbe"]
+[ext_resource type="Texture2D" uid="uid://dbfdofoqiq5o" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Default.png" id="1_ktuid"]
+[ext_resource type="Texture2D" uid="uid://ba8ltenmuydca" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Hover.png" id="2_d8487"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_7wyrf"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_deyhy"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_lamq0"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_p2ept"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_ik1on"]
+[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_4qjak"]
+[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_od7n7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
 font_color = Color(0, 0, 0, 1)
@@ -32,17 +32,16 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="AssassinBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_dymak")
-texture_hover = ExtResource("2_nx0ou")
-texture_click_mask = ExtResource("3_u02nj")
-script = ExtResource("4_dbgai")
-thisUnitType = 2
-unitCost = 5
-unitHealth = 10
+[node name="BattlemageBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_ktuid")
+texture_hover = ExtResource("2_d8487")
+texture_click_mask = ExtResource("3_7wyrf")
+script = ExtResource("4_deyhy")
+thisUnitType = 6
+unitCost = 15
 unitArmour = 10
-unitAttack = 2
-unitDescription = "On attack, has a chance to inflict bleeding on the target, armoured targets have a smaller chance to bleed."
+unitAttack = 4
+unitDescription = "After 3 melee attacks, unleash an instant powerful magic attack dealing damage to 2 additional units."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
@@ -54,7 +53,7 @@ offset_right = 182.0
 offset_bottom = 326.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_hjl5w")
+texture = ExtResource("5_lamq0")
 
 [node name="HBoxContainer" type="Control" parent="UnitInfo"]
 anchors_preset = 0
@@ -82,12 +81,12 @@ layout_mode = 2
 offset_left = 15.0
 offset_right = 45.0
 offset_bottom = 62.0
-texture = ExtResource("6_778nm")
+texture = ExtResource("6_p2ept")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
-custom_minimum_size = Vector2(105, 0)
+custom_minimum_size = Vector2(105, 60)
 layout_mode = 2
 offset_left = 73.0
 offset_top = 4.0
@@ -110,7 +109,7 @@ custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("7_cyhhy")
+texture = ExtResource("7_ik1on")
 expand_mode = 1
 stretch_mode = 5
 
@@ -136,7 +135,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("8_1hci5")
+texture = ExtResource("8_4qjak")
 expand_mode = 1
 stretch_mode = 5
 
@@ -161,7 +160,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("9_06nbe")
+texture = ExtResource("9_od7n7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -192,3 +191,4 @@ autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
+[connection signal="pressed" from="." to="." method="BuyUnitButtonPressed"]

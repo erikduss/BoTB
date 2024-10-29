@@ -49,6 +49,10 @@ namespace Erikduss
 					team01UnitSpawnAttemptTimer = unitSpawnAttamptCooldown;
 					GetAndRemoveUnitFromQueue(Enums.TeamOwner.TEAM_01);
                 }
+				else
+				{
+					GD.Print("Has space? " + team01HasSpawnSpace + " Queue amount: " + team01UnitQueueDictionary.Count);
+				}
             }
 			else
 			{

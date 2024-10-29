@@ -81,39 +81,70 @@ namespace Erikduss
             {
                 result.TryGetValue("collider", out Godot.Variant output);
 
-                //fix issue: getting to the enemy base throws an error because it uses a staticbody 2D instead
+                //we check if the output as characterbody is valid
+                /*
+                 * if it is, than we have hit another character
+                 * if it isnt than either we hit the enemy base or there's something wrong
+                 * So now we check if the output is a staticbody2d to check for enemy base collision
+                 */
+                bool reachedEnemyBase = false;
 
-                CharacterBody2D enemyCharacterBody2D = output.As<CharacterBody2D>();
+                //Casting gives errors due to this being able to be 2 different components. So we solve this by doing a name string check.
+                string outputString = output.ToString();
 
-                if(enemyCharacterBody2D != null)
+                bool charBodyCheck = outputString.Contains("CharacterBody2D");
+                bool staticBodyCheck = outputString.Contains("StaticBody2D");
+
+                if(!charBodyCheck)
                 {
-                    float distance = enemyCharacterBody2D.GlobalPosition.X - character.GlobalPosition.X;
-                    if (distance < 0) distance = -distance;
-
-                    BaseCharacter enemyChar = enemyCharacterBody2D.GetNode<BaseCharacter>(enemyCharacterBody2D.GetPath());
-
-                    if(enemyChar.characterOwner == character.characterOwner)
+                    if (staticBodyCheck)
                     {
-                        GD.Print("Dist to friendly: " + distance);
+                        reachedEnemyBase = true;
+                    }
+                    else
+                    {
+                        GD.PrintErr("COLLISION OF UNIT IS WITH SOMETHING ELSE THAN STATICBODY2D OR CHARACTERBODY2D");
+                    }
+                }
 
-                        if(distance < 50f)
+                if(!reachedEnemyBase)
+                {
+                    CharacterBody2D enemyCharacterBody2D = output.As<CharacterBody2D>();
+
+                    if (enemyCharacterBody2D != null)
+                    {
+                        float distance = enemyCharacterBody2D.GlobalPosition.X - character.GlobalPosition.X;
+                        if (distance < 0) distance = -distance;
+
+                        BaseCharacter enemyChar = enemyCharacterBody2D.GetNode<BaseCharacter>(enemyCharacterBody2D.GetPath());
+
+                        if (enemyChar.characterOwner == character.characterOwner)
                         {
+                            GD.Print("Dist to friendly: " + distance);
+
+                            if (distance < 50f)
+                            {
+                                character.currentTarget = enemyChar;
+
+                                //Switch to the new state
+                                EmitSignal(SignalName.Transitioned, this, "IdleState");
+                            }
+                        }
+                        else
+                        {
+                            GD.Print("Dist to enemy: " + distance);
+
                             character.currentTarget = enemyChar;
 
                             //Switch to the new state
                             EmitSignal(SignalName.Transitioned, this, "IdleState");
+
                         }
                     }
-                    else
-                    {
-                        GD.Print("Dist to enemy: " + distance);
-
-                        character.currentTarget = enemyChar;
-
-                        //Switch to the new state
-                        EmitSignal(SignalName.Transitioned, this, "IdleState");
-
-                    }
+                }
+                else
+                {
+                    StaticBody2D baseBody2D = output.As<StaticBody2D>();
                 }
             }
 

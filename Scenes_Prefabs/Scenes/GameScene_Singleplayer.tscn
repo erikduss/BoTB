@@ -284,7 +284,7 @@ team01UnitsSpawnerLocation = NodePath("Team_1_Character_Spawner")
 team02UnitsSpawnerLocation = NodePath("Team_2_Character_Spawner")
 
 [node name="Team_1_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
-position = Vector2(-885, 815)
+position = Vector2(-905, 815)
 
 [node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_1_Character_Spawner"]
 collision_layer = 8
@@ -295,7 +295,7 @@ position = Vector2(-4, -12)
 shape = SubResource("RectangleShape2D_akag0")
 
 [node name="Team_2_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
-position = Vector2(2805, 815)
+position = Vector2(2825, 815)
 
 [node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_2_Character_Spawner"]
 collision_layer = 8

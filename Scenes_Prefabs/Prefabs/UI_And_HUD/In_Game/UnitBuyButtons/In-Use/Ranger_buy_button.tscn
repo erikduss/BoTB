@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct16o8pm0l5rp"]
+[gd_scene load_steps=16 format=3 uid="uid://1aha3mr6cllc"]
 
-[ext_resource type="Texture2D" uid="uid://uh36gynkovkq" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Default.png" id="1_78jun"]
-[ext_resource type="Texture2D" uid="uid://c7f8gacke8mca" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Hover.png" id="2_h6run"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_g8b31"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_mte0j"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_54m7d"]
-[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_52boh"]
-[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_d62hm"]
-[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_k4n38"]
-[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_7mlrl"]
+[ext_resource type="Texture2D" uid="uid://bismp0sf38sip" path="res://Assets/UI/Ingame_UI/UnitButtons/Ranger/BuyRangerButton_Default.png" id="1_6p5r5"]
+[ext_resource type="Texture2D" uid="uid://c1m01qufmb06q" path="res://Assets/UI/Ingame_UI/UnitButtons/Ranger/BuyRangerButton_Hover.png" id="2_3eufp"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_mr3wn"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_yuavt"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_1syla"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_xycsi"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_rkihe"]
+[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_mbtsv"]
+[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_r5iow"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
 font_color = Color(0, 0, 0, 1)
@@ -32,17 +32,14 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="MassHealerBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_78jun")
-texture_hover = ExtResource("2_h6run")
-texture_click_mask = ExtResource("3_g8b31")
-script = ExtResource("4_mte0j")
-thisUnitType = 5
-unitCost = 25
-unitHealth = 10
+[node name="RangerBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_6p5r5")
+texture_hover = ExtResource("2_3eufp")
+texture_click_mask = ExtResource("3_mr3wn")
+script = ExtResource("4_yuavt")
+thisUnitType = 1
 unitArmour = 10
-unitAttack = 0
-unitDescription = "Can't attack, heals up to 4 allies at once. On spawn, Heal all allied units that are currently on the battlefield for a medium amount."
+unitDescription = "On kill, double attack speed for a limited short time. The unit cannot move during this period."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
@@ -54,7 +51,7 @@ offset_right = 182.0
 offset_bottom = 326.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_54m7d")
+texture = ExtResource("5_1syla")
 
 [node name="HBoxContainer" type="Control" parent="UnitInfo"]
 anchors_preset = 0
@@ -82,7 +79,7 @@ layout_mode = 2
 offset_left = 15.0
 offset_right = 45.0
 offset_bottom = 62.0
-texture = ExtResource("6_52boh")
+texture = ExtResource("6_xycsi")
 expand_mode = 1
 stretch_mode = 5
 
@@ -110,7 +107,7 @@ custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("7_d62hm")
+texture = ExtResource("7_rkihe")
 expand_mode = 1
 stretch_mode = 5
 
@@ -136,7 +133,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("8_k4n38")
+texture = ExtResource("8_mbtsv")
 expand_mode = 1
 stretch_mode = 5
 
@@ -161,7 +158,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("9_7mlrl")
+texture = ExtResource("9_r5iow")
 expand_mode = 1
 stretch_mode = 5
 
@@ -192,3 +189,4 @@ autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
+[connection signal="pressed" from="." to="." method="BuyUnitButtonPressed"]

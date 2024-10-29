@@ -21,6 +21,8 @@ namespace Erikduss
         private Label unitArmourLabel;
         private Label unitAttackLabel;
 
+        private bool buttonPressed = false;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -44,7 +46,6 @@ namespace Erikduss
                         unitName = unitName.Replace("_", " ");
 
                         unitNameLabel.LabelSettings.FontSize = 24 + ((8 - unitName.Length) * 3);
-                        GD.Print("Size: " + unitName + unitNameLabel.LabelSettings.FontSize);
 
                         unitNameLabel.Text = unitName;
                     }
@@ -101,6 +102,22 @@ namespace Erikduss
 		public override void _Process(double delta)
 		{
 		}
+
+        public void BuyUnitButtonPressed()
+        {
+            if (buttonPressed) return;
+
+            buttonPressed = true;
+
+            bool success = GameManager.Instance.inGameHUDManager.BuyUnitButtonClicked(thisUnitType, unitCost);
+
+            if(!success) buttonPressed = false;
+
+            else
+            {
+                GameManager.Instance.inGameHUDManager.RefreshUnitShopSpecificButton(this.GetInstanceId());
+            }
+        }
 
         public void ShowUnitInfoOnHover()
         {

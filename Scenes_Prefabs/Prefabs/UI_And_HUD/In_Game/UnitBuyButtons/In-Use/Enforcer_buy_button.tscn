@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://h20xvonbt2ea"]
+[gd_scene load_steps=16 format=3 uid="uid://dce732621eai6"]
 
-[ext_resource type="Texture2D" uid="uid://c5jba4nyv1ofv" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Default.png" id="1_amyaf"]
-[ext_resource type="Texture2D" uid="uid://dam6a0c74d712" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_Hover.png" id="2_jspsh"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_x11ii"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_hnkc4"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_gmwri"]
-[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_lfhxl"]
-[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_f68sn"]
-[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_qmofp"]
-[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_k07e1"]
+[ext_resource type="Texture2D" uid="uid://cpvd6l4324u0t" path="res://Assets/UI/Ingame_UI/UnitButtons/Enforcer/BuyEnforcerButton_Default.png" id="1_emc3q"]
+[ext_resource type="Texture2D" uid="uid://bonpiprut6jun" path="res://Assets/UI/Ingame_UI/UnitButtons/Enforcer/BuyEnforcerButton_Hover.png" id="2_lv8rk"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_03vsi"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_aftex"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_bowrk"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_myjyy"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_ewywj"]
+[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_kgj15"]
+[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_5ofmb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
 font_color = Color(0, 0, 0, 1)
@@ -32,12 +32,17 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="SimpleSoldierBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_amyaf")
-texture_hover = ExtResource("2_jspsh")
-texture_click_mask = ExtResource("3_x11ii")
-script = ExtResource("4_hnkc4")
-unitDescription = "On attack, create a shockwave that damages units behind the target (up to maximum 2 other units)"
+[node name="EnforcerBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_emc3q")
+texture_hover = ExtResource("2_lv8rk")
+texture_click_mask = ExtResource("3_03vsi")
+script = ExtResource("4_aftex")
+thisUnitType = 3
+unitCost = 7
+unitHealth = 30
+unitArmour = 30
+unitAttack = 1
+unitDescription = "On attack, stun the target for a short amount of time."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
@@ -49,7 +54,7 @@ offset_right = 182.0
 offset_bottom = 326.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_gmwri")
+texture = ExtResource("5_bowrk")
 
 [node name="HBoxContainer" type="Control" parent="UnitInfo"]
 anchors_preset = 0
@@ -77,12 +82,12 @@ layout_mode = 2
 offset_left = 15.0
 offset_right = 45.0
 offset_bottom = 62.0
-texture = ExtResource("6_lfhxl")
+texture = ExtResource("6_myjyy")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
-custom_minimum_size = Vector2(105, 0)
+custom_minimum_size = Vector2(105, 60)
 layout_mode = 2
 offset_left = 73.0
 offset_top = 4.0
@@ -105,7 +110,7 @@ custom_minimum_size = Vector2(20, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("7_f68sn")
+texture = ExtResource("7_ewywj")
 expand_mode = 1
 stretch_mode = 5
 
@@ -131,7 +136,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("8_qmofp")
+texture = ExtResource("8_kgj15")
 expand_mode = 1
 stretch_mode = 5
 
@@ -156,7 +161,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-texture = ExtResource("9_k07e1")
+texture = ExtResource("9_5ofmb")
 expand_mode = 1
 stretch_mode = 5
 
@@ -187,3 +192,4 @@ autowrap_mode = 3
 
 [connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
+[connection signal="pressed" from="." to="." method="BuyUnitButtonPressed"]
