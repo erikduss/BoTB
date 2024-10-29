@@ -67,7 +67,7 @@ namespace Erikduss
 				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
 				{
 					debugSpawnCounter = 10000;
-					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.SimpleSoldier, Enums.Ages.AGE_01);
+					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
 				}
 				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
             }
@@ -108,7 +108,7 @@ namespace Erikduss
 			Enums.Ages currentAge = Enums.Ages.AGE_02; //This should first check the age of the specific team
 
 			//Add to queue
-			AddUnitToQueue(team, Enums.UnitTypes.SimpleSoldier, currentAge);
+			AddUnitToQueue(team, Enums.UnitTypes.Warrior, currentAge);
 		}
 
 		private void AddUnitToQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
@@ -166,7 +166,7 @@ namespace Erikduss
 		{
 			//GD.Print("We are spawning: " + unitType.ToString() + " for team: " + team.ToString() + " in age: " + unitAge.ToString());
 
-			if(unitType == Enums.UnitTypes.SimpleSoldier)
+			if(unitType == Enums.UnitTypes.Warrior)
 			{
                 //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
                 SimpleSoldier instantiatedSimpleSoldier = (SimpleSoldier)simpleSoldierPrefab.Instantiate();

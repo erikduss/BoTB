@@ -1,23 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://drmrs6tw5u73j"]
+[gd_scene load_steps=16 format=3 uid="uid://bpkw6t72dibh"]
 
-[ext_resource type="Texture2D" uid="uid://bl5iw20le78ih" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Default.png" id="1_240qj"]
-[ext_resource type="Texture2D" uid="uid://c5tfsqy2fdui6" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Hover.png" id="2_p2yc6"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_fsjt7"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_qqlwu"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_u1vf0"]
+[ext_resource type="Texture2D" uid="uid://bl5iw20le78ih" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Default.png" id="1_dymak"]
+[ext_resource type="Texture2D" uid="uid://c5tfsqy2fdui6" path="res://Assets/UI/Ingame_UI/UnitButtons/Assassin/BuyAssassinButton_Hover.png" id="2_nx0ou"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_u02nj"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_dbgai"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_hjl5w"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_778nm"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_cyhhy"]
+[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_1hci5"]
+[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_06nbe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
 font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7tb2"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hloiy"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t1j4p"]
+font_size = 13
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
 [node name="AssassinBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_240qj")
-texture_hover = ExtResource("2_p2yc6")
-texture_click_mask = ExtResource("3_fsjt7")
-script = ExtResource("4_qqlwu")
+texture_normal = ExtResource("1_dymak")
+texture_hover = ExtResource("2_nx0ou")
+texture_click_mask = ExtResource("3_u02nj")
+script = ExtResource("4_dbgai")
+thisUnitType = 2
+unitCost = 5
+unitHealth = 10
+unitArmour = 10
+unitAttack = 2
+unitDescription = "On attack, has a chance to inflict bleeding on the target, armoured targets have a smaller chance to bleed."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
@@ -29,19 +54,125 @@ offset_right = 182.0
 offset_bottom = 326.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_u1vf0")
+texture = ExtResource("5_hjl5w")
 
-[node name="UnitName" type="Label" parent="UnitInfo"]
-custom_minimum_size = Vector2(205, 0)
-layout_mode = 0
-offset_left = 23.0
-offset_top = 30.0
-offset_right = 228.0
+[node name="HBoxContainer" type="Control" parent="UnitInfo"]
+anchors_preset = 0
+offset_top = 15.0
+offset_right = 263.0
+offset_bottom = 77.0
+
+[node name="UnitCostInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 40.0
+
+[node name="UnitCost" type="Label" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+layout_mode = 2
+offset_top = 19.0
+offset_right = 19.0
+offset_bottom = 42.0
+text = "10"
+label_settings = SubResource("LabelSettings_0jcfk")
+
+[node name="TextureRect" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+offset_left = 15.0
+offset_right = 45.0
+offset_bottom = 62.0
+texture = ExtResource("6_778nm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+offset_left = 73.0
+offset_top = 4.0
+offset_right = 178.0
 offset_bottom = 64.0
-text = "Assassin"
+text = "Warrior"
 label_settings = SubResource("LabelSettings_wtaue")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UnitHealthInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 6.0
+offset_right = 220.0
+offset_bottom = 46.0
+
+[node name="HealthIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitHealthInfo"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("7_cyhhy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthValue" type="Label" parent="UnitInfo/HBoxContainer/UnitHealthInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 20.0
+text = "20"
+label_settings = SubResource("LabelSettings_k7tb2")
+vertical_alignment = 1
+
+[node name="UnitArmourInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 64.0
+
+[node name="ArmorIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitArmourInfo"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("8_1hci5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArmorValue" type="Label" parent="UnitInfo/HBoxContainer/UnitArmourInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 20.0
+text = "20"
+label_settings = SubResource("LabelSettings_hloiy")
+
+[node name="UnitAttackInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 82.0
+
+[node name="AttackIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitAttackInfo"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("9_06nbe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackValue" type="Label" parent="UnitInfo/HBoxContainer/UnitAttackInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 20.0
+text = "10"
+label_settings = SubResource("LabelSettings_t1j4p")
 
 [node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]
 custom_minimum_size = Vector2(205, 0)
@@ -54,7 +185,7 @@ offset_bottom = 125.0
 [node name="UnitDescription" type="Label" parent="UnitInfo/BoxContainer"]
 custom_minimum_size = Vector2(205, 0)
 layout_mode = 2
-text = "Has a chance to inflict bleeding on targets. (Armour reduced the change of bleeding)."
+text = "Attacks of this unit damages additional units, up to 2 extra units."
 label_settings = SubResource("LabelSettings_2d86a")
 horizontal_alignment = 1
 autowrap_mode = 3

@@ -1,23 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt5eeaeagj2gd"]
+[gd_scene load_steps=16 format=3 uid="uid://dgeiaakb3581l"]
 
-[ext_resource type="Texture2D" uid="uid://dbfdofoqiq5o" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Default.png" id="1_myb8d"]
-[ext_resource type="Texture2D" uid="uid://ba8ltenmuydca" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Hover.png" id="2_dxxah"]
-[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_mjm6q"]
-[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_q8x0u"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_unh8l"]
+[ext_resource type="Texture2D" uid="uid://dbfdofoqiq5o" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Default.png" id="1_ktuid"]
+[ext_resource type="Texture2D" uid="uid://ba8ltenmuydca" path="res://Assets/UI/Ingame_UI/UnitButtons/Battlemage/BuyBattleMageButton_Hover.png" id="2_d8487"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_7wyrf"]
+[ext_resource type="Script" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitInfoToggler.cs" id="4_deyhy"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_lamq0"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_p2ept"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_ik1on"]
+[ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_4qjak"]
+[ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_od7n7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_k7tb2"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hloiy"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t1j4p"]
+font_size = 13
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="BattleMageBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_myb8d")
-texture_hover = ExtResource("2_dxxah")
-texture_click_mask = ExtResource("3_mjm6q")
-script = ExtResource("4_q8x0u")
+[node name="BattlemageBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_ktuid")
+texture_hover = ExtResource("2_d8487")
+texture_click_mask = ExtResource("3_7wyrf")
+script = ExtResource("4_deyhy")
+thisUnitType = 6
+unitCost = 15
+unitArmour = 10
+unitAttack = 4
+unitDescription = "After 3 melee attacks, unleash an instant powerful magic attack dealing damage to 2 additional units."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
@@ -29,19 +53,125 @@ offset_right = 182.0
 offset_bottom = 326.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_unh8l")
+texture = ExtResource("5_lamq0")
 
-[node name="UnitName" type="Label" parent="UnitInfo"]
-custom_minimum_size = Vector2(205, 0)
-layout_mode = 0
-offset_left = 23.0
-offset_top = 30.0
-offset_right = 228.0
+[node name="HBoxContainer" type="Control" parent="UnitInfo"]
+anchors_preset = 0
+offset_top = 15.0
+offset_right = 263.0
+offset_bottom = 77.0
+
+[node name="UnitCostInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 40.0
+
+[node name="UnitCost" type="Label" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+layout_mode = 2
+offset_top = 19.0
+offset_right = 19.0
+offset_bottom = 42.0
+text = "10"
+label_settings = SubResource("LabelSettings_0jcfk")
+
+[node name="TextureRect" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+offset_left = 15.0
+offset_right = 45.0
+offset_bottom = 62.0
+texture = ExtResource("6_p2ept")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
+custom_minimum_size = Vector2(105, 60)
+layout_mode = 2
+offset_left = 73.0
+offset_top = 4.0
+offset_right = 178.0
 offset_bottom = 64.0
-text = "Battlemage"
+text = "Warrior"
 label_settings = SubResource("LabelSettings_wtaue")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UnitHealthInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 6.0
+offset_right = 220.0
+offset_bottom = 46.0
+
+[node name="HealthIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitHealthInfo"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("7_ik1on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthValue" type="Label" parent="UnitInfo/HBoxContainer/UnitHealthInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 20.0
+text = "20"
+label_settings = SubResource("LabelSettings_k7tb2")
+vertical_alignment = 1
+
+[node name="UnitArmourInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 64.0
+
+[node name="ArmorIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitArmourInfo"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("8_4qjak")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArmorValue" type="Label" parent="UnitInfo/HBoxContainer/UnitArmourInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 20.0
+text = "20"
+label_settings = SubResource("LabelSettings_hloiy")
+
+[node name="UnitAttackInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+anchors_preset = 0
+offset_left = 180.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 82.0
+
+[node name="AttackIcon" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitAttackInfo"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("9_od7n7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackValue" type="Label" parent="UnitInfo/HBoxContainer/UnitAttackInfo"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 35.0
+offset_bottom = 20.0
+text = "10"
+label_settings = SubResource("LabelSettings_t1j4p")
 
 [node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]
 custom_minimum_size = Vector2(205, 0)
@@ -54,7 +184,7 @@ offset_bottom = 125.0
 [node name="UnitDescription" type="Label" parent="UnitInfo/BoxContainer"]
 custom_minimum_size = Vector2(205, 0)
 layout_mode = 2
-text = "After 3 attacks this unit will unleash an instant powerful magic attack that hits 2 additional units."
+text = "Attacks of this unit damages additional units, up to 2 extra units."
 label_settings = SubResource("LabelSettings_2d86a")
 horizontal_alignment = 1
 autowrap_mode = 3

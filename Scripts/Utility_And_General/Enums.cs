@@ -20,7 +20,13 @@ namespace Erikduss
 
 		public enum UnitTypes
 		{
-			SimpleSoldier
+			Warrior,
+			Ranger,
+			Asssassin,
+			Enforcer,
+			Tank,
+			Mass_Healer,
+			Battlemage
 		}
 	}
 }

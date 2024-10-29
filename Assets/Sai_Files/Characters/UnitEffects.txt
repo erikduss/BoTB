@@ -1,9 +1,12 @@
+Cost is based on getting 1 gold per second.
+
 Warrior (club/2h heavy melee weapon) 
 -> High Damage
 -> Slow attack speed
 -> Slow movement speed
 -> On attack, create a shockwave that damages units behind the target (up to maximum 2 other units)
 -> Medium Health & Armor
+---> Cost: 10
 
 Ranger (2h ranged weapon)
 -> Medium/High Damage
@@ -11,6 +14,7 @@ Ranger (2h ranged weapon)
 -> normal movement speed
 -> On kill, double attack speed for a limited short time. The unit cannot move during this period.
 -> Medium health & Low Armor
+---> Cost: 10
 
 Assassin (dual wield melee weapons)
 -> Low/Medium Damage
@@ -18,6 +22,7 @@ Assassin (dual wield melee weapons)
 -> Fast movement speed
 -> On attack, has a chance to inflict bleeding on the target (Doesn't stack, additional bleeding resets the duration. Armored targets have a smaller chance to be inflicted with bleeding).
 -> Low health & low armor
+---> Cost: 5
 
 Enforcer (Heavy stun weapon, example rock for age 1)
 -> Low damage
@@ -25,6 +30,7 @@ Enforcer (Heavy stun weapon, example rock for age 1)
 -> Normal movement speed
 -> On attack, stun the target for a short amount of time.
 -> High health & Medium armor
+---> Cost: 7
 
 Tank (Shield)
 -> Low Damage
@@ -32,6 +38,7 @@ Tank (Shield)
 -> slow movement speed
 -> On attack, increase the attack speed of 2 units behind this.
 -> High Health & High Armor
+---> Cost: 10
 
 Mass Healer (2h mage staff)
 -> No Damage, instead heals 2 units in front of this and behind (in a certain range) this for a medium amount.
@@ -39,6 +46,7 @@ Mass Healer (2h mage staff)
 -> slow movement speed
 -> On spawn, Heal all allied units that are currently on the battlefield for a medium amount.
 -> low health & low armor
+---> Cost: 25
 
 Battlemage (offhand-wand & sword)
 -> Variable damage, Low/medium with sword, Medium/high with wand (magic)
@@ -46,5 +54,6 @@ Battlemage (offhand-wand & sword)
 -> Medium movement speed
 -> After 3 attacks with the sword, unleash an instant powerful magic attack dealing damage to 2 additional units.
 -> medium health & low armor
+---> Cost: 15
 
-
+Druid/Arch druid

@@ -17,7 +17,7 @@ namespace Erikduss
 
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
-		private int currencyGainAmount = 5;
+		private int currencyGainAmount = 1;
         #endregion
 
         // Called when the node enters the scene tree for the first time.
@@ -34,7 +34,7 @@ namespace Erikduss
 
 			gameIsPaused = false;
 
-			playerCurrentCurrencyAmount = 50;
+			playerCurrentCurrencyAmount = 0;
 			inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
         }
 

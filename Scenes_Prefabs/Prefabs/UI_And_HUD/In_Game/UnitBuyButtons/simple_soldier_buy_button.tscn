@@ -37,8 +37,10 @@ texture_normal = ExtResource("1_amyaf")
 texture_hover = ExtResource("2_jspsh")
 texture_click_mask = ExtResource("3_x11ii")
 script = ExtResource("4_hnkc4")
+unitDescription = "On attack, create a shockwave that damages units behind the target (up to maximum 2 other units)"
 
 [node name="UnitInfo" type="TextureRect" parent="."]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_left = -74.0
@@ -61,12 +63,12 @@ offset_left = 25.0
 offset_right = 65.0
 offset_bottom = 40.0
 
-[node name="Unitcost" type="Label" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+[node name="UnitCost" type="Label" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
 layout_mode = 2
 offset_top = 19.0
 offset_right = 19.0
 offset_bottom = 42.0
-text = "50"
+text = "10"
 label_settings = SubResource("LabelSettings_0jcfk")
 
 [node name="TextureRect" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
@@ -83,9 +85,9 @@ stretch_mode = 5
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 offset_left = 73.0
-offset_top = 14.0
+offset_top = 4.0
 offset_right = 178.0
-offset_bottom = 48.0
+offset_bottom = 64.0
 text = "Warrior"
 label_settings = SubResource("LabelSettings_wtaue")
 horizontal_alignment = 1
@@ -113,7 +115,7 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 43.0
 offset_bottom = 20.0
-text = "100"
+text = "20"
 label_settings = SubResource("LabelSettings_k7tb2")
 vertical_alignment = 1
 
@@ -139,7 +141,7 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 35.0
 offset_bottom = 20.0
-text = "50"
+text = "20"
 label_settings = SubResource("LabelSettings_hloiy")
 
 [node name="UnitAttackInfo" type="Control" parent="UnitInfo/HBoxContainer"]
@@ -164,7 +166,7 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 35.0
 offset_bottom = 20.0
-text = "50"
+text = "10"
 label_settings = SubResource("LabelSettings_t1j4p")
 
 [node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]

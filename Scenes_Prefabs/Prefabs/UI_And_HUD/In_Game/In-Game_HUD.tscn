@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
 [ext_resource type="PackedScene" uid="uid://h20xvonbt2ea" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/simple_soldier_buy_button.tscn" id="3_lfsql"]
-[ext_resource type="PackedScene" uid="uid://drmrs6tw5u73j" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/assassin_buy_button.tscn" id="4_jb3w1"]
-[ext_resource type="PackedScene" uid="uid://bt5eeaeagj2gd" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/battlemage_buy_button.tscn" id="5_ywqc2"]
-[ext_resource type="PackedScene" uid="uid://bwcfulqter08n" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/enforcer_buy_button.tscn" id="6_fqsjn"]
-[ext_resource type="PackedScene" uid="uid://b77jk1f4m7mcw" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/masshealer_buy_button.tscn" id="7_tvlkl"]
-[ext_resource type="PackedScene" uid="uid://dtuemu2vdgf6j" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/ranger_buy_button.tscn" id="8_xlhkg"]
-[ext_resource type="PackedScene" uid="uid://bgxnc2s4kwdma" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/tank_buy_button.tscn" id="9_7c6bh"]
+[ext_resource type="PackedScene" uid="uid://bpkw6t72dibh" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Assassin_buy_button.tscn" id="4_d6m5t"]
+[ext_resource type="PackedScene" uid="uid://dgeiaakb3581l" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Battlemage_buy_button.tscn" id="5_nhp8b"]
+[ext_resource type="PackedScene" uid="uid://dce732621eai6" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Enforcer_buy_button.tscn" id="6_fw2ls"]
+[ext_resource type="PackedScene" uid="uid://ct16o8pm0l5rp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/MassHealer_buy_button.tscn" id="7_lc4p6"]
+[ext_resource type="PackedScene" uid="uid://1aha3mr6cllc" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Ranger_buy_button.tscn" id="8_74f22"]
+[ext_resource type="PackedScene" uid="uid://crdubskge1j78" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/Tank_buy_button.tscn" id="9_0cs4e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 32
@@ -53,20 +53,20 @@ label_settings = SubResource("LabelSettings_0l7uc")
 [node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("3_lfsql")]
 layout_mode = 2
 
-[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("4_jb3w1")]
+[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("4_d6m5t")]
 layout_mode = 2
 
-[node name="BattleMageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("5_ywqc2")]
+[node name="BattlemageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("5_nhp8b")]
 layout_mode = 2
 
-[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("6_fqsjn")]
+[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("6_fw2ls")]
 layout_mode = 2
 
-[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("7_tvlkl")]
+[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("7_lc4p6")]
 layout_mode = 2
 
-[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("8_xlhkg")]
+[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("8_74f22")]
 layout_mode = 2
 
-[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("9_7c6bh")]
+[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer" instance=ExtResource("9_0cs4e")]
 layout_mode = 2
