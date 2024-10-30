@@ -51,7 +51,7 @@ namespace Erikduss
                 }
 				else
 				{
-					GD.Print("Has space? " + team01HasSpawnSpace + " Queue amount: " + team01UnitQueueDictionary.Count);
+					//GD.Print("Has space? " + team01HasSpawnSpace + " Queue amount: " + team01UnitQueueDictionary.Count);
 				}
             }
 			else

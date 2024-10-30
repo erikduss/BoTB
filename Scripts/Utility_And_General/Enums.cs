@@ -28,5 +28,12 @@ namespace Erikduss
 			Mass_Healer,
 			Battlemage
 		}
+
+		public enum UnitSettingsConfigHeader
+		{
+			UNIT_INFO,
+			UNIT_STATS,
+			UNIT_GAMEPLAY_VARIABLES
+		}
 	}
 }

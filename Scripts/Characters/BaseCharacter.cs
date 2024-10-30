@@ -14,7 +14,7 @@ namespace Erikduss
 
 		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
-		public float movementSpeed = 500f; //default 50f
+		public float movementSpeed = 50f; //default 50f
 		public float detectionRange = 50f; //pixels
 
         public BaseCharacter currentTarget;
@@ -41,8 +41,6 @@ namespace Erikduss
                     animatedSpritesAgeBased.Add(spriteComponent);
                 }
             }
-
-            GD.Print("Age: " + currentAge);
 
             //Get the correct animated sprite to enable.
             currentAnimatedSprite = animatedSpritesAgeBased[((int)currentAge)];

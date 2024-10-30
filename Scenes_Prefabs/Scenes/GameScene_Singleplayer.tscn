@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=10 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
 [ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/GameData/DataManagers/GameSettingsLoader.cs" id="7_o5eth"]
 [ext_resource type="PackedScene" uid="uid://darf8monhnptv" path="res://Scenes_Prefabs/Prefabs/Environment/GroundTile.tscn" id="9_vx3u0"]
 [ext_resource type="PackedScene" uid="uid://bfp7h5i0papxy" path="res://Scenes_Prefabs/Prefabs/Environment/CharacterHomeBase.tscn" id="10_fujw8"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/GameManager.cs" id="11_ofq7o"]
@@ -304,6 +305,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/Spawners/Team_2_Character_Spawner/SpawnCollisionChecker"]
 position = Vector2(-4, -12)
 shape = SubResource("RectangleShape2D_akag0")
+
+[node name="GameSettingsLoader" type="Node2D" parent="GameManager"]
+script = ExtResource("7_o5eth")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

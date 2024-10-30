@@ -1,0 +1,2 @@
+Data being saved to:
+AppData\Roaming\Godot\app_userdata\Battle Of The Bookworm
