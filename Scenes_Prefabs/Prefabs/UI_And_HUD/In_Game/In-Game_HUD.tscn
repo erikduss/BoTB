@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=20 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bw56go5wcquhp" path="res://Assets/UI/Ingame_UI/refreshButton_Info.png" id="12_x7md2"]
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="12_yp65u"]
 [ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="13_ws1d2"]
+[ext_resource type="PackedScene" uid="uid://b8bxjggric8q3" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age01_upgrade_button.tscn" id="15_yfhd6"]
+[ext_resource type="PackedScene" uid="uid://drd6t22hn0wvm" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age01_ability_button.tscn" id="16_yjnc7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 32
@@ -34,27 +36,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xnpt7")
-currencyAmountLabel = NodePath("Player_Control_HUD/MarginContainer/HBoxContainer/CurrencyContainer/CurrencyAmount")
-unitShopParentNode = NodePath("Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer")
+currencyAmountLabel = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/CurrencyContainer/CurrencyAmount")
+unitShopParentNode = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer")
 
 [node name="Player_Control_HUD" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Player_Control_HUD"]
+[node name="Currency&UnitShop" type="MarginContainer" parent="Player_Control_HUD"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Player_Control_HUD/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Player_Control_HUD/Currency&UnitShop"]
 layout_mode = 2
 
-[node name="CurrencyContainer" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+[node name="CurrencyContainer" type="TextureRect" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_d1xrq")
 
-[node name="CurrencyAmount" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/CurrencyContainer"]
+[node name="CurrencyAmount" type="Label" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/CurrencyContainer"]
 layout_mode = 2
 offset_left = 65.0
 offset_top = 23.0
@@ -63,37 +65,37 @@ offset_bottom = 68.0
 text = "10000000"
 label_settings = SubResource("LabelSettings_0l7uc")
 
-[node name="UnitShopContainer" type="HBoxContainer" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+[node name="UnitShopContainer" type="HBoxContainer" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
 layout_mode = 2
 
-[node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("3_lfsql")]
+[node name="SimpleSoldierBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("3_lfsql")]
 layout_mode = 2
 
-[node name="AssassinBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("4_d6m5t")]
+[node name="AssassinBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("4_d6m5t")]
 layout_mode = 2
 
-[node name="BattlemageBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("5_nhp8b")]
+[node name="BattlemageBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("5_nhp8b")]
 layout_mode = 2
 
-[node name="EnforcerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("6_fw2ls")]
+[node name="EnforcerBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("6_fw2ls")]
 layout_mode = 2
 
-[node name="MassHealerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("7_lc4p6")]
+[node name="MassHealerBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("7_lc4p6")]
 layout_mode = 2
 
-[node name="RangerBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("8_74f22")]
+[node name="RangerBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("8_74f22")]
 layout_mode = 2
 
-[node name="TankBuyButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer/UnitShopContainer" instance=ExtResource("9_0cs4e")]
+[node name="TankBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("9_0cs4e")]
 layout_mode = 2
 
-[node name="ShopRefreshButton" type="TextureButton" parent="Player_Control_HUD/MarginContainer/HBoxContainer"]
+[node name="ShopRefreshButton" type="TextureButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("10_2ns0e")
 texture_hover = ExtResource("11_ks4ek")
 texture_click_mask = ExtResource("12_yp65u")
 
-[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton"]
+[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton"]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 25.0
@@ -103,7 +105,7 @@ mouse_filter = 2
 texture = ExtResource("12_x7md2")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+[node name="Label" type="Label" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
 layout_mode = 0
 offset_left = 10.0
 offset_right = 55.0
@@ -113,7 +115,7 @@ label_settings = SubResource("LabelSettings_vgmk3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+[node name="Label2" type="Label" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 19.0
@@ -124,7 +126,7 @@ label_settings = SubResource("LabelSettings_sd6kg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 19.0
@@ -134,4 +136,28 @@ mouse_filter = 2
 texture = ExtResource("13_ws1d2")
 expand_mode = 3
 
-[connection signal="pressed" from="Player_Control_HUD/MarginContainer/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]
+[node name="AgeUpgrade" type="MarginContainer" parent="Player_Control_HUD"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 192.0
+offset_bottom = 242.0
+
+[node name="AgeUpgradeContainer" type="Control" parent="Player_Control_HUD/AgeUpgrade"]
+layout_mode = 2
+
+[node name="AgeUpgradeButton" parent="Player_Control_HUD/AgeUpgrade/AgeUpgradeContainer" instance=ExtResource("15_yfhd6")]
+layout_mode = 0
+
+[node name="AgeAbility" type="MarginContainer" parent="Player_Control_HUD"]
+layout_mode = 0
+offset_top = 175.0
+offset_right = 192.0
+offset_bottom = 367.0
+
+[node name="AgeAbilityContainer" type="Control" parent="Player_Control_HUD/AgeAbility"]
+layout_mode = 2
+
+[node name="AgeAbilityButton" parent="Player_Control_HUD/AgeAbility/AgeAbilityContainer" instance=ExtResource("16_yjnc7")]
+layout_mode = 0
+
+[connection signal="pressed" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]

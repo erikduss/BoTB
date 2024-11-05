@@ -10,6 +10,9 @@ namespace Erikduss
 
 		[Export] Control unitShopParentNode;
 
+		public ProgressBar abilityCooldownBar;
+		private AgeAbilityInfoToggler abilityCooldownBarScript;
+
 		//Load this from data file later
 		private int shopRefreshCost = 5;
 		private int amountOfUnitsInShop = 3;
@@ -76,7 +79,21 @@ namespace Erikduss
 
         #endregion
 
-		public void RefreshUnitShop(bool spendPlayerGold = true)
+        public void UpdatePlayerAbilityCooldownBar(int secondsLeftOnCooldown)
+        {
+			double fixedCooldownPercentage = (double)((double)secondsLeftOnCooldown / (double)GameManager.Instance.playerAbilityCooldown) * 100;
+
+			abilityCooldownBar.Value = fixedCooldownPercentage;
+
+			if (abilityCooldownBarScript == null)
+			{
+                abilityCooldownBarScript = abilityCooldownBar.GetNode<AgeAbilityInfoToggler>(abilityCooldownBar.GetParent().GetPath());
+			}
+
+			abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
+        }
+
+        public void RefreshUnitShop(bool spendPlayerGold = true)
 		{
 			if (spendPlayerGold)
 			{

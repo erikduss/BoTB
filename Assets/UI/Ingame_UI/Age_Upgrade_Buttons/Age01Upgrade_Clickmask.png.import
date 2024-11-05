@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dlgq6h1ph38n8"
+path="res://.godot/imported/Age01Upgrade_Clickmask.png-a380e1b4f5da7178110c9ae470d2661f.res"
+
+[deps]
+
+source_file="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Clickmask.png"
+dest_files=["res://.godot/imported/Age01Upgrade_Clickmask.png-a380e1b4f5da7178110c9ae470d2661f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

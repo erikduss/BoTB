@@ -20,6 +20,16 @@ namespace Erikduss
 		private int currencyGainAmount = 1;
         #endregion
 
+        #region Ability Variables
+        public int playerAbilityCurrentCooldown { get; private set; }
+
+		public int playerAbilityCooldown = 180; //seconds
+
+        private float playerAbilityUpdateTimer = 0;
+        private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
+		private int playerAbilityCooldownReduction = 1; //reduceing it by 1
+        #endregion
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -35,7 +45,12 @@ namespace Erikduss
 			gameIsPaused = false;
 
 			playerCurrentCurrencyAmount = 0;
-			inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
+			playerAbilityCurrentCooldown = playerAbilityCooldown;
+
+            inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
+
+			//The ability bar isnt passed yet at this time
+			//inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +77,21 @@ namespace Erikduss
 			{
 				currencyGainAmountUpdateTimer += (float)delta;
 			}
-		}
+
+            //Timer for giving the player currency
+            if (playerAbilityUpdateTimer > playerAbilityCooldownReductionRate)
+            {
+                playerAbilityUpdateTimer = 0;
+                playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
+
+                //Update HUD
+				inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+            }
+            else
+            {
+                playerAbilityUpdateTimer += (float)delta;
+            }
+        }
 
 		//bool to inducate succes state of removing the currency.
 		public bool SpendPlayerCurrency(int amount)

@@ -38,11 +38,6 @@ texture_hover = ExtResource("2_nx0ou")
 texture_click_mask = ExtResource("3_u02nj")
 script = ExtResource("4_dbgai")
 thisUnitType = 2
-unitCost = 5
-unitHealth = 10
-unitArmour = 10
-unitAttack = 2
-unitDescription = "On attack, has a chance to inflict bleeding on the target, armoured targets have a smaller chance to bleed."
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false

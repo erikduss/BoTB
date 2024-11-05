@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://djl8ne5ep1hch"
+path="res://.godot/imported/MeteorShower_ClickMask.png-04755055237b705fee7bf542cb96aa81.res"
+
+[deps]
+
+source_file="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age01/MeteorShower_ClickMask.png"
+dest_files=["res://.godot/imported/MeteorShower_ClickMask.png-04755055237b705fee7bf542cb96aa81.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
