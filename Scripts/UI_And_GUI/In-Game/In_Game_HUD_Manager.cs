@@ -10,7 +10,7 @@ namespace Erikduss
 
 		[Export] Control unitShopParentNode;
 
-		public ProgressBar abilityCooldownBar;
+		public TextureProgressBar abilityCooldownBar;
 		private AgeAbilityInfoToggler abilityCooldownBarScript;
 
 		//Load this from data file later

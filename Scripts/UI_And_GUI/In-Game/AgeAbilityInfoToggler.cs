@@ -5,7 +5,9 @@ namespace Erikduss
 {
 	public partial class AgeAbilityInfoToggler : Node
 	{
-        [Export] ProgressBar abilityProgressbar;
+        [Export] TextureProgressBar abilityProgressbar;
+        Texture2D defaultProgressBarTexture;
+        [Export] Texture2D hoverProgressBarTexture;
 
         [Export] public Label abilityCooldownLabel;
 
@@ -13,6 +15,8 @@ namespace Erikduss
 		public override void _Ready()
 		{
             GameManager.Instance.inGameHUDManager.abilityCooldownBar = abilityProgressbar;
+
+            defaultProgressBarTexture = abilityProgressbar.TextureProgress;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,6 +26,8 @@ namespace Erikduss
 
         public void ShowAgeAbilityInfoOnHover()
         {
+            abilityProgressbar.TextureProgress = hoverProgressBarTexture;
+
             foreach (var child in this.GetChildren())
             {
                 if (child is TextureRect)
@@ -40,6 +46,8 @@ namespace Erikduss
 
         public void HideAgeAbilityInfoOnLoseHover()
         {
+            abilityProgressbar.TextureProgress = defaultProgressBarTexture;
+
             foreach (var child in this.GetChildren())
             {
                 if (child is TextureRect)

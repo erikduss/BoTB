@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "G:\\Godot\\Git\\BoTB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\gamedata\\dataconfigs\\unitsettingsconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,30 +98,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AgeAbilityInfoToggler.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwDAAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T14:17:45.768Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\GameManager.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameManager.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAgwC8AAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAgwC8AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T09:05:49.666Z",
               "EditorCaption": ""
@@ -185,7 +185,7 @@
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAAAFIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T09:11:00.426Z",
               "EditorCaption": ""
