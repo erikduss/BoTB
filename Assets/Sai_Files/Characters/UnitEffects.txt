@@ -56,4 +56,14 @@ Battlemage (offhand-wand & sword)
 -> medium health & low armor
 ---> Cost: 15
 
+Shaman (magic)
+-> Medium Damage
+-> Medium attack speed
+-> Medium movement speed
+-> While alive on the battlefield, enhance your special Age power. (Age 1: increase the amount of meteors spawned by 1)
+-> Low Health & Medium Armor
+---> Cost: 8
+
 Druid/Arch druid
+
+
