@@ -11,13 +11,21 @@ namespace Erikduss
 
 		public List<AnimatedSprite2D> animatedSpritesAgeBased = new List<AnimatedSprite2D>();
 		public AnimatedSprite2D currentAnimatedSprite;
+        public CollisionShape2D unitCollisionShape;
+
 
 		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
-		public float movementSpeed = 50f; //default 50f
-		public float detectionRange = 50f; //pixels
-
         public BaseCharacter currentTarget;
+
+        public bool isDead = false;
+        private bool startedDeathTimer = false;
+        private float deathTimerDuration = 1.5f;
+        private float deathTimer = 0f;
+
+        public bool canStillDamage = true;
+        private float canStillDamageTimer = 0f;
+        private float canStillDamageDuration = 0.2f;
 
         #region State Machine
 
@@ -28,17 +36,35 @@ namespace Erikduss
 
         #endregion
 
+        #region Unit personal Stats
+
+        public float movementSpeed = 50f; //default 50f
+        public float detectionRange = 30f; //pixels
+
+        public int currentHealth = 20;
+        public int maxHealth = 20;
+
+        public int unitArmor = 20;
+        public int unitAttackDamage = 10;
+
+        #endregion
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
-            foreach (Node animatedSprite in this.GetChildren())
+            foreach (Node childNode in this.GetChildren())
             {
-                if (animatedSprite is AnimatedSprite2D)
+                if (childNode is AnimatedSprite2D)
                 {
-                    AnimatedSprite2D spriteComponent = animatedSprite.GetNode<AnimatedSprite2D>(animatedSprite.GetPath());
+                    AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
 
                     spriteComponent.Visible = false;
                     animatedSpritesAgeBased.Add(spriteComponent);
+                }
+
+                if(childNode is CollisionShape2D)
+                {
+                    unitCollisionShape = childNode.GetNode<CollisionShape2D>(childNode.GetPath());
                 }
             }
 
@@ -95,9 +121,32 @@ namespace Erikduss
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _Process(double delta)
 		{
-			//detect other team's characters in range
+            if (GameManager.Instance.gameIsPaused) return;
 
-            if(currentState != null)
+            if (isDead)
+            {
+                if (canStillDamageTimer >= canStillDamageDuration)
+                {
+                    canStillDamage = false;
+                }
+                else
+                {
+                    canStillDamageTimer += (float)delta;
+                }
+
+                if(deathTimer >= deathTimerDuration)
+                {
+                    QueueFree();
+                }
+                else
+                {
+                    deathTimer += (float)delta;
+                }
+            }
+
+            //detect other team's characters in range
+
+            if (currentState != null)
             {
                 currentState.TickState((float)delta, this);
             }
@@ -105,6 +154,8 @@ namespace Erikduss
 
         public override void _PhysicsProcess(double delta)
         {
+            if (GameManager.Instance.gameIsPaused || isDead) return;
+
             base._PhysicsProcess(delta);
 
             if (currentState != null)
@@ -126,6 +177,52 @@ namespace Erikduss
             stateToTransitionTo.StateEnter(this);
 
             currentState = stateToTransitionTo;
+        }
+
+        public void TakeDamage(int rawDamage)
+        {
+            //raw damage is the damage before any armour damage reduction.
+
+            float damageReductionPercentageFromArmour = (float)(unitArmor / 100f); //armor is percentage damage reduction
+
+            float fixedDamageReduction = rawDamage * damageReductionPercentageFromArmour;
+
+            int fixedDamage = Mathf.RoundToInt(rawDamage - fixedDamageReduction);
+
+            if (fixedDamage <= 0) fixedDamage = 1; //We always do at least some damage
+
+            currentHealth -= fixedDamage;
+
+            if (currentHealth <= 0) 
+            {
+                processDeath();
+            }
+        }
+
+        public void processDeath()
+        {
+            if(isDead) return;
+
+            isDead = true;
+
+            unitCollisionShape.Disabled = true;
+
+            currentAnimatedSprite.Play("Death");
+        }
+
+        public void DealDamage()
+        {
+            if (currentTarget == null) return;
+
+            GD.Print(isDead + " _ " + canStillDamage);
+
+            if(isDead && !canStillDamage) return; //we cant deal damage if we are dead.
+
+            //add any multipliers here
+            int damage = unitAttackDamage;
+
+
+            currentTarget.TakeDamage(damage);
         }
     }
 }

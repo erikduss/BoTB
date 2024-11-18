@@ -436,6 +436,9 @@ namespace Erikduss
 
             // Save it to a file.
             config.Save(fullFilePath);
+
+            //Reload all unit settings
+            GameSettingsLoader.Instance.InitializeAllUnits();
         }
     }
 }

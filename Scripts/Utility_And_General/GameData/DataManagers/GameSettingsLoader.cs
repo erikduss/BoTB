@@ -35,7 +35,7 @@ namespace Erikduss
             //playerGlobalSettingsManager.LoadGlobalPlayerSettings();
         }
 
-        private async void InitializeAllUnits()
+        public async void InitializeAllUnits()
         {
             #region Age 01
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");

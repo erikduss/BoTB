@@ -29,7 +29,7 @@ namespace Erikduss
         public static int Age01_Warrior_UnitAttack = 10;
 
         public static int Age01_Warrior_UnitMovementSpeed = 50; 
-        public static int Age01_Warrior_UnitDetectionRange = 50;
+        public static int Age01_Warrior_UnitDetectionRange = 30;
         #endregion
 
         #region Ranger
@@ -44,7 +44,7 @@ namespace Erikduss
         public static int Age01_Ranger_UnitAttack = 10;
 
         public static int Age01_Ranger_UnitMovementSpeed = 50;
-        public static int Age01_Ranger_UnitDetectionRange = 50;
+        public static int Age01_Ranger_UnitDetectionRange = 30;
         #endregion
 
         #region Assassin
@@ -59,7 +59,7 @@ namespace Erikduss
         public static int Age01_Assassin_UnitAttack = 2;
 
         public static int Age01_Assassin_UnitMovementSpeed = 50;
-        public static int Age01_Assassin_UnitDetectionRange = 50;
+        public static int Age01_Assassin_UnitDetectionRange = 30;
         #endregion
 
         #region Enforcer
@@ -74,7 +74,7 @@ namespace Erikduss
         public static int Age01_Enforcer_UnitAttack = 1;
 
         public static int Age01_Enforcer_UnitMovementSpeed = 50;
-        public static int Age01_Enforcer_UnitDetectionRange = 50;
+        public static int Age01_Enforcer_UnitDetectionRange = 30;
         #endregion
 
         #region Tank
@@ -89,7 +89,7 @@ namespace Erikduss
         public static int Age01_Tank_UnitAttack = 1;
 
         public static int Age01_Tank_UnitMovementSpeed = 50;
-        public static int Age01_Tank_UnitDetectionRange = 50;
+        public static int Age01_Tank_UnitDetectionRange = 30;
         #endregion
 
         #region MassHealer
@@ -104,7 +104,7 @@ namespace Erikduss
         public static int Age01_MassHealer_UnitAttack = 0;
 
         public static int Age01_MassHealer_UnitMovementSpeed = 50;
-        public static int Age01_MassHealer_UnitDetectionRange = 50;
+        public static int Age01_MassHealer_UnitDetectionRange = 30;
         #endregion
 
         #region Battlemage
@@ -119,7 +119,7 @@ namespace Erikduss
         public static int Age01_Battlemage_UnitAttack = 4;
 
         public static int Age01_Battlemage_UnitMovementSpeed = 50;
-        public static int Age01_Battlemage_UnitDetectionRange = 50;
+        public static int Age01_Battlemage_UnitDetectionRange = 30;
         #endregion
 
         #endregion
@@ -138,7 +138,7 @@ namespace Erikduss
         public static int Age02_Warrior_UnitAttack = 10;
 
         public static int Age02_Warrior_UnitMovementSpeed = 50;
-        public static int Age02_Warrior_UnitDetectionRange = 50;
+        public static int Age02_Warrior_UnitDetectionRange = 30;
         #endregion
 
         #region Ranger
@@ -153,7 +153,7 @@ namespace Erikduss
         public static int Age02_Ranger_UnitAttack = 10;
 
         public static int Age02_Ranger_UnitMovementSpeed = 50;
-        public static int Age02_Ranger_UnitDetectionRange = 50;
+        public static int Age02_Ranger_UnitDetectionRange = 30;
         #endregion
 
         #region Assassin
@@ -168,7 +168,7 @@ namespace Erikduss
         public static int Age02_Assassin_UnitAttack = 2;
 
         public static int Age02_Assassin_UnitMovementSpeed = 50;
-        public static int Age02_Assassin_UnitDetectionRange = 50;
+        public static int Age02_Assassin_UnitDetectionRange = 30;
         #endregion
 
         #region Enforcer
@@ -183,7 +183,7 @@ namespace Erikduss
         public static int Age02_Enforcer_UnitAttack = 1;
 
         public static int Age02_Enforcer_UnitMovementSpeed = 50;
-        public static int Age02_Enforcer_UnitDetectionRange = 50;
+        public static int Age02_Enforcer_UnitDetectionRange = 30;
         #endregion
 
         #region Tank
@@ -198,7 +198,7 @@ namespace Erikduss
         public static int Age02_Tank_UnitAttack = 1;
 
         public static int Age02_Tank_UnitMovementSpeed = 50;
-        public static int Age02_Tank_UnitDetectionRange = 50;
+        public static int Age02_Tank_UnitDetectionRange = 30;
         #endregion
 
         #region MassHealer
@@ -213,7 +213,7 @@ namespace Erikduss
         public static int Age02_MassHealer_UnitAttack = 0;
 
         public static int Age02_MassHealer_UnitMovementSpeed = 50;
-        public static int Age02_MassHealer_UnitDetectionRange = 50;
+        public static int Age02_MassHealer_UnitDetectionRange = 30;
         #endregion
 
         #region Battlemage
@@ -228,7 +228,7 @@ namespace Erikduss
         public static int Age02_Battlemage_UnitAttack = 4;
 
         public static int Age02_Battlemage_UnitMovementSpeed = 50;
-        public static int Age02_Battlemage_UnitDetectionRange = 50;
+        public static int Age02_Battlemage_UnitDetectionRange = 30;
         #endregion
 
         #endregion

@@ -1,4 +1,5 @@
 Cost is based on getting 1 gold per second.
+C:\Users\erikd\AppData\Roaming\Godot\app_userdata\Battle Of The Bookworm
 
 Warrior (club/2h heavy melee weapon) 
 -> High Damage

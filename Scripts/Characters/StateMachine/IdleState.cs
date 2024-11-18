@@ -38,16 +38,26 @@ namespace Erikduss
 
         public override void TickState(float delta, BaseCharacter character)
         {
+            if(character.isDead) return;
+
             base.TickState(delta, character);
 
             if (!enableTimer) return;
 
             idleTimer += delta;
 
-            if (character.currentTarget != null) { return; } //for now we stop for a bit, this should switch to an attack function
-
             if(idleTimer > idleDuration)
             {
+                if (character.currentTarget != null) 
+                {
+                    if (character.currentTarget.currentHealth > 0)
+                    {
+                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                        return;
+                    }
+                    else character.currentTarget = null;
+                } 
+
                 //Switch to the new state
                 EmitSignal(SignalName.Transitioned, this, "WalkingState");
             }

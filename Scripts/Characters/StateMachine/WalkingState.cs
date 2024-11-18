@@ -42,6 +42,8 @@ namespace Erikduss
 
         public override void TickState(float delta, BaseCharacter character)
         {
+            if (character.isDead) return;
+
             base.TickState(delta, character);
 
             /*if (!enableTimer) return;
@@ -122,12 +124,14 @@ namespace Erikduss
                         {
                             GD.Print("Dist to friendly: " + distance);
 
-                            if (distance < 50f)
+                            //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
+                            if (distance < (character.detectionRange * 1.4f))
                             {
-                                character.currentTarget = enemyChar;
+                                //character.currentTarget = enemyChar;
 
                                 //Switch to the new state
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                return;
                             }
                         }
                         else
@@ -137,7 +141,8 @@ namespace Erikduss
                             character.currentTarget = enemyChar;
 
                             //Switch to the new state
-                            EmitSignal(SignalName.Transitioned, this, "IdleState");
+                            EmitSignal(SignalName.Transitioned, this, "AttackState");
+                            return;
 
                         }
                     }

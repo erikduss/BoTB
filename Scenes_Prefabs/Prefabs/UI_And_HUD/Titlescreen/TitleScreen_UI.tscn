@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
+[ext_resource type="Texture2D" uid="uid://dtrnlfixo5nmy" path="res://Assets/Environment/Background_Basic_Small.jpg" id="2_eerll"]
 [ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="3_ftwxo"]
-[ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="3_x23vw"]
 [ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="4_17xah"]
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="5_3h1cd"]
 [ext_resource type="BitMap" uid="uid://cajmmonjyfu4s" path="res://Assets/UI/ExitButton_ClickMask.png" id="5_a0gga"]
@@ -35,11 +35,12 @@ stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
 layout_mode = 2
-texture = ExtResource("3_x23vw")
+texture = ExtResource("2_eerll")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="ColorRect" type="ColorRect" parent="AspectRatioContainer/TextureRect"]
+visible = false
 layout_mode = 0
 offset_top = 420.0
 offset_right = 1920.0
