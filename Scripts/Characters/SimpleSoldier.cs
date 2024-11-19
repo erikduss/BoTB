@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 namespace Erikduss
@@ -37,7 +38,59 @@ namespace Erikduss
             detectionRange = loadedUnitSettings.unitDetectionRange;
             movementSpeed = loadedUnitSettings.unitMovementSpeed;
 
+            unitType = Enums.UnitTypes.Warrior;
+
             base._Ready();
+        }
+
+        public override void DealDamage()
+        {
+            //base.DealDamage();
+
+            if (currentTarget == null) return;
+
+            if (isDead && !canStillDamage) return; //we cant deal damage if we are dead.
+
+            //add any multipliers here
+            int damage = unitAttackDamage;
+
+            currentTarget.TakeDamage(damage);
+
+            System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;
+
+            if(characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary;
+            }
+            else
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+            }
+
+            foreach (BaseCharacter oppositeTeamUnit in dictionaryToSearch.Values)
+            {
+                float distance = oppositeTeamUnit.GlobalPosition.X - GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance > 144) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
+
+                if (characterOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    //This should not be possible, but we check if the unit is behind the unit or not.
+                    if (oppositeTeamUnit.GlobalPosition.X < GlobalPosition.X) continue;
+                }
+                else
+                {
+                    if (oppositeTeamUnit.GlobalPosition.X > GlobalPosition.X) continue;
+                }
+
+                //Make sure this is not the same target as we just attacked.
+                if (currentTarget == oppositeTeamUnit) continue;
+                if (currentTarget.uniqueID == oppositeTeamUnit.uniqueID) continue;
+
+                oppositeTeamUnit.TakeDamage(damage);
+            }
         }
     }
 }

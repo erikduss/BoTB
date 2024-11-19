@@ -44,7 +44,7 @@ namespace Erikduss
         public static int Age01_Ranger_UnitAttack = 10;
 
         public static int Age01_Ranger_UnitMovementSpeed = 50;
-        public static int Age01_Ranger_UnitDetectionRange = 30;
+        public static int Age01_Ranger_UnitDetectionRange = 120;
         #endregion
 
         #region Assassin

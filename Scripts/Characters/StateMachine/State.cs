@@ -10,12 +10,12 @@ namespace Erikduss
 
 		public virtual void StateEnter(BaseCharacter character)
 		{
-			GD.Print("State entered");
+			//GD.Print("State entered");
 		}
 
 		public virtual void StateExit(BaseCharacter character)
 		{
-            GD.Print("State exited");
+            //GD.Print("State exited");
         }
 
 		//Update

@@ -7,16 +7,20 @@ namespace Erikduss
 {
 	public partial class BaseCharacter : CharacterBody2D
 	{
+        public int uniqueID = -1;
+
 		public Enums.TeamOwner characterOwner = Enums.TeamOwner.NONE; //this will be set, this should NEVER be none.
+        public Enums.UnitTypes unitType = Enums.UnitTypes.Warrior;
 
 		public List<AnimatedSprite2D> animatedSpritesAgeBased = new List<AnimatedSprite2D>();
 		public AnimatedSprite2D currentAnimatedSprite;
         public CollisionShape2D unitCollisionShape;
 
-
 		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
         public BaseCharacter currentTarget;
+
+        public bool isRangedCharacter = false;
 
         public bool isDead = false;
         private bool startedDeathTimer = false;
@@ -26,6 +30,10 @@ namespace Erikduss
         public bool canStillDamage = true;
         private float canStillDamageTimer = 0f;
         private float canStillDamageDuration = 0.2f;
+
+        public bool canAttack = true;
+        private float attackCooldownTimer = 0f;
+        private float attackCooldownDuration = 1f;
 
         #region State Machine
 
@@ -144,6 +152,19 @@ namespace Erikduss
                 }
             }
 
+            if (!canAttack)
+            {
+                if(attackCooldownTimer >= 0)
+                {
+                    attackCooldownTimer -= (float)delta;
+                }
+                else
+                {
+                    canAttack = true;
+                    attackCooldownTimer = 0;
+                }
+            }
+
             //detect other team's characters in range
 
             if (currentState != null)
@@ -179,7 +200,7 @@ namespace Erikduss
             currentState = stateToTransitionTo;
         }
 
-        public void TakeDamage(int rawDamage)
+        public virtual void TakeDamage(int rawDamage)
         {
             //raw damage is the damage before any armour damage reduction.
 
@@ -199,7 +220,7 @@ namespace Erikduss
             }
         }
 
-        public void processDeath()
+        public virtual void processDeath()
         {
             if(isDead) return;
 
@@ -207,14 +228,14 @@ namespace Erikduss
 
             unitCollisionShape.Disabled = true;
 
+            GameManager.Instance.unitsSpawner.RemoveAliveUnitFromTeam(characterOwner, unitType, uniqueID);
+
             currentAnimatedSprite.Play("Death");
         }
 
-        public void DealDamage()
+        public virtual void DealDamage()
         {
             if (currentTarget == null) return;
-
-            GD.Print(isDead + " _ " + canStillDamage);
 
             if(isDead && !canStillDamage) return; //we cant deal damage if we are dead.
 
@@ -223,6 +244,12 @@ namespace Erikduss
 
 
             currentTarget.TakeDamage(damage);
+        }
+
+        public virtual void SetNewAttackCooldownTimer()
+        {
+            canAttack = false;
+            attackCooldownTimer = attackCooldownDuration;
         }
     }
 }

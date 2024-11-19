@@ -38,7 +38,7 @@ namespace Erikduss
             {
                 if (unitHasAttacked) return;
 
-                GD.Print("Unit has died with: " + (attackDuration - attackTimer) + " Time left");
+                //GD.Print("Unit has died with: " + (attackDuration - attackTimer) + " Time left");
 
                 if(attackDuration - attackTimer <= deathAttackThreshold)
                 {
@@ -63,6 +63,13 @@ namespace Erikduss
                 unitHasAttacked = true;
 
                 character.DealDamage();
+
+                if (character.isRangedCharacter)
+                {
+                    character.SetNewAttackCooldownTimer();
+                    EmitSignal(SignalName.Transitioned, this, "WalkingState");
+                    return;
+                }
 
                 //Switch to the new state
                 EmitSignal(SignalName.Transitioned, this, "IdleState");

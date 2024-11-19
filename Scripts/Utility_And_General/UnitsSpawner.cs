@@ -11,14 +11,19 @@ namespace Erikduss
         [Export] public Node2D team02UnitsSpawnerLocation;
 
 		public PackedScene simpleSoldierPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/SimpleSoldier.tscn");
+        public PackedScene rangerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Ranger.tscn");
 
-		private int lastUsedUnitID = 0;
+        private int lastUsedUnitID = 0;
 
 		//In this dictionary we save the units that we are queueing per team, we need to save the unit type and the age 
 		public Dictionary<string, Enums.UnitTypes> team01UnitQueueDictionary = new Dictionary<string, Enums.UnitTypes>();
         public Dictionary<string, Enums.UnitTypes> team02UnitQueueDictionary = new Dictionary<string, Enums.UnitTypes>();
 
-		private int team01UnitSpawnIDCurrentValue = 0;
+        //The saved string is the Unit type + unique ID
+        public Dictionary<string, BaseCharacter> team01AliveUnitDictionary = new Dictionary<string, BaseCharacter>();
+        public Dictionary<string, BaseCharacter> team02AliveUnitDictionary = new Dictionary<string, BaseCharacter>();
+
+        private int team01UnitSpawnIDCurrentValue = 0;
         private int team02UnitSpawnIDCurrentValue = 0;
 
         private bool team01HasSpawnSpace = true;
@@ -70,7 +75,7 @@ namespace Erikduss
 				//debug, spawn some enemies
 				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
 				{
-					debugSpawnCounter = 10000;
+					debugSpawnCounter = 100;
 					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
 				}
 				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
@@ -115,7 +120,16 @@ namespace Erikduss
 			AddUnitToQueue(team, Enums.UnitTypes.Warrior, currentAge);
 		}
 
-		private void AddUnitToQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
+        public void ProcessBuyingRanger(Enums.TeamOwner team)
+        {
+            //spawn prefab
+            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+
+            //Add to queue
+            AddUnitToQueue(team, Enums.UnitTypes.Ranger, currentAge);
+        }
+
+        private void AddUnitToQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
 		{
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
@@ -134,15 +148,13 @@ namespace Erikduss
 			}
 		}
 
-		private void GetAndRemoveUnitFromQueue(Enums.TeamOwner team)
+        private void GetAndRemoveUnitFromQueue(Enums.TeamOwner team)
 		{
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
 				//the age is saved in the unique string, this string is needed to give the unit a unique ID.
 				string uniqueIDString = team01UnitQueueDictionary.FirstOrDefault().Key;
 				string[] splitUniqueString = uniqueIDString.Split('_');
-
-				GD.Print(splitUniqueString[1]);
 
 				Enums.Ages unitAge = (Enums.Ages)splitUniqueString[1].ToInt();
 
@@ -166,25 +178,111 @@ namespace Erikduss
             }
 		}
 
-		private void SpawnUnitFromQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
-		{
-			//GD.Print("We are spawning: " + unitType.ToString() + " for team: " + team.ToString() + " in age: " + unitAge.ToString());
-
-			if(unitType == Enums.UnitTypes.Warrior)
-			{
-                //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                SimpleSoldier instantiatedSimpleSoldier = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
-
-                //determine the position based on the team
-                instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
-                instantiatedSimpleSoldier.characterOwner = team;
-                instantiatedSimpleSoldier.currentAge = unitAge;
-
-                instantiatedSimpleSoldier.Name = "InstantiatedSimpleSoldier_" + lastUsedUnitID;
-                lastUsedUnitID++;
-
-                AddChild(instantiatedSimpleSoldier);
+        private void AddUnitToAliveDict(Enums.TeamOwner team, BaseCharacter unitChar, string uniqueIDString)
+        {
+            if (team == Enums.TeamOwner.TEAM_01)
+            {
+                team01AliveUnitDictionary.Add(uniqueIDString, unitChar);
             }
+            else
+            {
+                team02AliveUnitDictionary.Add(uniqueIDString, unitChar);
+            }
+        }
+
+        public void RemoveAliveUnitFromTeam(Enums.TeamOwner team, Enums.UnitTypes unitType, int unitID)
+        {
+            if (team == Enums.TeamOwner.TEAM_01)
+            {
+                //unique ID = unit type + unitID
+                string uniqueIDString = (uint)unitType + "_" + unitID;
+
+                team01AliveUnitDictionary.Remove(uniqueIDString);
+            }
+            else
+            {
+                string uniqueIDString = (uint)unitType + "_" + unitID;
+
+                team02AliveUnitDictionary.Remove(uniqueIDString);
+            }
+        }
+
+        private void SpawnUnitFromQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
+		{
+            //GD.Print("We are spawning: " + unitType.ToString() + " for team: " + team.ToString() + " in age: " + unitAge.ToString());
+
+            string uniqueUnitName = "";
+
+            switch (unitType)
+			{
+				case Enums.UnitTypes.Warrior:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    SimpleSoldier instantiatedSimpleSoldier = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedSimpleSoldier.characterOwner = team;
+                    instantiatedSimpleSoldier.currentAge = unitAge;
+
+                    instantiatedSimpleSoldier.Name = "InstantiatedSimpleSoldier_" + lastUsedUnitID;
+
+                    instantiatedSimpleSoldier.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedSimpleSoldier);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedSimpleSoldier, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+				case Enums.UnitTypes.Ranger:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Ranger instantiatedRanger = (Ranger)rangerPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedRanger.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedRanger.characterOwner = team;
+                    instantiatedRanger.currentAge = unitAge;
+
+                    instantiatedRanger.Name = "InstantiatedRanger_" + lastUsedUnitID;
+
+                    instantiatedRanger.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedRanger);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedRanger, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+				default:
+					GD.PrintErr("UNIT NOT IMPLEMENTED, UNITSPAWNER, SPAWNUNITFROMQUEUE");
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    SimpleSoldier instantiatedNoType = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedNoType.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedNoType.characterOwner = team;
+                    instantiatedNoType.currentAge = unitAge;
+
+                    instantiatedNoType.Name = "InstantiatedNoTyoe_" + lastUsedUnitID;
+
+                    instantiatedNoType.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedNoType);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedNoType, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+			}
         }
 	}
 }

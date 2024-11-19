@@ -66,7 +66,30 @@ namespace Erikduss
 			//add soldier to spawn queue in a (few) second(s).
 
 			//this is always team one due to the player having to click this. If going multiplayer, this needs to be adjusted and processed by the server.
-			GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
+
+			switch (unitType)
+			{
+				case Enums.UnitTypes.Warrior:
+                    GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
+                    break;
+                case Enums.UnitTypes.Asssassin:
+                    break;
+                case Enums.UnitTypes.Enforcer:
+                    break;
+                case Enums.UnitTypes.Tank:
+                    break;
+                case Enums.UnitTypes.Ranger:
+                    GameManager.Instance.unitsSpawner.ProcessBuyingRanger(Enums.TeamOwner.TEAM_01);
+                    break;
+                case Enums.UnitTypes.Mass_Healer:
+                    break;
+				default:
+					GD.PrintErr("UNIT TYPE NOT IMPLEMENTED: INGAME HUD MANAGER, BUY BUTTON CLICKED");
+                    GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
+                    break;
+            }
+
+			
 
 			return true;
 		}

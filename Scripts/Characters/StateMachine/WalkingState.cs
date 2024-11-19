@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Erikduss
 {
@@ -122,23 +123,49 @@ namespace Erikduss
 
                         if (enemyChar.characterOwner == character.characterOwner)
                         {
-                            GD.Print("Dist to friendly: " + distance);
+                            //GD.Print("Dist to friendly: " + distance);
 
                             //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
-                            if (distance < (character.detectionRange * 1.4f))
+                            if (distance < 42) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
                             {
                                 //character.currentTarget = enemyChar;
 
-                                //Switch to the new state
-                                EmitSignal(SignalName.Transitioned, this, "IdleState");
-                                return;
+                                if(CheckRangedCharacterTarget(character, character.characterOwner))
+                                {
+                                    if (character.canAttack)
+                                    {
+                                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    //Switch to the new state
+                                    EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                    return;
+                                }
+                            }
+                            else if (character.isRangedCharacter && character.canAttack)
+                            {
+                                if (CheckRangedCharacterTarget(character, character.characterOwner))
+                                {
+                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                    return;
+                                }
                             }
                         }
                         else
                         {
-                            GD.Print("Dist to enemy: " + distance);
+                            //GD.Print("Dist to enemy: " + distance);
 
                             character.currentTarget = enemyChar;
+
+                            //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
+                            if(character.isRangedCharacter && !character.canAttack)
+                            {
+                                EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                return;
+                            }
 
                             //Switch to the new state
                             EmitSignal(SignalName.Transitioned, this, "AttackState");
@@ -158,6 +185,47 @@ namespace Erikduss
             //character.characterBody.Velocity = new Vector2(character.movementSpeed, 0) * delta;
             //character.characterBody.MoveAndSlide();
             character.MoveAndCollide(new Vector2(character.movementSpeed, 0) * delta);
+        }
+
+        private bool CheckRangedCharacterTarget(BaseCharacter character, Enums.TeamOwner team)
+        {
+            if (!character.isRangedCharacter) return false;
+
+            System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;
+
+            if (team == Enums.TeamOwner.TEAM_01)
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary;
+            }
+            else
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+            }
+
+            foreach (BaseCharacter oppositeTeamUnit in dictionaryToSearch.Values)
+            {
+                float distance = oppositeTeamUnit.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance > character.detectionRange) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
+
+                if (team == Enums.TeamOwner.TEAM_01)
+                {
+                    //This should not be possible, but we check if the unit is behind the unit or not.
+                    if (oppositeTeamUnit.GlobalPosition.X < character.GlobalPosition.X) continue;
+                }
+                else
+                {
+                    if (oppositeTeamUnit.GlobalPosition.X > character.GlobalPosition.X) continue;
+                }
+
+                character.currentTarget = oppositeTeamUnit;
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
