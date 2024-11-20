@@ -84,7 +84,12 @@ namespace Erikduss
 			{
 				movementSpeed = -movementSpeed; // this one needs to go the other direction.
 				currentAnimatedSprite.FlipH = true;
-			}
+                CollisionLayer = 0b100;
+            }
+            else
+            {
+                CollisionLayer = 0b10;
+            }
 
             #region State Machine
 

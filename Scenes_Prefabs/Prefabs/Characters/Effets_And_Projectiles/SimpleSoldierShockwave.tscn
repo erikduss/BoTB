@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d28fjljsqqypm"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/WarriorShockwave.cs" id="1_5vwuw"]
+[ext_resource type="Texture2D" uid="uid://ckq4bde060kcd" path="res://Assets/Characters/Warrior_Age_1/Warrior_Shockwave_Visual.png" id="1_rsk2d"]
+
+[node name="SimpleSoldierShockwave" type="Node2D" node_paths=PackedStringArray("usedSprite")]
+script = ExtResource("1_5vwuw")
+usedSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rsk2d")

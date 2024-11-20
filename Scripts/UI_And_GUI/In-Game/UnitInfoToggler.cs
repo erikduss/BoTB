@@ -33,9 +33,10 @@ namespace Erikduss
             InitializeUnitInfo();
         }
 
-        async void InitializeUnitInfo()
+        private void InitializeUnitInfo()
         {
-            await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+            //dont need to be async anymore
+            //await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 
             LoadUnitValues();
 
@@ -99,8 +100,6 @@ namespace Erikduss
                 if (child is Label)
                 {
                     Label description = child.GetNode<Label>(child.GetPath());
-
-                    GD.Print(description.Name);
                     //Set the unit description through the actual unit info file.
 
                     unitDescriptionLabel = description;

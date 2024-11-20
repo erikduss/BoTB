@@ -13,6 +13,8 @@ namespace Erikduss
         private bool enableTimer = false;
         private bool unitHasAttacked = false;
 
+        private bool executedEffect = false;
+
         public override void StateEnter(BaseCharacter character)
         {
             base.StateEnter(character);
@@ -30,6 +32,7 @@ namespace Erikduss
             enableTimer = false;
             attackTimer = 0f;
             unitHasAttacked = false;
+            executedEffect = false;
         }
 
         public override void TickState(float delta, BaseCharacter character)
@@ -56,6 +59,8 @@ namespace Erikduss
 
             attackTimer += delta;
 
+            ExecuteUnitProjectileAndVisualEffects(character);
+
             if (attackTimer > attackDuration)
             {
                 if (unitHasAttacked) return;
@@ -79,6 +84,31 @@ namespace Erikduss
         public override void PhysicsTickState(float delta, BaseCharacter character)
         {
             base.PhysicsTickState(delta, character);
+        }
+
+        private void ExecuteUnitProjectileAndVisualEffects(BaseCharacter character)
+        {
+            switch (character.unitType)
+            {
+                case Enums.UnitTypes.Warrior:
+                    if((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+                        EffectsAndProjectilesSpawner.Instance.SpawnWarriorShockwave(character, 1);
+                        EffectsAndProjectilesSpawner.Instance.SpawnWarriorShockwave(character, 2);
+                    }
+                    break;
+                case Enums.UnitTypes.Ranger:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+                        EffectsAndProjectilesSpawner.Instance.SpawnRangerProjectile(character);
+                    }
+                    break;
+                default:
+                    GD.PrintErr("UNIT TYPE EFFECT NOT IMPLEMENTED, ATTACK STATE");
+                    break;
+            }
         }
     }
 }
