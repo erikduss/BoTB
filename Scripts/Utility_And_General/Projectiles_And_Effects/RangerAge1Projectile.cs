@@ -7,7 +7,10 @@ namespace Erikduss
 	{
 		[Export] public RangerAge1ProjectilePhysics rigidBody;
 
+        public BaseCharacter projectileOwnerChar;
 		public Enums.TeamOwner projectileOwner = Enums.TeamOwner.TEAM_01;
+
+        bool dealtDamage = false;
 
         public override void _Ready()
         {
@@ -46,14 +49,29 @@ namespace Erikduss
 
         public void OnCollisionEnter(Node2D body)
 		{
-            rigidBody.addVelocity = false;
-            //rigidBody.SetAxisVelocity(new Vector2(0, rigidBody.LinearVelocity.Y));
-            GD.Print("Hit a character");
+            rigidBody.StopForces();
+
+            if (dealtDamage) return;
+
+            if (body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId())
+            {
+                dealtDamage = true;
+                projectileOwnerChar.DealDamage();
+            }
+            else 
+            {
+                BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
+                if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;
+
+                dealtDamage = true;
+                projectileOwnerChar.currentTarget = enemyChar;
+                projectileOwnerChar.DealDamage();
+            }
 		}
 
 		public void OnCollisionExit(Node2D body)
 		{
-            GD.Print("leaving a character");
+
         }
     }
 }

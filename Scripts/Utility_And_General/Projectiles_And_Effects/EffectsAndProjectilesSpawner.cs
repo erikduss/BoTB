@@ -59,6 +59,7 @@ namespace Erikduss
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
             instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerChar = unitOwner;
 
             float offSetX = 30f;
             float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;

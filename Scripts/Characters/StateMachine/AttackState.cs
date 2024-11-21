@@ -67,10 +67,28 @@ namespace Erikduss
 
                 unitHasAttacked = true;
 
-                character.DealDamage();
+                //we deal damage through the projectile
+                if(!character.isRangedCharacter) character.DealDamage();
 
                 if (character.isRangedCharacter)
                 {
+                    if(character.unitType == Enums.UnitTypes.Ranger)
+                    {
+                        if(character.currentAttackCooldownDuration < 0)
+                        {
+                            character.SetNewAttackCooldownTimer();
+                            EmitSignal(SignalName.Transitioned, this, "WalkingState");
+                        }
+                        else
+                        {
+                            //we attack a lot faster now, but we cant move.
+                            character.SetNewAttackCooldownTimer(character.currentAttackCooldownDuration);
+                            EmitSignal(SignalName.Transitioned, this, "IdleState");
+                        }
+                        return;
+                    }
+
+
                     character.SetNewAttackCooldownTimer();
                     EmitSignal(SignalName.Transitioned, this, "WalkingState");
                     return;

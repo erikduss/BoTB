@@ -6,6 +6,7 @@ namespace Erikduss
     public partial class IdleState : State
     {
         [Export] public float idleDuration = 1f;
+        private float currentIdleDuration = 1f;
 
         public float idleTimer = 0f;
         private bool enableTimer = false;
@@ -22,6 +23,9 @@ namespace Erikduss
             base.StateEnter(character);
 
             character.currentAnimatedSprite.Play("Idle");
+
+            if (character.currentAttackCooldownDuration > 0f) currentIdleDuration = character.currentAttackCooldownDuration;
+            else currentIdleDuration = idleDuration;
 
             enableTimer = true;
             idleTimer = 0f;
@@ -46,7 +50,7 @@ namespace Erikduss
 
             idleTimer += delta;
 
-            if(idleTimer > idleDuration)
+            if(idleTimer > currentIdleDuration)
             {
                 if (character.currentTarget != null) 
                 {

@@ -133,7 +133,7 @@ namespace Erikduss
 
 			for(int i = 0; i < amountOfUnitsInShop; i++)
 			{
-				int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count - 1));
+				int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
 
                 Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
 
@@ -149,7 +149,7 @@ namespace Erikduss
 				{
                     unitShopParentNode.GetChild(i).QueueFree();
 
-                    int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count - 1));
+                    int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
 
                     Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
 

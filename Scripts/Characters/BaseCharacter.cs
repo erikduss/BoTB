@@ -19,6 +19,7 @@ namespace Erikduss
 		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
         public BaseCharacter currentTarget;
+        public List<BaseCharacter> unitsThatNeedToBeSignaledOnDeath = new List<BaseCharacter>();
 
         public bool isRangedCharacter = false;
 
@@ -34,6 +35,7 @@ namespace Erikduss
         public bool canAttack = true;
         private float attackCooldownTimer = 0f;
         private float attackCooldownDuration = 1f;
+        public float currentAttackCooldownDuration = -1f;
 
         #region State Machine
 
@@ -231,7 +233,12 @@ namespace Erikduss
 
             isDead = true;
 
-            unitCollisionShape.Disabled = true;
+            CollisionLayer = 0b00;
+            CollisionMask = 0b00;
+
+            unitCollisionShape.SetDeferred("Disabled", true);
+
+            SignalUnitsThatThisOneDied();
 
             GameManager.Instance.unitsSpawner.RemoveAliveUnitFromTeam(characterOwner, unitType, uniqueID);
 
@@ -251,10 +258,27 @@ namespace Erikduss
             currentTarget.TakeDamage(damage);
         }
 
-        public virtual void SetNewAttackCooldownTimer()
+        public virtual void SignalUnitsThatThisOneDied()
+        {
+            foreach(BaseCharacter unit in unitsThatNeedToBeSignaledOnDeath)
+            {
+                if (unit == null) continue;
+
+                unit.UnitSignaledForDeathEvent();
+            }
+        }
+
+        public virtual void UnitSignaledForDeathEvent()
+        {
+
+        }
+
+        public virtual void SetNewAttackCooldownTimer(float overrideAttackCooldown = -1)
         {
             canAttack = false;
-            attackCooldownTimer = attackCooldownDuration;
+
+            if(overrideAttackCooldown > 0) attackCooldownTimer = overrideAttackCooldown;
+            else attackCooldownTimer = attackCooldownDuration;
         }
     }
 }

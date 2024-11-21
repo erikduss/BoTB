@@ -8,14 +8,36 @@ namespace Erikduss
         [Export] public RangerAge1Projectile attachedProjectileScript;
 
         public bool addVelocity = true;
+        private float projectileVelocity = 500f;
 
-        public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+        public override void _Ready()
         {
-            if (GameManager.Instance.gameIsPaused || !addVelocity) return;
+            base._Ready();
 
-            base._IntegrateForces(state);
+            if (attachedProjectileScript.projectileOwner == Enums.TeamOwner.TEAM_02) projectileVelocity = -projectileVelocity;
+            LinearVelocity = new Vector2(projectileVelocity, 0);
+        }
 
-            AddConstantForce(new Vector2(10, 0));
+        //public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+        //{
+        //    GD.Print(LinearVelocity);
+
+        //    if (GameManager.Instance.gameIsPaused || !addVelocity) return;
+
+        //    base._IntegrateForces(state);
+
+        //    MoveAndCollide(new Vector2(25, 0));
+
+        //    //AddConstantForce(new Vector2(1000, 0));
+        //}
+
+        public void StopForces()
+        {
+            addVelocity = false;
+
+            ConstantForce = Vector2.Zero;
+            LinearVelocity = Vector2.Zero;
+            SetAxisVelocity(Vector2.Zero);
         }
     }
 }

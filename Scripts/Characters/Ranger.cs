@@ -8,6 +8,12 @@ namespace Erikduss
 	{
         //This unit is called "Ranger"
 
+        public bool rangerBuffActive = false;
+        public float buffAttackSpeed = 0.5f;
+
+        private float buffDuration = 2f;
+        private float buffTimer = 0f;
+
         public override void _Ready()
         {
             //Load Unit Stats
@@ -43,6 +49,43 @@ namespace Erikduss
             isRangedCharacter = true;
 
             base._Ready();
+        }
+
+        public override void _Process(double delta)
+        {
+            base._Process(delta);
+
+            if (rangerBuffActive)
+            {
+                if(buffTimer > buffDuration)
+                {
+                    rangerBuffActive = false;
+                    currentAttackCooldownDuration = -1f;
+                }
+                else
+                {
+                    buffTimer += (float)delta;
+                }
+            }
+        }
+
+        public override void DealDamage()
+        {
+            if(currentTarget != null)
+            {
+                //we need to be signaled by this unit since we damaged it!
+                currentTarget.unitsThatNeedToBeSignaledOnDeath.Add(this);
+            }
+
+            base.DealDamage();
+        }
+
+        public override void UnitSignaledForDeathEvent()
+        {
+            base.UnitSignaledForDeathEvent();
+
+            rangerBuffActive = true;
+            currentAttackCooldownDuration = buffAttackSpeed;
         }
     }
 }

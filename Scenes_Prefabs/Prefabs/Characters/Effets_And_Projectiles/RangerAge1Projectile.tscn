@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://brwv7gmai70lh" path="res://Assets/Characters/Ranger/Age_01/Ranger_Age_1_JavelinProjectile.png" id="1_tp6cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
-size = Vector2(46, 10)
+size = Vector2(33, 10)
 
 [node name="RangerAge1Projectile" type="RigidBody2D" node_paths=PackedStringArray("attachedProjectileScript")]
 collision_layer = 16
@@ -17,7 +17,7 @@ script = ExtResource("1_tbw5w")
 attachedProjectileScript = NodePath("Node2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(-6.5, -5)
 shape = SubResource("RectangleShape2D_rhica")
 
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "usedSprite")]
