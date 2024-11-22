@@ -6,13 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owsrj"]
 size = Vector2(151, 161)
 
-[node name="CharacterHomeBase" type="Node2D"]
+[node name="CharacterHomeBase" type="Node2D" node_paths=PackedStringArray("StaticBody")]
 script = ExtResource("1_vm5ms")
+StaticBody = NodePath("StaticBody2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_aid5j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 96
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-52.5, 33.5)

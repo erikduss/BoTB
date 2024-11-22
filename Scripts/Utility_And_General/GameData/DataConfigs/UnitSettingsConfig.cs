@@ -5,6 +5,8 @@ namespace Erikduss
 {
 	public partial class UnitSettingsConfig : Node
 	{
+        public bool useCustomVariables = false;
+
         //Unit Info
         public int unitCost = 10;
         public Enums.Ages unitAvailableInAge = Enums.Ages.AGE_01; //make this enum?

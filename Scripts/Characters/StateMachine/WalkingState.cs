@@ -15,7 +15,7 @@ namespace Erikduss
          */
 
         //if in team 1 we only need to check for layer 3 (bit 2) otherwise check for layer 2 (bit 1)
-        public uint raycastCollisionMask = 0b111;
+        public uint raycastCollisionMask = 0b1100110;
 
 
         public override void StateEnter(BaseCharacter character)
@@ -103,6 +103,16 @@ namespace Erikduss
                     if (staticBodyCheck)
                     {
                         reachedEnemyBase = true;
+                        
+                        //we need to set the target to the enemy base
+                        //we should probably do this by making the reachedEnemyBase variable public and checking this on the attack function and have a variable for the enemy base to deal damage to it.
+
+                        //before we start attacking the enemy base, we still do need to be sure that there is no enemy unit standing at the base
+                        //so we should probably move this to AFTER the enemy character check. Then we should check in the public list of units that are alive if there are any alive
+                        //If the enemy does not have any units, we do attack the base.
+
+                        //we need to switch to attack state now
+                        
                     }
                     else
                     {

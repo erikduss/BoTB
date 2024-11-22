@@ -31,6 +31,7 @@ namespace Erikduss
 
 		public enum UnitSettingsConfigHeader
 		{
+			CONFIG_SETTINGS,
 			UNIT_INFO,
 			UNIT_STATS,
 			UNIT_GAMEPLAY_VARIABLES

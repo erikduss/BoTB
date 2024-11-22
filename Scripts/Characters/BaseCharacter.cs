@@ -87,10 +87,12 @@ namespace Erikduss
 				movementSpeed = -movementSpeed; // this one needs to go the other direction.
 				currentAnimatedSprite.FlipH = true;
                 CollisionLayer = 0b100;
+                CollisionMask = 0b100111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
             }
             else
             {
                 CollisionLayer = 0b10;
+                CollisionMask = 0b1000111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
             }
 
             #region State Machine

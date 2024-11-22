@@ -121,60 +121,144 @@ namespace Erikduss
                     switch (thisUnitType)
                     {
                         case Enums.UnitTypes.Warrior:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Warrior_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Warrior_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Warrior_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Asssassin:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Assassin_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Assassin_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Assassin_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Assassin_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Enforcer:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_EnforcerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Enforcer_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Enforcer_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Enforcer_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Enforcer_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Enforcer_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Tank:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_TankSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Tank_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Tank_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Tank_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Tank_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Battlemage:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Battlemage_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Battlemage_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Battlemage_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Battlemage_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Mass_Healer:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_MassHealerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_MassHealer_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_MassHealer_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_MassHealer_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_MassHealer_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Ranger:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.useCustomVariables)
+                            {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.unitCost;
                                 unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.unitHealth;
                                 unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.unitArmour;
                                 unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.unitAttack;
 
                                 unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_RangerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Ranger_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Ranger_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Ranger_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Ranger_UnitDescription;
+                            }
                             break;
                     }
                     break;
@@ -182,60 +266,144 @@ namespace Erikduss
                     switch (thisUnitType)
                     {
                         case Enums.UnitTypes.Warrior:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Warrior_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Warrior_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Warrior_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Warrior_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Asssassin:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Assassin_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Assassin_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Assassin_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Assassin_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Assassin_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Enforcer:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_EnforcerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Enforcer_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Enforcer_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Enforcer_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Enforcer_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Enforcer_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Tank:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_TankSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Tank_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Tank_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Tank_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Tank_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Tank_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Battlemage:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_BattlemageSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Battlemage_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Battlemage_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Battlemage_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Battlemage_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Battlemage_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Mass_Healer:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_MassHealerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_MassHealer_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_MassHealer_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_MassHealer_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_MassHealer_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_MassHealer_UnitDescription;
+                            }
                             break;
                         case Enums.UnitTypes.Ranger:
-                            unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitCost;
-                            unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitHealth;
-                            unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitArmour;
-                            unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitAttack;
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitAttack;
 
-                            unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitDescription;
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_RangerSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Ranger_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Ranger_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Ranger_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Ranger_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Ranger_UnitDescription;
+                            }
                             break;
                     }
                     break;

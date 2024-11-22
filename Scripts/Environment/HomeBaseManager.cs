@@ -7,6 +7,7 @@ namespace Erikduss
 	public partial class HomeBaseManager : Node2D
 	{
 		[Export] public bool requiresToBeFlipped = false;
+        [Export] public StaticBody2D StaticBody;
 
         public Sprite2D homeBaseSprite;
         public CollisionShape2D colliderShape;
@@ -37,8 +38,16 @@ namespace Erikduss
 
             if(requiresToBeFlipped)
             {
+                StaticBody.CollisionLayer = 0b1000000; //this is our layer, in this case team 2
+                StaticBody.CollisionMask = 0b10; //what we check for
+
                 homeBaseSprite.FlipH = true;
                 colliderShape.Position = new Vector2(64, colliderShape.Position.Y);
+            }
+            else
+            {
+                StaticBody.CollisionLayer = 0b100000; 
+                StaticBody.CollisionMask = 0b100; 
             }
         }
 

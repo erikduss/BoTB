@@ -70,7 +70,11 @@ namespace Erikduss
             // Iterate over all sections.
             foreach (String section in config.GetSections())
             {
-                if (section == Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString())
+                if (section == Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString())
+                {
+                    currentWorkingConfig.useCustomVariables = (bool)config.GetValue(section, "useCustomVariables");
+                }
+                else if (section == Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString())
                 {
                     currentWorkingConfig.unitCost = (int)config.GetValue(section, "unitCost");
                     currentWorkingConfig.unitAvailableInAge = (Enums.Ages)(int)config.GetValue(section, "unitAvailableInAge");
@@ -184,6 +188,8 @@ namespace Erikduss
                     {
                         case Enums.UnitTypes.Warrior:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Warrior_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Warrior_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Warrior_UnitName);
@@ -198,6 +204,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Asssassin:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Assassin_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Assassin_UnitAvailableInAge);
@@ -214,6 +222,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Enforcer:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Enforcer_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Enforcer_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Enforcer_UnitName);
@@ -228,6 +238,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Ranger:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Ranger_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Ranger_UnitAvailableInAge);
@@ -244,6 +256,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Tank:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Tank_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Tank_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Tank_UnitName);
@@ -258,6 +272,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Battlemage:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Battlemage_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Battlemage_UnitAvailableInAge);
@@ -274,6 +290,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Mass_Healer:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_MassHealer_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_MassHealer_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_MassHealer_UnitName);
@@ -288,6 +306,8 @@ namespace Erikduss
 
                             break;
                         default:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Warrior_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Warrior_UnitAvailableInAge);
@@ -309,6 +329,8 @@ namespace Erikduss
                     {
                         case Enums.UnitTypes.Warrior:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Warrior_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Warrior_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Warrior_UnitName);
@@ -323,6 +345,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Asssassin:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Assassin_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Assassin_UnitAvailableInAge);
@@ -339,6 +363,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Enforcer:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Enforcer_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Enforcer_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Enforcer_UnitName);
@@ -353,6 +379,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Ranger:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Ranger_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Ranger_UnitAvailableInAge);
@@ -369,6 +397,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Tank:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Tank_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Tank_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Tank_UnitName);
@@ -383,6 +413,8 @@ namespace Erikduss
 
                             break;
                         case Enums.UnitTypes.Battlemage:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Battlemage_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Battlemage_UnitAvailableInAge);
@@ -399,6 +431,8 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Mass_Healer:
 
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_MassHealer_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_MassHealer_UnitAvailableInAge);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_MassHealer_UnitName);
@@ -413,6 +447,8 @@ namespace Erikduss
 
                             break;
                         default:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Warrior_UnitCost);
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Warrior_UnitAvailableInAge);
