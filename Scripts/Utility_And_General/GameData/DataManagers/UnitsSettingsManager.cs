@@ -21,6 +21,7 @@ namespace Erikduss
         public UnitSettingsConfig Age01_BattlemageSettingsConfig = new UnitSettingsConfig();
         public UnitSettingsConfig Age01_MassHealerSettingsConfig = new UnitSettingsConfig();
         public UnitSettingsConfig Age01_EnforcerSettingsConfig = new UnitSettingsConfig();
+        public UnitSettingsConfig Age01_ArchdruidSettingsConfig = new UnitSettingsConfig();
 
         //Age 02
         public UnitSettingsConfig Age02_WarriorSettingsConfig = new UnitSettingsConfig();
@@ -30,6 +31,7 @@ namespace Erikduss
         public UnitSettingsConfig Age02_BattlemageSettingsConfig = new UnitSettingsConfig();
         public UnitSettingsConfig Age02_MassHealerSettingsConfig = new UnitSettingsConfig();
         public UnitSettingsConfig Age02_EnforcerSettingsConfig = new UnitSettingsConfig();
+        public UnitSettingsConfig Age02_ArchdruidSettingsConfig = new UnitSettingsConfig();
 
         #endregion
 
@@ -133,6 +135,13 @@ namespace Erikduss
                         case Enums.UnitTypes.Ranger:
                             currentWorkingConfig = Age01_RangerSettingsConfig;
                             break;
+                        case Enums.UnitTypes.Archdruid:
+                            currentWorkingConfig = Age01_ArchdruidSettingsConfig;
+                            break;
+                        default:
+                            GD.PrintErr("Unit type not implemented: UnitSettingsManager.cs (SetCurrentWorkingValues)");
+                            currentWorkingConfig = Age01_WarriorSettingsConfig;
+                            break;
                     }
                     break;
                 case Enums.Ages.AGE_02:
@@ -158,6 +167,13 @@ namespace Erikduss
                             break;
                         case Enums.UnitTypes.Ranger:
                             currentWorkingConfig = Age02_RangerSettingsConfig;
+                            break;
+                        case Enums.UnitTypes.Archdruid:
+                            currentWorkingConfig = Age02_ArchdruidSettingsConfig;
+                            break;
+                        default:
+                            GD.PrintErr("Unit type not implemented: UnitSettingsManager.cs (SetCurrentWorkingValues Age2)");
+                            currentWorkingConfig = Age02_WarriorSettingsConfig;
                             break;
                     }
                     break;
@@ -305,7 +321,25 @@ namespace Erikduss
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_MassHealer_UnitDetectionRange);
 
                             break;
+                        case Enums.UnitTypes.Archdruid:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Archdruid_UnitCost);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Archdruid_UnitAvailableInAge);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Archdruid_UnitName);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Archdruid_UnitDescription);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Archdruid_UnitHealth);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Archdruid_UnitArmour);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Archdruid_UnitAttack);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Archdruid_UnitMovementSpeed);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Archdruid_UnitDetectionRange);
+
+                            break;
                         default:
+                            GD.PrintErr("UNIT NOT IMPLEMENTED, UnitSettingsManager");
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
@@ -446,7 +480,25 @@ namespace Erikduss
                             config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_MassHealer_UnitDetectionRange);
 
                             break;
+                        case Enums.UnitTypes.Archdruid:
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Archdruid_UnitCost);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Archdruid_UnitAvailableInAge);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Archdruid_UnitName);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Archdruid_UnitDescription);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Archdruid_UnitHealth);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Archdruid_UnitArmour);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Archdruid_UnitAttack);
+
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Archdruid_UnitMovementSpeed);
+                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Archdruid_UnitDetectionRange);
+
+                            break;
                         default:
+                            GD.PrintErr("UNIT NOT IMPLEMENTED, UnitSettingsManager Age2");
 
                             config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 

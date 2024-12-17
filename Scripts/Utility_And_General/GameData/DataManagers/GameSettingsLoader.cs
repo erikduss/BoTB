@@ -58,6 +58,9 @@ namespace Erikduss
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Enforcer, Enums.Ages.AGE_01);
+
+            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Archdruid, Enums.Ages.AGE_01);
             #endregion
 
             #region Age 02
@@ -81,6 +84,9 @@ namespace Erikduss
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Enforcer, Enums.Ages.AGE_02);
+
+            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Archdruid, Enums.Ages.AGE_02);
             #endregion
         }
 

@@ -66,5 +66,10 @@ Shaman (magic)
 ---> Cost: 8
 
 Druid/Arch druid
-
+-> High Damage
+-> Medium Attack speed
+-> Slow movement speed
+-> Can transform into a very powerful Melee and Ranged unit.
+-> High Health & High Armor
+---> Cost: 150
 

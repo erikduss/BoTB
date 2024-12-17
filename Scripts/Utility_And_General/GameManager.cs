@@ -17,7 +17,7 @@ namespace Erikduss
 
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
-		private int currencyGainAmount = 100;
+		private int currencyGainAmount = 1;
         #endregion
 
         #region Ability Variables
@@ -44,7 +44,7 @@ namespace Erikduss
 
 			gameIsPaused = false;
 
-			playerCurrentCurrencyAmount = 0;
+			playerCurrentCurrencyAmount = 100;
 			playerAbilityCurrentCooldown = playerAbilityCooldown;
 
             inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);

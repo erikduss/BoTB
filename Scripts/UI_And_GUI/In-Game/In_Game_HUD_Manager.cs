@@ -28,6 +28,7 @@ namespace Erikduss
         public PackedScene masshealerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/MassHealer_buy_button.tscn");
         public PackedScene rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn");
         public PackedScene tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn");
+        public PackedScene archdruidBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Archdruid_buy_button.tscn");
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace Erikduss
             availableUnitsBuyButtons.Add(masshealerBuyButtonPrefab);
             availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
             availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
 
             RefreshUnitShop(false);
 		}
@@ -106,6 +108,8 @@ namespace Erikduss
         {
 			double fixedCooldownPercentage = (double)((double)secondsLeftOnCooldown / (double)GameManager.Instance.playerAbilityCooldown) * 100;
 
+            if (fixedCooldownPercentage < 0) fixedCooldownPercentage = 0;
+
 			abilityCooldownBar.Value = fixedCooldownPercentage;
 
 			if (abilityCooldownBarScript == null)
@@ -113,7 +117,8 @@ namespace Erikduss
                 abilityCooldownBarScript = abilityCooldownBar.GetNode<AgeAbilityInfoToggler>(abilityCooldownBar.GetParent().GetPath());
 			}
 
-			abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
+            if(fixedCooldownPercentage <= 0) abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: READY";
+            else abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)

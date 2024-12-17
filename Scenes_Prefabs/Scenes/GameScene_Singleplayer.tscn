@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b21xq6kx61exu"]
 
-[ext_resource type="Texture2D" uid="uid://by5dklu5ruixa" path="res://Assets/Environment/Background_Basic.jpg" id="1_lq1lr"]
+[ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="1_ag6v1"]
 [ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
 [ext_resource type="AudioStream" uid="uid://c5inekymw4mi2" path="res://Assets/Audio/Music/BotBGameMusic.wav" id="3_0yo4b"]
@@ -32,9 +32,10 @@ offset_left = -960.0
 offset_top = -20.0
 offset_right = 2880.0
 offset_bottom = 1060.0
-texture = ExtResource("1_lq1lr")
+texture = ExtResource("1_ag6v1")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect"]
+visible = false
 layout_mode = 0
 offset_right = 3840.0
 offset_bottom = 1080.0
@@ -46,7 +47,7 @@ offset_left = -4800.0
 offset_top = -20.0
 offset_right = -960.0
 offset_bottom = 1060.0
-texture = ExtResource("1_lq1lr")
+texture = ExtResource("1_ag6v1")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect2"]
 visible = false
@@ -61,7 +62,7 @@ offset_left = 2880.0
 offset_top = -20.0
 offset_right = 6720.0
 offset_bottom = 1060.0
-texture = ExtResource("1_lq1lr")
+texture = ExtResource("1_ag6v1")
 
 [node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect3"]
 visible = false

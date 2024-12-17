@@ -260,6 +260,47 @@ namespace Erikduss
                                 unitDescription = UnitsDefaultValues.Age01_Ranger_UnitDescription;
                             }
                             break;
+                        case Enums.UnitTypes.Archdruid:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Archdruid_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Archdruid_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Archdruid_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Archdruid_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Archdruid_UnitDescription;
+                            }
+                            break;
+                        default:
+                            GD.PrintErr("UNIT TYPE NOT IMPLEMENTED: UnitInfoToggler.cs");
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Warrior_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Warrior_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Warrior_UnitDescription;
+                            }
+                            break;
                     }
                     break;
                 case Enums.Ages.AGE_02:
@@ -403,6 +444,47 @@ namespace Erikduss
                                 unitAttack = UnitsDefaultValues.Age02_Ranger_UnitAttack;
 
                                 unitDescription = UnitsDefaultValues.Age02_Ranger_UnitDescription;
+                            }
+                            break;
+                        case Enums.UnitTypes.Archdruid:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_ArchdruidSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Archdruid_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Archdruid_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Archdruid_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Archdruid_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Archdruid_UnitDescription;
+                            }
+                            break;
+                        default:
+                            GD.PrintErr("UNIT TYPE NOT IMPLEMENTED: UnitInfoToggler.cs");
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_WarriorSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Warrior_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Warrior_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Warrior_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Warrior_UnitDescription;
                             }
                             break;
                     }

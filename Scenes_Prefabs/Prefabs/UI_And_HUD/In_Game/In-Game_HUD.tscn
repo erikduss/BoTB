@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=21 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://1aha3mr6cllc" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn" id="8_74f22"]
 [ext_resource type="PackedScene" uid="uid://crdubskge1j78" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn" id="9_0cs4e"]
 [ext_resource type="Texture2D" uid="uid://gngs4i322ulf" path="res://Assets/UI/Ingame_UI/refreshButton_Default.png" id="10_2ns0e"]
+[ext_resource type="PackedScene" uid="uid://di8lr2d0t3ntr" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Archdruid_buy_button.tscn" id="10_d11oe"]
 [ext_resource type="Texture2D" uid="uid://d3417sfy3r2oj" path="res://Assets/UI/Ingame_UI/refreshButton_Hover.png" id="11_ks4ek"]
 [ext_resource type="Texture2D" uid="uid://bw56go5wcquhp" path="res://Assets/UI/Ingame_UI/refreshButton_Info.png" id="12_x7md2"]
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="12_yp65u"]
@@ -87,6 +88,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TankBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("9_0cs4e")]
+layout_mode = 2
+
+[node name="ArchdruidBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("10_d11oe")]
 layout_mode = 2
 
 [node name="ShopRefreshButton" type="TextureButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]

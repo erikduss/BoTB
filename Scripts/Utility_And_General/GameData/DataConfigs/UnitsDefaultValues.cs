@@ -6,6 +6,7 @@ namespace Erikduss
 	public static class UnitsDefaultValues
 	{
         //IMPORTANT: If adding a unit, modify Save funtion in the UnitsSettingsManager.cs to make sure they get saved correctly.
+        //Also add to In_Game_HUD_Manager
 
         /*
          * HOW TO QUICKLY EDIT SELECTIONS HERE:
@@ -122,6 +123,21 @@ namespace Erikduss
         public static int Age01_Battlemage_UnitDetectionRange = 30;
         #endregion
 
+        #region Archdruid
+        public static int Age01_Archdruid_UnitCost = 150;
+        public static Enums.Ages Age01_Archdruid_UnitAvailableInAge = Enums.Ages.AGE_01;
+
+        public static string Age01_Archdruid_UnitName = "Archdruid";
+        public static string Age01_Archdruid_UnitDescription = "Can transform into a very powerful Melee and Ranged unit.";
+
+        public static int Age01_Archdruid_UnitHealth = 50;
+        public static int Age01_Archdruid_UnitArmour = 50;
+        public static int Age01_Archdruid_UnitAttack = 15;
+
+        public static int Age01_Archdruid_UnitMovementSpeed = 50;
+        public static int Age01_Archdruid_UnitDetectionRange = 120;
+        #endregion
+
         #endregion
 
         #region Age 02
@@ -229,6 +245,21 @@ namespace Erikduss
 
         public static int Age02_Battlemage_UnitMovementSpeed = 50;
         public static int Age02_Battlemage_UnitDetectionRange = 30;
+        #endregion
+
+        #region Archdruid
+        public static int Age02_Archdruid_UnitCost = 150;
+        public static Enums.Ages Age02_Archdruid_UnitAvailableInAge = Enums.Ages.AGE_01;
+
+        public static string Age02_Archdruid_UnitName = "Archdruid";
+        public static string Age02_Archdruid_UnitDescription = "Can transform into a very powerful Melee and Ranged unit.";
+
+        public static int Age02_Archdruid_UnitHealth = 50;
+        public static int Age02_Archdruid_UnitArmour = 50;
+        public static int Age02_Archdruid_UnitAttack = 15;
+
+        public static int Age02_Archdruid_UnitMovementSpeed = 50;
+        public static int Age02_Archdruid_UnitDetectionRange = 120;
         #endregion
 
         #endregion
