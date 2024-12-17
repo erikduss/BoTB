@@ -10,6 +10,8 @@ namespace Erikduss
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
         //public GrassWorldGeneratorSettingsManager grassWorldGeneratorSettingsManager = new GrassWorldGeneratorSettingsManager();
 
+        public bool useAlternativeBloodColor = false;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {

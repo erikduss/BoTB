@@ -28,15 +28,57 @@ namespace Erikduss
                     break;
             }
 
-            //Set the values
-            currentHealth = loadedUnitSettings.unitHealth;
-            maxHealth = loadedUnitSettings.unitHealth;
+            if (loadedUnitSettings.useCustomVariables)
+            {
+                //Set the values
+                currentHealth = loadedUnitSettings.unitHealth;
+                maxHealth = loadedUnitSettings.unitHealth;
 
-            unitArmor = loadedUnitSettings.unitArmour;
-            unitAttackDamage = loadedUnitSettings.unitAttack;
+                unitArmor = loadedUnitSettings.unitArmour;
+                unitAttackDamage = loadedUnitSettings.unitAttack;
 
-            detectionRange = loadedUnitSettings.unitDetectionRange;
-            movementSpeed = loadedUnitSettings.unitMovementSpeed;
+                detectionRange = loadedUnitSettings.unitDetectionRange;
+                movementSpeed = loadedUnitSettings.unitMovementSpeed;
+            }
+            else
+            {
+                //Set the default values
+                switch (currentAge)
+                {
+                    case Enums.Ages.AGE_01:
+                        currentHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+                        maxHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+
+                        unitArmor = UnitsDefaultValues.Age01_Warrior_UnitArmour;
+                        unitAttackDamage = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+
+                        detectionRange = UnitsDefaultValues.Age01_Warrior_UnitDetectionRange;
+                        movementSpeed = UnitsDefaultValues.Age01_Warrior_UnitMovementSpeed;
+                        break;
+                    case Enums.Ages.AGE_02:
+                        currentHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
+                        maxHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
+
+                        unitArmor = UnitsDefaultValues.Age02_Warrior_UnitArmour;
+                        unitAttackDamage = UnitsDefaultValues.Age02_Warrior_UnitAttack;
+
+                        detectionRange = UnitsDefaultValues.Age02_Warrior_UnitDetectionRange;
+                        movementSpeed = UnitsDefaultValues.Age02_Warrior_UnitMovementSpeed;
+                        break;
+                    default:
+                        GD.Print("AGE NOT IMPLEMENTED: SimpleSoldier.cs");
+
+                        currentHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+                        maxHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
+
+                        unitArmor = UnitsDefaultValues.Age01_Warrior_UnitArmour;
+                        unitAttackDamage = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+
+                        detectionRange = UnitsDefaultValues.Age01_Warrior_UnitDetectionRange;
+                        movementSpeed = UnitsDefaultValues.Age01_Warrior_UnitMovementSpeed;
+                        break;
+                }
+            }
 
             unitType = Enums.UnitTypes.Warrior;
 

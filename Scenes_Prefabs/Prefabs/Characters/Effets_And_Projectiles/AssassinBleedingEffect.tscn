@@ -1,0 +1,88 @@
+[gd_scene load_steps=17 format=3 uid="uid://hpqxhtyr4a1d"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/AssassinBleedingEffect.cs" id="1_i4thy"]
+[ext_resource type="Texture2D" uid="uid://bb8qnru3aasse" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_01.png" id="2_4vbab"]
+[ext_resource type="Texture2D" uid="uid://dybcrlu3cher3" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_01.png" id="2_owcqy"]
+[ext_resource type="Texture2D" uid="uid://bu7l21n8e0x7i" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_02.png" id="3_8gwyv"]
+[ext_resource type="Texture2D" uid="uid://cdyouqfaqwwkb" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_02.png" id="3_i6hya"]
+[ext_resource type="Texture2D" uid="uid://dcf5hypkb4s1e" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_03.png" id="4_bsb4c"]
+[ext_resource type="Texture2D" uid="uid://b54fljbgpsj4c" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_03.png" id="4_sbcsr"]
+[ext_resource type="Texture2D" uid="uid://824ckyulwegw" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_04.png" id="5_38vuh"]
+[ext_resource type="Texture2D" uid="uid://br8gocrc2eo06" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_04.png" id="5_akowf"]
+[ext_resource type="Texture2D" uid="uid://b7mq76b3mna3v" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_05.png" id="6_ifp06"]
+[ext_resource type="Texture2D" uid="uid://0mccoqbljjql" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_05.png" id="6_o4l62"]
+[ext_resource type="Texture2D" uid="uid://mq6g4a7817p" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_06.png" id="7_1ityx"]
+[ext_resource type="Texture2D" uid="uid://c2i5bw7tfdjpt" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_06.png" id="7_rmfk8"]
+[ext_resource type="Texture2D" uid="uid://bo3phvuxsoaog" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-6.png" id="8_k8xt4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdio1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4vbab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8gwyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sbcsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_akowf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o4l62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1ityx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k8xt4")
+}],
+"loop": false,
+"name": &"Bleeding",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ec1t7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_owcqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i6hya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bsb4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_38vuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ifp06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rmfk8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_k8xt4")
+}],
+"loop": false,
+"name": &"Bleeding",
+"speed": 5.0
+}]
+
+[node name="AssassinBleedingEffect" type="Node2D" node_paths=PackedStringArray("regularBloodColorSprites", "alternativeGloodColorSprites")]
+script = ExtResource("1_i4thy")
+regularBloodColorSprites = NodePath("AnimatedBleedingSprites")
+alternativeGloodColorSprites = NodePath("AnimatedBleedingSprites_G")
+destroyTime = 4.0
+
+[node name="AnimatedBleedingSprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jdio1")
+animation = &"Bleeding"
+
+[node name="AnimatedBleedingSprites_G" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ec1t7")
+animation = &"Bleeding"

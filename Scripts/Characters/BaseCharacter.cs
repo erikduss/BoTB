@@ -249,7 +249,11 @@ namespace Erikduss
 
         public virtual void DealDamage()
         {
-            if (currentTarget == null) return;
+            if (currentTarget == null)
+            {
+                GD.PrintErr("CURRENT TARGET NOT SET WHEN DEALING DAMAGE");
+                return;
+            }
 
             if(isDead && !canStillDamage) return; //we cant deal damage if we are dead.
 

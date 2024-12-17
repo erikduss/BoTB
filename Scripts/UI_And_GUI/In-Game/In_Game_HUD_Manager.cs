@@ -75,6 +75,7 @@ namespace Erikduss
                     GameManager.Instance.unitsSpawner.ProcessBuyingSimpleSoldier(Enums.TeamOwner.TEAM_01);
                     break;
                 case Enums.UnitTypes.Asssassin:
+                    GameManager.Instance.unitsSpawner.ProcessBuyingAssassin(Enums.TeamOwner.TEAM_01);
                     break;
                 case Enums.UnitTypes.Enforcer:
                     break;

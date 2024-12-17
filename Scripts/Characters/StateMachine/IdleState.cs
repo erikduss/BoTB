@@ -24,8 +24,16 @@ namespace Erikduss
 
             character.currentAnimatedSprite.Play("Idle");
 
-            if (character.currentAttackCooldownDuration > 0f) currentIdleDuration = character.currentAttackCooldownDuration;
-            else currentIdleDuration = idleDuration;
+            if(character.currentTarget != null)
+            {
+                if (character.currentAttackCooldownDuration > 0f) currentIdleDuration = character.currentAttackCooldownDuration;
+                else currentIdleDuration = idleDuration;
+            }
+            else
+            {
+                currentIdleDuration = 0.5f;
+            }
+            
 
             enableTimer = true;
             idleTimer = 0f;

@@ -13,6 +13,8 @@ namespace Erikduss
 
         public PackedScene rangerAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/RangerAge1Projectile.tscn");
 
+        public PackedScene assassinBleedingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/AssassinBleedingEffect.tscn");
+
         private int lastUsedVisualEffectID = 0;
 
         // Called when the node enters the scene tree for the first time.
@@ -73,6 +75,23 @@ namespace Erikduss
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
             AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnAssassinBleedingEffect(BaseCharacter unitOwner)
+        {
+            AssassinBleedingEffect instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+
+            //Note: This effect is applied on the TARGET, keep this in mind.
+
+            instantiatedBleedingEffect.unitThisIsDamaging = unitOwner.currentTarget;
+
+            instantiatedBleedingEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+
+            instantiatedBleedingEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
+
+            unitOwner.currentTarget.AddChild(instantiatedBleedingEffect);
 
             lastUsedVisualEffectID++;
         }

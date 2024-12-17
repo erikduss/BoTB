@@ -123,6 +123,23 @@ namespace Erikduss
                         EffectsAndProjectilesSpawner.Instance.SpawnRangerProjectile(character);
                     }
                     break;
+                case Enums.UnitTypes.Asssassin:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+
+                        //chance of applying a bleeding effect = 35 - enemy unit armor
+                        //the more armor the unit has, the lower chance of bleeding.
+
+                        int fixedNumber = 35 - character.currentTarget.unitArmor;
+                        int randChance = (int)(GD.Randi() % (100));
+
+                        if(randChance <= fixedNumber)
+                        {
+                            EffectsAndProjectilesSpawner.Instance.SpawnAssassinBleedingEffect(character);
+                        }
+                    }
+                    break;
                 default:
                     GD.PrintErr("UNIT TYPE EFFECT NOT IMPLEMENTED, ATTACK STATE");
                     break;

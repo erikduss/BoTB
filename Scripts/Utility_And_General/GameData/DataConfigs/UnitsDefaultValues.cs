@@ -57,9 +57,9 @@ namespace Erikduss
 
         public static int Age01_Assassin_UnitHealth = 10;
         public static int Age01_Assassin_UnitArmour = 10;
-        public static int Age01_Assassin_UnitAttack = 2;
+        public static int Age01_Assassin_UnitAttack = 4;
 
-        public static int Age01_Assassin_UnitMovementSpeed = 50;
+        public static int Age01_Assassin_UnitMovementSpeed = 75;
         public static int Age01_Assassin_UnitDetectionRange = 30;
         #endregion
 
