@@ -287,10 +287,12 @@ position = Vector2(-904, 730)
 position = Vector2(2824, 730)
 requiresToBeFlipped = true
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("inGameHUDManager", "unitsSpawner")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("inGameHUDManager", "unitsSpawner", "team01HomeBase", "team02HomeBase")]
 script = ExtResource("11_ofq7o")
 inGameHUDManager = NodePath("../CanvasLayer/In-gameHud")
 unitsSpawner = NodePath("Spawners")
+team01HomeBase = NodePath("../Environment/CharacterHomeBase")
+team02HomeBase = NodePath("../Environment/CharacterHomeBase2")
 
 [node name="Spawners" type="Node2D" parent="GameManager" node_paths=PackedStringArray("team01UnitsSpawnerLocation", "team02UnitsSpawnerLocation")]
 script = ExtResource("12_8j88c")

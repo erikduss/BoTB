@@ -90,7 +90,7 @@ namespace Erikduss
                  * if it isnt than either we hit the enemy base or there's something wrong
                  * So now we check if the output is a staticbody2d to check for enemy base collision
                  */
-                bool reachedEnemyBase = false;
+                bool passedCheckForReachedEnemyBase = false;
 
                 //Casting gives errors due to this being able to be 2 different components. So we solve this by doing a name string check.
                 string outputString = output.ToString();
@@ -102,8 +102,42 @@ namespace Erikduss
                 {
                     if (staticBodyCheck)
                     {
-                        reachedEnemyBase = true;
+                        passedCheckForReachedEnemyBase = true;
+                        character.unitHasReachedEnemyHomeBase = true;
                         
+                        //also check if there is an enemy that spawned there, for example a ranger doesnt move and will never die otherwise.
+                        //If there is a unit alive, we attack it instead of the home base.
+                        if(character.characterOwner == Enums.TeamOwner.TEAM_01)
+                        {
+                            if (GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count > 0)
+                            {
+                                character.currentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
+                                EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            if(GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 0)
+                            {
+                                character.currentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
+                                EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                return;
+                            }
+                        }
+
+                        //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
+                        //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
+                        if (!character.canAttack)
+                        {
+                            EmitSignal(SignalName.Transitioned, this, "IdleState");
+                            return;
+                        }
+
+                        //Switch to the new state
+                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                        return;
+
                         //we need to set the target to the enemy base
                         //we should probably do this by making the reachedEnemyBase variable public and checking this on the attack function and have a variable for the enemy base to deal damage to it.
 
@@ -112,7 +146,7 @@ namespace Erikduss
                         //If the enemy does not have any units, we do attack the base.
 
                         //we need to switch to attack state now
-                        
+
                     }
                     else
                     {
@@ -120,7 +154,7 @@ namespace Erikduss
                     }
                 }
 
-                if(!reachedEnemyBase)
+                if(!passedCheckForReachedEnemyBase)
                 {
                     CharacterBody2D enemyCharacterBody2D = output.As<CharacterBody2D>();
 
@@ -199,6 +233,8 @@ namespace Erikduss
 
         private bool CheckRangedCharacterTarget(BaseCharacter character, Enums.TeamOwner team)
         {
+            //We need to also check to see if we can attack the base!
+
             if (!character.isRangedCharacter) return false;
 
             System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;

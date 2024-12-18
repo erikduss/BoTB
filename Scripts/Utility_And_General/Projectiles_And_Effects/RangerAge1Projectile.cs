@@ -60,6 +60,27 @@ namespace Erikduss
             }
             else 
             {
+                if(projectileOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    if(body.GetInstanceId() == GameManager.Instance.team02HomeBase.GetInstanceId())
+                    {
+                        //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
+                        dealtDamage = true;
+                        projectileOwnerChar.DealDamage();
+                        return;
+                    }
+                }
+                else
+                {
+                    if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.GetInstanceId())
+                    {
+                        //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
+                        dealtDamage = true;
+                        projectileOwnerChar.DealDamage();
+                        return;
+                    }
+                }
+
                 BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
                 if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;
 

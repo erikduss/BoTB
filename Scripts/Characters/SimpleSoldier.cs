@@ -89,7 +89,15 @@ namespace Erikduss
         {
             //base.DealDamage();
 
-            if (currentTarget == null) return;
+            if (currentTarget == null)
+            {
+                if(!unitHasReachedEnemyHomeBase) return;
+                else
+                {
+                    base.DealDamage();
+                    return;
+                }
+            }
 
             if (isDead && !canStillDamage) return; //we cant deal damage if we are dead.
 

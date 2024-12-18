@@ -24,7 +24,7 @@ namespace Erikduss
 
             character.currentAnimatedSprite.Play("Idle");
 
-            if(character.currentTarget != null)
+            if(character.currentTarget != null || character.unitHasReachedEnemyHomeBase)
             {
                 if (character.currentAttackCooldownDuration > 0f) currentIdleDuration = character.currentAttackCooldownDuration;
                 else currentIdleDuration = idleDuration;

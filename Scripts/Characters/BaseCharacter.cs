@@ -21,6 +21,7 @@ namespace Erikduss
         public BaseCharacter currentTarget;
         public List<BaseCharacter> unitsThatNeedToBeSignaledOnDeath = new List<BaseCharacter>();
 
+        public bool unitHasReachedEnemyHomeBase = false;
         public bool isRangedCharacter = false;
 
         public bool isDead = false;
@@ -249,7 +250,9 @@ namespace Erikduss
 
         public virtual void DealDamage()
         {
-            if (currentTarget == null)
+            //IF CHANGING ANYTHING HERE KEEP IN MIND SOME UNITS USE THEIR CUSTOM DEAL DAMAGE FUNCTION: Simplesoldier.cs (warrior)
+
+            if (currentTarget == null && !unitHasReachedEnemyHomeBase)
             {
                 GD.PrintErr("CURRENT TARGET NOT SET WHEN DEALING DAMAGE");
                 return;
@@ -260,8 +263,18 @@ namespace Erikduss
             //add any multipliers here
             int damage = unitAttackDamage;
 
-
-            currentTarget.TakeDamage(damage);
+            if(unitHasReachedEnemyHomeBase && currentTarget == null)
+            {
+                if(characterOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    GameManager.Instance.team02HomeBase.TakeDamage(damage);
+                }
+                else
+                {
+                    GameManager.Instance.team01HomeBase.TakeDamage(damage);
+                }
+            }
+            else currentTarget.TakeDamage(damage);
         }
 
         public virtual void SignalUnitsThatThisOneDied()

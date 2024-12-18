@@ -9,6 +9,9 @@ namespace Erikduss
 		[Export] public In_Game_HUD_Manager inGameHUDManager;
 		[Export] public UnitsSpawner unitsSpawner;
 
+		[Export] public HomeBaseManager team01HomeBase;
+		[Export] public HomeBaseManager team02HomeBase;
+
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
 
