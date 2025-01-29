@@ -33,21 +33,76 @@ namespace Erikduss
 			//MOVE THE CAMERA TO THE LEFT
 			if(local_mouse_pos.X < threshold)
 			{
-				//make sure we cant go off the map with the camera
-				if (mainCamera.Position.X > minimumCameraXValue)
-				{
-					mainCamera.Position = new Vector2(mainCamera.Position.X - step, mainCamera.Position.Y);
-				}
-			}
+                MoveCamera(true);
+            }
 			//MOVE THE CAMERA TO THE RIGHT
 			else if(local_mouse_pos.X > viewport_size.X - threshold)
 			{
+				MoveCamera(false);
+            }
+        }
+
+		private void MoveCamera(bool moveLeft)
+		{
+            //MOVE THE CAMERA TO THE LEFT
+            if (moveLeft)
+            {
+                //make sure we cant go off the map with the camera
+                if (mainCamera.Position.X > minimumCameraXValue)
+                {
+                    mainCamera.Position = new Vector2(mainCamera.Position.X - step, mainCamera.Position.Y);
+                }
+            }
+            //MOVE THE CAMERA TO THE RIGHT
+            else if (!moveLeft)
+            {
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X < maximumCameraXValue)
-				{
+                {
                     mainCamera.Position = new Vector2(mainCamera.Position.X + step, mainCamera.Position.Y);
                 }
             }
         }
-	}
+
+        public override void _Input(InputEvent @event)
+        {
+            base._Input(@event);
+
+			if(@event is InputEventScreenDrag)
+			{
+				InputEventScreenDrag dragEvent = @event as InputEventScreenDrag;
+
+				if (dragEvent != null)
+				{
+					GD.Print("Dragging: " + dragEvent.Relative);
+
+                    if (Math.Abs(dragEvent.Relative.X) > 100)
+                    {
+                        GD.Print("We are clicking instead of dragging: " + dragEvent.Relative);
+                        return;
+                    }
+
+                    //only x matters, -x means we are dragging left, so we go right, +x means we drag right so we go left.
+                    if(dragEvent.Relative.X < 0)
+                    {
+                        MoveCamera(false);
+                    }
+                    else if(dragEvent.Relative.X > 0)
+                    {
+                        MoveCamera(true);
+                    }
+				}
+			}
+
+            if (@event is InputEventScreenTouch)
+            {
+                InputEventScreenTouch touchEvent = @event as InputEventScreenTouch;
+
+                if (touchEvent != null)
+                {
+                    GD.Print("Touch Event: " + touchEvent.Position);
+                }
+            }
+        }
+    }
 }

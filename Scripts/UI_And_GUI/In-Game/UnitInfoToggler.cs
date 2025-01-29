@@ -25,6 +25,11 @@ namespace Erikduss
 
         private bool buttonPressed = false;
 
+        private float buttonHoldTimer = 0;
+        private float buttonHoldTimeToCancelBuyAndShowInfoInstead = 2f;
+        private bool needToCheckForHold = false;
+        private bool showInfoInstead = false;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -111,6 +116,41 @@ namespace Erikduss
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
+            /*if (needToCheckForHold)
+            {
+                GD.Print("Current Hold time: " + buttonHoldTimer);
+                if (Input.IsMouseButtonPressed(MouseButton.Left))
+                {
+                    if (buttonHoldTimer >= buttonHoldTimeToCancelBuyAndShowInfoInstead)
+                    {
+                        if (!showInfoInstead)
+                        {
+                            GD.Print("We show info instead");
+                            showInfoInstead = true;
+                            ShowUnitInfoOnHover();
+                        }
+                    }
+
+                   
+                    buttonHoldTimer += (float)delta;
+                }
+                else
+                {
+                    GD.Print("Released");
+
+                    if(showInfoInstead) HideUnitInfoOnLoseHover();
+
+                    //if we released it earlier we process the buy
+                    if(buttonHoldTimer < buttonHoldTimeToCancelBuyAndShowInfoInstead)
+                    {
+                        CheckForMobileControlsAndProcessBuyUnit(false);
+                    }
+
+                    showInfoInstead = false;
+                    needToCheckForHold = false;
+                    buttonHoldTimer = 0;
+                }
+            }*/
 		}
 
         private void LoadUnitValues()
@@ -494,20 +534,34 @@ namespace Erikduss
             }
         }
 
-        public void BuyUnitButtonPressed()
+        private void CheckForMobileControlsAndProcessBuyUnit(bool needToCheck)
         {
+            /*if (needToCheck)
+            {
+                GD.Print("NeedToCheck is true, " + needToCheckForHold);
+                return;
+            }*/
+
             if (buttonPressed) return;
 
             buttonPressed = true;
 
             bool success = GameManager.Instance.inGameHUDManager.BuyUnitButtonClicked(thisUnitType, unitCost);
 
-            if(!success) buttonPressed = false;
+            if (!success) buttonPressed = false;
 
             else
             {
                 GameManager.Instance.inGameHUDManager.RefreshUnitShopSpecificButton(this.GetInstanceId());
             }
+        }
+
+        public void BuyUnitButtonPressed()
+        {
+            /*needToCheckForHold = true;
+            GD.Print("Set the variable to true: " + needToCheckForHold);*/
+
+            CheckForMobileControlsAndProcessBuyUnit(true);
         }
 
         public void ShowUnitInfoOnHover()
