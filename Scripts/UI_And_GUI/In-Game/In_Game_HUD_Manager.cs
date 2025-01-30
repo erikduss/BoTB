@@ -9,6 +9,7 @@ namespace Erikduss
 		[Export] Label currencyAmountLabel;
 
 		[Export] Control unitShopParentNode;
+        [Export] private Control pauseMenuNode;
 
 		public TextureProgressBar abilityCooldownBar;
 		private AgeAbilityInfoToggler abilityCooldownBarScript;
@@ -43,6 +44,8 @@ namespace Erikduss
             availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
             availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
             availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
+
+            HidePauseMenu();
 
             RefreshUnitShop(false);
 		}
@@ -124,7 +127,9 @@ namespace Erikduss
 
         public void RefreshUnitShop(bool spendPlayerGold = true)
 		{
-			if (spendPlayerGold)
+            if (GameManager.Instance.gameIsPaused) return;
+
+            if (spendPlayerGold)
 			{
                 if (GameManager.Instance.playerCurrentCurrencyAmount < shopRefreshCost) return;
 
@@ -163,6 +168,37 @@ namespace Erikduss
 					unitShopParentNode.MoveChild(instantiatedBuyButton, i);
                 }
             }
+        }
+
+        #region Handle Game Pausing menu
+
+        public void PauseGameButtonClicked()
+        {
+            GameManager.Instance.ToggleGameIsPaused();
+        }
+
+        public void ShowPauseMenu()
+        {
+            pauseMenuNode.Visible = true;
+        }
+
+        public void HidePauseMenu()
+        {
+            pauseMenuNode.Visible = false;
+        }
+
+        #endregion
+
+        public void InGameOptionsButtonClicked()
+        {
+            //We open the in game options menu.
+        }
+
+        public void InGameExitButtonClicked()
+        {
+            //We return back to the main menu.\
+            GameManager.Instance.QueueFree();
+            GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/TitleScreen.tscn");
         }
     }
 }

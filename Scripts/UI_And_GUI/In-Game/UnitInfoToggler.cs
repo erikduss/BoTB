@@ -558,6 +558,8 @@ namespace Erikduss
 
         public void BuyUnitButtonPressed()
         {
+            if (GameManager.Instance.gameIsPaused) return;
+
             /*needToCheckForHold = true;
             GD.Print("Set the variable to true: " + needToCheckForHold);*/
 

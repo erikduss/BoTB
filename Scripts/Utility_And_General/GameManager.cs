@@ -56,13 +56,20 @@ namespace Erikduss
 			//inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
         }
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+			//We need to set the instance to null to reset the game variables.
+			Instance = null;
+        }
+
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _Process(double delta)
 		{
 			if (Input.IsActionJustPressed("Pause"))
 			{
-				gameIsPaused = !gameIsPaused;
-				GD.Print("Game is paused: " + gameIsPaused);
+				ToggleGameIsPaused();
 			}
 
 			if (gameIsPaused) return;
@@ -94,6 +101,23 @@ namespace Erikduss
             {
                 playerAbilityUpdateTimer += (float)delta;
             }
+        }
+
+		public void ToggleGameIsPaused()
+		{
+            gameIsPaused = !gameIsPaused;
+            GD.Print("Game is paused: " + gameIsPaused);
+
+			if (gameIsPaused)
+			{
+                //Open pause panel
+                inGameHUDManager.ShowPauseMenu();
+            }
+            else
+			{
+				//close pause panel
+				inGameHUDManager.HidePauseMenu();
+			}
         }
 
 		//bool to inducate succes state of removing the currency.

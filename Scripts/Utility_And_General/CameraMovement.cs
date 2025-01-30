@@ -33,24 +33,30 @@ namespace Erikduss
 			//MOVE THE CAMERA TO THE LEFT
 			if(local_mouse_pos.X < threshold)
 			{
-                MoveCamera(true);
+                MoveCamera(true, false, 1);
             }
 			//MOVE THE CAMERA TO THE RIGHT
 			else if(local_mouse_pos.X > viewport_size.X - threshold)
 			{
-				MoveCamera(false);
+				MoveCamera(false, false, 1);
             }
         }
 
-		private void MoveCamera(bool moveLeft)
+		private void MoveCamera(bool moveLeft, bool multiplySpeed, float speedMultiplier)
 		{
+            float fixedSpeedMultiplier = Mathf.Abs(speedMultiplier);
+
+            //this value seems to be between 1 and 40 or so, this fixes the speed to be between 0.1 and 4x the speed.
+            //This creates a way smoother experience with the dragging method.
+            if (multiplySpeed) fixedSpeedMultiplier = fixedSpeedMultiplier * 0.1f;
+
             //MOVE THE CAMERA TO THE LEFT
             if (moveLeft)
             {
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X > minimumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X - step, mainCamera.Position.Y);
+                    mainCamera.Position = new Vector2(mainCamera.Position.X - (step * fixedSpeedMultiplier), mainCamera.Position.Y);
                 }
             }
             //MOVE THE CAMERA TO THE RIGHT
@@ -59,7 +65,7 @@ namespace Erikduss
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X < maximumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X + step, mainCamera.Position.Y);
+                    mainCamera.Position = new Vector2(mainCamera.Position.X + (step * fixedSpeedMultiplier), mainCamera.Position.Y);
                 }
             }
         }
@@ -68,28 +74,28 @@ namespace Erikduss
         {
             base._Input(@event);
 
+            if(GameManager.Instance.gameIsPaused) return;
+
 			if(@event is InputEventScreenDrag)
 			{
 				InputEventScreenDrag dragEvent = @event as InputEventScreenDrag;
 
 				if (dragEvent != null)
 				{
-					GD.Print("Dragging: " + dragEvent.Relative);
-
                     if (Math.Abs(dragEvent.Relative.X) > 100)
                     {
-                        GD.Print("We are clicking instead of dragging: " + dragEvent.Relative);
+                        //Seems like drag even also registers on clicks, this is to prevent far away clicks from moving the screen.
                         return;
                     }
 
                     //only x matters, -x means we are dragging left, so we go right, +x means we drag right so we go left.
                     if(dragEvent.Relative.X < 0)
                     {
-                        MoveCamera(false);
+                        MoveCamera(false, true, dragEvent.Relative.X);
                     }
                     else if(dragEvent.Relative.X > 0)
                     {
-                        MoveCamera(true);
+                        MoveCamera(true, true, dragEvent.Relative.X);
                     }
 				}
 			}
@@ -100,7 +106,7 @@ namespace Erikduss
 
                 if (touchEvent != null)
                 {
-                    GD.Print("Touch Event: " + touchEvent.Position);
+                    //GD.Print("Touch Event: " + touchEvent.Position);
                 }
             }
         }
