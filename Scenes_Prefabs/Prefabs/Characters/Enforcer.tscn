@@ -1,0 +1,154 @@
+[gd_scene load_steps=27 format=3 uid="uid://b3tw6bre5waap"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Enforcer.cs" id="1_yi4rh"]
+[ext_resource type="Texture2D" uid="uid://nc6d5bdff63j" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-1.png" id="2_gmdwq"]
+[ext_resource type="Texture2D" uid="uid://52v01tcs7jp" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-2.png" id="3_kpg04"]
+[ext_resource type="Texture2D" uid="uid://8xpv5366dbth" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-3.png" id="4_st70d"]
+[ext_resource type="Texture2D" uid="uid://dd3n07bfhmd8e" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-4.png" id="5_gayaq"]
+[ext_resource type="Texture2D" uid="uid://b6u3540d2chhg" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-1.png" id="6_cmo5d"]
+[ext_resource type="Texture2D" uid="uid://dtgv01ns5va0r" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-2.png" id="7_4hnhg"]
+[ext_resource type="Texture2D" uid="uid://cuxg2b7dlbk8x" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-3.png" id="8_1lisy"]
+[ext_resource type="Texture2D" uid="uid://t2qfgp57jvte" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-4.png" id="9_83gw0"]
+[ext_resource type="Texture2D" uid="uid://cwgcdty5sdcqc" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-5.png" id="10_altpf"]
+[ext_resource type="Texture2D" uid="uid://bd80fa64hmpg2" path="res://Assets/Characters/Enforcer/Death/Enforcer_Age_1-Death_Frame-6.png" id="11_gs810"]
+[ext_resource type="Texture2D" uid="uid://cxuwposjfafof" path="res://Assets/Characters/Enforcer/Idle/Enforcer_Age_1-Idle_Frame-1.png" id="12_soqpi"]
+[ext_resource type="Texture2D" uid="uid://dbvwr3uvyq27e" path="res://Assets/Characters/Enforcer/Idle/Enforcer_Age_1-Idle_Frame-2.png" id="13_sxri8"]
+[ext_resource type="Texture2D" uid="uid://o8mvqgmso7ft" path="res://Assets/Characters/Enforcer/Idle/Enforcer_Age_1-Idle_Frame-3.png" id="14_bw8c8"]
+[ext_resource type="Texture2D" uid="uid://nkl5tmgpf20y" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-1.png" id="15_sfkls"]
+[ext_resource type="Texture2D" uid="uid://bxuvn6k5ihwaw" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-2.png" id="16_vgig6"]
+[ext_resource type="Texture2D" uid="uid://bta01pljk4x4c" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-3.png" id="17_oa8dv"]
+[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_te2df"]
+[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_s0plx"]
+[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_2jbuc"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_k8pw7"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_fmlvd"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_ltewy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6htk"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("2_gmdwq")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_kpg04")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_st70d")
+}, {
+"duration": 0.75,
+"texture": ExtResource("5_gayaq")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("6_cmo5d")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_4hnhg")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_1lisy")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_83gw0")
+}, {
+"duration": 0.7,
+"texture": ExtResource("10_altpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gs810")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_soqpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_sxri8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bw8c8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_sfkls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vgig6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_oa8dv")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_te2df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_s0plx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_2jbuc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
+size = Vector2(41, 39)
+
+[node name="Enforcer" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+collision_layer = 2
+collision_mask = 103
+script = ExtResource("1_yi4rh")
+initialStartingState = NodePath("StateMachine_States/IdleState")
+
+[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s6htk")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7gtr4")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="StateMachine_States" type="Node2D" parent="."]
+
+[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("21_k8pw7")
+idleDuration = 0.1
+
+[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("22_fmlvd")
+
+[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("23_ltewy")
+attackDuration = 0.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -3.5)
+shape = SubResource("RectangleShape2D_gfs14")

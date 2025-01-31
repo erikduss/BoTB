@@ -180,6 +180,7 @@ layout_mode = 2
 layout_mode = 0
 
 [node name="PauseButton" type="TextureButton" parent="Player_Control_HUD"]
+layout_mode = 0
 offset_left = 1820.0
 offset_right = 1916.0
 offset_bottom = 96.0
@@ -218,6 +219,7 @@ texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
 
 [node name="OptionsButton" type="TextureButton" parent="Player_Control_HUD/PauseMenuBackground"]
+layout_mode = 0
 offset_left = 60.0
 offset_top = 125.0
 offset_right = 316.0
@@ -229,6 +231,7 @@ texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
 
 [node name="ExitButton" type="TextureButton" parent="Player_Control_HUD/PauseMenuBackground"]
+layout_mode = 0
 offset_left = 60.0
 offset_top = 200.0
 offset_right = 316.0

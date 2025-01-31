@@ -13,6 +13,7 @@ namespace Erikduss
 		public PackedScene simpleSoldierPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/SimpleSoldier.tscn");
         public PackedScene rangerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Ranger.tscn");
         public PackedScene assassinPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Assassin.tscn");
+        public PackedScene enforcerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Enforcer.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -128,6 +129,15 @@ namespace Erikduss
 
             //Add to queue
             AddUnitToQueue(team, Enums.UnitTypes.Ranger, currentAge);
+        }
+
+        public void ProcessBuyingEnforcer(Enums.TeamOwner team)
+        {
+            //spawn prefab
+            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+
+            //Add to queue
+            AddUnitToQueue(team, Enums.UnitTypes.Enforcer, currentAge);
         }
 
         public void ProcessBuyingAssassin(Enums.TeamOwner team)
@@ -287,6 +297,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedAssassin, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Enforcer:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Enforcer instantiatedEnforcer = (Enforcer)enforcerPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedEnforcer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedEnforcer.characterOwner = team;
+                    instantiatedEnforcer.currentAge = unitAge;
+
+                    instantiatedEnforcer.Name = "instantiatedEnforcer_" + lastUsedUnitID;
+
+                    instantiatedEnforcer.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedEnforcer);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedEnforcer, uniqueUnitName);
 
                     lastUsedUnitID++;
 
