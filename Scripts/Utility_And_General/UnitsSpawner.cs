@@ -14,6 +14,7 @@ namespace Erikduss
         public PackedScene rangerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Ranger.tscn");
         public PackedScene assassinPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Assassin.tscn");
         public PackedScene enforcerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Enforcer.tscn");
+        public PackedScene tankPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Tank.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -138,6 +139,15 @@ namespace Erikduss
 
             //Add to queue
             AddUnitToQueue(team, Enums.UnitTypes.Enforcer, currentAge);
+        }
+
+        public void ProcessBuyingTank(Enums.TeamOwner team)
+        {
+            //spawn prefab
+            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+
+            //Add to queue
+            AddUnitToQueue(team, Enums.UnitTypes.Tank, currentAge);
         }
 
         public void ProcessBuyingAssassin(Enums.TeamOwner team)
@@ -319,6 +329,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedEnforcer, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Tank:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Tank instantiatedTank = (Tank)tankPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedTank.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedTank.characterOwner = team;
+                    instantiatedTank.currentAge = unitAge;
+
+                    instantiatedTank.Name = "instantiatedTank_" + lastUsedUnitID;
+
+                    instantiatedTank.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedTank);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedTank, uniqueUnitName);
 
                     lastUsedUnitID++;
 

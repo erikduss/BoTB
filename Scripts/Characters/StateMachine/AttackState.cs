@@ -14,13 +14,13 @@ namespace Erikduss
         private bool unitHasAttacked = false;
 
         private bool executedEffect = false;
+        private bool playedAttackAnimation = false;
 
         public override void StateEnter(BaseCharacter character)
         {
             base.StateEnter(character);
 
-            character.currentAnimatedSprite.Play("Attack");
-
+            playedAttackAnimation = false;
             enableTimer = true;
         }
 
@@ -33,6 +33,13 @@ namespace Erikduss
             attackTimer = 0f;
             unitHasAttacked = false;
             executedEffect = false;
+            playedAttackAnimation = false;
+        }
+
+        private void PlayAttackAnimation(BaseCharacter character)
+        {
+            playedAttackAnimation = true;
+            character.currentAnimatedSprite.Play("Attack");
         }
 
         public override void TickState(float delta, BaseCharacter character)
@@ -56,6 +63,8 @@ namespace Erikduss
             base.TickState(delta, character);
 
             if (!enableTimer) return;
+
+            if (!playedAttackAnimation) PlayAttackAnimation(character);
 
             attackTimer += delta;
 
@@ -131,12 +140,45 @@ namespace Erikduss
                         //chance of applying a bleeding effect = 35 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
-                        int fixedNumber = 35 - character.currentTarget.unitArmor;
+                        int fixedNumber = GameSettingsLoader.Instance.assassinBleedApplyChance - character.currentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
 
                         if(randChance <= fixedNumber)
                         {
                             EffectsAndProjectilesSpawner.Instance.SpawnAssassinBleedingEffect(character);
+                        }
+                    }
+                    break;
+                case Enums.UnitTypes.Enforcer:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+
+                        //chance of applying a stun effect = 70 - enemy unit armor
+                        //the more armor the unit has, the lower chance of bleeding.
+
+                        int fixedNumber = GameSettingsLoader.Instance.enforcerStunApplyChance - character.currentTarget.unitArmor;
+                        int randChance = (int)(GD.Randi() % (100));
+
+                        if (randChance <= fixedNumber)
+                        {
+                            EffectsAndProjectilesSpawner.Instance.SpawnEnforcerStunEffect(character);
+                        }
+                    }
+                    break;
+                case Enums.UnitTypes.Tank:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+
+                        //chance of applying a Buff effect = 70
+
+                        int fixedNumber = GameSettingsLoader.Instance.tankBuffApplyChance;
+                        int randChance = (int)(GD.Randi() % (100));
+
+                        if (randChance <= fixedNumber)
+                        {
+                            //EffectsAndProjectilesSpawner.Instance.SpawnEnforcerStunEffect(character);
                         }
                     }
                     break;

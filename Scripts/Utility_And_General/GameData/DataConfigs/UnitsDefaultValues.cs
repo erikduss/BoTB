@@ -25,9 +25,9 @@ namespace Erikduss
         public static string Age01_Warrior_UnitName = "Warrior";
         public static string Age01_Warrior_UnitDescription = "Attacks of this unit damages additional units, up to 2 extra units.";
 
-        public static int Age01_Warrior_UnitHealth = 20;
-        public static int Age01_Warrior_UnitArmour = 20;
-        public static int Age01_Warrior_UnitAttack = 10;
+        public static int Age01_Warrior_UnitHealth = 15;
+        public static int Age01_Warrior_UnitArmour = 15;
+        public static int Age01_Warrior_UnitAttack = 7;
 
         public static int Age01_Warrior_UnitMovementSpeed = 50; 
         public static int Age01_Warrior_UnitDetectionRange = 30;
@@ -71,7 +71,7 @@ namespace Erikduss
         public static string Age01_Enforcer_UnitDescription = "On attack, stun the target for a short amount of time.";
 
         public static int Age01_Enforcer_UnitHealth = 30;
-        public static int Age01_Enforcer_UnitArmour = 30;
+        public static int Age01_Enforcer_UnitArmour = 20;
         public static int Age01_Enforcer_UnitAttack = 1;
 
         public static int Age01_Enforcer_UnitMovementSpeed = 50;

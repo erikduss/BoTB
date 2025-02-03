@@ -15,6 +15,8 @@ namespace Erikduss
 
         public PackedScene assassinBleedingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/AssassinBleedingEffect.tscn");
 
+        public PackedScene enforcerStunEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/EnforcerStunEffect.tscn");
+
         private int lastUsedVisualEffectID = 0;
 
         // Called when the node enters the scene tree for the first time.
@@ -85,15 +87,46 @@ namespace Erikduss
 
             //Note: This effect is applied on the TARGET, keep this in mind.
 
+            instantiatedBleedingEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
             instantiatedBleedingEffect.unitThisIsDamaging = unitOwner.currentTarget;
 
             instantiatedBleedingEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
 
-            instantiatedBleedingEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
+            instantiatedBleedingEffect.Name = unitOwner.uniqueID + "_InstantiatedBleedEffect_" + lastUsedVisualEffectID;
 
             unitOwner.currentTarget.AddChild(instantiatedBleedingEffect);
 
             lastUsedVisualEffectID++;
         }
-	}
+
+        public void SpawnEnforcerStunEffect(BaseCharacter unitOwner)
+        {
+            EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
+
+            instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
+            instantiatedStunEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+
+            instantiatedStunEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
+
+            unitOwner.currentTarget.ApplyStunEffect();
+            unitOwner.currentTarget.AddChild(instantiatedStunEffect);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnTankBuffEffect(BaseCharacter unitOwner)
+        {
+            //EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
+
+            //instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
+            //instantiatedStunEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+
+            //instantiatedStunEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
+
+            //unitOwner.currentTarget.ApplyStunEffect();
+            //unitOwner.currentTarget.AddChild(instantiatedStunEffect);
+
+            //lastUsedVisualEffectID++;
+        }
+    }
 }

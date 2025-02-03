@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://do7w3pswhghlr"]
+
+[ext_resource type="Texture2D" uid="uid://gejwrku81i6q" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-1.png" id="1_rg1a2"]
+[ext_resource type="Texture2D" uid="uid://b608osgcefoo0" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-2.png" id="2_iwhv4"]
+[ext_resource type="Texture2D" uid="uid://6gu3fww25vqt" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-3.png" id="3_uhu6x"]
+[ext_resource type="Texture2D" uid="uid://cq1m5bl8evbc0" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-4.png" id="4_e2rxd"]
+[ext_resource type="Texture2D" uid="uid://bhre3msw54fvf" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-1.png" id="5_5y1xc"]
+[ext_resource type="Texture2D" uid="uid://bd6p3tpfgsf8m" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-2.png" id="6_2jrx1"]
+[ext_resource type="Texture2D" uid="uid://12xdtcmbnawg" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-3.png" id="7_1fgh1"]
+[ext_resource type="Texture2D" uid="uid://dyhvv2al586ei" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-4.png" id="8_nps7s"]
+[ext_resource type="Texture2D" uid="uid://cxy51re8tmsqx" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-5.png" id="9_r8ojv"]
+[ext_resource type="Texture2D" uid="uid://bo3phvuxsoaog" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-6.png" id="10_n675p"]
+[ext_resource type="Texture2D" uid="uid://4spfiwn205eb" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-1.png" id="11_7a0yg"]
+[ext_resource type="Texture2D" uid="uid://l3lxt3j7wvyv" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-2.png" id="12_n0uau"]
+[ext_resource type="Texture2D" uid="uid://bqdff047mx1on" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-3.png" id="13_ve8ew"]
+[ext_resource type="Texture2D" uid="uid://i1sdxfen1frd" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-1.png" id="14_0buib"]
+[ext_resource type="Texture2D" uid="uid://diwlt4k406dsu" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-2.png" id="15_t0rra"]
+[ext_resource type="Texture2D" uid="uid://psj3xjo568ab" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-3.png" id="16_lnboc"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_rg1a2")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_iwhv4")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_uhu6x")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_e2rxd")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_5y1xc")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_2jrx1")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_1fgh1")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_nps7s")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_r8ojv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_n675p")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_7a0yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n0uau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ve8ew")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0buib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_t0rra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_lnboc")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

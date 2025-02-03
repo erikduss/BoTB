@@ -53,7 +53,7 @@ Battlemage (offhand-wand & sword)
 -> Variable damage, Low/medium with sword, Medium/high with wand (magic)
 -> Variable (Medium when using sword, instant when using magic)
 -> Medium movement speed
--> After 3 attacks with the sword, unleash an instant powerful magic attack dealing damage to 2 additional units.
+-> After 3 attacks with the sword/throwing knife, unleash an instant powerful magic attack dealing damage to 2 additional units.
 -> medium health & low armor
 ---> Cost: 15
 

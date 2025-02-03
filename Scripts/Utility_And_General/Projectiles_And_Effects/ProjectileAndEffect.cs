@@ -15,6 +15,8 @@ namespace Erikduss
 
 		public bool flipSpite = false;
 
+		public BaseCharacter characterThisEffectIsAttachedTo;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -25,6 +27,16 @@ namespace Erikduss
 		public override void _Process(double delta)
 		{
             if (GameManager.Instance.gameIsPaused) return;
+
+			if(characterThisEffectIsAttachedTo != null)
+			{
+				if (characterThisEffectIsAttachedTo.isDead)
+				{
+					destroyTimer = destroyTime;
+
+                    QueueFree();
+                }
+			}
 
             if (!destroyThisAfterTime) return;
 

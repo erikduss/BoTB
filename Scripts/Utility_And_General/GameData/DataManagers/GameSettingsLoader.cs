@@ -10,7 +10,11 @@ namespace Erikduss
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
         //public GrassWorldGeneratorSettingsManager grassWorldGeneratorSettingsManager = new GrassWorldGeneratorSettingsManager();
 
+        //Change these to loading in through a file later.
         public bool useAlternativeBloodColor = false;
+        public int assassinBleedApplyChance = 35; //this is a percentage (0-100)
+        public int enforcerStunApplyChance = 70; //this is a percentage (0-100)
+        public int tankBuffApplyChance = 70; //this is a percentage (0-100)
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()

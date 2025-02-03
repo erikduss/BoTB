@@ -39,7 +39,7 @@ animations = [{
 "duration": 0.75,
 "texture": ExtResource("5_gayaq")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -62,7 +62,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_gs810")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 5.0
 }, {
@@ -128,7 +128,7 @@ initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s6htk")
-animation = &"Idle"
+animation = &"Attack"
 autoplay = "Idle"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
@@ -140,14 +140,13 @@ autoplay = "Idle"
 
 [node name="IdleState" type="Node2D" parent="StateMachine_States"]
 script = ExtResource("21_k8pw7")
-idleDuration = 0.1
 
 [node name="WalkingState" type="Node2D" parent="StateMachine_States"]
 script = ExtResource("22_fmlvd")
 
 [node name="AttackState" type="Node2D" parent="StateMachine_States"]
 script = ExtResource("23_ltewy")
-attackDuration = 0.4
+attackDuration = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)

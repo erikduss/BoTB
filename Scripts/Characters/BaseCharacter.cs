@@ -38,6 +38,11 @@ namespace Erikduss
         private float attackCooldownDuration = 1f;
         public float currentAttackCooldownDuration = -1f;
 
+        public bool isStunned = false;
+        private float stunnedTimer = 0f;
+        private float defaultStunDuration = 2f;
+        private float currentStunDuration = 2f;
+
         #region State Machine
 
         [Export] public State initialStartingState;
@@ -159,6 +164,20 @@ namespace Erikduss
                 else
                 {
                     deathTimer += (float)delta;
+                }
+            }
+
+            //add stun check.
+            if (isStunned)
+            {
+                if (stunnedTimer > currentStunDuration)
+                {
+                    isStunned = false;
+                }
+                else
+                {
+                    stunnedTimer += (float)delta;
+                    return;
                 }
             }
 
@@ -298,6 +317,21 @@ namespace Erikduss
 
             if(overrideAttackCooldown > 0) attackCooldownTimer = overrideAttackCooldown;
             else attackCooldownTimer = attackCooldownDuration;
+        }
+
+        public virtual void ApplyStunEffect(float overrideStunDuration = -1)
+        {
+            float stunDuration = defaultStunDuration;
+
+            if (overrideStunDuration > 0) stunDuration = overrideStunDuration;
+
+            //we dont want to be stunned permanently
+            if (isStunned) return;
+
+            currentStunDuration = stunDuration;
+
+            stunnedTimer = 0;
+            isStunned = true;
         }
     }
 }

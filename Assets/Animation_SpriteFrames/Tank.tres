@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://cm5bawlsnyig"]
+
+[ext_resource type="Texture2D" uid="uid://cl37emw3q0d0o" path="res://Assets/Characters/Tank/Attack/Tank_Age_1-Attack_Frame-1.png" id="1_kifq8"]
+[ext_resource type="Texture2D" uid="uid://bq2xr4trddkh" path="res://Assets/Characters/Tank/Attack/Tank_Age_1-Attack_Frame-2.png" id="2_y0bpy"]
+[ext_resource type="Texture2D" uid="uid://cd0gsxihrj65" path="res://Assets/Characters/Tank/Attack/Tank_Age_1-Attack_Frame-3.png" id="3_joq74"]
+[ext_resource type="Texture2D" uid="uid://cp64vq52fxw2g" path="res://Assets/Characters/Tank/Attack/Tank_Age_1-Attack_Frame-4.png" id="4_g5kwk"]
+[ext_resource type="Texture2D" uid="uid://cvy58x850ttvj" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-1.png" id="5_4d3qk"]
+[ext_resource type="Texture2D" uid="uid://dvs18mmafekbd" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-2.png" id="6_wyyng"]
+[ext_resource type="Texture2D" uid="uid://csst1bycm4jk0" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-3.png" id="7_60j2d"]
+[ext_resource type="Texture2D" uid="uid://b3h2cnb0m4m2q" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-5.png" id="8_mdxuu"]
+[ext_resource type="Texture2D" uid="uid://p3ddfvhcndrs" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-4.png" id="9_6l1hk"]
+[ext_resource type="Texture2D" uid="uid://bjgld8oessu4r" path="res://Assets/Characters/Tank/Death/Tank_Age_1-Death_Frame-6.png" id="10_jnonj"]
+[ext_resource type="Texture2D" uid="uid://663myyfwbjb7" path="res://Assets/Characters/Tank/Idle/Tank_Age_1-Idle_Frame-1.png" id="11_kqv8x"]
+[ext_resource type="Texture2D" uid="uid://c335u7d0ijcqx" path="res://Assets/Characters/Tank/Idle/Tank_Age_1-Idle_Frame-2.png" id="12_k2hjw"]
+[ext_resource type="Texture2D" uid="uid://dy5pj8t5o8hmw" path="res://Assets/Characters/Tank/Idle/Tank_Age_1-Idle_Frame-3.png" id="13_ye6k8"]
+[ext_resource type="Texture2D" uid="uid://dcjxiob5er78q" path="res://Assets/Characters/Tank/Walk/Tank_Age_1-Walk_Frame-1.png" id="14_3wvdh"]
+[ext_resource type="Texture2D" uid="uid://vytyn86jv0sb" path="res://Assets/Characters/Tank/Walk/Tank_Age_1-Walk_Frame-2.png" id="15_eju15"]
+[ext_resource type="Texture2D" uid="uid://dg3np4j3g4gy2" path="res://Assets/Characters/Tank/Walk/Tank_Age_1-Walk_Frame-3.png" id="16_vboxq"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_kifq8")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_y0bpy")
+}, {
+"duration": 0.6,
+"texture": ExtResource("3_joq74")
+}, {
+"duration": 0.6,
+"texture": ExtResource("4_g5kwk")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_4d3qk")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_wyyng")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_60j2d")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_mdxuu")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_6l1hk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jnonj")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_kqv8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k2hjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ye6k8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_3wvdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eju15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vboxq")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

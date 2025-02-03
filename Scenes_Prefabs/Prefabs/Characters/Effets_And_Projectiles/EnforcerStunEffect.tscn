@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ggu63c5hhoj"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/EnforcerStunEffect.cs" id="1_dc0rx"]
+[ext_resource type="Texture2D" uid="uid://bmh8k4rc87qt8" path="res://Assets/Characters/Enforcer/StunEffect/EnforcerStunEffect_01.png" id="2_qsctb"]
+
+[node name="EnforcerStunEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
+script = ExtResource("1_dc0rx")
+destroyTime = 2.0
+usedSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qsctb")

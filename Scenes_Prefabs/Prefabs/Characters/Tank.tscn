@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5cheo8ebeacq"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Tank.cs" id="1_s7j8i"]
+[ext_resource type="SpriteFrames" uid="uid://cm5bawlsnyig" path="res://Assets/Animation_SpriteFrames/Tank.tres" id="2_qgsqo"]
+[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_sruqt"]
+[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_kj2t4"]
+[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_w8qwd"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_6bjbg"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_vdbgy"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_pr115"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_sruqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kj2t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_w8qwd")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
+size = Vector2(41, 39)
+
+[node name="Tank" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+collision_layer = 2
+collision_mask = 103
+script = ExtResource("1_s7j8i")
+initialStartingState = NodePath("StateMachine_States/IdleState")
+
+[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_qgsqo")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7gtr4")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="StateMachine_States" type="Node2D" parent="."]
+
+[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("21_6bjbg")
+
+[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("22_vdbgy")
+
+[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("23_pr115")
+attackDuration = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -3.5)
+shape = SubResource("RectangleShape2D_gfs14")

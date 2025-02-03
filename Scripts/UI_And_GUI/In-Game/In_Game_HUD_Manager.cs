@@ -84,6 +84,7 @@ namespace Erikduss
                     GameManager.Instance.unitsSpawner.ProcessBuyingEnforcer(Enums.TeamOwner.TEAM_01);
                     break;
                 case Enums.UnitTypes.Tank:
+                    GameManager.Instance.unitsSpawner.ProcessBuyingTank(Enums.TeamOwner.TEAM_01);
                     break;
                 case Enums.UnitTypes.Ranger:
                     GameManager.Instance.unitsSpawner.ProcessBuyingRanger(Enums.TeamOwner.TEAM_01);
