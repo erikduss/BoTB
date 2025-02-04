@@ -102,6 +102,11 @@ namespace Erikduss
                 if(buffTimer > buffDuration)
                 {
                     rangerBuffActive = false;
+
+                    if (hasActiveTankBuff)
+                    {
+                        SetTankBuffedAttackSpeedValue(true);
+                    }
                     currentAttackCooldownDuration = -1f;
                 }
                 else
@@ -127,7 +132,16 @@ namespace Erikduss
             base.UnitSignaledForDeathEvent();
 
             rangerBuffActive = true;
-            currentAttackCooldownDuration = buffAttackSpeed;
+
+            //reset buff timer to reset the buff
+            buffTimer = 0f;
+
+            if (hasActiveTankBuff)
+            {
+                currentAttackCooldownDuration = buffAttackSpeed;
+                SetTankBuffedAttackSpeedValue();
+            }
+            else currentAttackCooldownDuration = buffAttackSpeed;
         }
     }
 }

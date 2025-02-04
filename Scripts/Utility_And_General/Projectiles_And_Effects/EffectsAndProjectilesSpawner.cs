@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Xml;
 using static Godot.TextServer;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Erikduss
 {
@@ -16,6 +17,8 @@ namespace Erikduss
         public PackedScene assassinBleedingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/AssassinBleedingEffect.tscn");
 
         public PackedScene enforcerStunEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/EnforcerStunEffect.tscn");
+
+        public PackedScene tankBuffEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/TankBuffEffect.tscn");
 
         private int lastUsedVisualEffectID = 0;
 
@@ -116,17 +119,53 @@ namespace Erikduss
 
         public void SpawnTankBuffEffect(BaseCharacter unitOwner)
         {
-            //EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
+            //We need to check if there are actually units behind us within a certain range.
+            System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;
 
-            //instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
-            //instantiatedStunEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+            //check which team this is, so which dictionary we need to check.
+            if (unitOwner.characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+            }
+            else
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary;
+            }
 
-            //instantiatedStunEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
-            //unitOwner.currentTarget.ApplyStunEffect();
-            //unitOwner.currentTarget.AddChild(instantiatedStunEffect);
+            foreach (BaseCharacter friendlyTeamUnit in dictionaryToSearch.Values)
+            {
+                //we cannot stack tank buffs.
+                if (friendlyTeamUnit.hasActiveTankBuff) continue;
 
-            //lastUsedVisualEffectID++;
+                float distance = friendlyTeamUnit.GlobalPosition.X - unitOwner.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance > 144) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
+
+                if (unitOwner.characterOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    //This should not be possible, but we check if the unit is in front the unit or not.
+                    if (friendlyTeamUnit.GlobalPosition.X > unitOwner.GlobalPosition.X) continue;
+                }
+                else
+                {
+                    if (friendlyTeamUnit.GlobalPosition.X < unitOwner.GlobalPosition.X) continue;
+                }
+
+                TankBuffEffect instantiatedBuffEffect = (TankBuffEffect)tankBuffEffect.Instantiate();
+
+                instantiatedBuffEffect.characterThisEffectIsAttachedTo = friendlyTeamUnit;
+                instantiatedBuffEffect.flipSpite = friendlyTeamUnit.movementSpeed >= 0 ? false : true;
+
+                instantiatedBuffEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
+
+                friendlyTeamUnit.ApplyTankBuffEffect(instantiatedBuffEffect.destroyTime);
+                friendlyTeamUnit.AddChild(instantiatedBuffEffect);
+
+                lastUsedVisualEffectID++;
+            }
         }
     }
 }

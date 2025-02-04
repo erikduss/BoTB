@@ -24,6 +24,10 @@ namespace Erikduss
         public bool unitHasReachedEnemyHomeBase = false;
         public bool isRangedCharacter = false;
 
+        public bool hasActiveTankBuff = false;
+        private float tankBuffDuration = 1.5f;
+        private float tankBuffTimer = 0f;
+
         public bool isDead = false;
         private bool startedDeathTimer = false;
         private float deathTimerDuration = 1.5f;
@@ -164,6 +168,19 @@ namespace Erikduss
                 else
                 {
                     deathTimer += (float)delta;
+                }
+            }
+
+            if (hasActiveTankBuff)
+            {
+                if (tankBuffTimer > tankBuffDuration)
+                {
+                    hasActiveTankBuff = false;
+                    currentAttackCooldownDuration = -1;
+                }
+                else
+                {
+                    tankBuffTimer += (float)delta;
                 }
             }
 
@@ -332,6 +349,32 @@ namespace Erikduss
 
             stunnedTimer = 0;
             isStunned = true;
+        }
+
+        public virtual void ApplyTankBuffEffect(float buffDuration)
+        {
+            //Tank buff effect:
+            //Give Damage reduction to units behind.
+            //Give Ranged Characters improved attack speed.
+
+            if (hasActiveTankBuff) return;
+
+            tankBuffDuration = buffDuration;
+            tankBuffTimer = 0;
+
+            SetTankBuffedAttackSpeedValue();
+
+            hasActiveTankBuff = true;
+        }
+
+        public virtual void SetTankBuffedAttackSpeedValue(bool justLostOtherAttackSpeedBuff = false)
+        {
+            if (currentAttackCooldownDuration > 0 && !justLostOtherAttackSpeedBuff)
+            {
+                float previousValue = currentAttackCooldownDuration;
+                currentAttackCooldownDuration = currentAttackCooldownDuration * 0.5f;
+            }
+            else currentAttackCooldownDuration = attackCooldownDuration * 0.5f;
         }
     }
 }

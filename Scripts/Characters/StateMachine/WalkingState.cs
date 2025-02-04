@@ -22,6 +22,8 @@ namespace Erikduss
         {
             base.StateEnter(character);
 
+            raycastCollisionMask = character.GetCollisionMask();
+
             //if(character.characterOwner == Enums.TeamOwner.TEAM_01)
             //{
             //    raycastCollisionMask = 0b10;

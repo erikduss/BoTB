@@ -27,7 +27,8 @@ namespace Erikduss
 			Tank,
 			Mass_Healer,
 			Battlemage,
-			Archdruid
+			Archdruid,
+			Shaman
 		}
 
 		public enum UnitSettingsConfigHeader

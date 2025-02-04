@@ -103,6 +103,15 @@ namespace Erikduss
                     return;
                 }
 
+                if (character.currentAttackCooldownDuration < 0)
+                {
+                    character.SetNewAttackCooldownTimer();
+                }
+                else
+                {
+                    character.SetNewAttackCooldownTimer(character.currentAttackCooldownDuration);
+                }
+
                 //Switch to the new state
                 EmitSignal(SignalName.Transitioned, this, "IdleState");
             }
@@ -178,7 +187,7 @@ namespace Erikduss
 
                         if (randChance <= fixedNumber)
                         {
-                            //EffectsAndProjectilesSpawner.Instance.SpawnEnforcerStunEffect(character);
+                            EffectsAndProjectilesSpawner.Instance.SpawnTankBuffEffect(character);
                         }
                     }
                     break;

@@ -64,7 +64,7 @@ namespace Erikduss
         #endregion
 
         #region Enforcer
-        public static int Age01_Enforcer_UnitCost = 7;
+        public static int Age01_Enforcer_UnitCost = 4;
         public static Enums.Ages Age01_Enforcer_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Enforcer_UnitName = "Enforcer";
@@ -74,7 +74,7 @@ namespace Erikduss
         public static int Age01_Enforcer_UnitArmour = 20;
         public static int Age01_Enforcer_UnitAttack = 1;
 
-        public static int Age01_Enforcer_UnitMovementSpeed = 50;
+        public static int Age01_Enforcer_UnitMovementSpeed = 60;
         public static int Age01_Enforcer_UnitDetectionRange = 30;
         #endregion
 
@@ -89,7 +89,7 @@ namespace Erikduss
         public static int Age01_Tank_UnitArmour = 30;
         public static int Age01_Tank_UnitAttack = 1;
 
-        public static int Age01_Tank_UnitMovementSpeed = 50;
+        public static int Age01_Tank_UnitMovementSpeed = 35;
         public static int Age01_Tank_UnitDetectionRange = 30;
         #endregion
 
@@ -136,6 +136,21 @@ namespace Erikduss
 
         public static int Age01_Archdruid_UnitMovementSpeed = 50;
         public static int Age01_Archdruid_UnitDetectionRange = 120;
+        #endregion
+
+        #region Shaman
+        public static int Age01_Shaman_UnitCost = 8;
+        public static Enums.Ages Age01_Shaman_UnitAvailableInAge = Enums.Ages.AGE_01;
+
+        public static string Age01_Shaman_UnitName = "Shaman";
+        public static string Age01_Shaman_UnitDescription = "While alive on the battlefield, enhance your special Age power. (Age 1: increase the amount of meteors spawned by 1)";
+
+        public static int Age01_Shaman_UnitHealth = 20;
+        public static int Age01_Shaman_UnitArmour = 10;
+        public static int Age01_Shaman_UnitAttack = 6;
+
+        public static int Age01_Shaman_UnitMovementSpeed = 50;
+        public static int Age01_Shaman_UnitDetectionRange = 30;
         #endregion
 
         #endregion
@@ -260,6 +275,21 @@ namespace Erikduss
 
         public static int Age02_Archdruid_UnitMovementSpeed = 50;
         public static int Age02_Archdruid_UnitDetectionRange = 120;
+        #endregion
+
+        #region Shaman
+        public static int Age02_Shaman_UnitCost = 8;
+        public static Enums.Ages Age02_Shaman_UnitAvailableInAge = Enums.Ages.AGE_01;
+
+        public static string Age02_Shaman_UnitName = "Shaman";
+        public static string Age02_Shaman_UnitDescription = "While alive on the battlefield, enhance your special Age power. (Age 1: increase the amount of meteors spawned by 1)";
+
+        public static int Age02_Shaman_UnitHealth = 20;
+        public static int Age02_Shaman_UnitArmour = 10;
+        public static int Age02_Shaman_UnitAttack = 6;
+
+        public static int Age02_Shaman_UnitMovementSpeed = 50;
+        public static int Age02_Shaman_UnitDetectionRange = 30;
         #endregion
 
         #endregion

@@ -30,6 +30,7 @@ namespace Erikduss
         public PackedScene rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn");
         public PackedScene tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn");
         public PackedScene archdruidBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Archdruid_buy_button.tscn");
+        public PackedScene shamanBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Shaman_buy_button.tscn");
 
         #endregion
 
@@ -44,6 +45,7 @@ namespace Erikduss
             availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
             availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
             availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
+            availableUnitsBuyButtons.Add(shamanBuyButtonPrefab);
 
             HidePauseMenu();
 

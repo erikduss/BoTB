@@ -62,7 +62,7 @@ namespace Erikduss
                         string unitName = thisUnitType.ToString();
                         unitName = unitName.Replace("_", " ");
 
-                        unitNameLabel.LabelSettings.FontSize = 24 + ((8 - unitName.Length) * 3);
+                        unitNameLabel.LabelSettings.FontSize = 24 + ((7 - unitName.Length) * 2);
 
                         unitNameLabel.Text = unitName;
                     }
@@ -320,6 +320,26 @@ namespace Erikduss
                                 unitDescription = UnitsDefaultValues.Age01_Archdruid_UnitDescription;
                             }
                             break;
+                        case Enums.UnitTypes.Shaman:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age01_ShamanSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age01_Shaman_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age01_Shaman_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age01_Shaman_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age01_Shaman_UnitDescription;
+                            }
+                            break;
                         default:
                             GD.PrintErr("UNIT TYPE NOT IMPLEMENTED: UnitInfoToggler.cs");
                             if (GameSettingsLoader.Instance.unitSettingsManager.Age01_WarriorSettingsConfig.useCustomVariables)
@@ -504,6 +524,26 @@ namespace Erikduss
                                 unitAttack = UnitsDefaultValues.Age02_Archdruid_UnitAttack;
 
                                 unitDescription = UnitsDefaultValues.Age02_Archdruid_UnitDescription;
+                            }
+                            break;
+                        case Enums.UnitTypes.Shaman:
+                            if (GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.useCustomVariables)
+                            {
+                                unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.unitCost;
+                                unitHealth = GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.unitHealth;
+                                unitArmour = GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.unitArmour;
+                                unitAttack = GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.unitAttack;
+
+                                unitDescription = GameSettingsLoader.Instance.unitSettingsManager.Age02_ShamanSettingsConfig.unitDescription;
+                            }
+                            else
+                            {
+                                unitCost = UnitsDefaultValues.Age02_Shaman_UnitCost;
+                                unitHealth = UnitsDefaultValues.Age02_Shaman_UnitHealth;
+                                unitArmour = UnitsDefaultValues.Age02_Shaman_UnitArmour;
+                                unitAttack = UnitsDefaultValues.Age02_Shaman_UnitAttack;
+
+                                unitDescription = UnitsDefaultValues.Age02_Shaman_UnitDescription;
                             }
                             break;
                         default:
