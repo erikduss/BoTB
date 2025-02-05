@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://dqik63ufinua6"]
+
+[ext_resource type="Script" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/IndividualMeteorLogic.cs" id="1_f13pc"]
+[ext_resource type="Texture2D" uid="uid://dkwmdxxv2ablc" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim1.png" id="1_y63eg"]
+[ext_resource type="Texture2D" uid="uid://cgvb0k0ymxduy" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim2.png" id="2_7126s"]
+[ext_resource type="Texture2D" uid="uid://cxendph3jafny" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim3.png" id="3_oghsu"]
+[ext_resource type="Texture2D" uid="uid://cij26qc3pyrgs" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_2/Meteor_Diagonal_Variant2_Anim1.png" id="4_6j56t"]
+[ext_resource type="Texture2D" uid="uid://do7hfxmeutvb0" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_2/Meteor_Diagonal_Variant2_Anim2.png" id="5_jlwbx"]
+[ext_resource type="Texture2D" uid="uid://wj12fmwrd4pu" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_2/Meteor_Diagonal_Variant2_Anim3.png" id="6_pm5kj"]
+[ext_resource type="Texture2D" uid="uid://btsgy5x18inke" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_2/Meteor_Regular_Variant2_Anim1.png" id="7_de52w"]
+[ext_resource type="Texture2D" uid="uid://d34w2cus80cy6" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_2/Meteor_Regular_Variant2_Anim2.png" id="8_sfdf8"]
+[ext_resource type="Texture2D" uid="uid://cfnibbu78gdr3" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_2/Meteor_Regular_Variant2_Anim3.png" id="9_ltlfp"]
+[ext_resource type="Texture2D" uid="uid://c8k76kkr11u60" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_1/Meteor_Regular_Variant1_Anim1.png" id="10_jk7to"]
+[ext_resource type="Texture2D" uid="uid://csg2j1ie4a5w1" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_1/Meteor_Regular_Variant1_Anim2.png" id="11_uq7oy"]
+[ext_resource type="Texture2D" uid="uid://465xstx1ddor" path="res://Assets/Age_Abilities/Meteor_Shower/Regular/Variant_1/Meteor_Regular_Variant1_Anim3.png" id="12_o1hpc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rwk7g"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_y63eg")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_7126s")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_oghsu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvrbo"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("4_6j56t")
+}, {
+"duration": 0.75,
+"texture": ExtResource("5_jlwbx")
+}, {
+"duration": 0.75,
+"texture": ExtResource("6_pm5kj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjima"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("7_de52w")
+}, {
+"duration": 0.75,
+"texture": ExtResource("8_sfdf8")
+}, {
+"duration": 0.75,
+"texture": ExtResource("9_ltlfp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqj0d"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("10_jk7to")
+}, {
+"duration": 0.75,
+"texture": ExtResource("11_uq7oy")
+}, {
+"duration": 0.75,
+"texture": ExtResource("12_o1hpc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flu25"]
+radius = 17.4929
+
+[node name="BasicMeteor" type="RigidBody2D"]
+collision_layer = 16
+mass = 100.0
+gravity_scale = 0.1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_f13pc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(20, -13)
+sprite_frames = SubResource("SpriteFrames_rwk7g")
+autoplay = "default"
+frame_progress = 0.922307
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(18, -13)
+sprite_frames = SubResource("SpriteFrames_yvrbo")
+autoplay = "default"
+frame_progress = 0.776647
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-10, -19)
+sprite_frames = SubResource("SpriteFrames_wjima")
+autoplay = "default"
+frame_progress = 0.207001
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-17, -15)
+sprite_frames = SubResource("SpriteFrames_pqj0d")
+autoplay = "default"
+frame_progress = 0.639911
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_flu25")
+
+[connection signal="body_entered" from="." to="." method="OnCollisionEnter"]

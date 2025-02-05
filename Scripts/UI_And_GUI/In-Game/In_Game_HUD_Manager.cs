@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static Godot.OpenXRInterface;
 
 namespace Erikduss
 {
@@ -33,6 +34,8 @@ namespace Erikduss
         public PackedScene shamanBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Shaman_buy_button.tscn");
 
         #endregion
+
+        public PackedScene meteorAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/basic_Meteor.tscn");
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -127,6 +130,32 @@ namespace Erikduss
 
             if(fixedCooldownPercentage <= 0) abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: READY";
             else abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
+        }
+
+        public void PlayerAbilityButtonPressed()
+        {
+            //we need to check if the cooldown is over.
+
+            //if (GameManager.Instance.playerAbilityCurrentCooldown > 0) return;
+
+            for(int i = 0; i < 25; i++)
+            {
+                Node2D instantiatedMeteor = (Node2D)meteorAbilyObjectPrefab.Instantiate();
+
+                //position should be between:
+                //x -> -904
+                //x -> 2824
+                //y should be a random between 0 & 100
+
+                float randXValue = (float)(GD.Randi() % (904 + 2824));
+                randXValue -= 904;
+                float randYValue = (float)(GD.Randi() % (1000));
+                randYValue -= 500;
+
+                instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
+
+                GameManager.Instance.AddChild(instantiatedMeteor);
+            }
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)

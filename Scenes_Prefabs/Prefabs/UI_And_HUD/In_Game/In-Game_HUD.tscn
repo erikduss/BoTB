@@ -243,6 +243,7 @@ texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
 
 [connection signal="pressed" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]
+[connection signal="pressed" from="Player_Control_HUD/AgeAbility/AgeAbilityContainer/AgeAbilityButton" to="." method="PlayerAbilityButtonPressed"]
 [connection signal="pressed" from="Player_Control_HUD/PauseButton" to="." method="PauseGameButtonClicked"]
 [connection signal="pressed" from="Player_Control_HUD/PauseMenuBackground/ReturnButton" to="." method="PauseGameButtonClicked"]
 [connection signal="pressed" from="Player_Control_HUD/PauseMenuBackground/OptionsButton" to="." method="InGameOptionsButtonClicked"]
