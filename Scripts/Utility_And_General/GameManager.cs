@@ -24,7 +24,7 @@ namespace Erikduss
         #endregion
 
         #region Ability Variables
-        public int playerAbilityCurrentCooldown { get; private set; }
+        public int playerAbilityCurrentCooldown { get; set; }
 
 		public int playerAbilityCooldown = 180; //seconds
 

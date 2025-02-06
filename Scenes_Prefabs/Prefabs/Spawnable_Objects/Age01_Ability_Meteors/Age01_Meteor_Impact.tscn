@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ytby76dmm6xg"]
+
+[ext_resource type="Script" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/MeteorImpactLogic.cs" id="1_3d3d6"]
+[ext_resource type="Texture2D" uid="uid://brsg2hs5s2a1a" path="res://Assets/Age_Abilities/Meteor_Shower/Impact/Meteor_Impact_Anim1.png" id="1_4ecmo"]
+[ext_resource type="Texture2D" uid="uid://obw3nuykpu56" path="res://Assets/Age_Abilities/Meteor_Shower/Impact/Meteor_Impact_Anim2.png" id="2_64xpd"]
+[ext_resource type="Texture2D" uid="uid://b7kfhscldfhq5" path="res://Assets/Age_Abilities/Meteor_Shower/Impact/Meteor_Impact_Anim3.png" id="3_2mvjs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a00fq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4ecmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_64xpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2mvjs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3642"]
+size = Vector2(45, 49)
+
+[node name="Age01MeteorImpact" type="Node2D"]
+script = ExtResource("1_3d3d6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a00fq")
+autoplay = "default"
+frame_progress = 0.42363
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -7.5)
+shape = SubResource("RectangleShape2D_p3642")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnCollisionEnter"]

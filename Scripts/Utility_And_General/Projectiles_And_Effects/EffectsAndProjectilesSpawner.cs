@@ -10,6 +10,7 @@ namespace Erikduss
 	{
         public static EffectsAndProjectilesSpawner Instance { get; private set; }
 
+        #region Unit Effects And Projectiles
         public PackedScene warriorAttackVisualEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/SimpleSoldierShockwave.tscn");
 
         public PackedScene rangerAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/RangerAge1Projectile.tscn");
@@ -19,6 +20,15 @@ namespace Erikduss
         public PackedScene enforcerStunEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/EnforcerStunEffect.tscn");
 
         public PackedScene tankBuffEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/TankBuffEffect.tscn");
+        #endregion
+
+        #region Age Abilities And Effects
+
+        private int amountOfMeteorsToSpawn = 25;
+        public PackedScene meteorAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/basic_Meteor.tscn");
+        public PackedScene meteorImpactObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/Age01_Meteor_Impact.tscn");
+
+        #endregion
 
         private int lastUsedVisualEffectID = 0;
 
@@ -166,6 +176,42 @@ namespace Erikduss
 
                 lastUsedVisualEffectID++;
             }
+        }
+
+        public void SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner meteorShowerOwner)
+        {
+            for (int i = 0; i < amountOfMeteorsToSpawn; i++)
+            {
+                IndividualMeteorLogic instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
+
+                //position should be between:
+                //x -> -904 (-904 + 900 -> -4)
+                //x -> 2824 (2824 - 900 -> 1924)
+                //y should be a random between 0 & 100
+
+                instantiatedMeteor.meteorOwner = meteorShowerOwner;
+
+                float randXValue = (float)(GD.Randi() % (4 + 1924));
+                randXValue -= 4;
+                float randYValue = (float)(GD.Randi() % (1000));
+                randYValue -= 500;
+
+                instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
+
+                this.AddChild(instantiatedMeteor);
+            }
+        }
+
+        public void SpawnMeteorImpactAtPosition(Vector2 impactPosition, Enums.TeamOwner meteorOwner)
+        {
+            MeteorImpactLogic instantiatedMeteorImpact = (MeteorImpactLogic)meteorImpactObjectPrefab.Instantiate();
+
+            instantiatedMeteorImpact.meteorImpactOwner = meteorOwner;
+            instantiatedMeteorImpact.GlobalPosition = impactPosition;
+
+            CallDeferred("add_child", instantiatedMeteorImpact);
+
+            //this.AddChild(instantiatedMeteorImpact);
         }
     }
 }

@@ -35,8 +35,6 @@ namespace Erikduss
 
         #endregion
 
-        public PackedScene meteorAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/basic_Meteor.tscn");
-
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -136,26 +134,13 @@ namespace Erikduss
         {
             //we need to check if the cooldown is over.
 
-            //if (GameManager.Instance.playerAbilityCurrentCooldown > 0) return;
+            if (GameManager.Instance.playerAbilityCurrentCooldown > 0) return;
 
-            for(int i = 0; i < 25; i++)
-            {
-                Node2D instantiatedMeteor = (Node2D)meteorAbilyObjectPrefab.Instantiate();
+            //Change this to a function to instantly update the timer too.
+            GameManager.Instance.playerAbilityCurrentCooldown = GameManager.Instance.playerAbilityCooldown;
 
-                //position should be between:
-                //x -> -904
-                //x -> 2824
-                //y should be a random between 0 & 100
-
-                float randXValue = (float)(GD.Randi() % (904 + 2824));
-                randXValue -= 904;
-                float randYValue = (float)(GD.Randi() % (1000));
-                randYValue -= 500;
-
-                instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
-
-                GameManager.Instance.AddChild(instantiatedMeteor);
-            }
+            //is always going to be team 1 for now, due to this being the player.
+            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_01);
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)
