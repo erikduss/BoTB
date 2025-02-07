@@ -27,9 +27,9 @@ namespace Erikduss
 
         public static int Age01_Warrior_UnitHealth = 15;
         public static int Age01_Warrior_UnitArmour = 15;
-        public static int Age01_Warrior_UnitAttack = 17;
+        public static int Age01_Warrior_UnitAttack = 7;
 
-        public static int Age01_Warrior_UnitMovementSpeed = 100; 
+        public static int Age01_Warrior_UnitMovementSpeed = 500; 
         public static int Age01_Warrior_UnitDetectionRange = 30;
         #endregion
 

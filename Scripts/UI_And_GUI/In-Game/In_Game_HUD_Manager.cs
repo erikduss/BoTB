@@ -136,8 +136,7 @@ namespace Erikduss
 
             if (GameManager.Instance.playerAbilityCurrentCooldown > 0) return;
 
-            //Change this to a function to instantly update the timer too.
-            GameManager.Instance.playerAbilityCurrentCooldown = GameManager.Instance.playerAbilityCooldown;
+            GameManager.Instance.ResetPlayerAbilityCooldown();
 
             //is always going to be team 1 for now, due to this being the player.
             EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_01);

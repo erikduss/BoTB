@@ -131,5 +131,11 @@ namespace Erikduss
 
 			return true;
         }
+
+		public void ResetPlayerAbilityCooldown()
+		{
+            playerAbilityCurrentCooldown = playerAbilityCooldown;
+            inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+        }
 	}
 }
