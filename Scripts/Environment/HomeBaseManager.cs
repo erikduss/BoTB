@@ -76,7 +76,8 @@ namespace Erikduss
                     sprite.FlipH = true;
                 }
 
-                colliderShape.Position = new Vector2(64, colliderShape.Position.Y);
+                colliderShape.Position = new Vector2(52.5f, colliderShape.Position.Y);
+                GD.Print(colliderShape.Position);
             }
             else
             {

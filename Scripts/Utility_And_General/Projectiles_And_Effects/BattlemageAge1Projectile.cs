@@ -3,20 +3,27 @@ using System;
 
 namespace Erikduss
 {
-	public partial class RangerAge1Projectile : ProjectileAndEffect
+	public partial class BattlemageAge1Projectile : ProjectileAndEffect
 	{
-		[Export] public RangerAge1ProjectilePhysics rigidBody;
+		[Export] public BattlemageAge1ProjectilePhysics rigidBody;
 
         public BaseCharacter projectileOwnerChar;
 		public Enums.TeamOwner projectileOwner = Enums.TeamOwner.TEAM_01;
 
         bool dealtDamage = false;
 
+        [Export] public AnimatedSprite2D animatedSprite;
+
         public override void _Ready()
         {
             base._Ready();
 
             SetNewOwner(projectileOwner);
+
+            if (animatedSprite != null) 
+            {
+                if (flipSpite) animatedSprite.FlipH = true;
+            }
         }
 
         public override void _Process(double delta)
@@ -53,7 +60,7 @@ namespace Erikduss
 
             if (dealtDamage) return;
 
-            if (projectileOwnerChar.currentTarget != null && body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId())
+            if (body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId())
             {
                 dealtDamage = true;
                 projectileOwnerChar.DealDamage();
@@ -80,8 +87,6 @@ namespace Erikduss
                         return;
                     }
                 }
-
-                GD.Print(body.Name);
 
                 BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
                 if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;

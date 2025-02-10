@@ -16,6 +16,8 @@ namespace Erikduss
         private bool executedEffect = false;
         private bool playedAttackAnimation = false;
 
+        private string currentAttackAnimationName = "Attack";
+
         public override void StateEnter(BaseCharacter character)
         {
             base.StateEnter(character);
@@ -39,7 +41,7 @@ namespace Erikduss
         private void PlayAttackAnimation(BaseCharacter character)
         {
             playedAttackAnimation = true;
-            character.currentAnimatedSprite.Play("Attack");
+            character.currentAnimatedSprite.Play(currentAttackAnimationName);
         }
 
         public override void TickState(float delta, BaseCharacter character)
@@ -98,7 +100,15 @@ namespace Erikduss
                     }
 
 
-                    character.SetNewAttackCooldownTimer();
+                    if (character.currentAttackCooldownDuration < 0)
+                    {
+                        character.SetNewAttackCooldownTimer();
+                    }
+                    else
+                    {
+                        character.SetNewAttackCooldownTimer(character.currentAttackCooldownDuration);
+                    }
+
                     EmitSignal(SignalName.Transitioned, this, "WalkingState");
                     return;
                 }
@@ -189,6 +199,35 @@ namespace Erikduss
                         {
                             EffectsAndProjectilesSpawner.Instance.SpawnTankBuffEffect(character);
                         }
+                    }
+                    break;
+                case Enums.UnitTypes.Battlemage:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+
+                        //Every 4th attack we need to instead do a powered up attack.
+
+                        Battlemage bmScript = (Battlemage)character;
+
+                        bmScript.amountOfBasicAttacksPerformed++;
+
+                        if(bmScript.amountOfBasicAttacksPerformed == 3)
+                        {
+                            currentAttackAnimationName = "Alternative_Attack";
+                        }
+                        else if(bmScript.amountOfBasicAttacksPerformed > 3)
+                        {
+                            bmScript.amountOfBasicAttacksPerformed = 0;
+                            currentAttackAnimationName = "Attack";
+
+                            //here we need to spawn the fireball projectile
+                            EffectsAndProjectilesSpawner.Instance.SpawnBattlemageFireball(character);
+
+                            return;
+                        }
+
+                        EffectsAndProjectilesSpawner.Instance.SpawnBattlemageProjectile(character);
                     }
                     break;
                 default:

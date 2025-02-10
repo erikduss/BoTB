@@ -29,7 +29,7 @@ namespace Erikduss
         public static int Age01_Warrior_UnitArmour = 15;
         public static int Age01_Warrior_UnitAttack = 7;
 
-        public static int Age01_Warrior_UnitMovementSpeed = 500; 
+        public static int Age01_Warrior_UnitMovementSpeed = 50; 
         public static int Age01_Warrior_UnitDetectionRange = 30;
         #endregion
 
@@ -45,7 +45,7 @@ namespace Erikduss
         public static int Age01_Ranger_UnitAttack = 10;
 
         public static int Age01_Ranger_UnitMovementSpeed = 50;
-        public static int Age01_Ranger_UnitDetectionRange = 120;
+        public static int Age01_Ranger_UnitDetectionRange = 150;
         #endregion
 
         #region Assassin
@@ -113,14 +113,14 @@ namespace Erikduss
         public static Enums.Ages Age01_Battlemage_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Battlemage_UnitName = "Battlemage";
-        public static string Age01_Battlemage_UnitDescription = "After 3 melee attacks, unleash an instant powerful magic attack dealing damage to 2 additional units.";
+        public static string Age01_Battlemage_UnitDescription = "After 3 regular attacks, unleash an instant powerful magic attack dealing damage to 2 additional units.";
 
         public static int Age01_Battlemage_UnitHealth = 20;
         public static int Age01_Battlemage_UnitArmour = 10;
         public static int Age01_Battlemage_UnitAttack = 4;
 
         public static int Age01_Battlemage_UnitMovementSpeed = 50;
-        public static int Age01_Battlemage_UnitDetectionRange = 30;
+        public static int Age01_Battlemage_UnitDetectionRange = 150;
         #endregion
 
         #region Archdruid
@@ -135,7 +135,7 @@ namespace Erikduss
         public static int Age01_Archdruid_UnitAttack = 15;
 
         public static int Age01_Archdruid_UnitMovementSpeed = 50;
-        public static int Age01_Archdruid_UnitDetectionRange = 120;
+        public static int Age01_Archdruid_UnitDetectionRange = 150;
         #endregion
 
         #region Shaman

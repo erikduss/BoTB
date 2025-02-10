@@ -92,6 +92,9 @@ namespace Erikduss
                 case Enums.UnitTypes.Ranger:
                     GameManager.Instance.unitsSpawner.ProcessBuyingRanger(Enums.TeamOwner.TEAM_01);
                     break;
+                case Enums.UnitTypes.Battlemage:
+                    GameManager.Instance.unitsSpawner.ProcessBuyingBattlemage(Enums.TeamOwner.TEAM_01);
+                    break;
                 case Enums.UnitTypes.Mass_Healer:
                     break;
 				default:

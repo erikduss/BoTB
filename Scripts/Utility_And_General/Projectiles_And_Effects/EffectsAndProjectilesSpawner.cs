@@ -20,6 +20,9 @@ namespace Erikduss
         public PackedScene enforcerStunEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/EnforcerStunEffect.tscn");
 
         public PackedScene tankBuffEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/TankBuffEffect.tscn");
+
+        public PackedScene battleMageAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/BattlemageAge1Projectile.tscn");
+        public PackedScene battleMageFireball = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/BattlemageFireball.tscn");
         #endregion
 
         #region Age Abilities And Effects
@@ -176,6 +179,53 @@ namespace Erikduss
 
                 lastUsedVisualEffectID++;
             }
+        }
+
+        public void SpawnBattlemageProjectile(BaseCharacter unitOwner)
+        {
+            BattlemageAge1ProjectilePhysics instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+
+            instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
+            instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerChar = unitOwner;
+
+            float offSetX = 30f;
+            float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            instantiatedProjectile.GlobalPosition = fixedPosition;
+
+            instantiatedProjectile.attachedProjectileScript.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
+
+            instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnBattlemageFireball(BaseCharacter unitOwner)
+        {
+            BattlemageFireballLogic instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+
+            instantiatedFireball.fireballOwner = unitOwner.characterOwner;
+            instantiatedFireball.characterThisEffectIsAttachedTo = unitOwner;
+
+            float offSetX = 90f;
+            float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            instantiatedFireball.GlobalPosition = fixedPosition;
+
+            instantiatedFireball.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
+
+            instantiatedFireball.Name = unitOwner.uniqueID + "_InstantiatedFireball_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedFireball);
+
+            lastUsedVisualEffectID++;
         }
 
         public void SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner meteorShowerOwner)

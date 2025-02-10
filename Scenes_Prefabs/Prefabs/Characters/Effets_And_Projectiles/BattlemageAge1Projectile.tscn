@@ -1,16 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cihveuamoo5gg"]
+[gd_scene load_steps=11 format=3 uid="uid://cihveuamoo5gg"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_0al1q"]
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="2_o3hbf"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_1.png" id="3_04oam"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_2.png" id="4_1xx8f"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png" id="5_udwoy"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_4.png" id="6_4048v"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_5.png" id="7_hodqs"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Battlemage/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_6.png" id="8_ufr2b"]
-[ext_resource type="Texture2D" uid="uid://cumjrosnom000" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_1.png" id="9_ssfec"]
-[ext_resource type="Texture2D" uid="uid://dmgrbgamd1lwj" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png" id="10_gr8ry"]
-[ext_resource type="Texture2D" uid="uid://coaroqw0rnrw4" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_3.png" id="11_kskwu"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1ProjectilePhysics.cs" id="1_8p23i"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1Projectile.cs" id="2_ic06a"]
+[ext_resource type="Texture2D" uid="uid://biao443be0dxv" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_1.png" id="3_04oam"]
+[ext_resource type="Texture2D" uid="uid://d13cxucfmo8x2" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_2.png" id="4_1xx8f"]
+[ext_resource type="Texture2D" uid="uid://dg1t2ymd4cpbl" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png" id="5_udwoy"]
+[ext_resource type="Texture2D" uid="uid://bhlvn8yv2bvdx" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_4.png" id="6_4048v"]
+[ext_resource type="Texture2D" uid="uid://4fhxf6v5y1mj" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_5.png" id="7_hodqs"]
+[ext_resource type="Texture2D" uid="uid://ch0srjrj40vty" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_6.png" id="8_ufr2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
 size = Vector2(33, 10)
@@ -41,49 +38,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ay06a"]
-animations = [{
-"frames": [{
-"duration": 0.75,
-"texture": ExtResource("9_ssfec")
-}, {
-"duration": 0.75,
-"texture": ExtResource("10_gr8ry")
-}, {
-"duration": 0.75,
-"texture": ExtResource("11_kskwu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="BattlemageAge1Projectile" type="RigidBody2D" node_paths=PackedStringArray("attachedProjectileScript")]
 collision_layer = 16
 collision_mask = 6
 mass = 10.0
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_0al1q")
+script = ExtResource("1_8p23i")
 attachedProjectileScript = NodePath("Node2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6.5, -5)
 shape = SubResource("RectangleShape2D_rhica")
 
-[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "usedSprite")]
-script = ExtResource("2_o3hbf")
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "animatedSprite")]
+script = ExtResource("2_ic06a")
 rigidBody = NodePath("..")
-usedSprite = NodePath("")
+animatedSprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_hkd1n")
-frame_progress = 0.178501
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_ay06a")
-frame_progress = 0.934798
+autoplay = "default"
+frame = 1
+frame_progress = 0.984142
 
 [connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
 [connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

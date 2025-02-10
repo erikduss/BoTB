@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd5vpg4qtl03k"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageFireballLogic.cs" id="1_ajpov"]
+[ext_resource type="Texture2D" uid="uid://cumjrosnom000" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_1.png" id="2_qpgyh"]
+[ext_resource type="Texture2D" uid="uid://dmgrbgamd1lwj" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png" id="3_bj6f4"]
+[ext_resource type="Texture2D" uid="uid://coaroqw0rnrw4" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_3.png" id="4_27mrg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ce1yr"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("2_qpgyh")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_bj6f4")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_27mrg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3642"]
+size = Vector2(111, 57)
+
+[node name="BattlemageFireball" type="Node2D"]
+script = ExtResource("1_ajpov")
+destroyTime = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ce1yr")
+autoplay = "default"
+frame_progress = 0.429222
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -3.5)
+shape = SubResource("RectangleShape2D_p3642")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnCollisionEnter"]

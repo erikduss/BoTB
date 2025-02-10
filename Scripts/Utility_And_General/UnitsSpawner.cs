@@ -15,6 +15,7 @@ namespace Erikduss
         public PackedScene assassinPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Assassin.tscn");
         public PackedScene enforcerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Enforcer.tscn");
         public PackedScene tankPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Tank.tscn");
+        public PackedScene battleMagePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Battlemage.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -27,7 +28,10 @@ namespace Erikduss
         public Dictionary<string, BaseCharacter> team02AliveUnitDictionary = new Dictionary<string, BaseCharacter>();
 
         private int team01UnitSpawnIDCurrentValue = 0;
+        private int team01LastSpawnedUnitID = -1;
+
         private int team02UnitSpawnIDCurrentValue = 0;
+        private int team02LastSpawnedUnitID = -1;
 
         private bool team01HasSpawnSpace = true;
         private bool team02HasSpawnSpace = true;
@@ -79,7 +83,7 @@ namespace Erikduss
 				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
 				{
 					debugSpawnCounter = 100;
-					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
+					//AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
 				}
 				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
             }
@@ -159,12 +163,21 @@ namespace Erikduss
             AddUnitToQueue(team, Enums.UnitTypes.Asssassin, currentAge);
         }
 
+        public void ProcessBuyingBattlemage(Enums.TeamOwner team)
+        {
+            //spawn prefab
+            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+
+            //Add to queue
+            AddUnitToQueue(team, Enums.UnitTypes.Battlemage, currentAge);
+        }
+
         private void AddUnitToQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
 		{
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
 				string uniqueIDString = team01UnitSpawnIDCurrentValue + "_" + ((uint)unitAge);
-				//GD.Print(uniqueIDString);
+				GD.Print("Adding to Queue: " + uniqueIDString);
 				team01UnitSpawnIDCurrentValue++;
 
                 team01UnitQueueDictionary.Add(uniqueIDString, unitType);
@@ -182,26 +195,46 @@ namespace Erikduss
 		{
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
-				//the age is saved in the unique string, this string is needed to give the unit a unique ID.
-				string uniqueIDString = team01UnitQueueDictionary.FirstOrDefault().Key;
-				string[] splitUniqueString = uniqueIDString.Split('_');
+                //we search the dictionary for the unit ID, the ID is saved in the dictionary Key of the unit together with the age its from.
+                //So we try to search for the next index based on what was the last unit index that we spawned.
+                //This is used to prevent getting the first dictionary index which is getting overritten due to the removal from old units that are already spawned.
 
-				Enums.Ages unitAge = (Enums.Ages)splitUniqueString[1].ToInt();
+                KeyValuePair<string, Enums.UnitTypes> nextUnitToSpawnDictionaryEntry = team01UnitQueueDictionary.Where(a => int.Parse(a.Key.Split('_')[0]) == (team01LastSpawnedUnitID+1)).FirstOrDefault();
 
-				SpawnUnitFromQueue(team, team01UnitQueueDictionary.FirstOrDefault().Value, unitAge);
+                //the age is saved in the unique string, this string is needed to give the unit a unique ID.
+                string uniqueIDString = nextUnitToSpawnDictionaryEntry.Key;
+                string[] splitUniqueString = uniqueIDString.Split('_');
+
+                Enums.Ages unitAge = (Enums.Ages)splitUniqueString[1].ToInt();
+
+                //GD.Print("Spawning Unit: " + uniqueIDString);
+
+				SpawnUnitFromQueue(team, nextUnitToSpawnDictionaryEntry.Value, unitAge);
+
+                //we need to increase this so we get the correct unit next cycle.
+                team01LastSpawnedUnitID++;
 
 				//remove after passing the info
 				team01UnitQueueDictionary.Remove(uniqueIDString);
 			}
 			else
 			{
+                //we search the dictionary for the unit ID, the ID is saved in the dictionary Key of the unit together with the age its from.
+                //So we try to search for the next index based on what was the last unit index that we spawned.
+                //This is used to prevent getting the first dictionary index which is getting overritten due to the removal from old units that are already spawned.
+
+                KeyValuePair<string, Enums.UnitTypes> nextUnitToSpawnDictionaryEntry = team02UnitQueueDictionary.Where(a => int.Parse(a.Key.Split('_')[0]) == (team02LastSpawnedUnitID + 1)).FirstOrDefault();
+
                 //the age is saved in the unique string, this string is needed to give the unit a unique ID.
-                string uniqueIDString = team02UnitQueueDictionary.FirstOrDefault().Key;
+                string uniqueIDString = nextUnitToSpawnDictionaryEntry.Key;
                 string[] splitUniqueString = uniqueIDString.Split('_');
 
                 Enums.Ages unitAge = (Enums.Ages)splitUniqueString[1].ToInt();
 
-                SpawnUnitFromQueue(team, team02UnitQueueDictionary.FirstOrDefault().Value, unitAge);
+                SpawnUnitFromQueue(team, nextUnitToSpawnDictionaryEntry.Value, unitAge);
+
+                //we need to increase this so we get the correct unit next cycle.
+                team02LastSpawnedUnitID++;
 
                 //remove after passing the info
                 team02UnitQueueDictionary.Remove(uniqueIDString);
@@ -351,6 +384,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedTank, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Battlemage:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Battlemage instantiatedBattlemage = (Battlemage)battleMagePrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedBattlemage.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedBattlemage.characterOwner = team;
+                    instantiatedBattlemage.currentAge = unitAge;
+
+                    instantiatedBattlemage.Name = "instantiatedBattlemage_" + lastUsedUnitID;
+
+                    instantiatedBattlemage.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedBattlemage);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedBattlemage, uniqueUnitName);
 
                     lastUsedUnitID++;
 
