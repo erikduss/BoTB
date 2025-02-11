@@ -7,7 +7,7 @@ namespace Erikduss
 	public partial class HomeBaseManager : Node2D
 	{
 		[Export] public bool requiresToBeFlipped = false;
-        [Export] public StaticBody2D StaticBody;
+        public StaticBody2D StaticBody;
 
         public List<Sprite2D> homeBaseSprites = new List<Sprite2D>();
         public CollisionShape2D colliderShape;
@@ -39,6 +39,7 @@ namespace Erikduss
                 }
                 else if (childComponent is StaticBody2D)
                 {
+                    StaticBody = childComponent.GetNode<StaticBody2D>(childComponent.GetPath());
                     colliderShape = childComponent.GetNode<CollisionShape2D>("CollisionShape2D");
                     //colliderShape = childComponent.GetNode<CollisionShape2D>(childComponent.GetPath());
                 }
@@ -76,13 +77,16 @@ namespace Erikduss
                     sprite.FlipH = true;
                 }
 
+                //StaticBody.Position = new Vector2(105f, StaticBody.Position.Y);
+                //colliderShape.GlobalPosition = new Vector2(52.5f, colliderShape.Position.Y);
                 colliderShape.Position = new Vector2(52.5f, colliderShape.Position.Y);
-                GD.Print(colliderShape.Position);
+
+                StaticBody.ForceUpdateTransform();
             }
             else
             {
                 StaticBody.CollisionLayer = 0b100000; 
-                StaticBody.CollisionMask = 0b100; 
+                StaticBody.CollisionMask = 0b100;
             }
         }
 

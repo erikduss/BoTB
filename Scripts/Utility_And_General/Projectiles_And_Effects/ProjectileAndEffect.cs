@@ -9,7 +9,7 @@ namespace Erikduss
 		[Export] public float destroyTime = 1f;
 
 		private bool calledDestroy = false;
-		private float destroyTimer = 0f;
+		protected float destroyTimer = 0f;
 
 		[Export] private Sprite2D usedSprite;
 

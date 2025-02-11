@@ -14,9 +14,9 @@ namespace Erikduss
 
         public override void _Ready()
         {
-            base._Ready();
-
             SetNewOwner(projectileOwner);
+
+            base._Ready();
         }
 
         public override void _Process(double delta)
@@ -39,16 +39,19 @@ namespace Erikduss
 
             if (owner == Enums.TeamOwner.TEAM_01)
             {
-                rigidBody.CollisionMask = 0b1000111;
+                rigidBody.CollisionMask = 0b1000101;
             }
             else
             {
-                rigidBody.CollisionMask = 0b100111;
+                rigidBody.CollisionMask = 0b100011;
             }
         }
 
         public void OnCollisionEnter(Node2D body)
 		{
+            //we shouldnt hit ourselves, this can happen if we get this call too quickly before we set our collisionmasks and stuff.
+            if (body.Name == projectileOwnerChar.Name) return;
+
             rigidBody.StopForces();
 
             if (dealtDamage) return;
@@ -60,35 +63,44 @@ namespace Erikduss
             }
             else 
             {
-                if(projectileOwner == Enums.TeamOwner.TEAM_01)
+                if (projectileOwner == Enums.TeamOwner.TEAM_01)
                 {
-                    if(body.GetInstanceId() == GameManager.Instance.team02HomeBase.GetInstanceId())
+                    if(body.GetInstanceId() == GameManager.Instance.team02HomeBase.StaticBody.GetInstanceId())
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
                         projectileOwnerChar.DealDamage();
+                        destroyTimer = destroyTime;
                         return;
                     }
                 }
                 else
                 {
-                    if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.GetInstanceId())
+                    if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.StaticBody.GetInstanceId())
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
                         projectileOwnerChar.DealDamage();
+                        destroyTimer = destroyTime;
                         return;
                     }
                 }
 
-                GD.Print(body.Name);
+                //GD.Print(body.Name + " _ " + body.GetInstanceId());
+                //GD.Print(body.GlobalPosition);
+                try
+                {
+                    BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
+                    if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;
 
-                BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
-                if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;
-
-                dealtDamage = true;
-                projectileOwnerChar.currentTarget = enemyChar;
-                projectileOwnerChar.DealDamage();
+                    dealtDamage = true;
+                    projectileOwnerChar.currentTarget = enemyChar;
+                    projectileOwnerChar.DealDamage();
+                }
+                catch
+                {
+                    //we hit a ground tile.
+                }
             }
 		}
 

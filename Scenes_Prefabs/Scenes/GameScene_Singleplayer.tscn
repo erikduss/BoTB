@@ -311,7 +311,7 @@ position = Vector2(-4, -12)
 shape = SubResource("RectangleShape2D_akag0")
 
 [node name="Team_2_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
-position = Vector2(2825, 815)
+position = Vector2(2833, 815)
 
 [node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_2_Character_Spawner"]
 collision_layer = 8

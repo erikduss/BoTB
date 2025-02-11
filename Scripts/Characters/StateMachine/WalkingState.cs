@@ -16,6 +16,7 @@ namespace Erikduss
 
         //if in team 1 we only need to check for layer 3 (bit 2) otherwise check for layer 2 (bit 1)
         public uint raycastCollisionMask = 0b1100110;
+        private float stoppingDistance = 42;
 
 
         public override void StateEnter(BaseCharacter character)
@@ -114,8 +115,11 @@ namespace Erikduss
                             if (GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count > 0)
                             {
                                 character.currentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
-                                EmitSignal(SignalName.Transitioned, this, "AttackState");
-                                return;
+                                if (character.canAttack)
+                                {
+                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                    return;
+                                }
                             }
                         }
                         else
@@ -123,32 +127,31 @@ namespace Erikduss
                             if(GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 0)
                             {
                                 character.currentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
-                                EmitSignal(SignalName.Transitioned, this, "AttackState");
-                                return;
+                                if (character.canAttack)
+                                {
+                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                    return;
+                                }
                             }
                         }
 
+                        StaticBody2D baseStaticBody2D = output.As<StaticBody2D>();
+                        float distance = baseStaticBody2D.GlobalPosition.X - character.GlobalPosition.X;
+                        if (distance < 0) distance = -distance;
+
                         //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
                         //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
-                        if (!character.canAttack)
+                        if (!character.canAttack && distance < (stoppingDistance + 5))
                         {
                             EmitSignal(SignalName.Transitioned, this, "IdleState");
                             return;
                         }
-
-                        //Switch to the new state
-                        EmitSignal(SignalName.Transitioned, this, "AttackState");
-                        return;
-
-                        //we need to set the target to the enemy base
-                        //we should probably do this by making the reachedEnemyBase variable public and checking this on the attack function and have a variable for the enemy base to deal damage to it.
-
-                        //before we start attacking the enemy base, we still do need to be sure that there is no enemy unit standing at the base
-                        //so we should probably move this to AFTER the enemy character check. Then we should check in the public list of units that are alive if there are any alive
-                        //If the enemy does not have any units, we do attack the base.
-
-                        //we need to switch to attack state now
-
+                        else if(character.canAttack)
+                        {
+                            //Switch to the new state
+                            EmitSignal(SignalName.Transitioned, this, "AttackState");
+                            return;
+                        }
                     }
                     else
                     {
@@ -172,7 +175,7 @@ namespace Erikduss
                             //GD.Print("Dist to friendly: " + distance);
 
                             //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
-                            if (distance < 42) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
+                            if (distance < stoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
                             {
                                 //character.currentTarget = enemyChar;
 
@@ -271,6 +274,32 @@ namespace Erikduss
                 character.currentTarget = oppositeTeamUnit;
 
                 return true;
+            }
+
+            //we need to check if we can hit the enemy base
+            if(team == Enums.TeamOwner.TEAM_01)
+            {
+                float distance = GameManager.Instance.team02HomeBase.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if(distance < (character.detectionRange))
+                {
+                    character.unitHasReachedEnemyHomeBase = true;
+                    return true;
+                }
+            }
+            else
+            {
+                float distance = GameManager.Instance.team01HomeBase.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance < (character.detectionRange))
+                {
+                    character.unitHasReachedEnemyHomeBase = true;
+                    return true;
+                }
             }
 
             return false;
