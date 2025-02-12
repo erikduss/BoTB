@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bugfy5ssl180s"]
+
+[ext_resource type="Script" path="res://Scripts/Spawnable_Objects/FloatingDamageNumber.cs" id="1_c8eor"]
+[ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="1_ftf5v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mv5me"]
+font_size = 9
+outline_color = Color(1, 0, 0, 1)
+shadow_size = 0
+
+[node name="FloatingDamageNumber" type="Control" node_paths=PackedStringArray("healthAmountReducedLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1888.0
+offset_bottom = -1048.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c8eor")
+healthAmountReducedLabel = NodePath("TextureRect/DamageNumber")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("1_ftf5v")
+expand_mode = 3
+
+[node name="DamageNumber" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 25.0
+offset_bottom = 25.0
+text = "-10"
+label_settings = SubResource("LabelSettings_mv5me")
+horizontal_alignment = 1
+vertical_alignment = 1

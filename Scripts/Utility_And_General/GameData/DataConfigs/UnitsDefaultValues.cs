@@ -42,10 +42,10 @@ namespace Erikduss
 
         public static int Age01_Ranger_UnitHealth = 20;
         public static int Age01_Ranger_UnitArmour = 10;
-        public static int Age01_Ranger_UnitAttack = 10;
+        public static int Age01_Ranger_UnitAttack = 9;
 
         public static int Age01_Ranger_UnitMovementSpeed = 50;
-        public static int Age01_Ranger_UnitDetectionRange = 150;
+        public static int Age01_Ranger_UnitDetectionRange = 130;
         #endregion
 
         #region Assassin
@@ -120,7 +120,7 @@ namespace Erikduss
         public static int Age01_Battlemage_UnitAttack = 4;
 
         public static int Age01_Battlemage_UnitMovementSpeed = 50;
-        public static int Age01_Battlemage_UnitDetectionRange = 150;
+        public static int Age01_Battlemage_UnitDetectionRange = 130;
         #endregion
 
         #region Archdruid

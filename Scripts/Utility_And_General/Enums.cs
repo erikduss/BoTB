@@ -28,7 +28,8 @@ namespace Erikduss
 			Mass_Healer,
 			Battlemage,
 			Archdruid,
-			Shaman
+			Shaman,
+			TrainingDummy
 		}
 
 		public enum UnitSettingsConfigHeader

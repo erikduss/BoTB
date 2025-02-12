@@ -43,10 +43,34 @@ namespace Erikduss
 
 		private int debugSpawnCounter = 0;
 
+        #region Debug Stuff
+
+        private bool spawnDummies = true;
+
+        public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
+
+        private float dummyStartingXPosition = -342f;
+        private float dummyYPosition = 815f;
+
+        private float dummyXPositionDifference = 41;
+
+        private int trainingDummyCurrentCount = 0;
+
+        private int spawnAmountOfTrainingDummies = 15;
+
+        #endregion
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
-			//GameManager.Instance.unitsSpawner = this;
+            //GameManager.Instance.unitsSpawner = this;
+            if (spawnDummies)
+            {
+                for (int i = 0; i < spawnAmountOfTrainingDummies; i++)
+                {
+                    AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.TrainingDummy, Enums.Ages.AGE_01);
+                }
+            }
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -253,6 +277,28 @@ namespace Erikduss
             }
         }
 
+        public int AddTrainingDummyToAliveDictionary(Enums.TeamOwner team, BaseCharacter unitChar)
+        {
+            string uniqueIDString;
+
+            if (team == Enums.TeamOwner.TEAM_01)
+            {
+                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.currentAge);
+                lastUsedUnitID++;
+                team01AliveUnitDictionary.Add(uniqueIDString, unitChar);
+
+                return lastUsedUnitID - 1;
+            }
+            else
+            {
+                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.currentAge);
+                lastUsedUnitID++;
+                team02AliveUnitDictionary.Add(uniqueIDString, unitChar);
+
+                return lastUsedUnitID - 1;
+            }
+        }
+
         public void RemoveAliveUnitFromTeam(Enums.TeamOwner team, Enums.UnitTypes unitType, int unitID)
         {
             if (team == Enums.TeamOwner.TEAM_01)
@@ -409,6 +455,28 @@ namespace Erikduss
 
                     lastUsedUnitID++;
 
+                    break;
+                case Enums.UnitTypes.TrainingDummy:
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    TrainingDummy instantiatedTrainingDummy = (TrainingDummy)trainingDummyPrefab.Instantiate();
+
+                    //determine the position based on the team
+
+                    instantiatedTrainingDummy.GlobalPosition =  new Vector2(dummyStartingXPosition + (dummyXPositionDifference * trainingDummyCurrentCount), dummyYPosition);
+                    instantiatedTrainingDummy.characterOwner = team;
+                    instantiatedTrainingDummy.currentAge = unitAge;
+
+                    instantiatedTrainingDummy.Name = "instantiatedTrainingDummy_" + lastUsedUnitID;
+
+                    instantiatedTrainingDummy.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedTrainingDummy);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedTrainingDummy, uniqueUnitName);
+
+                    trainingDummyCurrentCount++;
+                    lastUsedUnitID++;
                     break;
                 default:
 					GD.PrintErr("UNIT NOT IMPLEMENTED, UNITSPAWNER, SPAWNUNITFROMQUEUE");

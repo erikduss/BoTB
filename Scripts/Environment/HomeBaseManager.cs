@@ -153,7 +153,7 @@ namespace Erikduss
                     currentBaseSpriteIndex = 3;
                 }
             }
-            else if(healthPercentage == 0)
+            else if(healthPercentage <= 0)
             {
                 if (currentBaseSpriteIndex != 4)
                 {
@@ -169,7 +169,7 @@ namespace Erikduss
             }
             else
             {
-
+                GD.Print("OTHER VALUE: " + healthPercentage);
             }
 
             float newFillerWith = healthPercentage * amountOfHealthPerPercentage;

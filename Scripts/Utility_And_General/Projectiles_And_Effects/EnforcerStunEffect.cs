@@ -4,7 +4,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class EnforcerStunEffect : ProjectileAndEffect
+	public partial class EnforcerStunEffect : DestroyableObject
 	{
 		
 	}

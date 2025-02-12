@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class ProjectileAndEffect : Node2D
+	public partial class DestroyableObject : Node2D
 	{
 		public bool destroyThisAfterTime = true;
 		[Export] public float destroyTime = 1f;

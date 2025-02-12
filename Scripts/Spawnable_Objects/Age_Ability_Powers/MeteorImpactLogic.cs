@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class MeteorImpactLogic : ProjectileAndEffect
+	public partial class MeteorImpactLogic : DestroyableObject
 	{
         public Enums.TeamOwner meteorImpactOwner = Enums.TeamOwner.NONE;
 

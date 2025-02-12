@@ -35,6 +35,8 @@ namespace Erikduss
 
         private int lastUsedVisualEffectID = 0;
 
+        public PackedScene trainingDummyFloatingDamage = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn");
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -262,6 +264,27 @@ namespace Erikduss
             CallDeferred("add_child", instantiatedMeteorImpact);
 
             //this.AddChild(instantiatedMeteorImpact);
+        }
+
+        public void SpawnDummyTakenDamageNumber(BaseCharacter unitOwner, int damageTaken)
+        {
+            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)trainingDummyFloatingDamage.Instantiate();
+
+            instantiatedDamageNumber.SetHealthLabelValue(damageTaken);
+            instantiatedDamageNumber.characterThisEffectIsAttachedTo = unitOwner;
+
+            float addedXValue = (float)(GD.Randi() % 20);
+            addedXValue -= 20;
+            float addedYValue = -50f;
+
+            Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            instantiatedDamageNumber.GlobalPosition = fixedPosition;
+
+            instantiatedDamageNumber.Name = unitOwner.uniqueID + "_InstantiatedDamageNumber_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedDamageNumber);
+
+            lastUsedVisualEffectID++;
         }
     }
 }

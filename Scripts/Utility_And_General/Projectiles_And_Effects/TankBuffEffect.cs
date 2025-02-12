@@ -4,7 +4,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class TankBuffEffect : ProjectileAndEffect
+	public partial class TankBuffEffect : DestroyableObject
 	{
 		
 	}

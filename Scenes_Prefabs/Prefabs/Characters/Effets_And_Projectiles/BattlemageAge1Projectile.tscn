@@ -51,10 +51,10 @@ attachedProjectileScript = NodePath("Node2D")
 position = Vector2(-6.5, -5)
 shape = SubResource("RectangleShape2D_rhica")
 
-[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "animatedSprite")]
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("animatedSprite", "rigidBody")]
 script = ExtResource("2_ic06a")
-rigidBody = NodePath("..")
 animatedSprite = NodePath("AnimatedSprite2D")
+rigidBody = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_hkd1n")

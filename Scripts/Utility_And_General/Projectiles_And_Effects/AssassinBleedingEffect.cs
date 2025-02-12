@@ -4,7 +4,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class AssassinBleedingEffect : ProjectileAndEffect
+	public partial class AssassinBleedingEffect : DestroyableObject
 	{
 		[Export] AnimatedSprite2D regularBloodColorSprites;
 		[Export] AnimatedSprite2D alternativeGloodColorSprites;

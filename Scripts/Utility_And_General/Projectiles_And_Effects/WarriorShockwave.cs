@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class WarriorShockwave : ProjectileAndEffect
+	public partial class WarriorShockwave : DestroyableObject
 	{
 	}
 }
