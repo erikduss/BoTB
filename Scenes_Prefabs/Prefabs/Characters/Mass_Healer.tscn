@@ -1,0 +1,155 @@
+[gd_scene load_steps=28 format=3 uid="uid://cuo3x0iddpsrk"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Mass_Healer.cs" id="1_sggt1"]
+[ext_resource type="Texture2D" uid="uid://dpf1ft2tf2ahu" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-1.png" id="2_wbyp6"]
+[ext_resource type="Texture2D" uid="uid://bpaoebiw0sppm" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-2.png" id="3_dsejl"]
+[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="3_lrfw1"]
+[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="4_m5jx7"]
+[ext_resource type="Texture2D" uid="uid://bm3ct78c3tjhi" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-3.png" id="4_xsw1j"]
+[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="5_8xmmr"]
+[ext_resource type="Texture2D" uid="uid://bnkoajvxauvm1" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-4.png" id="5_s1n11"]
+[ext_resource type="Texture2D" uid="uid://byvnc6dfwj4xd" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-5.png" id="6_4xhcy"]
+[ext_resource type="Texture2D" uid="uid://dpkf43tilj4ho" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-1.png" id="6_guwvr"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="6_xynyu"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="7_7oie8"]
+[ext_resource type="Texture2D" uid="uid://dku17rk7g3hov" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-2.png" id="7_xlf8t"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="8_ocdob"]
+[ext_resource type="Texture2D" uid="uid://dcbd13d2m1ita" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-3.png" id="8_sv52c"]
+[ext_resource type="Texture2D" uid="uid://dshno0k1x3bbx" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-4.png" id="9_lsg0b"]
+[ext_resource type="Texture2D" uid="uid://cc8ewji223u2a" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-5.png" id="10_qv2vu"]
+[ext_resource type="Texture2D" uid="uid://cbc6f5vc5uabk" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-6.png" id="11_v0hhd"]
+[ext_resource type="Texture2D" uid="uid://cbbcke1bab2ra" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-1.png" id="12_jwbcc"]
+[ext_resource type="Texture2D" uid="uid://blqggy814jahr" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-2.png" id="13_7nce3"]
+[ext_resource type="Texture2D" uid="uid://dkcuskd2m8c8i" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-3.png" id="14_2mqtl"]
+[ext_resource type="Texture2D" uid="uid://dwtjfja64evif" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-1.png" id="15_ekr2u"]
+[ext_resource type="Texture2D" uid="uid://cx03m2i5uxlmj" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-2.png" id="16_2ooxs"]
+[ext_resource type="Texture2D" uid="uid://2km8b8nqaghr" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-3.png" id="17_36vrw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4uf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wbyp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dsejl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xsw1j")
+}, {
+"duration": 0.75,
+"texture": ExtResource("5_s1n11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4xhcy")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("6_guwvr")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_xlf8t")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_sv52c")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_lsg0b")
+}, {
+"duration": 0.7,
+"texture": ExtResource("10_qv2vu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_v0hhd")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_jwbcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7nce3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2mqtl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_ekr2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_2ooxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_36vrw")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lrfw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m5jx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8xmmr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
+size = Vector2(41, 39)
+
+[node name="Mass_Healer" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+collision_layer = 2
+collision_mask = 103
+script = ExtResource("1_sggt1")
+initialStartingState = NodePath("StateMachine_States/IdleState")
+
+[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t4uf8")
+animation = &"Walking"
+
+[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7gtr4")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="StateMachine_States" type="Node2D" parent="."]
+
+[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("6_xynyu")
+
+[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("7_7oie8")
+
+[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("8_ocdob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -3.5)
+shape = SubResource("RectangleShape2D_gfs14")

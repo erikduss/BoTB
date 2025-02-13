@@ -101,56 +101,83 @@ namespace Erikduss
                 bool charBodyCheck = outputString.Contains("CharacterBody2D");
                 bool staticBodyCheck = outputString.Contains("StaticBody2D");
 
+                //We are not detecting a character collision.
                 if(!charBodyCheck)
                 {
-                    if (staticBodyCheck)
+                    if (staticBodyCheck) //which means we collide with a static body, which is the enemy base.
                     {
                         passedCheckForReachedEnemyBase = true;
                         character.unitHasReachedEnemyHomeBase = true;
-                        
-                        //also check if there is an enemy that spawned there, for example a ranger doesnt move and will never die otherwise.
-                        //If there is a unit alive, we attack it instead of the home base.
-                        if(character.characterOwner == Enums.TeamOwner.TEAM_01)
+
+                        if(!character.checkForAlliesRaycastInstead && character.unitAttackDamage != 0)
                         {
-                            if (GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count > 0)
+                            //also check if there is an enemy that spawned there, for example a ranger doesnt move and will never die otherwise.
+                            //If there is a unit alive, we attack it instead of the home base.
+                            if (character.characterOwner == Enums.TeamOwner.TEAM_01)
                             {
-                                character.currentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
-                                if (character.canAttack)
+                                if (GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count > 0)
                                 {
-                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
-                                    return;
+                                    character.currentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
+                                    if (character.canAttack)
+                                    {
+                                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                        return;
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 0)
+                                {
+                                    character.currentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
+                                    if (character.canAttack)
+                                    {
+                                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                        return;
+                                    }
+                                }
+                            }
+
+                            StaticBody2D baseStaticBody2D = output.As<StaticBody2D>();
+                            float distance = baseStaticBody2D.GlobalPosition.X - character.GlobalPosition.X;
+                            if (distance < 0) distance = -distance;
+
+                            //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
+                            //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
+                            if (!character.canAttack && distance < (stoppingDistance + 5))
+                            {
+                                EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                return;
+                            }
+                            else if (character.canAttack)
+                            {
+                                //Switch to the new state
+                                EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                return;
                             }
                         }
                         else
                         {
-                            if(GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 0)
-                            {
-                                character.currentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
+                            if(CheckForCharactersToHeal(character, character.characterOwner))
+                            {                          
                                 if (character.canAttack)
                                 {
+                                    //if we find a character that needs to be healed within range, and we can heal atm, we should
                                     EmitSignal(SignalName.Transitioned, this, "AttackState");
                                     return;
                                 }
                             }
-                        }
 
-                        StaticBody2D baseStaticBody2D = output.As<StaticBody2D>();
-                        float distance = baseStaticBody2D.GlobalPosition.X - character.GlobalPosition.X;
-                        if (distance < 0) distance = -distance;
+                            StaticBody2D baseStaticBody2D = output.As<StaticBody2D>();
+                            float distance = baseStaticBody2D.GlobalPosition.X - character.GlobalPosition.X;
+                            if (distance < 0) distance = -distance;
 
-                        //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
-                        //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
-                        if (!character.canAttack && distance < (stoppingDistance + 5))
-                        {
-                            EmitSignal(SignalName.Transitioned, this, "IdleState");
-                            return;
-                        }
-                        else if(character.canAttack)
-                        {
-                            //Switch to the new state
-                            EmitSignal(SignalName.Transitioned, this, "AttackState");
-                            return;
+                            //we still need to check if we are close enough to the base to stop.
+                            if (!character.canAttack && distance < (stoppingDistance + 5))
+                            {
+                                EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                return;
+                            }
                         }
                     }
                     else
@@ -159,6 +186,7 @@ namespace Erikduss
                     }
                 }
 
+                //if instead of a home base, we hit a character (can be friendly and enemy)
                 if(!passedCheckForReachedEnemyBase)
                 {
                     CharacterBody2D enemyCharacterBody2D = output.As<CharacterBody2D>();
@@ -172,41 +200,56 @@ namespace Erikduss
 
                         if (enemyChar.characterOwner == character.characterOwner)
                         {
-                            //GD.Print("Dist to friendly: " + distance);
-
-                            //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
-                            if (distance < stoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
+                            if(!character.checkForAlliesRaycastInstead && character.unitAttackDamage > 0)
                             {
-                                //character.currentTarget = enemyChar;
-
-                                if(CheckRangedCharacterTarget(character, character.characterOwner))
+                                //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
+                                if (distance < stoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
                                 {
-                                    if (character.canAttack)
+                                    if (CheckRangedCharacterTarget(character, character.characterOwner))
+                                    {
+                                        if (character.canAttack)
+                                        {
+                                            EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Switch to the new state
+                                        EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                        return;
+                                    }
+                                }
+                                else if (character.isRangedCharacter && character.canAttack)
+                                {
+                                    if (CheckRangedCharacterTarget(character, character.characterOwner))
                                     {
                                         EmitSignal(SignalName.Transitioned, this, "AttackState");
                                         return;
                                     }
                                 }
-                                else
-                                {
-                                    //Switch to the new state
-                                    EmitSignal(SignalName.Transitioned, this, "IdleState");
-                                    return;
-                                }
                             }
-                            else if (character.isRangedCharacter && character.canAttack)
+                            else //if we heal instead, we need to check for targets to heal within range, otherwise we just check for stopping.
                             {
-                                if (CheckRangedCharacterTarget(character, character.characterOwner))
+                                if (CheckForCharactersToHeal(character, character.characterOwner))
                                 {
-                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                    if (character.canAttack)
+                                    {
+                                        //if we find a character that needs to be healed within range, and we can heal atm, we should
+                                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                        return;
+                                    }
+                                }
+
+                                if (distance < stoppingDistance)
+                                {
+                                    EmitSignal(SignalName.Transitioned, this, "IdleState");
                                     return;
                                 }
                             }
                         }
                         else
                         {
-                            //GD.Print("Dist to enemy: " + distance);
-
                             character.currentTarget = enemyChar;
 
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
@@ -234,6 +277,37 @@ namespace Erikduss
             //character.characterBody.Velocity = new Vector2(character.movementSpeed, 0) * delta;
             //character.characterBody.MoveAndSlide();
             character.MoveAndCollide(new Vector2(character.movementSpeed, 0) * delta);
+        }
+
+        private bool CheckForCharactersToHeal(BaseCharacter character, Enums.TeamOwner team)
+        {
+            if (!character.isRangedCharacter) return false;
+
+            System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;
+
+            if (team == Enums.TeamOwner.TEAM_01)
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+            }
+            else
+            {
+                dictionaryToSearch = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary;
+            }
+
+            foreach (BaseCharacter frienlyUnit in dictionaryToSearch.Values)
+            {
+                float distance = frienlyUnit.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance > character.detectionRange) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
+
+                if (frienlyUnit.currentHealth >= frienlyUnit.maxHealth) continue;
+
+                return true;
+            }
+
+            return false;
         }
 
         private bool CheckRangedCharacterTarget(BaseCharacter character, Enums.TeamOwner team)

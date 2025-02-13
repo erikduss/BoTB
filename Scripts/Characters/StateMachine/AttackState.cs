@@ -230,6 +230,22 @@ namespace Erikduss
                         EffectsAndProjectilesSpawner.Instance.SpawnBattlemageProjectile(character);
                     }
                     break;
+                case Enums.UnitTypes.Mass_Healer:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+
+                        //chance of applying a Buff effect = 70
+
+                        int fixedNumber = GameSettingsLoader.Instance.tankBuffApplyChance;
+                        int randChance = (int)(GD.Randi() % (100));
+
+                        if (randChance <= fixedNumber)
+                        {
+                            //EffectsAndProjectilesSpawner.Instance.SpawnTankBuffEffect(character);
+                        }
+                    }
+                    break;
                 default:
                     GD.PrintErr("UNIT TYPE EFFECT NOT IMPLEMENTED, ATTACK STATE");
                     break;

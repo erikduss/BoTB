@@ -23,6 +23,7 @@ namespace Erikduss
 
         public bool unitHasReachedEnemyHomeBase = false;
         public bool isRangedCharacter = false;
+        public bool checkForAlliesRaycastInstead = false;
 
         public bool hasActiveTankBuff = false;
         private float tankBuffDuration = 1.5f;
@@ -264,6 +265,33 @@ namespace Erikduss
             {
                 processDeath();
             }
+            else
+            {
+                if(characterOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Values.Any(a => a.unitType == (Enums.UnitTypes.Mass_Healer)))
+                    {
+                        GD.Print("We have a healer in the house");
+                    }
+                    else
+                    {
+                        GD.Print("We dont have healers, reported.");
+                    }
+                }
+                else
+                {
+                    //check if for team 2
+                }
+            }
+        }
+
+        public virtual void HealDamage(int healAmount)
+        {
+            if(isDead) return;
+
+            currentHealth += healAmount;
+
+            if(currentHealth > maxHealth) currentHealth = maxHealth;
         }
 
         public virtual void processDeath()
@@ -324,6 +352,11 @@ namespace Erikduss
         }
 
         public virtual void UnitSignaledForDeathEvent()
+        {
+
+        }
+
+        public virtual void SignalUnitHasTakenDamage(BaseCharacter unitThatTookDamage)
         {
 
         }

@@ -16,6 +16,7 @@ namespace Erikduss
         public PackedScene enforcerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Enforcer.tscn");
         public PackedScene tankPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Tank.tscn");
         public PackedScene battleMagePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Battlemage.tscn");
+        public PackedScene massHealerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Mass_Healer.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -45,7 +46,7 @@ namespace Erikduss
 
         #region Debug Stuff
 
-        private bool spawnDummies = true;
+        private bool spawnDummies = false;
 
         public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
 
@@ -107,7 +108,7 @@ namespace Erikduss
 				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
 				{
 					debugSpawnCounter = 100;
-					//AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
+					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
 				}
 				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
             }
@@ -142,58 +143,12 @@ namespace Erikduss
 			team02HasSpawnSpace = true;
         }
 
-        public void ProcessBuyingSimpleSoldier(Enums.TeamOwner team)
-		{
-			//spawn prefab
-			Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
-
-			//Add to queue
-			AddUnitToQueue(team, Enums.UnitTypes.Warrior, currentAge);
-		}
-
-        public void ProcessBuyingRanger(Enums.TeamOwner team)
+        public void ProcessBuyingUnit(Enums.TeamOwner team, Enums.UnitTypes unitType)
         {
-            //spawn prefab
             Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
 
             //Add to queue
-            AddUnitToQueue(team, Enums.UnitTypes.Ranger, currentAge);
-        }
-
-        public void ProcessBuyingEnforcer(Enums.TeamOwner team)
-        {
-            //spawn prefab
-            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
-
-            //Add to queue
-            AddUnitToQueue(team, Enums.UnitTypes.Enforcer, currentAge);
-        }
-
-        public void ProcessBuyingTank(Enums.TeamOwner team)
-        {
-            //spawn prefab
-            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
-
-            //Add to queue
-            AddUnitToQueue(team, Enums.UnitTypes.Tank, currentAge);
-        }
-
-        public void ProcessBuyingAssassin(Enums.TeamOwner team)
-        {
-            //spawn prefab
-            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
-
-            //Add to queue
-            AddUnitToQueue(team, Enums.UnitTypes.Asssassin, currentAge);
-        }
-
-        public void ProcessBuyingBattlemage(Enums.TeamOwner team)
-        {
-            //spawn prefab
-            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
-
-            //Add to queue
-            AddUnitToQueue(team, Enums.UnitTypes.Battlemage, currentAge);
+            AddUnitToQueue(team, unitType, currentAge);
         }
 
         private void AddUnitToQueue(Enums.TeamOwner team, Enums.UnitTypes unitType, Enums.Ages unitAge)
@@ -452,6 +407,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedBattlemage, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Mass_Healer:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Mass_Healer instantiatedMassHealer = (Mass_Healer)massHealerPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedMassHealer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedMassHealer.characterOwner = team;
+                    instantiatedMassHealer.currentAge = unitAge;
+
+                    instantiatedMassHealer.Name = "instantiatedMassHealer_" + lastUsedUnitID;
+
+                    instantiatedMassHealer.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedMassHealer);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedMassHealer, uniqueUnitName);
 
                     lastUsedUnitID++;
 

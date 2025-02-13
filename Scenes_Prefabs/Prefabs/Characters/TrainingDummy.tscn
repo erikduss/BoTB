@@ -124,6 +124,7 @@ offset_right = -20.5
 offset_bottom = -11.0
 
 [node name="CurrentHealthLabel" type="Label" parent="Control"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "100"
