@@ -16,6 +16,8 @@ namespace Erikduss
         {
             SetNewOwner(projectileOwner);
 
+            destroyObjectOverride = this.GetParent() as Node2D;
+
             base._Ready();
         }
 
@@ -54,6 +56,8 @@ namespace Erikduss
 
             rigidBody.StopForces();
 
+            rigidBody.CollisionMask = 0b1;
+
             if (dealtDamage) return;
 
             if (projectileOwnerChar.currentTarget != null && body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId())
@@ -70,6 +74,7 @@ namespace Erikduss
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
                         projectileOwnerChar.DealDamage();
+                        DestroyObject();
                         destroyTimer = destroyTime;
                         return;
                     }
@@ -81,6 +86,7 @@ namespace Erikduss
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
                         projectileOwnerChar.DealDamage();
+                        DestroyObject();
                         destroyTimer = destroyTime;
                         return;
                     }

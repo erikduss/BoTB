@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using static Godot.TextServer;
 using static System.Net.Mime.MediaTypeNames;
@@ -23,6 +24,8 @@ namespace Erikduss
 
         public PackedScene battleMageAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/BattlemageAge1Projectile.tscn");
         public PackedScene battleMageFireball = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/BattlemageFireball.tscn");
+
+        public PackedScene healingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/HealingEffect.tscn");
         #endregion
 
         #region Age Abilities And Effects
@@ -36,6 +39,8 @@ namespace Erikduss
         private int lastUsedVisualEffectID = 0;
 
         public PackedScene trainingDummyFloatingDamage = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn");
+
+        public bool processingHealingEffects = false;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -181,6 +186,53 @@ namespace Erikduss
 
                 lastUsedVisualEffectID++;
             }
+        }
+
+        public void SpawnMass_Healer_HealingEffect(BaseCharacter unitOwner, bool checkForMaxDistance = true)
+        {
+            List<BaseCharacter> listToSearch;
+
+            //check which team this is, so which list we need to check.
+            if (unitOwner.characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                listToSearch = GameManager.Instance.unitsSpawner.team01DamagedUnits;
+            }
+            else
+            {
+                listToSearch = GameManager.Instance.unitsSpawner.team02DamagedUnits;
+            }
+
+            processingHealingEffects = true;
+
+            foreach (BaseCharacter friendlyTeamUnit in listToSearch)
+            {
+                //we cannot heal if they are dead.
+                if (friendlyTeamUnit.isDead) continue;
+                if (friendlyTeamUnit.currentHealth == friendlyTeamUnit.maxHealth) continue; //this could possibly happen with a double heal, we want to prevent adding the icon twice.
+
+                if (checkForMaxDistance)
+                {
+                    float distance = friendlyTeamUnit.GlobalPosition.X - unitOwner.GlobalPosition.X;
+
+                    if (distance < 0) distance = -distance;
+
+                    if (distance > (unitOwner.detectionRange + 10)) continue; //can only heal units in range (with slight extra margin of error.
+                }
+
+                HealingEffect instantiatedHealingEffect = (HealingEffect)healingEffect.Instantiate();
+
+                instantiatedHealingEffect.characterThisEffectIsAttachedTo = friendlyTeamUnit;
+                instantiatedHealingEffect.flipSpite = friendlyTeamUnit.movementSpeed >= 0 ? false : true;
+
+                instantiatedHealingEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
+
+                friendlyTeamUnit.HealDamage(GameManager.Instance.massHealerHealAmount);
+                friendlyTeamUnit.AddChild(instantiatedHealingEffect);
+
+                lastUsedVisualEffectID++;
+            }
+
+            processingHealingEffects = false;
         }
 
         public void SpawnBattlemageProjectile(BaseCharacter unitOwner)

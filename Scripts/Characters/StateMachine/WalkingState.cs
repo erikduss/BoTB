@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -198,6 +199,7 @@ namespace Erikduss
 
                         BaseCharacter enemyChar = enemyCharacterBody2D.GetNode<BaseCharacter>(enemyCharacterBody2D.GetPath());
 
+                        //we are colliding with an ally.
                         if (enemyChar.characterOwner == character.characterOwner)
                         {
                             if(!character.checkForAlliesRaycastInstead && character.unitAttackDamage > 0)
@@ -233,6 +235,7 @@ namespace Erikduss
                             {
                                 if (CheckForCharactersToHeal(character, character.characterOwner))
                                 {
+                                    GD.Print("We found a target to heal");
                                     if (character.canAttack)
                                     {
                                         //if we find a character that needs to be healed within range, and we can heal atm, we should
@@ -283,18 +286,18 @@ namespace Erikduss
         {
             if (!character.isRangedCharacter) return false;
 
-            System.Collections.Generic.Dictionary<string, BaseCharacter> dictionaryToSearch;
+            List<BaseCharacter> listToSearch;
 
             if (team == Enums.TeamOwner.TEAM_01)
             {
-                dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+                listToSearch = GameManager.Instance.unitsSpawner.team01DamagedUnits;
             }
             else
             {
-                dictionaryToSearch = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary;
+                listToSearch = GameManager.Instance.unitsSpawner.team02DamagedUnits;
             }
 
-            foreach (BaseCharacter frienlyUnit in dictionaryToSearch.Values)
+            foreach (BaseCharacter frienlyUnit in listToSearch)
             {
                 float distance = frienlyUnit.GlobalPosition.X - character.GlobalPosition.X;
 
@@ -303,6 +306,8 @@ namespace Erikduss
                 if (distance > character.detectionRange) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
 
                 if (frienlyUnit.currentHealth >= frienlyUnit.maxHealth) continue;
+
+                GD.Print("We need to heal: " + frienlyUnit.Name);
 
                 return true;
             }

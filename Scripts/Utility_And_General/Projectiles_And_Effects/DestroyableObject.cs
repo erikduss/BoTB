@@ -17,6 +17,8 @@ namespace Erikduss
 
 		public BaseCharacter characterThisEffectIsAttachedTo;
 
+		protected Node2D destroyObjectOverride;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
@@ -34,7 +36,7 @@ namespace Erikduss
 				{
 					destroyTimer = destroyTime;
 
-                    QueueFree();
+					DestroyObject();
                 }
 			}
 
@@ -45,10 +47,22 @@ namespace Erikduss
 				if (!calledDestroy)
 				{
 					calledDestroy = true;
-					QueueFree();
-				}
+					DestroyObject();
+                }
 			}
 			else destroyTimer += (float)delta;
+		}
+
+		protected virtual void DestroyObject()
+		{
+			if(destroyObjectOverride != null)
+			{
+				destroyObjectOverride.QueueFree();
+			}
+			else
+			{
+				QueueFree();
+			}
 		}
 	}
 }

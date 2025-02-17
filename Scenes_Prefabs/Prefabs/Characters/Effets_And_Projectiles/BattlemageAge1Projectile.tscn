@@ -15,6 +15,14 @@ size = Vector2(33, 10)
 [sub_resource type="SpriteFrames" id="SpriteFrames_hkd1n"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_udwoy")
+}],
+"loop": true,
+"name": &"TargetHit",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.5,
 "texture": ExtResource("3_04oam")
 }, {
@@ -58,9 +66,8 @@ rigidBody = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_hkd1n")
+animation = &"TargetHit"
 autoplay = "default"
-frame = 1
-frame_progress = 0.984142
 
 [connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
 [connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

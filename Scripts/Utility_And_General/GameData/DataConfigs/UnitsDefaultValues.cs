@@ -105,7 +105,7 @@ namespace Erikduss
         public static int Age01_MassHealer_UnitAttack = 0;
 
         public static int Age01_MassHealer_UnitMovementSpeed = 50;
-        public static int Age01_MassHealer_UnitDetectionRange = 30;
+        public static int Age01_MassHealer_UnitDetectionRange = 130;
         #endregion
 
         #region Battlemage

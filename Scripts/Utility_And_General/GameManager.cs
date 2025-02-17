@@ -15,6 +15,10 @@ namespace Erikduss
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
 
+		#region Other Unit Settings
+		public int massHealerHealAmount = 15;
+        #endregion
+
         #region Currency Variables
         public int playerCurrentCurrencyAmount { get; private set; }
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c55abin23ux74"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/HealingEffect.cs" id="1_3swaj"]
+[ext_resource type="Texture2D" uid="uid://4rvk2ifn52qx" path="res://Assets/Characters/Mass_Healer/HealEffect/HealEffect_01.png" id="2_w63ab"]
+
+[node name="HealingEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
+script = ExtResource("1_3swaj")
+usedSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w63ab")
+offset = Vector2(0, 16)

@@ -235,15 +235,7 @@ namespace Erikduss
                     {
                         executedEffect = true;
 
-                        //chance of applying a Buff effect = 70
-
-                        int fixedNumber = GameSettingsLoader.Instance.tankBuffApplyChance;
-                        int randChance = (int)(GD.Randi() % (100));
-
-                        if (randChance <= fixedNumber)
-                        {
-                            //EffectsAndProjectilesSpawner.Instance.SpawnTankBuffEffect(character);
-                        }
+                        EffectsAndProjectilesSpawner.Instance.SpawnMass_Healer_HealingEffect(character);
                     }
                     break;
                 default:

@@ -16,5 +16,14 @@ namespace Erikduss
                 if (flipSpite) animatedSprite.FlipH = true;
             }
         }
+
+        public override void OnCollisionEnter(Node2D body)
+        {
+            if (body.Name == projectileOwnerChar.Name) return;
+
+            animatedSprite.Play("TargetHit");
+
+            base.OnCollisionEnter(body);
+        }
     }
 }

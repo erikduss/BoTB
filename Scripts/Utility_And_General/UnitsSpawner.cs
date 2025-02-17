@@ -28,6 +28,9 @@ namespace Erikduss
         public Dictionary<string, BaseCharacter> team01AliveUnitDictionary = new Dictionary<string, BaseCharacter>();
         public Dictionary<string, BaseCharacter> team02AliveUnitDictionary = new Dictionary<string, BaseCharacter>();
 
+        public List<BaseCharacter> team01DamagedUnits = new List<BaseCharacter>();
+        public List<BaseCharacter> team02DamagedUnits = new List<BaseCharacter>();
+
         private int team01UnitSpawnIDCurrentValue = 0;
         private int team01LastSpawnedUnitID = -1;
 

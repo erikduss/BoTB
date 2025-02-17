@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Erikduss
 {
@@ -267,36 +268,78 @@ namespace Erikduss
             }
             else
             {
-                if(characterOwner == Enums.TeamOwner.TEAM_01)
+                if (characterOwner == Enums.TeamOwner.TEAM_01)
                 {
-                    if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Values.Any(a => a.unitType == (Enums.UnitTypes.Mass_Healer)))
+                    if (!GameManager.Instance.unitsSpawner.team01DamagedUnits.Contains(this))
                     {
-                        GD.Print("We have a healer in the house");
+                        GameManager.Instance.unitsSpawner.team01DamagedUnits.Add(this);
                     }
-                    else
-                    {
-                        GD.Print("We dont have healers, reported.");
-                    }
+
+                    //if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Values.Any(a => a.unitType == (Enums.UnitTypes.Mass_Healer)))
+                    //{
+                    //    GD.Print("We have a healer in the house");
+
+
+                    //}
+                    //else
+                    //{
+                    //    GD.Print("We dont have healers, reported.");
+                    //}
                 }
                 else
                 {
                     //check if for team 2
+                    if (!GameManager.Instance.unitsSpawner.team02DamagedUnits.Contains(this))
+                    {
+                        GameManager.Instance.unitsSpawner.team02DamagedUnits.Add(this);
+                    }
                 }
             }
         }
 
-        public virtual void HealDamage(int healAmount)
+        public async virtual void HealDamage(int healAmount)
         {
             if(isDead) return;
 
             currentHealth += healAmount;
 
             if(currentHealth > maxHealth) currentHealth = maxHealth;
+
+            //we need to wait till the effects function is done processing due to changes in the list structure that will give errors.
+            while (EffectsAndProjectilesSpawner.Instance.processingHealingEffects)
+            {
+                await Task.Yield();
+            }
+
+            //the entry to the list is made when we are damaged, we cant get healed if we are not damaged so there is always an entry.
+            if(characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                if (currentHealth == maxHealth) GameManager.Instance.unitsSpawner.team01DamagedUnits.Remove(this);
+            }
+            else
+            {
+                if (currentHealth == maxHealth) GameManager.Instance.unitsSpawner.team02DamagedUnits.Remove(this);
+            }
         }
 
         public virtual void processDeath()
         {
             if(isDead) return;
+
+            if(characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                if (GameManager.Instance.unitsSpawner.team01DamagedUnits.Contains(this))
+                {
+                    GameManager.Instance.unitsSpawner.team01DamagedUnits.Remove(this);
+                }
+            }
+            else
+            {
+                if (GameManager.Instance.unitsSpawner.team02DamagedUnits.Contains(this))
+                {
+                    GameManager.Instance.unitsSpawner.team02DamagedUnits.Remove(this);
+                }
+            }
 
             isDead = true;
 
@@ -356,10 +399,10 @@ namespace Erikduss
 
         }
 
-        public virtual void SignalUnitHasTakenDamage(BaseCharacter unitThatTookDamage)
-        {
+        //public virtual void SignalUnitHasTakenDamage(BaseCharacter unitThatTookDamage)
+        //{
 
-        }
+        //}
 
         public virtual void SetNewAttackCooldownTimer(float overrideAttackCooldown = -1)
         {

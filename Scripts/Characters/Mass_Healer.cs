@@ -87,14 +87,14 @@ namespace Erikduss
 
             base._Ready();
 
-            GD.Print("READY");
+            EffectsAndProjectilesSpawner.Instance.SpawnMass_Healer_HealingEffect(this, false);
         }
 
-        public override void SignalUnitHasTakenDamage(BaseCharacter unitThatTookDamage)
-        {
-            base.SignalUnitHasTakenDamage(unitThatTookDamage);
+        //public override void SignalUnitHasTakenDamage(BaseCharacter unitThatTookDamage)
+        //{
+        //    base.SignalUnitHasTakenDamage(unitThatTookDamage);
 
 
-        }
+        //}
     }
 }
