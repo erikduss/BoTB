@@ -1,0 +1,153 @@
+[gd_scene load_steps=27 format=3 uid="uid://dqos5xdic3gg"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Ranger.cs" id="1_onrrs"]
+[ext_resource type="Texture2D" uid="uid://cugyy6k1j081i" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle01.png" id="2_8ttjy"]
+[ext_resource type="Texture2D" uid="uid://dfhbw3bo82wa6" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack01.png" id="2_wdps1"]
+[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="3_6xgfl"]
+[ext_resource type="Texture2D" uid="uid://bhp2ef7txssf2" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack02.png" id="3_7rk63"]
+[ext_resource type="Texture2D" uid="uid://ct7w1pntjssxt" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle02.png" id="3_hlpee"]
+[ext_resource type="Texture2D" uid="uid://m86n435e0dqc" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle03.png" id="4_20uyk"]
+[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="4_afdgn"]
+[ext_resource type="Texture2D" uid="uid://tvclyhpu4bf1" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack03.png" id="4_dyaai"]
+[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="5_dbxct"]
+[ext_resource type="Texture2D" uid="uid://c1ln6nau36b7q" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack04.png" id="5_ki00f"]
+[ext_resource type="Texture2D" uid="uid://ve74yvo8ibkb" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking01.png" id="5_lc4i8"]
+[ext_resource type="Texture2D" uid="uid://d3bxqx1v0lw8g" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking02.png" id="6_myoay"]
+[ext_resource type="Texture2D" uid="uid://b50g4fam57fye" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death01.png" id="6_scuqn"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="6_thu5g"]
+[ext_resource type="Texture2D" uid="uid://nfe05g7q7hcq" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking03.png" id="7_830t2"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="7_ehv66"]
+[ext_resource type="Texture2D" uid="uid://m263lr4b6cdr" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death02.png" id="7_q0mbm"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="8_2lle0"]
+[ext_resource type="Texture2D" uid="uid://1qt0govf8suh" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death03.png" id="8_sjq7t"]
+[ext_resource type="Texture2D" uid="uid://do22a1xnnja2d" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death04.png" id="9_ftj77"]
+[ext_resource type="Texture2D" uid="uid://bgsed8dlu7fuu" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death05.png" id="10_end38"]
+[ext_resource type="Texture2D" uid="uid://w8ohk3mkg7hg" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death06.png" id="11_akv5w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m7o5g"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("2_wdps1")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_7rk63")
+}, {
+"duration": 0.6,
+"texture": ExtResource("4_dyaai")
+}, {
+"duration": 0.6,
+"texture": ExtResource("5_ki00f")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("6_scuqn")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_q0mbm")
+}, {
+"duration": 0.5,
+"texture": ExtResource("8_sjq7t")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_ftj77")
+}, {
+"duration": 0.7,
+"texture": ExtResource("10_end38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_akv5w")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8ttjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hlpee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_20uyk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lc4i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_myoay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_830t2")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6xgfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_afdgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dbxct")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
+size = Vector2(41, 39)
+
+[node name="Shaman" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+collision_layer = 2
+collision_mask = 103
+script = ExtResource("1_onrrs")
+initialStartingState = NodePath("StateMachine_States/IdleState")
+
+[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m7o5g")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7gtr4")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="StateMachine_States" type="Node2D" parent="."]
+
+[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("6_thu5g")
+
+[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("7_ehv66")
+
+[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+script = ExtResource("8_2lle0")
+attackDuration = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -3.5)
+shape = SubResource("RectangleShape2D_gfs14")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://brbx8jbpfs6uj"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_3yegh"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="2_qf3i8"]
+[ext_resource type="Texture2D" uid="uid://bcumgywhmxv8p" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame1.png" id="3_cx567"]
+[ext_resource type="Texture2D" uid="uid://bhurchh6ovke1" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame2.png" id="4_l2obg"]
+[ext_resource type="Texture2D" uid="uid://cki8ysxv0qhuo" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame3.png" id="5_tl08l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
+size = Vector2(20, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rve7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cx567")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l2obg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tl08l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ShamanAge1Projectile" type="RigidBody2D" node_paths=PackedStringArray("attachedProjectileScript")]
+collision_layer = 16
+collision_mask = 6
+mass = 10.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_3yegh")
+attachedProjectileScript = NodePath("Node2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_rhica")
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "usedSprite")]
+script = ExtResource("2_qf3i8")
+rigidBody = NodePath("..")
+usedSprite = NodePath("")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_rve7n")
+autoplay = "default"
+frame_progress = 0.541155
+
+[connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
+[connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

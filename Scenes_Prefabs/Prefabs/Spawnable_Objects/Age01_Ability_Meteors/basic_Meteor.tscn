@@ -112,7 +112,7 @@ visible = false
 position = Vector2(-10, -19)
 sprite_frames = SubResource("SpriteFrames_wjima")
 autoplay = "default"
-frame_progress = 0.207001
+frame_progress = 0.982253
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 visible = false

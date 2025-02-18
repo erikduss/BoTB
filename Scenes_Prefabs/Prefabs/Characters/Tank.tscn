@@ -42,7 +42,7 @@ initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_qgsqo")
-animation = &"Death"
+animation = &"Attack"
 autoplay = "Idle"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]

@@ -49,7 +49,7 @@ namespace Erikduss
 
         #region Debug Stuff
 
-        private bool spawnDummies = false;
+        private bool spawnDummies = true;
 
         public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
 

@@ -132,7 +132,7 @@ initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t4uf8")
-animation = &"Walking"
+animation = &"Death"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7gtr4")
