@@ -54,13 +54,16 @@ namespace Erikduss
             //we shouldnt hit ourselves, this can happen if we get this call too quickly before we set our collisionmasks and stuff.
             if (body.Name == projectileOwnerChar.Name) return;
 
+            if(body == null) return;
+            if (!body.IsInsideTree()) return;
+
             rigidBody.StopForces();
 
             rigidBody.CollisionMask = 0b1;
 
             if (dealtDamage) return;
 
-            if (projectileOwnerChar.currentTarget != null && body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId())
+            if (projectileOwnerChar.currentTarget != null && body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId() && !projectileOwnerChar.isDead)
             {
                 dealtDamage = true;
                 projectileOwnerChar.DealDamage();

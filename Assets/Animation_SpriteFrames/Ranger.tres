@@ -1,21 +1,21 @@
 [gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://0hil3akmecs6"]
 
-[ext_resource type="Texture2D" uid="uid://dr06iqgl1ncux" path="res://Assets/Characters/Shaman/Attack/Ranger_Age_1_Attack01.png" id="1_k8los"]
-[ext_resource type="Texture2D" uid="uid://bp5fbt6cxjtp3" path="res://Assets/Characters/Shaman/Attack/Ranger_Age_1_Attack02.png" id="2_8ev0f"]
-[ext_resource type="Texture2D" uid="uid://bsfcsag1ewo82" path="res://Assets/Characters/Shaman/Attack/Ranger_Age_1_Attack03.png" id="3_i42hp"]
-[ext_resource type="Texture2D" uid="uid://ptrjio4lybsc" path="res://Assets/Characters/Shaman/Attack/Ranger_Age_1_Attack04.png" id="4_0r2v0"]
-[ext_resource type="Texture2D" uid="uid://c6b0vb0dins6s" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death01.png" id="5_dp8a6"]
-[ext_resource type="Texture2D" uid="uid://bg2bhrlftvysb" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death02.png" id="6_r5j5w"]
-[ext_resource type="Texture2D" uid="uid://lmpxwhakae01" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death03.png" id="7_hlujx"]
-[ext_resource type="Texture2D" uid="uid://bfkf1omki75lg" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death04.png" id="8_1csaa"]
-[ext_resource type="Texture2D" uid="uid://cnfk285ekpmcl" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death05.png" id="9_q3hok"]
-[ext_resource type="Texture2D" uid="uid://qyuh3hfhq6lw" path="res://Assets/Characters/Shaman/Death/Ranger_Age_1_Death06.png" id="10_eeu6c"]
+[ext_resource type="Texture2D" uid="uid://dr06iqgl1ncux" path="res://Assets/Characters/Ranger/Age_01/Attack/Ranger_Age_1_Attack01.png" id="1_k8los"]
+[ext_resource type="Texture2D" uid="uid://bp5fbt6cxjtp3" path="res://Assets/Characters/Ranger/Age_01/Attack/Ranger_Age_1_Attack02.png" id="2_8ev0f"]
+[ext_resource type="Texture2D" uid="uid://bsfcsag1ewo82" path="res://Assets/Characters/Ranger/Age_01/Attack/Ranger_Age_1_Attack03.png" id="3_i42hp"]
+[ext_resource type="Texture2D" uid="uid://ptrjio4lybsc" path="res://Assets/Characters/Ranger/Age_01/Attack/Ranger_Age_1_Attack04.png" id="4_0r2v0"]
+[ext_resource type="Texture2D" uid="uid://c6b0vb0dins6s" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death01.png" id="5_dp8a6"]
+[ext_resource type="Texture2D" uid="uid://bg2bhrlftvysb" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death02.png" id="6_r5j5w"]
+[ext_resource type="Texture2D" uid="uid://lmpxwhakae01" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death03.png" id="7_hlujx"]
+[ext_resource type="Texture2D" uid="uid://bfkf1omki75lg" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death04.png" id="8_1csaa"]
+[ext_resource type="Texture2D" uid="uid://cnfk285ekpmcl" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death05.png" id="9_q3hok"]
+[ext_resource type="Texture2D" uid="uid://qyuh3hfhq6lw" path="res://Assets/Characters/Ranger/Age_01/Death/Ranger_Age_1_Death06.png" id="10_eeu6c"]
 [ext_resource type="Texture2D" uid="uid://ciupk1y20f2ey" path="res://Assets/Characters/Ranger/Age_01/Idle/Ranger_Age_1_Idle01.png" id="11_whvgy"]
 [ext_resource type="Texture2D" uid="uid://bit5fxbl031qo" path="res://Assets/Characters/Ranger/Age_01/Idle/Ranger_Age_1_Idle02.png" id="12_viwr6"]
 [ext_resource type="Texture2D" uid="uid://bh35hs1g4ns5q" path="res://Assets/Characters/Ranger/Age_01/Idle/Ranger_Age_1_Idle03.png" id="13_53oqm"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Shaman/Walk/Ranger_Age_1_Walking01.png" id="14_4x123"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Shaman/Walk/Ranger_Age_1_Walking02.png" id="15_hg8se"]
-[ext_resource type="Texture2D" path="res://Assets/Characters/Shaman/Walk/Ranger_Age_1_Walking03.png" id="16_jaclm"]
+[ext_resource type="Texture2D" uid="uid://c60v7qs0g6umx" path="res://Assets/Characters/Ranger/Age_01/Walk/Ranger_Age_1_Walking01.png" id="14_5ooqa"]
+[ext_resource type="Texture2D" uid="uid://ke124ggx74ic" path="res://Assets/Characters/Ranger/Age_01/Walk/Ranger_Age_1_Walking02.png" id="15_fd2ow"]
+[ext_resource type="Texture2D" uid="uid://rilix458t5a8" path="res://Assets/Characters/Ranger/Age_01/Walk/Ranger_Age_1_Walking03.png" id="16_yntmt"]
 
 [resource]
 animations = [{
@@ -75,13 +75,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_4x123")
+"texture": ExtResource("14_5ooqa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_hg8se")
+"texture": ExtResource("15_fd2ow")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_jaclm")
+"texture": ExtResource("16_yntmt")
 }],
 "loop": true,
 "name": &"Walking",

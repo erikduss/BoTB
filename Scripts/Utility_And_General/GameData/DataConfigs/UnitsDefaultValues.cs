@@ -38,7 +38,7 @@ namespace Erikduss
         public static Enums.Ages Age01_Ranger_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Ranger_UnitName = "Ranger";
-        public static string Age01_Ranger_UnitDescription = "On kill, double attack speed for a limited short time. The unit cannot move during this period.";
+        public static string Age01_Ranger_UnitDescription = "On kill, double the attack speed of this unit for a short time. This unit cannot move during this period.";
 
         public static int Age01_Ranger_UnitHealth = 20;
         public static int Age01_Ranger_UnitArmour = 10;
@@ -68,7 +68,7 @@ namespace Erikduss
         public static Enums.Ages Age01_Enforcer_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Enforcer_UnitName = "Enforcer";
-        public static string Age01_Enforcer_UnitDescription = "On attack, stun the target for a short amount of time.";
+        public static string Age01_Enforcer_UnitDescription = "On attack, has a chance to stun the target for a short amount of time.";
 
         public static int Age01_Enforcer_UnitHealth = 30;
         public static int Age01_Enforcer_UnitArmour = 20;
@@ -83,7 +83,7 @@ namespace Erikduss
         public static Enums.Ages Age01_Tank_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Tank_UnitName = "Tank";
-        public static string Age01_Tank_UnitDescription = "On attack, increase the attack speed of 2 units behind this.";
+        public static string Age01_Tank_UnitDescription = "On attack, has a chance to increase the attack speed of up to 2 units behind this.";
 
         public static int Age01_Tank_UnitHealth = 30;
         public static int Age01_Tank_UnitArmour = 30;
@@ -98,7 +98,7 @@ namespace Erikduss
         public static Enums.Ages Age01_MassHealer_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_MassHealer_UnitName = "MassHealer";
-        public static string Age01_MassHealer_UnitDescription = "Can't attack, heals up to 4 allies at once. On spawn, Heal all allied units that are currently on the battlefield for a medium amount.";
+        public static string Age01_MassHealer_UnitDescription = "Can't attack, heals up to 6 allies (plus self) around this unit at once. On spawn, Heal all allied units that are currently on the battlefield.";
 
         public static int Age01_MassHealer_UnitHealth = 10;
         public static int Age01_MassHealer_UnitArmour = 10;
@@ -113,7 +113,7 @@ namespace Erikduss
         public static Enums.Ages Age01_Battlemage_UnitAvailableInAge = Enums.Ages.AGE_01;
 
         public static string Age01_Battlemage_UnitName = "Battlemage";
-        public static string Age01_Battlemage_UnitDescription = "After 3 regular attacks, unleash an instant powerful magic attack dealing damage to 2 additional units.";
+        public static string Age01_Battlemage_UnitDescription = "After 3 regular attacks, unleash a very powerful magic attack that deals damage to up to 3 units.";
 
         public static int Age01_Battlemage_UnitHealth = 20;
         public static int Age01_Battlemage_UnitArmour = 10;
@@ -150,7 +150,7 @@ namespace Erikduss
         public static int Age01_Shaman_UnitAttack = 6;
 
         public static int Age01_Shaman_UnitMovementSpeed = 50;
-        public static int Age01_Shaman_UnitDetectionRange = 30;
+        public static int Age01_Shaman_UnitDetectionRange = 130;
         #endregion
 
         #endregion

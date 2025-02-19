@@ -72,6 +72,12 @@ namespace Erikduss
             }
             else
             {
+                //if we hit an enemy thats standing on the base, we also hit the base and get an error if we dont check this.
+                if(body.GetInstanceId() == GameManager.Instance.team02HomeBase.StaticBody.GetInstanceId() || body.GetInstanceId() == GameManager.Instance.team01HomeBase.StaticBody.GetInstanceId())
+                {
+                    return;
+                }
+
                 BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
 
                 //We should not deal damage to our own units.

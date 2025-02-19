@@ -17,6 +17,7 @@ namespace Erikduss
         public PackedScene tankPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Tank.tscn");
         public PackedScene battleMagePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Battlemage.tscn");
         public PackedScene massHealerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Mass_Healer.tscn");
+        public PackedScene shamanPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Shaman.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -432,6 +433,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedMassHealer, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Shaman:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Shaman instantiatedShaman = (Shaman)shamanPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedShaman.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedShaman.characterOwner = team;
+                    instantiatedShaman.currentAge = unitAge;
+
+                    instantiatedShaman.Name = "instantiatedShaman_" + lastUsedUnitID;
+
+                    instantiatedShaman.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedShaman);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedShaman, uniqueUnitName);
 
                     lastUsedUnitID++;
 

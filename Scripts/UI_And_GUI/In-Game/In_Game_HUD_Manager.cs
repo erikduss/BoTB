@@ -105,6 +105,13 @@ namespace Erikduss
             else abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
         }
 
+        public void UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner team)
+        {
+            int empowerAmount = team == Enums.TeamOwner.TEAM_01 ? EffectsAndProjectilesSpawner.Instance.team01AbilityEmpowerAmount : EffectsAndProjectilesSpawner.Instance.team02AbilityEmpowerAmount;
+            
+            abilityCooldownBarScript.abilityEmpowerLabel.Text = "Empowered: " + empowerAmount;
+        }
+
         public void PlayerAbilityButtonPressed()
         {
             //we need to check if the cooldown is over.
@@ -136,13 +143,29 @@ namespace Erikduss
 
 			for(int i = 0; i < amountOfUnitsInShop; i++)
 			{
-				int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
-
-                Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
+                Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 
                 unitShopParentNode.AddChild(instantiatedBuyButton);
             }
 		}
+
+        private int UnitTheShopRolledFor()
+        {
+            int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
+
+            if (rand == 7)
+            {
+                int randDruid = (int)(GD.Randi() % 100);
+
+                //random chance to reroll to a different unit.
+                if (randDruid < 69)
+                {
+                    rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
+                }
+            }
+
+            return rand;
+        }
 
 		public void RefreshUnitShopSpecificButton(ulong id)
 		{
@@ -152,9 +175,7 @@ namespace Erikduss
 				{
                     unitShopParentNode.GetChild(i).QueueFree();
 
-                    int rand = (int)(GD.Randi() % (availableUnitsBuyButtons.Count));
-
-                    Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[rand].Instantiate();
+                    Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 
                     unitShopParentNode.AddChild(instantiatedBuyButton);
 					unitShopParentNode.MoveChild(instantiatedBuyButton, i);

@@ -159,6 +159,8 @@ namespace Erikduss
                         //chance of applying a bleeding effect = 35 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
+                        if (character.currentTarget == null || character.currentTarget.isDead) return;
+
                         int fixedNumber = GameSettingsLoader.Instance.assassinBleedApplyChance - character.currentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
 
@@ -175,6 +177,8 @@ namespace Erikduss
 
                         //chance of applying a stun effect = 70 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
+
+                        if (character.currentTarget == null || character.currentTarget.isDead) return;
 
                         int fixedNumber = GameSettingsLoader.Instance.enforcerStunApplyChance - character.currentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
@@ -236,6 +240,13 @@ namespace Erikduss
                         executedEffect = true;
 
                         EffectsAndProjectilesSpawner.Instance.SpawnMass_Healer_HealingEffect(character);
+                    }
+                    break;
+                case Enums.UnitTypes.Shaman:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+                        EffectsAndProjectilesSpawner.Instance.SpawnShamanProjectile(character);
                     }
                     break;
                 default:

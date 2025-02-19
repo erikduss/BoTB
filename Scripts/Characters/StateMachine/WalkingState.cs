@@ -235,7 +235,6 @@ namespace Erikduss
                             {
                                 if (CheckForCharactersToHeal(character, character.characterOwner))
                                 {
-                                    GD.Print("We found a target to heal");
                                     if (character.canAttack)
                                     {
                                         //if we find a character that needs to be healed within range, and we can heal atm, we should
@@ -256,16 +255,25 @@ namespace Erikduss
                             character.currentTarget = enemyChar;
 
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
-                            if(character.isRangedCharacter && !character.canAttack)
+                            if (!character.canAttack && distance <= stoppingDistance)
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
                             }
-
-                            //Switch to the new state
-                            EmitSignal(SignalName.Transitioned, this, "AttackState");
-                            return;
-
+                            else if (character.canAttack)
+                            {
+                                if(character.isRangedCharacter || distance <= stoppingDistance)
+                                {
+                                    //Switch to the new state
+                                    EmitSignal(SignalName.Transitioned, this, "AttackState");
+                                    return;
+                                }
+                            }
+                            else if (!character.canMove)
+                            {
+                                EmitSignal(SignalName.Transitioned, this, "IdleState");
+                                return;
+                            }
                         }
                     }
                 }

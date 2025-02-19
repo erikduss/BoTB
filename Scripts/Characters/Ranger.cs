@@ -102,6 +102,7 @@ namespace Erikduss
                 if(buffTimer > buffDuration)
                 {
                     rangerBuffActive = false;
+                    canMove = true;
 
                     if (hasActiveTankBuff)
                     {
@@ -132,6 +133,7 @@ namespace Erikduss
             base.UnitSignaledForDeathEvent();
 
             rangerBuffActive = true;
+            canMove = false;
 
             //reset buff timer to reset the buff
             buffTimer = 0f;

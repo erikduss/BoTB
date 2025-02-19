@@ -26,11 +26,16 @@ namespace Erikduss
         public PackedScene battleMageFireball = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/BattlemageFireball.tscn");
 
         public PackedScene healingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/HealingEffect.tscn");
+
+        public PackedScene shamanAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/ShamanAge1Projectile.tscn");
         #endregion
 
         #region Age Abilities And Effects
 
-        private int amountOfMeteorsToSpawn = 25;
+        public int baseAmountOfMeteorsToSpawn = 10; //this will be loaded in elsewere.
+        public int team01AbilityEmpowerAmount = 0;
+        public int team02AbilityEmpowerAmount = 0;
+
         public PackedScene meteorAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/basic_Meteor.tscn");
         public PackedScene meteorImpactObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/Age01_Meteor_Impact.tscn");
 
@@ -55,8 +60,16 @@ namespace Erikduss
             }
         }
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            //We need to set the instance to null to reset the game variables.
+            Instance = null;
+        }
+
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _Process(double delta)
 		{
 		}
 
@@ -259,6 +272,30 @@ namespace Erikduss
             lastUsedVisualEffectID++;
         }
 
+        public void SpawnShamanProjectile(BaseCharacter unitOwner)
+        {
+            ShamanAge1ProjectilePhysics instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+
+            instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
+            instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerChar = unitOwner;
+
+            float offSetX = 30f;
+            float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            instantiatedProjectile.GlobalPosition = fixedPosition;
+
+            instantiatedProjectile.attachedProjectileScript.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
+
+            instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
         public void SpawnBattlemageFireball(BaseCharacter unitOwner)
         {
             BattlemageFireballLogic instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
@@ -284,7 +321,10 @@ namespace Erikduss
 
         public void SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner meteorShowerOwner)
         {
-            for (int i = 0; i < amountOfMeteorsToSpawn; i++)
+            //set it to the correct one for the team.
+            int currentAmountOfMeteorsToSpawn = baseAmountOfMeteorsToSpawn + (meteorShowerOwner == Enums.TeamOwner.TEAM_01 ? team01AbilityEmpowerAmount : team02AbilityEmpowerAmount);
+
+            for (int i = 0; i < currentAmountOfMeteorsToSpawn; i++)
             {
                 IndividualMeteorLogic instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
 

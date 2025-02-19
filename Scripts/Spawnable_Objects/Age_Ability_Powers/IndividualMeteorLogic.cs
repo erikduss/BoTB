@@ -52,6 +52,7 @@ namespace Erikduss
                 if(projectileVelocity > 0)
                 {
                     animatedMeteorSprites[spriteID].FlipH = true;
+                    animatedMeteorSprites[spriteID].Position = new Vector2(-animatedMeteorSprites[spriteID].Position.X, animatedMeteorSprites[spriteID].Position.Y);
                 }
             }
             else
@@ -66,6 +67,7 @@ namespace Erikduss
                 if (projectileVelocity < 0)
                 {
                     animatedMeteorSprites[spriteID].FlipH = true;
+                    animatedMeteorSprites[spriteID].Position = new Vector2(-animatedMeteorSprites[spriteID].Position.X, animatedMeteorSprites[spriteID].Position.Y);
                 }
             }
 

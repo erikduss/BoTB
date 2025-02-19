@@ -30,7 +30,7 @@ namespace Erikduss
         #region Ability Variables
         public int playerAbilityCurrentCooldown { get; set; }
 
-		public int playerAbilityCooldown = 180; //seconds
+		public int playerAbilityCooldown = 18; //seconds
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -92,7 +92,7 @@ namespace Erikduss
 				currencyGainAmountUpdateTimer += (float)delta;
 			}
 
-            //Timer for giving the player currency
+            //Timer for updating ability counter
             if (playerAbilityUpdateTimer > playerAbilityCooldownReductionRate)
             {
                 playerAbilityUpdateTimer = 0;
@@ -100,6 +100,8 @@ namespace Erikduss
 
                 //Update HUD
 				inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+				//update empowred label
+				inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
             }
             else
             {

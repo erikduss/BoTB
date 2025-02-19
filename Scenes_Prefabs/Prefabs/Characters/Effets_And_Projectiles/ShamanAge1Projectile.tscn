@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://brbx8jbpfs6uj"]
+[gd_scene load_steps=11 format=3 uid="uid://brbx8jbpfs6uj"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_3yegh"]
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="2_qf3i8"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/ShamanAge1ProjectilePhysics.cs" id="1_a62s0"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/ShamanAge1Projectile.cs" id="2_tjgal"]
 [ext_resource type="Texture2D" uid="uid://bcumgywhmxv8p" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame1.png" id="3_cx567"]
+[ext_resource type="Texture2D" uid="uid://2t8t8pfd6brw" path="res://Assets/Characters/Shaman/Projectile/Shaman_Age_1_Projectile_Frame1_Alt.png" id="3_qasay"]
+[ext_resource type="Texture2D" uid="uid://c1yxannh4342n" path="res://Assets/Characters/Shaman/Projectile/Shaman_Age_1_Projectile_Frame2_Alt.png" id="4_blxyb"]
 [ext_resource type="Texture2D" uid="uid://bhurchh6ovke1" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame2.png" id="4_l2obg"]
+[ext_resource type="Texture2D" uid="uid://cuay3sd5xvai8" path="res://Assets/Characters/Shaman/Projectile/Shaman_Age_1_Projectile_Frame3_Alt.png" id="5_bej4b"]
 [ext_resource type="Texture2D" uid="uid://cki8ysxv0qhuo" path="res://Assets/Characters/Shaman/Shaman_Age_1_Projectile_Frame3.png" id="5_tl08l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
@@ -11,6 +14,20 @@ size = Vector2(20, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rve7n"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qasay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_blxyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bej4b")
+}],
+"loop": true,
+"name": &"TargetHit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_cx567")
@@ -32,22 +49,22 @@ collision_mask = 6
 mass = 10.0
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_3yegh")
+script = ExtResource("1_a62s0")
 attachedProjectileScript = NodePath("Node2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_rhica")
 
-[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody", "usedSprite")]
-script = ExtResource("2_qf3i8")
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("animatedSprite", "rigidBody")]
+script = ExtResource("2_tjgal")
+animatedSprite = NodePath("AnimatedSprite2D")
 rigidBody = NodePath("..")
-usedSprite = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
 sprite_frames = SubResource("SpriteFrames_rve7n")
 autoplay = "default"
-frame_progress = 0.541155
+frame_progress = 0.293167
 
 [connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
 [connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

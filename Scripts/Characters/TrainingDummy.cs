@@ -9,8 +9,8 @@ public partial class TrainingDummy : BaseCharacter
     public override void _Ready()
     {
         //Set the values
-        currentHealth = 10;
-        maxHealth = 10;
+        currentHealth = 20;
+        maxHealth = 20;
 
         if(currentHealthLabel != null) currentHealthLabel.Text = currentHealth.ToString();
 

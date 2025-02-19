@@ -19,7 +19,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
-[node name="AgeAbilityButton" type="TextureButton" node_paths=PackedStringArray("abilityProgressbar", "abilityCooldownLabel")]
+[node name="AgeAbilityButton" type="TextureButton" node_paths=PackedStringArray("abilityProgressbar", "abilityCooldownLabel", "abilityEmpowerLabel")]
 offset_right = 192.0
 offset_bottom = 192.0
 texture_normal = ExtResource("1_twuah")
@@ -31,6 +31,7 @@ script = ExtResource("4_ulxvo")
 abilityProgressbar = NodePath("CooldownBar")
 hoverProgressBarTexture = ExtResource("5_68t88")
 abilityCooldownLabel = NodePath("AbilityUpgradeInfo/AbilityCostInfo/AbilityCooldown")
+abilityEmpowerLabel = NodePath("AbilityUpgradeInfo/AbilityEmpowerInfo/AbilityEmpowerAmount")
 
 [node name="AbilityUpgradeInfo" type="TextureRect" parent="."]
 visible = false
@@ -76,18 +77,33 @@ label_settings = SubResource("LabelSettings_gxo0j")
 custom_minimum_size = Vector2(205, 0)
 layout_mode = 0
 offset_left = 25.0
-offset_top = 110.0
+offset_top = 90.0
 offset_right = 846.0
-offset_bottom = 235.0
+offset_bottom = 215.0
 
 [node name="AbilityDescription" type="Label" parent="AbilityUpgradeInfo/BoxContainer"]
 custom_minimum_size = Vector2(205, 0)
 layout_mode = 2
-text = "Call upon the master Shamans to unleash a powerful Meteor Shower.
-(Empowered: 0) "
+text = "Call upon the master Shamans to unleash a powerful Meteor Shower."
 label_settings = SubResource("LabelSettings_bj01e")
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="AbilityEmpowerInfo" type="Control" parent="AbilityUpgradeInfo"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 200.0
+offset_right = 225.0
+offset_bottom = 230.0
+
+[node name="AbilityEmpowerAmount" type="Label" parent="AbilityUpgradeInfo/AbilityEmpowerInfo"]
+layout_mode = 2
+offset_left = 45.0
+offset_right = 166.0
+offset_bottom = 28.0
+text = "Empowered: 0"
+label_settings = SubResource("LabelSettings_gxo0j")
 
 [node name="CooldownBar" type="TextureProgressBar" parent="."]
 layout_mode = 0

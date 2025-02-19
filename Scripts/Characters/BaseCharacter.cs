@@ -49,6 +49,8 @@ namespace Erikduss
         private float defaultStunDuration = 2f;
         private float currentStunDuration = 2f;
 
+        public bool canMove = true;
+
         #region State Machine
 
         [Export] public State initialStartingState;

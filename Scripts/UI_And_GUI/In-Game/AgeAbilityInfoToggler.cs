@@ -10,6 +10,7 @@ namespace Erikduss
         [Export] Texture2D hoverProgressBarTexture;
 
         [Export] public Label abilityCooldownLabel;
+        [Export] public Label abilityEmpowerLabel;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://dqos5xdic3gg"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Ranger.cs" id="1_onrrs"]
+[ext_resource type="Script" path="res://Scripts/Characters/Shaman.cs" id="1_8fxp8"]
 [ext_resource type="Texture2D" uid="uid://cugyy6k1j081i" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle01.png" id="2_8ttjy"]
 [ext_resource type="Texture2D" uid="uid://dfhbw3bo82wa6" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack01.png" id="2_wdps1"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="3_6xgfl"]
@@ -123,7 +123,7 @@ size = Vector2(41, 39)
 [node name="Shaman" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
 collision_layer = 2
 collision_mask = 103
-script = ExtResource("1_onrrs")
+script = ExtResource("1_8fxp8")
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]

@@ -102,7 +102,7 @@ frame_progress = 0.922307
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(18, -13)
+position = Vector2(20, -13)
 sprite_frames = SubResource("SpriteFrames_yvrbo")
 autoplay = "default"
 frame_progress = 0.776647
