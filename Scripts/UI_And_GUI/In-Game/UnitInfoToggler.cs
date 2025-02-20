@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using static Erikduss.Enums;
 
 namespace Erikduss
@@ -172,15 +173,17 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Warrior_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Warrior_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+                                UnitSettingsConfig defaultWarrior = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Warrior.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Warrior_UnitDescription;
+                                unitCost = defaultWarrior.unitCost;
+                                unitHealth = defaultWarrior.unitHealth;
+                                unitArmour = defaultWarrior.unitArmour;
+                                unitAttack = defaultWarrior.unitAttack;
+
+                                unitDescription = defaultWarrior.unitDescription;
                             }
                             break;
-                        case Enums.UnitTypes.Asssassin:
+                        case Enums.UnitTypes.Assassin:
                             if (GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.useCustomVariables)
                             {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age01_AssassinSettingsConfig.unitCost;
@@ -192,12 +195,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Assassin_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Assassin_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Assassin_UnitAttack;
+                                UnitSettingsConfig defaultAssassin = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Assassin.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Assassin_UnitDescription;
+                                unitCost = defaultAssassin.unitCost;
+                                unitHealth = defaultAssassin.unitHealth;
+                                unitArmour = defaultAssassin.unitArmour;
+                                unitAttack = defaultAssassin.unitAttack;
+
+                                unitDescription = defaultAssassin.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Enforcer:
@@ -212,12 +217,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Enforcer_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Enforcer_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Enforcer_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Enforcer_UnitAttack;
+                                UnitSettingsConfig defaultEnforcer = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Enforcer.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Enforcer_UnitDescription;
+                                unitCost = defaultEnforcer.unitCost;
+                                unitHealth = defaultEnforcer.unitHealth;
+                                unitArmour = defaultEnforcer.unitArmour;
+                                unitAttack = defaultEnforcer.unitAttack;
+
+                                unitDescription = defaultEnforcer.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Tank:
@@ -232,12 +239,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Tank_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Tank_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Tank_UnitAttack;
+                                UnitSettingsConfig defaultTank = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Tank.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Tank_UnitDescription;
+                                unitCost = defaultTank.unitCost;
+                                unitHealth = defaultTank.unitHealth;
+                                unitArmour = defaultTank.unitArmour;
+                                unitAttack = defaultTank.unitAttack;
+
+                                unitDescription = defaultTank.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Battlemage:
@@ -252,12 +261,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Battlemage_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Battlemage_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Battlemage_UnitAttack;
+                                UnitSettingsConfig defaultBattlemage = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Battlemage.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Battlemage_UnitDescription;
+                                unitCost = defaultBattlemage.unitCost;
+                                unitHealth = defaultBattlemage.unitHealth;
+                                unitArmour = defaultBattlemage.unitArmour;
+                                unitAttack = defaultBattlemage.unitAttack;
+
+                                unitDescription = defaultBattlemage.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Mass_Healer:
@@ -272,12 +283,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_MassHealer_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_MassHealer_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_MassHealer_UnitAttack;
+                                UnitSettingsConfig defaultMassHealer = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Mass_Healer.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_MassHealer_UnitDescription;
+                                unitCost = defaultMassHealer.unitCost;
+                                unitHealth = defaultMassHealer.unitHealth;
+                                unitArmour = defaultMassHealer.unitArmour;
+                                unitAttack = defaultMassHealer.unitAttack;
+
+                                unitDescription = defaultMassHealer.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Ranger:
@@ -292,12 +305,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Ranger_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Ranger_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Ranger_UnitAttack;
+                                UnitSettingsConfig defaultRanger = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Ranger.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Ranger_UnitDescription;
+                                unitCost = defaultRanger.unitCost;
+                                unitHealth = defaultRanger.unitHealth;
+                                unitArmour = defaultRanger.unitArmour;
+                                unitAttack = defaultRanger.unitAttack;
+
+                                unitDescription = defaultRanger.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Archdruid:
@@ -312,12 +327,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Archdruid_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Archdruid_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Archdruid_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Archdruid_UnitAttack;
+                                UnitSettingsConfig defaultArchdruid = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Archdruid.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Archdruid_UnitDescription;
+                                unitCost = defaultArchdruid.unitCost;
+                                unitHealth = defaultArchdruid.unitHealth;
+                                unitArmour = defaultArchdruid.unitArmour;
+                                unitAttack = defaultArchdruid.unitAttack;
+
+                                unitDescription = defaultArchdruid.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Shaman:
@@ -332,12 +349,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Shaman_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Shaman_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Shaman_UnitAttack;
+                                UnitSettingsConfig defaultShaman = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Shaman.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Shaman_UnitDescription;
+                                unitCost = defaultShaman.unitCost;
+                                unitHealth = defaultShaman.unitHealth;
+                                unitArmour = defaultShaman.unitArmour;
+                                unitAttack = defaultShaman.unitAttack;
+
+                                unitDescription = defaultShaman.unitDescription;
                             }
                             break;
                         default:
@@ -353,12 +372,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age01_Warrior_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age01_Warrior_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age01_Warrior_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age01_Warrior_UnitAttack;
+                                UnitSettingsConfig defaultWarrior = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_01.ToString() + "_" + Enums.UnitTypes.Warrior.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age01_Warrior_UnitDescription;
+                                unitCost = defaultWarrior.unitCost;
+                                unitHealth = defaultWarrior.unitHealth;
+                                unitArmour = defaultWarrior.unitArmour;
+                                unitAttack = defaultWarrior.unitAttack;
+
+                                unitDescription = defaultWarrior.unitDescription;
                             }
                             break;
                     }
@@ -378,15 +399,17 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Warrior_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Warrior_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Warrior_UnitAttack;
+                                UnitSettingsConfig defaultWarrior = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Warrior.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Warrior_UnitDescription;
+                                unitCost = defaultWarrior.unitCost;
+                                unitHealth = defaultWarrior.unitHealth;
+                                unitArmour = defaultWarrior.unitArmour;
+                                unitAttack = defaultWarrior.unitAttack;
+
+                                unitDescription = defaultWarrior.unitDescription;
                             }
                             break;
-                        case Enums.UnitTypes.Asssassin:
+                        case Enums.UnitTypes.Assassin:
                             if (GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.useCustomVariables)
                             {
                                 unitCost = GameSettingsLoader.Instance.unitSettingsManager.Age02_AssassinSettingsConfig.unitCost;
@@ -398,12 +421,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Assassin_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Assassin_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Assassin_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Assassin_UnitAttack;
+                                UnitSettingsConfig defaultAssassin = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Assassin.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Assassin_UnitDescription;
+                                unitCost = defaultAssassin.unitCost;
+                                unitHealth = defaultAssassin.unitHealth;
+                                unitArmour = defaultAssassin.unitArmour;
+                                unitAttack = defaultAssassin.unitAttack;
+
+                                unitDescription = defaultAssassin.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Enforcer:
@@ -418,12 +443,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Enforcer_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Enforcer_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Enforcer_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Enforcer_UnitAttack;
+                                UnitSettingsConfig defaultEnforcer = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Enforcer.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Enforcer_UnitDescription;
+                                unitCost = defaultEnforcer.unitCost;
+                                unitHealth = defaultEnforcer.unitHealth;
+                                unitArmour = defaultEnforcer.unitArmour;
+                                unitAttack = defaultEnforcer.unitAttack;
+
+                                unitDescription = defaultEnforcer.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Tank:
@@ -438,12 +465,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Tank_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Tank_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Tank_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Tank_UnitAttack;
+                                UnitSettingsConfig defaultTank = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Tank.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Tank_UnitDescription;
+                                unitCost = defaultTank.unitCost;
+                                unitHealth = defaultTank.unitHealth;
+                                unitArmour = defaultTank.unitArmour;
+                                unitAttack = defaultTank.unitAttack;
+
+                                unitDescription = defaultTank.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Battlemage:
@@ -458,12 +487,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Battlemage_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Battlemage_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Battlemage_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Battlemage_UnitAttack;
+                                UnitSettingsConfig defaultBattlemage = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Battlemage.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Battlemage_UnitDescription;
+                                unitCost = defaultBattlemage.unitCost;
+                                unitHealth = defaultBattlemage.unitHealth;
+                                unitArmour = defaultBattlemage.unitArmour;
+                                unitAttack = defaultBattlemage.unitAttack;
+
+                                unitDescription = defaultBattlemage.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Mass_Healer:
@@ -478,12 +509,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_MassHealer_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_MassHealer_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_MassHealer_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_MassHealer_UnitAttack;
+                                UnitSettingsConfig defaultMassHealer = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Mass_Healer.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_MassHealer_UnitDescription;
+                                unitCost = defaultMassHealer.unitCost;
+                                unitHealth = defaultMassHealer.unitHealth;
+                                unitArmour = defaultMassHealer.unitArmour;
+                                unitAttack = defaultMassHealer.unitAttack;
+
+                                unitDescription = defaultMassHealer.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Ranger:
@@ -498,12 +531,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Ranger_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Ranger_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Ranger_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Ranger_UnitAttack;
+                                UnitSettingsConfig defaultRanger = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Ranger.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Ranger_UnitDescription;
+                                unitCost = defaultRanger.unitCost;
+                                unitHealth = defaultRanger.unitHealth;
+                                unitArmour = defaultRanger.unitArmour;
+                                unitAttack = defaultRanger.unitAttack;
+
+                                unitDescription = defaultRanger.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Archdruid:
@@ -518,12 +553,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Archdruid_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Archdruid_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Archdruid_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Archdruid_UnitAttack;
+                                UnitSettingsConfig defaultArchdruid = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Archdruid.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Archdruid_UnitDescription;
+                                unitCost = defaultArchdruid.unitCost;
+                                unitHealth = defaultArchdruid.unitHealth;
+                                unitArmour = defaultArchdruid.unitArmour;
+                                unitAttack = defaultArchdruid.unitAttack;
+
+                                unitDescription = defaultArchdruid.unitDescription;
                             }
                             break;
                         case Enums.UnitTypes.Shaman:
@@ -538,12 +575,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Shaman_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Shaman_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Shaman_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Shaman_UnitAttack;
+                                UnitSettingsConfig defaultShaman = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Shaman.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Shaman_UnitDescription;
+                                unitCost = defaultShaman.unitCost;
+                                unitHealth = defaultShaman.unitHealth;
+                                unitArmour = defaultShaman.unitArmour;
+                                unitAttack = defaultShaman.unitAttack;
+
+                                unitDescription = defaultShaman.unitDescription;
                             }
                             break;
                         default:
@@ -559,12 +598,14 @@ namespace Erikduss
                             }
                             else
                             {
-                                unitCost = UnitsDefaultValues.Age02_Warrior_UnitCost;
-                                unitHealth = UnitsDefaultValues.Age02_Warrior_UnitHealth;
-                                unitArmour = UnitsDefaultValues.Age02_Warrior_UnitArmour;
-                                unitAttack = UnitsDefaultValues.Age02_Warrior_UnitAttack;
+                                UnitSettingsConfig defaultWarrior = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (Enums.Ages.AGE_02.ToString() + "_" + Enums.UnitTypes.Warrior.ToString())).FirstOrDefault().Value;
 
-                                unitDescription = UnitsDefaultValues.Age02_Warrior_UnitDescription;
+                                unitCost = defaultWarrior.unitCost;
+                                unitHealth = defaultWarrior.unitHealth;
+                                unitArmour = defaultWarrior.unitArmour;
+                                unitAttack = defaultWarrior.unitAttack;
+
+                                unitDescription = defaultWarrior.unitDescription;
                             }
                             break;
                     }

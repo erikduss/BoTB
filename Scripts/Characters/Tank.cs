@@ -26,6 +26,8 @@ public partial class Tank : BaseCharacter
 
         if (loadedUnitSettings.useCustomVariables)
         {
+            loadDefaultValues = false;
+
             //Set the values
             currentHealth = loadedUnitSettings.unitHealth;
             maxHealth = loadedUnitSettings.unitHealth;
@@ -36,46 +38,6 @@ public partial class Tank : BaseCharacter
             detectionRange = loadedUnitSettings.unitDetectionRange;
             movementSpeed = loadedUnitSettings.unitMovementSpeed;
         }
-        else
-        {
-            //Set the default values
-            switch (currentAge)
-            {
-                case Enums.Ages.AGE_01:
-                    currentHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
-
-                    unitArmor = UnitsDefaultValues.Age01_Tank_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age01_Tank_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age01_Tank_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age01_Tank_UnitMovementSpeed;
-                    break;
-                case Enums.Ages.AGE_02:
-                    currentHealth = UnitsDefaultValues.Age02_Tank_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age02_Tank_UnitHealth;
-
-                    unitArmor = UnitsDefaultValues.Age02_Tank_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age02_Tank_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age02_Tank_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age02_Tank_UnitMovementSpeed;
-                    break;
-                default:
-                    GD.Print("AGE NOT IMPLEMENTED: Tank.cs");
-
-                    currentHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age01_Tank_UnitHealth;
-
-                    unitArmor = UnitsDefaultValues.Age01_Tank_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age01_Tank_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age01_Tank_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age01_Tank_UnitMovementSpeed;
-                    break;
-            }
-        }
-
 
         unitType = Enums.UnitTypes.Tank;
 

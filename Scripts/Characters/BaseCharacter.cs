@@ -10,6 +10,8 @@ namespace Erikduss
 	{
         public int uniqueID = -1;
 
+        protected bool loadDefaultValues = true;
+
 		public Enums.TeamOwner characterOwner = Enums.TeamOwner.NONE; //this will be set, this should NEVER be none.
         public Enums.UnitTypes unitType = Enums.UnitTypes.Warrior;
 
@@ -107,6 +109,20 @@ namespace Erikduss
             {
                 CollisionLayer = 0b10;
                 CollisionMask = 0b1000111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
+            }
+
+            if(loadDefaultValues && unitType != Enums.UnitTypes.TrainingDummy)
+            {
+                //Set the default values
+                UnitSettingsConfig defaultUnitValues = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (currentAge.ToString() + "_" + unitType.ToString())).FirstOrDefault().Value;
+
+                currentHealth = defaultUnitValues.unitHealth;
+                maxHealth = defaultUnitValues.unitHealth;
+                unitArmor = defaultUnitValues.unitArmour;
+                unitAttackDamage = defaultUnitValues.unitAttack;
+
+                detectionRange = defaultUnitValues.unitDetectionRange;
+                movementSpeed = defaultUnitValues.unitMovementSpeed;
             }
 
             #region State Machine

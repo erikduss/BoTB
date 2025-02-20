@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace Erikduss
 {
@@ -119,7 +120,7 @@ namespace Erikduss
                         case Enums.UnitTypes.Warrior:
                             currentWorkingConfig = Age01_WarriorSettingsConfig;
                             break;
-                        case Enums.UnitTypes.Asssassin:
+                        case Enums.UnitTypes.Assassin:
                             currentWorkingConfig = Age01_AssassinSettingsConfig;
                             break;
                         case Enums.UnitTypes.Enforcer:
@@ -155,7 +156,7 @@ namespace Erikduss
                         case Enums.UnitTypes.Warrior:
                             currentWorkingConfig = Age02_WarriorSettingsConfig;
                             break;
-                        case Enums.UnitTypes.Asssassin:
+                        case Enums.UnitTypes.Assassin:
                             currentWorkingConfig = Age02_AssassinSettingsConfig;
                             break;
                         case Enums.UnitTypes.Enforcer:
@@ -205,364 +206,25 @@ namespace Erikduss
              * 4. Press enter until all is replaced.
              */
 
-            switch (currentWorkingUnitAge)
-            {
-                case Enums.Ages.AGE_01:
-                    switch (currentWorkingUnitType)
-                    {
-                        case Enums.UnitTypes.Warrior:
+            if (currentWorkingUnitType == Enums.UnitTypes.TrainingDummy) return;
 
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
+            GD.Print(currentWorkingUnitAge.ToString() + "_" + currentWorkingUnitType.ToString());
 
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Warrior_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Warrior_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Warrior_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Warrior_UnitDescription);
+            UnitSettingsConfig unitDefaultSettings = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (currentWorkingUnitAge.ToString() + "_" + currentWorkingUnitType.ToString())).FirstOrDefault().Value;
 
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Warrior_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Warrior_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Warrior_UnitAttack);
+            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
 
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Warrior_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Warrior_UnitDetectionRange);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", unitDefaultSettings.unitCost);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)unitDefaultSettings.unitAvailableInAge);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", unitDefaultSettings.unitName);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", unitDefaultSettings.unitDescription);
 
-                            break;
-                        case Enums.UnitTypes.Asssassin:
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", unitDefaultSettings.unitHealth);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", unitDefaultSettings.unitArmour);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", unitDefaultSettings.unitAttack);
 
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Assassin_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Assassin_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Assassin_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Assassin_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Assassin_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Assassin_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Assassin_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Assassin_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Assassin_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Enforcer:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Enforcer_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Enforcer_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Enforcer_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Enforcer_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Enforcer_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Enforcer_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Enforcer_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Enforcer_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Enforcer_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Ranger:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Ranger_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Ranger_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Ranger_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Ranger_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Ranger_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Ranger_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Ranger_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Ranger_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Ranger_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Tank:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Tank_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Tank_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Tank_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Tank_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Tank_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Tank_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Tank_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Tank_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Tank_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Battlemage:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Battlemage_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Battlemage_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Battlemage_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Battlemage_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Battlemage_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Battlemage_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Battlemage_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Battlemage_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Battlemage_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Mass_Healer:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_MassHealer_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_MassHealer_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_MassHealer_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_MassHealer_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_MassHealer_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_MassHealer_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_MassHealer_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_MassHealer_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_MassHealer_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Archdruid:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Archdruid_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Archdruid_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Archdruid_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Archdruid_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Archdruid_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Archdruid_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Archdruid_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Archdruid_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Archdruid_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Shaman:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Shaman_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Shaman_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Shaman_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Shaman_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Shaman_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Shaman_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Shaman_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Shaman_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Shaman_UnitDetectionRange);
-
-                            break;
-                        default:
-                            GD.PrintErr("UNIT NOT IMPLEMENTED, UnitSettingsManager");
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age01_Warrior_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age01_Warrior_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age01_Warrior_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age01_Warrior_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age01_Warrior_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age01_Warrior_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age01_Warrior_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age01_Warrior_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age01_Warrior_UnitDetectionRange);
-
-                            break;
-                    }
-                    break;
-                case Enums.Ages.AGE_02:
-                    switch (currentWorkingUnitType)
-                    {
-                        case Enums.UnitTypes.Warrior:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Warrior_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Warrior_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Warrior_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Warrior_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Warrior_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Warrior_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Warrior_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Warrior_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Warrior_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Asssassin:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Assassin_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Assassin_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Assassin_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Assassin_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Assassin_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Assassin_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Assassin_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Assassin_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Assassin_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Enforcer:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Enforcer_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Enforcer_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Enforcer_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Enforcer_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Enforcer_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Enforcer_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Enforcer_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Enforcer_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Enforcer_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Ranger:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Ranger_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Ranger_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Ranger_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Ranger_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Ranger_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Ranger_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Ranger_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Ranger_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Ranger_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Tank:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Tank_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Tank_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Tank_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Tank_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Tank_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Tank_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Tank_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Tank_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Tank_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Battlemage:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Battlemage_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Battlemage_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Battlemage_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Battlemage_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Battlemage_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Battlemage_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Battlemage_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Battlemage_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Battlemage_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Mass_Healer:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_MassHealer_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_MassHealer_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_MassHealer_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_MassHealer_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_MassHealer_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_MassHealer_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_MassHealer_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_MassHealer_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_MassHealer_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Archdruid:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Archdruid_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Archdruid_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Archdruid_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Archdruid_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Archdruid_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Archdruid_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Archdruid_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Archdruid_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Archdruid_UnitDetectionRange);
-
-                            break;
-                        case Enums.UnitTypes.Shaman:
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Shaman_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Shaman_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Shaman_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Shaman_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Shaman_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Shaman_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Shaman_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Shaman_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Shaman_UnitDetectionRange);
-
-                            break;
-                        default:
-                            GD.PrintErr("UNIT NOT IMPLEMENTED, UnitSettingsManager Age2");
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.CONFIG_SETTINGS.ToString(), "useCustomVariables", false);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitCost", UnitsDefaultValues.Age02_Warrior_UnitCost);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitAvailableInAge", (int)UnitsDefaultValues.Age02_Warrior_UnitAvailableInAge);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitName", UnitsDefaultValues.Age02_Warrior_UnitName);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_INFO.ToString(), "unitDescription", UnitsDefaultValues.Age02_Warrior_UnitDescription);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitHealth", UnitsDefaultValues.Age02_Warrior_UnitHealth);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitArmour", UnitsDefaultValues.Age02_Warrior_UnitArmour);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_STATS.ToString(), "unitAttack", UnitsDefaultValues.Age02_Warrior_UnitAttack);
-
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", UnitsDefaultValues.Age02_Warrior_UnitMovementSpeed);
-                            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", UnitsDefaultValues.Age02_Warrior_UnitDetectionRange);
-
-                            break;
-                    }
-                    break;
-                default:
-                    GD.PrintErr("CONFIG INFO NOT FOUND " + currentWorkingUnitAge + " _ " + currentWorkingUnitType);
-                    break;
-            }
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitMovementSpeed", unitDefaultSettings.unitMovementSpeed);
+            config.SetValue(Enums.UnitSettingsConfigHeader.UNIT_GAMEPLAY_VARIABLES.ToString(), "unitDetectionRange", unitDefaultSettings.unitDetectionRange);
 
             // Save it to a file.
             config.Save(fullFilePath);

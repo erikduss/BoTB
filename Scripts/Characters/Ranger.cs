@@ -36,6 +36,8 @@ namespace Erikduss
 
             if (loadedUnitSettings.useCustomVariables)
             {
+                loadDefaultValues = false;
+
                 //Set the values
                 currentHealth = loadedUnitSettings.unitHealth;
                 maxHealth = loadedUnitSettings.unitHealth;
@@ -45,45 +47,6 @@ namespace Erikduss
 
                 detectionRange = loadedUnitSettings.unitDetectionRange;
                 movementSpeed = loadedUnitSettings.unitMovementSpeed;
-            }
-            else
-            {
-                //Set the default values
-                switch (currentAge)
-                {
-                    case Enums.Ages.AGE_01:
-                        currentHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Ranger_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Ranger_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Ranger_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Ranger_UnitMovementSpeed;
-                        break;
-                    case Enums.Ages.AGE_02:
-                        currentHealth = UnitsDefaultValues.Age02_Ranger_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age02_Ranger_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age02_Ranger_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age02_Ranger_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age02_Ranger_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age02_Ranger_UnitMovementSpeed;
-                        break;
-                    default:
-                        GD.Print("AGE NOT IMPLEMENTED: Ranger.cs");
-
-                        currentHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Ranger_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Ranger_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Ranger_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Ranger_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Ranger_UnitMovementSpeed;
-                        break;
-                }
             }
 
             unitType = Enums.UnitTypes.Ranger;

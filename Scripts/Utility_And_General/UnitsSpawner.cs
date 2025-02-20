@@ -327,7 +327,7 @@ namespace Erikduss
                     lastUsedUnitID++;
 
                     break;
-                case Enums.UnitTypes.Asssassin:
+                case Enums.UnitTypes.Assassin:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
                     Assassin instantiatedAssassin = (Assassin)assassinPrefab.Instantiate();

@@ -32,6 +32,8 @@ namespace Erikduss
 
             if (loadedUnitSettings.useCustomVariables)
             {
+                loadDefaultValues = false;
+
                 //Set the values
                 currentHealth = loadedUnitSettings.unitHealth;
                 maxHealth = loadedUnitSettings.unitHealth;
@@ -41,45 +43,6 @@ namespace Erikduss
 
                 detectionRange = loadedUnitSettings.unitDetectionRange;
                 movementSpeed = loadedUnitSettings.unitMovementSpeed;
-            }
-            else
-            {
-                //Set the default values
-                switch (currentAge)
-                {
-                    case Enums.Ages.AGE_01:
-                        currentHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Battlemage_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Battlemage_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Battlemage_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Battlemage_UnitMovementSpeed;
-                        break;
-                    case Enums.Ages.AGE_02:
-                        currentHealth = UnitsDefaultValues.Age02_Battlemage_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age02_Battlemage_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age02_Battlemage_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age02_Battlemage_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age02_Battlemage_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age02_Battlemage_UnitMovementSpeed;
-                        break;
-                    default:
-                        GD.Print("AGE NOT IMPLEMENTED: Battlemage.cs");
-
-                        currentHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Battlemage_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Battlemage_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Battlemage_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Battlemage_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Battlemage_UnitMovementSpeed;
-                        break;
-                }
             }
 
             unitType = Enums.UnitTypes.Battlemage;

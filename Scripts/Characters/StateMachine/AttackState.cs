@@ -151,7 +151,7 @@ namespace Erikduss
                         EffectsAndProjectilesSpawner.Instance.SpawnRangerProjectile(character);
                     }
                     break;
-                case Enums.UnitTypes.Asssassin:
+                case Enums.UnitTypes.Assassin:
                     if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
                     {
                         executedEffect = true;

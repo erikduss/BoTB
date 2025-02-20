@@ -26,6 +26,8 @@ public partial class Assassin : BaseCharacter
 
         if (loadedUnitSettings.useCustomVariables)
         {
+            loadDefaultValues = false;
+
             //Set the values
             currentHealth = loadedUnitSettings.unitHealth;
             maxHealth = loadedUnitSettings.unitHealth;
@@ -36,48 +38,8 @@ public partial class Assassin : BaseCharacter
             detectionRange = loadedUnitSettings.unitDetectionRange;
             movementSpeed = loadedUnitSettings.unitMovementSpeed;
         }
-        else
-        {
-            //Set the default values
-            switch(currentAge)
-            {
-                case Enums.Ages.AGE_01:
-                    currentHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
 
-                    unitArmor = UnitsDefaultValues.Age01_Assassin_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age01_Assassin_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age01_Assassin_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age01_Assassin_UnitMovementSpeed;
-                    break;
-                case Enums.Ages.AGE_02:
-                    currentHealth = UnitsDefaultValues.Age02_Assassin_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age02_Assassin_UnitHealth;
-
-                    unitArmor = UnitsDefaultValues.Age02_Assassin_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age02_Assassin_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age02_Assassin_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age02_Assassin_UnitMovementSpeed;
-                    break;
-                default:
-                    GD.Print("AGE NOT IMPLEMENTED: Assassin.cs");
-
-                    currentHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
-                    maxHealth = UnitsDefaultValues.Age01_Assassin_UnitHealth;
-
-                    unitArmor = UnitsDefaultValues.Age01_Assassin_UnitArmour;
-                    unitAttackDamage = UnitsDefaultValues.Age01_Assassin_UnitAttack;
-
-                    detectionRange = UnitsDefaultValues.Age01_Assassin_UnitDetectionRange;
-                    movementSpeed = UnitsDefaultValues.Age01_Assassin_UnitMovementSpeed;
-                    break;
-            }
-        }
-        
-
-        unitType = Enums.UnitTypes.Asssassin;
+        unitType = Enums.UnitTypes.Assassin;
 
         base._Ready();
     }

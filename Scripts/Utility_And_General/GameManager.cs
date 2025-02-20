@@ -12,6 +12,9 @@ namespace Erikduss
 		[Export] public HomeBaseManager team01HomeBase;
 		[Export] public HomeBaseManager team02HomeBase;
 
+		public BasePlayer player01Script; //this is always a real player.
+		public BasePlayer player02Script; //this can be either a bot or a real player. (in the future)
+
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
 
@@ -19,18 +22,24 @@ namespace Erikduss
 		public int massHealerHealAmount = 15;
         #endregion
 
-        #region Currency Variables
-        public int playerCurrentCurrencyAmount { get; private set; }
+        #region Shop Variables
 
+        public int shopRefreshCost = 5;
+        public int amountOfUnitsInShop = 3;
+
+        #endregion
+
+        #region Currency Variables
+
+        private int startingCurrency = 100;
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
 		private int currencyGainAmount = 1;
         #endregion
 
         #region Ability Variables
-        public int playerAbilityCurrentCooldown { get; set; }
-
-		public int playerAbilityCooldown = 18; //seconds
+        
+		public int playerAbilityCooldown = 180; //seconds
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -51,10 +60,20 @@ namespace Erikduss
 
 			gameIsPaused = false;
 
-			playerCurrentCurrencyAmount = 100;
-			playerAbilityCurrentCooldown = playerAbilityCooldown;
+            player01Script = new BasePlayer();
+            player02Script = (BaseAIPlayer)GetParent().GetNode("EnemyAI"); ; //we need to probably instantiate this later with custom ai nodes.
 
-            inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
+            player01Script.playerBase = team01HomeBase;
+            player02Script.playerBase = team02HomeBase;
+
+            player01Script.playerCurrentCurrencyAmount = startingCurrency;
+            player01Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+
+            player02Script.playerCurrentCurrencyAmount = startingCurrency;
+            player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+
+            //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
+            inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
 
 			//The ability bar isnt passed yet at this time
 			//inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
@@ -82,10 +101,11 @@ namespace Erikduss
 			if(currencyGainAmountUpdateTimer > currencyGainRate)
 			{
 				currencyGainAmountUpdateTimer = 0;
-				playerCurrentCurrencyAmount += currencyGainAmount;
+                player01Script.playerCurrentCurrencyAmount += currencyGainAmount;
+                player02Script.playerCurrentCurrencyAmount += currencyGainAmount;
 
-				//Update HUD
-				inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
+                //Update HUD
+                inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
             }
 			else
 			{
@@ -96,10 +116,11 @@ namespace Erikduss
             if (playerAbilityUpdateTimer > playerAbilityCooldownReductionRate)
             {
                 playerAbilityUpdateTimer = 0;
-                playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
+                player01Script.playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
+                player02Script.playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
 
                 //Update HUD
-				inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+                inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
 				//update empowred label
 				inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
             }
@@ -127,21 +148,33 @@ namespace Erikduss
         }
 
 		//bool to inducate succes state of removing the currency.
-		public bool SpendPlayerCurrency(int amount)
+		public bool SpendPlayerCurrency(int amount, Enums.TeamOwner playerTeam)
 		{
-			if (playerCurrentCurrencyAmount < amount) return false;
+			BasePlayer playerToSpendCurrencyFor = (playerTeam == Enums.TeamOwner.TEAM_01 ? player01Script : player02Script);
 
-			playerCurrentCurrencyAmount -= amount;
-			//update HUD
-            inGameHUDManager.UpdatePlayerCurrencyAmountLabel(playerCurrentCurrencyAmount);
+			if (playerToSpendCurrencyFor.playerCurrentCurrencyAmount < amount) return false;
+
+            playerToSpendCurrencyFor.playerCurrentCurrencyAmount -= amount;
+			
+            //update HUD
+            if(playerTeam == Enums.TeamOwner.TEAM_01)
+            {
+                inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+            }
 
 			return true;
         }
 
-		public void ResetPlayerAbilityCooldown()
+		public void ResetPlayerAbilityCooldown(Enums.TeamOwner playerTeam)
 		{
-            playerAbilityCurrentCooldown = playerAbilityCooldown;
-            inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+            BasePlayer playerToSpendCurrencyFor = (playerTeam == Enums.TeamOwner.TEAM_01 ? player01Script : player02Script);
+
+            playerToSpendCurrencyFor.playerAbilityCurrentCooldown = playerAbilityCooldown;
+
+            if (playerTeam == Enums.TeamOwner.TEAM_01)
+            {
+                inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
+            }
         }
 	}
 }

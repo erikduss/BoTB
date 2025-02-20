@@ -30,6 +30,8 @@ namespace Erikduss
 
             if (loadedUnitSettings.useCustomVariables)
             {
+                loadDefaultValues = false;
+
                 //Set the values
                 currentHealth = loadedUnitSettings.unitHealth;
                 maxHealth = loadedUnitSettings.unitHealth;
@@ -39,45 +41,6 @@ namespace Erikduss
 
                 detectionRange = loadedUnitSettings.unitDetectionRange;
                 movementSpeed = loadedUnitSettings.unitMovementSpeed;
-            }
-            else
-            {
-                //Set the default values
-                switch (currentAge)
-                {
-                    case Enums.Ages.AGE_01:
-                        currentHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Shaman_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Shaman_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Shaman_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Shaman_UnitMovementSpeed;
-                        break;
-                    case Enums.Ages.AGE_02:
-                        currentHealth = UnitsDefaultValues.Age02_Shaman_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age02_Shaman_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age02_Shaman_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age02_Shaman_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age02_Shaman_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age02_Shaman_UnitMovementSpeed;
-                        break;
-                    default:
-                        GD.Print("AGE NOT IMPLEMENTED: Shaman.cs");
-
-                        currentHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_Shaman_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_Shaman_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_Shaman_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_Shaman_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_Shaman_UnitMovementSpeed;
-                        break;
-                }
             }
 
             unitType = Enums.UnitTypes.Shaman;

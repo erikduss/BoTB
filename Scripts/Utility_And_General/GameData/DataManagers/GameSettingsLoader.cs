@@ -48,7 +48,7 @@ namespace Erikduss
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
-            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Asssassin, Enums.Ages.AGE_01);
+            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Assassin, Enums.Ages.AGE_01);
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Ranger, Enums.Ages.AGE_01);
@@ -74,7 +74,7 @@ namespace Erikduss
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Warrior, Enums.Ages.AGE_02);
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
-            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Asssassin, Enums.Ages.AGE_02);
+            unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Assassin, Enums.Ages.AGE_02);
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
             unitSettingsManager.LoadUnitSettings(Enums.UnitTypes.Ranger, Enums.Ages.AGE_02);

@@ -30,6 +30,8 @@ namespace Erikduss
 
             if (loadedUnitSettings.useCustomVariables)
             {
+                loadDefaultValues = false;
+
                 //Set the values
                 currentHealth = loadedUnitSettings.unitHealth;
                 maxHealth = loadedUnitSettings.unitHealth;
@@ -39,45 +41,6 @@ namespace Erikduss
 
                 detectionRange = loadedUnitSettings.unitDetectionRange;
                 movementSpeed = loadedUnitSettings.unitMovementSpeed;
-            }
-            else
-            {
-                //Set the default values
-                switch (currentAge)
-                {
-                    case Enums.Ages.AGE_01:
-                        currentHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_MassHealer_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_MassHealer_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_MassHealer_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_MassHealer_UnitMovementSpeed;
-                        break;
-                    case Enums.Ages.AGE_02:
-                        currentHealth = UnitsDefaultValues.Age02_MassHealer_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age02_MassHealer_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age02_MassHealer_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age02_MassHealer_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age02_MassHealer_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age02_MassHealer_UnitMovementSpeed;
-                        break;
-                    default:
-                        GD.Print("AGE NOT IMPLEMENTED: MassHealer.cs");
-
-                        currentHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
-                        maxHealth = UnitsDefaultValues.Age01_MassHealer_UnitHealth;
-
-                        unitArmor = UnitsDefaultValues.Age01_MassHealer_UnitArmour;
-                        unitAttackDamage = UnitsDefaultValues.Age01_MassHealer_UnitAttack;
-
-                        detectionRange = UnitsDefaultValues.Age01_MassHealer_UnitDetectionRange;
-                        movementSpeed = UnitsDefaultValues.Age01_MassHealer_UnitMovementSpeed;
-                        break;
-                }
             }
 
             unitType = Enums.UnitTypes.Mass_Healer;

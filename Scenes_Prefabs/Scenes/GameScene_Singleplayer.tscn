@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=13 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="1_ag6v1"]
 [ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bugfy5ssl180s" path="res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn" id="10_exyf3"]
 [ext_resource type="PackedScene" uid="uid://bfp7h5i0papxy" path="res://Scenes_Prefabs/Prefabs/Environment/CharacterHomeBase.tscn" id="10_fujw8"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/GameManager.cs" id="11_ofq7o"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Player & AI/AI_Types/BaseAIPlayer.cs" id="11_upnxn"]
 [ext_resource type="Script" path="res://Scripts/Utility_And_General/UnitsSpawner.cs" id="12_8j88c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akag0"]
@@ -334,6 +335,9 @@ offset_left = -700.0
 offset_top = 715.0
 offset_right = -700.0
 offset_bottom = 715.0
+
+[node name="EnemyAI" type="Node2D" parent="."]
+script = ExtResource("11_upnxn")
 
 [connection signal="body_entered" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionEnterCheckTeam01Spawner"]
 [connection signal="body_exited" from="GameManager/Spawners/Team_1_Character_Spawner/SpawnCollisionChecker" to="GameManager/Spawners" method="OnCollisionExitCheckTeam01Spawner"]

@@ -22,7 +22,7 @@ namespace Erikduss
 		{
 			Warrior,
 			Ranger,
-			Asssassin,
+			Assassin,
 			Enforcer,
 			Tank,
 			Mass_Healer,

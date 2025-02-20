@@ -15,10 +15,6 @@ namespace Erikduss
 		public TextureProgressBar abilityCooldownBar;
 		private AgeAbilityInfoToggler abilityCooldownBarScript;
 
-		//Load this from data file later
-		private int shopRefreshCost = 5;
-		private int amountOfUnitsInShop = 3;
-
 		private List<PackedScene> availableUnitsBuyButtons = new List<PackedScene>();
 
         #region Buy Buttons
@@ -64,12 +60,12 @@ namespace Erikduss
 			//check for the current age the player is in, this will determine the cost of the soldier and which one it will spawn.
 
 			//check for gold requirement
-			if (GameManager.Instance.playerCurrentCurrencyAmount < unitCost) return false; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
+			if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < unitCost) return false; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
 
 			//other requirements?
 
 			//Attempt to spend the currency, if this fails we stop.
-			if (!GameManager.Instance.SpendPlayerCurrency(unitCost)) return false;
+			if (!GameManager.Instance.SpendPlayerCurrency(unitCost, Enums.TeamOwner.TEAM_01)) return false;
 
             //add soldier to spawn queue in a (few) second(s).
 
@@ -116,9 +112,9 @@ namespace Erikduss
         {
             //we need to check if the cooldown is over.
 
-            if (GameManager.Instance.playerAbilityCurrentCooldown > 0) return;
+            if (GameManager.Instance.player01Script.playerAbilityCurrentCooldown > 0) return;
 
-            GameManager.Instance.ResetPlayerAbilityCooldown();
+            GameManager.Instance.ResetPlayerAbilityCooldown(Enums.TeamOwner.TEAM_01);
 
             //is always going to be team 1 for now, due to this being the player.
             EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_01);
@@ -130,10 +126,10 @@ namespace Erikduss
 
             if (spendPlayerGold)
 			{
-                if (GameManager.Instance.playerCurrentCurrencyAmount < shopRefreshCost) return;
+                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.Instance.shopRefreshCost) return;
 
                 //Attempt to spend the currency, if this fails we stop.
-                if (!GameManager.Instance.SpendPlayerCurrency(shopRefreshCost)) return;
+                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.Instance.shopRefreshCost, Enums.TeamOwner.TEAM_01)) return;
             }
 
 			for (int i = unitShopParentNode.GetChildren().Count-1; i >= 0; i--)
@@ -141,7 +137,7 @@ namespace Erikduss
 				unitShopParentNode.GetChild(i).QueueFree();
             }
 
-			for(int i = 0; i < amountOfUnitsInShop; i++)
+			for(int i = 0; i < GameManager.Instance.amountOfUnitsInShop; i++)
 			{
                 Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 
