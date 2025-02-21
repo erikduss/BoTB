@@ -5,6 +5,8 @@ namespace Erikduss
 {
 	public partial class TitleScreenManager : Control
 	{
+        public PackedScene optionsPanelPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn");
+
         [Export] public string gameLoadingSceneName = "LoadingToGame";
 
         // Called when the node enters the scene tree for the first time.
@@ -26,6 +28,9 @@ namespace Erikduss
         public void OpenOptions()
         {
             GD.Print("Options clicked");
+            Control instantiatedOptionsPanel = (Control)optionsPanelPrefab.Instantiate();
+
+            AddChild(instantiatedOptionsPanel);
         }
 
         public void CloseGame()

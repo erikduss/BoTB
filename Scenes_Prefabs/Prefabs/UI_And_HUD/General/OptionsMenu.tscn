@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://c42h4mo5xo22v"]
+
+[ext_resource type="Script" path="res://Scripts/UI_And_GUI/General/OptionsMenu.cs" id="1_7upg4"]
+[ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="1_t1oj8"]
+[ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="2_h04ln"]
+[ext_resource type="BitMap" uid="uid://cajmmonjyfu4s" path="res://Assets/UI/ExitButton_ClickMask.png" id="3_6g6k4"]
+[ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="4_4hk8h"]
+[ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="5_sm364"]
+[ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="6_hg1st"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf1e0"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_adsjs"]
+font_size = 32
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7upg4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="AudioSection" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 90.0
+offset_right = 1920.0
+offset_bottom = 390.0
+
+[node name="Label" type="Label" parent="Panel/AudioSection"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 45.0
+text = "Audio Settings"
+label_settings = SubResource("LabelSettings_yf1e0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSliderSection" type="Control" parent="Panel/AudioSection"]
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 60.0
+offset_right = 1440.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="Panel/AudioSection/MusicSliderSection"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="HSlider" type="HSlider" parent="Panel/AudioSection/MusicSliderSection"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 570.0
+offset_bottom = 45.0
+value = 100.0
+
+[node name="BottomButtons" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 830.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ReturnButton" type="TextureButton" parent="Panel/BottomButtons"]
+layout_mode = 0
+offset_left = 450.0
+offset_right = 706.0
+offset_bottom = 256.0
+texture_normal = ExtResource("1_t1oj8")
+texture_hover = ExtResource("2_h04ln")
+texture_click_mask = ExtResource("3_6g6k4")
+
+[node name="SaveButton" type="TextureButton" parent="Panel/BottomButtons"]
+layout_mode = 0
+offset_left = 1250.0
+offset_right = 1506.0
+offset_bottom = 256.0
+texture_normal = ExtResource("4_4hk8h")
+texture_hover = ExtResource("5_sm364")
+texture_click_mask = ExtResource("6_hg1st")
+
+[connection signal="pressed" from="Panel/BottomButtons/ReturnButton" to="." method="ReturnButtonPressed"]
+[connection signal="pressed" from="Panel/BottomButtons/SaveButton" to="." method="SaveButtonPressed"]

@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7dscw")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
 offset_left = -3200.0
 offset_top = -4600.0
@@ -32,7 +32,7 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_uv18o")
 stretch_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+[node name="ColorRect" type="ColorRect" parent="Background"]
 visible = false
 layout_mode = 0
 offset_top = 420.0
