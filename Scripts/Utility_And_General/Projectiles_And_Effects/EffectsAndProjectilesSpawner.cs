@@ -135,6 +135,24 @@ namespace Erikduss
             lastUsedVisualEffectID++;
         }
 
+        public void SpawnTestingBleedingEffect(BaseCharacter bleedTarget)
+        {
+            AssassinBleedingEffect instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+
+            //Note: This effect is applied on the TARGET, keep this in mind.
+
+            instantiatedBleedingEffect.characterThisEffectIsAttachedTo = bleedTarget;
+            instantiatedBleedingEffect.unitThisIsDamaging = bleedTarget;
+
+            instantiatedBleedingEffect.flipSpite = bleedTarget.movementSpeed >= 0 ? false : true;
+
+            instantiatedBleedingEffect.Name = bleedTarget.uniqueID + "_InstantiatedBleedEffect_" + lastUsedVisualEffectID;
+
+            bleedTarget.AddChild(instantiatedBleedingEffect);
+
+            lastUsedVisualEffectID++;
+        }
+
         public void SpawnEnforcerStunEffect(BaseCharacter unitOwner)
         {
             EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();

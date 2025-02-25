@@ -54,7 +54,7 @@ namespace Erikduss
 
         public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
 
-        private float dummyStartingXPosition = -342f;
+        private float dummyStartingXPosition = -740f; //-342
         private float dummyYPosition = 815f;
 
         private float dummyXPositionDifference = 41;
@@ -477,6 +477,8 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedTrainingDummy, uniqueUnitName);
+
+                    //EffectsAndProjectilesSpawner.Instance.SpawnTestingBleedingEffect(instantiatedTrainingDummy);
 
                     trainingDummyCurrentCount++;
                     lastUsedUnitID++;
