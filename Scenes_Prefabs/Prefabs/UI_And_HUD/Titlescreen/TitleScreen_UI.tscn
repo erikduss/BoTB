@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=14 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="2_uv18o"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="6_iqwi5"]
 [ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="7_06yab"]
 [ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="8_tvhyr"]
+[ext_resource type="BitMap" uid="uid://c7hjfw6sw8lfl" path="res://Assets/UI/OptionsButton_ClickMask.png" id="11_5qgfj"]
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Ads & Shop/rewarded_ads_loader.gd" id="12_fxf0a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4mmh"]
+font_size = 23
+font_color = Color(1, 0, 1, 1)
 
 [node name="TitleScreenUi" type="Control"]
 layout_mode = 3
@@ -111,6 +117,40 @@ texture_normal = ExtResource("7_06yab")
 texture_hover = ExtResource("8_tvhyr")
 texture_click_mask = ExtResource("5_3h1cd")
 
+[node name="AdsTestButton" type="TextureButton" parent="." node_paths=PackedStringArray("debugText")]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 108.0
+offset_right = 1728.0
+offset_bottom = 364.0
+texture_normal = ExtResource("5_tgbea")
+texture_hover = ExtResource("6_iqwi5")
+texture_click_mask = ExtResource("11_5qgfj")
+script = ExtResource("12_fxf0a")
+debugText = NodePath("TextEdit")
+
+[node name="TextEdit" type="Label" parent="AdsTestButton"]
+layout_mode = 0
+offset_left = -141.0
+offset_top = 187.0
+offset_right = 396.0
+offset_bottom = 860.0
+text = "Debug: 
+"
+label_settings = SubResource("LabelSettings_h4mmh")
+autowrap_mode = 3
+
+[node name="AdsTestButton2" type="TextureButton" parent="AdsTestButton"]
+offset_left = 15.0
+offset_top = 693.0
+offset_right = 271.0
+offset_bottom = 949.0
+texture_normal = ExtResource("5_tgbea")
+texture_hover = ExtResource("6_iqwi5")
+texture_click_mask = ExtResource("11_5qgfj")
+
 [connection signal="pressed" from="StartButton" to="." method="StartGame"]
 [connection signal="pressed" from="OptionsButton" to="." method="OpenOptions"]
 [connection signal="pressed" from="ExitButton" to="." method="CloseGame"]
+[connection signal="pressed" from="AdsTestButton" to="AdsTestButton" method="_on_load_pressed"]
+[connection signal="pressed" from="AdsTestButton/AdsTestButton2" to="AdsTestButton" method="_on_show_pressed"]

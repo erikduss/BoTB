@@ -37,5 +37,10 @@ namespace Erikduss
         {
             GetTree().Quit();
         }
+
+        public void OpenAdsTestingScene()
+        {
+            GetTree().ChangeSceneToFile("res://addons/admob/sample/Main.tscn");
+        }
     }
 }

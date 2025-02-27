@@ -30,6 +30,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Battle Of The Bookworm"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+
 [input]
 
 Pause={
