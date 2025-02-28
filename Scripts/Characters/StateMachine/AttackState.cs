@@ -159,9 +159,9 @@ namespace Erikduss
                         //chance of applying a bleeding effect = 35 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
-                        if (character.currentTarget == null || character.currentTarget.isDead) return;
+                        if (character.CurrentTarget == null || character.CurrentTarget.isDead) return;
 
-                        int fixedNumber = GameSettingsLoader.Instance.assassinBleedApplyChance - character.currentTarget.unitArmor;
+                        int fixedNumber = GameSettingsLoader.Instance.assassinBleedApplyChance - character.CurrentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
 
                         if(randChance <= fixedNumber)
@@ -178,9 +178,9 @@ namespace Erikduss
                         //chance of applying a stun effect = 70 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
-                        if (character.currentTarget == null || character.currentTarget.isDead) return;
+                        if (character.CurrentTarget == null || character.CurrentTarget.isDead) return;
 
-                        int fixedNumber = GameSettingsLoader.Instance.enforcerStunApplyChance - character.currentTarget.unitArmor;
+                        int fixedNumber = GameSettingsLoader.Instance.enforcerStunApplyChance - character.CurrentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
 
                         if (randChance <= fixedNumber)

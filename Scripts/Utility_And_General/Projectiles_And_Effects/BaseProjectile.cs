@@ -63,7 +63,7 @@ namespace Erikduss
 
             if (dealtDamage) return;
 
-            if (projectileOwnerChar.currentTarget != null && body.GetInstanceId() == projectileOwnerChar.currentTarget.GetInstanceId() && !projectileOwnerChar.isDead)
+            if (projectileOwnerChar.CurrentTarget != null && body.GetInstanceId() == projectileOwnerChar.CurrentTarget.GetInstanceId() && !projectileOwnerChar.isDead)
             {
                 dealtDamage = true;
                 projectileOwnerChar.DealDamage();
@@ -103,7 +103,7 @@ namespace Erikduss
                     if (enemyChar.characterOwner == projectileOwnerChar.characterOwner) return;
 
                     dealtDamage = true;
-                    projectileOwnerChar.currentTarget = enemyChar;
+                    projectileOwnerChar.CurrentTarget = enemyChar;
                     projectileOwnerChar.DealDamage();
                 }
                 catch

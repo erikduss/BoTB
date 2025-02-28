@@ -8,6 +8,8 @@ namespace Erikduss
         public int playerCurrentCurrencyAmount { get; set; }
         public int playerAbilityCurrentCooldown { get; set; }
 
+		public Enums.Ages currentAgeOfPlayer = Enums.Ages.AGE_01;
+
 		public HomeBaseManager playerBase { get; set; }
 
         // Called when the node enters the scene tree for the first time.

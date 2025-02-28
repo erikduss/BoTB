@@ -118,7 +118,7 @@ namespace Erikduss
                             {
                                 if (GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count > 0)
                                 {
-                                    character.currentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
+                                    character.CurrentTarget = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.First().Value;
                                     if (character.canAttack)
                                     {
                                         EmitSignal(SignalName.Transitioned, this, "AttackState");
@@ -130,7 +130,7 @@ namespace Erikduss
                             {
                                 if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 0)
                                 {
-                                    character.currentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
+                                    character.CurrentTarget = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.First().Value;
                                     if (character.canAttack)
                                     {
                                         EmitSignal(SignalName.Transitioned, this, "AttackState");
@@ -252,7 +252,7 @@ namespace Erikduss
                         }
                         else
                         {
-                            character.currentTarget = enemyChar;
+                            character.CurrentTarget = enemyChar;
 
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
                             if (!character.canAttack && distance <= stoppingDistance)
@@ -315,8 +315,6 @@ namespace Erikduss
 
                 if (frienlyUnit.currentHealth >= frienlyUnit.maxHealth) continue;
 
-                GD.Print("We need to heal: " + frienlyUnit.Name);
-
                 return true;
             }
 
@@ -358,7 +356,7 @@ namespace Erikduss
                     if (oppositeTeamUnit.GlobalPosition.X > character.GlobalPosition.X) continue;
                 }
 
-                character.currentTarget = oppositeTeamUnit;
+                character.CurrentTarget = oppositeTeamUnit;
 
                 return true;
             }

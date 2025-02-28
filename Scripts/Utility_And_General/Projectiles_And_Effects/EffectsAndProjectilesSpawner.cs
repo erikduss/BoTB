@@ -123,14 +123,14 @@ namespace Erikduss
 
             //Note: This effect is applied on the TARGET, keep this in mind.
 
-            instantiatedBleedingEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
-            instantiatedBleedingEffect.unitThisIsDamaging = unitOwner.currentTarget;
+            instantiatedBleedingEffect.characterThisEffectIsAttachedTo = unitOwner.CurrentTarget;
+            instantiatedBleedingEffect.unitThisIsDamaging = unitOwner.CurrentTarget;
 
-            instantiatedBleedingEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+            instantiatedBleedingEffect.flipSpite = unitOwner.CurrentTarget.movementSpeed >= 0 ? false : true;
 
             instantiatedBleedingEffect.Name = unitOwner.uniqueID + "_InstantiatedBleedEffect_" + lastUsedVisualEffectID;
 
-            unitOwner.currentTarget.AddChild(instantiatedBleedingEffect);
+            unitOwner.CurrentTarget.AddChild(instantiatedBleedingEffect);
 
             lastUsedVisualEffectID++;
         }
@@ -157,13 +157,13 @@ namespace Erikduss
         {
             EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
 
-            instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.currentTarget;
-            instantiatedStunEffect.flipSpite = unitOwner.currentTarget.movementSpeed >= 0 ? false : true;
+            instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.CurrentTarget;
+            instantiatedStunEffect.flipSpite = unitOwner.CurrentTarget.movementSpeed >= 0 ? false : true;
 
             instantiatedStunEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
-            unitOwner.currentTarget.ApplyStunEffect();
-            unitOwner.currentTarget.AddChild(instantiatedStunEffect);
+            unitOwner.CurrentTarget.ApplyStunEffect();
+            unitOwner.CurrentTarget.AddChild(instantiatedStunEffect);
 
             lastUsedVisualEffectID++;
         }

@@ -154,6 +154,8 @@ namespace Erikduss
 
 			if (playerToSpendCurrencyFor.playerCurrentCurrencyAmount < amount) return false;
 
+            if (playerTeam == Enums.TeamOwner.TEAM_02) GD.Print("The AI Has: " + playerToSpendCurrencyFor.playerCurrentCurrencyAmount + " After spending: " + amount);
+
             playerToSpendCurrencyFor.playerCurrentCurrencyAmount -= amount;
 			
             //update HUD
@@ -167,9 +169,9 @@ namespace Erikduss
 
 		public void ResetPlayerAbilityCooldown(Enums.TeamOwner playerTeam)
 		{
-            BasePlayer playerToSpendCurrencyFor = (playerTeam == Enums.TeamOwner.TEAM_01 ? player01Script : player02Script);
+            BasePlayer playerToResetCooldownFor = (playerTeam == Enums.TeamOwner.TEAM_01 ? player01Script : player02Script);
 
-            playerToSpendCurrencyFor.playerAbilityCurrentCooldown = playerAbilityCooldown;
+            playerToResetCooldownFor.playerAbilityCurrentCooldown = playerAbilityCooldown;
 
             if (playerTeam == Enums.TeamOwner.TEAM_01)
             {

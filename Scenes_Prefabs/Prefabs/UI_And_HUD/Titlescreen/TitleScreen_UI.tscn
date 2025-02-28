@@ -141,6 +141,7 @@ label_settings = SubResource("LabelSettings_h4mmh")
 autowrap_mode = 3
 
 [node name="AdsTestButton2" type="TextureButton" parent="AdsTestButton"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 693.0
 offset_right = 271.0

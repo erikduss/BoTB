@@ -21,7 +21,35 @@ namespace Erikduss
 
 		public Enums.Ages currentAge = Enums.Ages.AGE_02;
 
-        public BaseCharacter currentTarget;
+        public BaseCharacter CurrentTarget
+        {
+            get { return currentTarget; }
+            set
+            {
+                //Before we switch targets we need to clear that the old target is the target of this.
+                if (currentTarget != null)
+                {
+                    if (currentTarget.clearTargetOnTheseUnits.Contains(this))
+                    {
+                        currentTarget.clearTargetOnTheseUnits.Remove(this);
+                    }
+                }
+
+                currentTarget = value;
+
+                //it's possible we set it to null, we cant add to null
+                if (currentTarget != null)
+                {
+                    currentTarget.clearTargetOnTheseUnits.Add(this);
+                }
+            }
+        }
+
+        protected BaseCharacter currentTarget;
+
+        //we need this to prevent dispose issues with currenttarget
+        public List<BaseCharacter> clearTargetOnTheseUnits = new List<BaseCharacter>();
+
         public List<BaseCharacter> unitsThatNeedToBeSignaledOnDeath = new List<BaseCharacter>();
 
         public bool unitHasReachedEnemyHomeBase = false;
@@ -98,19 +126,6 @@ namespace Erikduss
             currentAnimatedSprite = animatedSpritesAgeBased[((int)currentAge)];
             currentAnimatedSprite.Visible = true;
 
-            if (characterOwner == Enums.TeamOwner.TEAM_02)
-			{
-				movementSpeed = -movementSpeed; // this one needs to go the other direction.
-				currentAnimatedSprite.FlipH = true;
-                CollisionLayer = 0b100;
-                CollisionMask = 0b100111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
-            }
-            else
-            {
-                CollisionLayer = 0b10;
-                CollisionMask = 0b1000111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
-            }
-
             if(loadDefaultValues && unitType != Enums.UnitTypes.TrainingDummy)
             {
                 //Set the default values
@@ -123,6 +138,19 @@ namespace Erikduss
 
                 detectionRange = defaultUnitValues.unitDetectionRange;
                 movementSpeed = defaultUnitValues.unitMovementSpeed;
+            }
+
+            if (characterOwner == Enums.TeamOwner.TEAM_02)
+            {
+                movementSpeed = -movementSpeed; // this one needs to go the other direction.
+                currentAnimatedSprite.FlipH = true;
+                CollisionLayer = 0b100;
+                CollisionMask = 0b100111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
+            }
+            else
+            {
+                CollisionLayer = 0b10;
+                CollisionMask = 0b1000111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
             }
 
             #region State Machine
@@ -150,6 +178,19 @@ namespace Erikduss
             }
 
             #endregion
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(clearTargetOnTheseUnits.Count > 0)
+            {
+                foreach(BaseCharacter unit in clearTargetOnTheseUnits)
+                {
+                    unit.ClearCurrentTarget();
+                }
+            }
+
+            base.Dispose(disposing);
         }
 
         public override void _Notification(int what)
@@ -469,6 +510,11 @@ namespace Erikduss
                 currentAttackCooldownDuration = currentAttackCooldownDuration * 0.5f;
             }
             else currentAttackCooldownDuration = attackCooldownDuration * 0.5f;
+        }
+
+        public void ClearCurrentTarget()
+        {
+            currentTarget = null;
         }
     }
 }

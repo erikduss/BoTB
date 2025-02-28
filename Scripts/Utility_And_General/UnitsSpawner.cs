@@ -109,12 +109,12 @@ namespace Erikduss
 					GetAndRemoveUnitFromQueue(Enums.TeamOwner.TEAM_02);
 				}
 				//debug, spawn some enemies
-				else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
-				{
-					debugSpawnCounter = 100;
-					AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
-				}
-				else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
+				//else if (team02UnitQueueDictionary.Count <= 0 && debugSpawnCounter == 0)
+				//{
+				//	debugSpawnCounter = 100;
+				//	AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.Warrior, Enums.Ages.AGE_01);
+				//}
+				//else if (team02UnitQueueDictionary.Count <= 0) debugSpawnCounter--;
             }
 			else
 			{
@@ -149,7 +149,7 @@ namespace Erikduss
 
         public void ProcessBuyingUnit(Enums.TeamOwner team, Enums.UnitTypes unitType)
         {
-            Enums.Ages currentAge = Enums.Ages.AGE_01; //This should first check the age of the specific team
+            Enums.Ages currentAge = team == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script.currentAgeOfPlayer : GameManager.Instance.player02Script.currentAgeOfPlayer;
 
             //Add to queue
             AddUnitToQueue(team, unitType, currentAge);
