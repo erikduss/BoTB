@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://di8lr2d0t3ntr"]
+[gd_scene load_steps=17 format=3 uid="uid://di8lr2d0t3ntr"]
 
 [ext_resource type="Texture2D" uid="uid://bx2fwbrnrsnf4" path="res://Assets/UI/Ingame_UI/UnitButtons/Archdruid/BuyArchdruidButton_Default.png" id="1_1x1c0"]
 [ext_resource type="Texture2D" uid="uid://dvqm7v45s6ri3" path="res://Assets/UI/Ingame_UI/UnitButtons/Archdruid/BuyArchdruidButton_Hover.png" id="2_wgua5"]
@@ -9,8 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_70rv3"]
 [ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_cls7u"]
 [ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_pyq0a"]
-[ext_resource type="Texture2D" uid="uid://cqhd7f6ehpqft" path="res://Assets/Characters/Archdruid/Archdruid_TranformedRanged_Age01_Idle01.png" id="10_thnjy"]
-[ext_resource type="Texture2D" uid="uid://bbkffbqhtnftq" path="res://Assets/Characters/Archdruid/Archdruid_TranformedMelee_Age01_Idle01.png" id="11_1ahjs"]
+[ext_resource type="Texture2D" uid="uid://ch4xsojm2t7td" path="res://Assets/Characters/Archdruid/Transform/Archdruid_Age_1_Transform04.png" id="10_oyy6s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
 font_color = Color(0, 0, 0, 1)
@@ -42,7 +41,6 @@ script = ExtResource("4_h5i06")
 thisUnitType = 7
 
 [node name="UnitInfo" type="TextureRect" parent="."]
-visible = false
 z_index = -1
 layout_mode = 0
 offset_left = -74.0
@@ -187,21 +185,14 @@ label_settings = SubResource("LabelSettings_2d86a")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UnitInfo/BoxContainer"]
+[node name="TransformationPreview" type="TextureRect" parent="UnitInfo/BoxContainer"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-
-[node name="RangedVarientPreview" type="TextureRect" parent="UnitInfo/BoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("10_thnjy")
-stretch_mode = 2
-
-[node name="Control" type="Control" parent="UnitInfo/BoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UnitInfo/BoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("11_1ahjs")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_oyy6s")
+expand_mode = 5
+stretch_mode = 5
 
 [connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]

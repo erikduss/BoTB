@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbkffbqhtnftq"
-path="res://.godot/imported/Archdruid_TranformedMelee_Age01_Idle01.png-1ba5338222004138badb22573711ad22.ctex"
+uid="uid://c6m20xunlprbk"
+path="res://.godot/imported/Archdruid_Age_1_Death05.png-21c7789cc0956d59b4d4a6099e5bee80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Archdruid/Archdruid_TranformedMelee_Age01_Idle01.png"
-dest_files=["res://.godot/imported/Archdruid_TranformedMelee_Age01_Idle01.png-1ba5338222004138badb22573711ad22.ctex"]
+source_file="res://Assets/Characters/Archdruid/Death/Archdruid_Age_1_Death05.png"
+dest_files=["res://.godot/imported/Archdruid_Age_1_Death05.png-21c7789cc0956d59b4d4a6099e5bee80.ctex"]
 
 [params]
 

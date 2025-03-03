@@ -249,6 +249,13 @@ namespace Erikduss
                         EffectsAndProjectilesSpawner.Instance.SpawnShamanProjectile(character);
                     }
                     break;
+                case Enums.UnitTypes.Archdruid:
+                    if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
+                    {
+                        executedEffect = true;
+                        //EffectsAndProjectilesSpawner.Instance.SpawnShamanProjectile(character);
+                    }
+                    break;
                 default:
                     GD.PrintErr("UNIT TYPE EFFECT NOT IMPLEMENTED, ATTACK STATE");
                     break;

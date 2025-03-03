@@ -128,11 +128,11 @@ initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wqsl0")
-animation = &"Idle"
+animation = &"Attack"
 autoplay = "Idle"
-frame_progress = 0.454362
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
 animation = &"Idle"
 autoplay = "Idle"

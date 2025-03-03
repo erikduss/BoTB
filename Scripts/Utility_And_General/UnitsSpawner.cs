@@ -18,6 +18,7 @@ namespace Erikduss
         public PackedScene battleMagePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Battlemage.tscn");
         public PackedScene massHealerPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Mass_Healer.tscn");
         public PackedScene shamanPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Shaman.tscn");
+        public PackedScene archdruidPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Archdruid.tscn");
 
         private int lastUsedUnitID = 0;
 
@@ -50,7 +51,7 @@ namespace Erikduss
 
         #region Debug Stuff
 
-        private bool spawnDummies = true;
+        private bool spawnDummies = false;
 
         public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
 
@@ -455,6 +456,28 @@ namespace Erikduss
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedShaman, uniqueUnitName);
+
+                    lastUsedUnitID++;
+
+                    break;
+                case Enums.UnitTypes.Archdruid:
+
+                    //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
+                    Archdruid instantiatedArchdruid = (Archdruid)archdruidPrefab.Instantiate();
+
+                    //determine the position based on the team
+                    instantiatedArchdruid.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
+                    instantiatedArchdruid.characterOwner = team;
+                    instantiatedArchdruid.currentAge = unitAge;
+
+                    instantiatedArchdruid.Name = "instantiatedArchdruid_" + lastUsedUnitID;
+
+                    instantiatedArchdruid.uniqueID = lastUsedUnitID;
+
+                    AddChild(instantiatedArchdruid);
+
+                    uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
+                    AddUnitToAliveDict(team, instantiatedArchdruid, uniqueUnitName);
 
                     lastUsedUnitID++;
 

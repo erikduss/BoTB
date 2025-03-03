@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqhd7f6ehpqft"
-path="res://.godot/imported/Archdruid_TranformedRanged_Age01_Idle01.png-f7af3582a685020c17a96b0a2e8733f4.ctex"
+uid="uid://dg1t2ymd4cpbl"
+path="res://.godot/imported/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png-6b4058731d2e820022510a7291f279d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Archdruid/Archdruid_TranformedRanged_Age01_Idle01.png"
-dest_files=["res://.godot/imported/Archdruid_TranformedRanged_Age01_Idle01.png-f7af3582a685020c17a96b0a2e8733f4.ctex"]
+source_file="res://Assets/Characters/Archdruid/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png"
+dest_files=["res://.godot/imported/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png-6b4058731d2e820022510a7291f279d1.ctex"]
 
 [params]
 

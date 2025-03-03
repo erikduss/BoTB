@@ -31,7 +31,7 @@ namespace Erikduss
 
         #region Currency Variables
 
-        private int startingCurrency = 100;
+        private int startingCurrency = 500;
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
 		private int currencyGainAmount = 1;
