@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ookhn0r18i7k"
-path="res://.godot/imported/Arch_Druid_Concepts.jpg-d596d701449a90139f87600a53505091.ctex"
+uid="uid://tn52jc1j2h23"
+path="res://.godot/imported/Archdruid_Transformed_Age_1_Death04.png-0e20606e22d9e39a76b96c1cd2d33ce4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sai_Files/Characters/Arch_Druid/Arch_Druid_Concepts.jpg"
-dest_files=["res://.godot/imported/Arch_Druid_Concepts.jpg-d596d701449a90139f87600a53505091.ctex"]
+source_file="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death04.png"
+dest_files=["res://.godot/imported/Archdruid_Transformed_Age_1_Death04.png-0e20606e22d9e39a76b96c1cd2d33ce4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqqj2qji507q1"
-path="res://.godot/imported/Arch_Druid_Age_11.png-20a1c096d31aadd50996de992cdb7cbb.ctex"
+uid="uid://tva1ol8ak43o"
+path="res://.godot/imported/Arch_Druid_Age_11.png-2215e467a4e7c0f20fcb9be0e14f5c21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sai_Files/Characters/Arch_Druid/Arch_Druid_Age_11.png"
-dest_files=["res://.godot/imported/Arch_Druid_Age_11.png-20a1c096d31aadd50996de992cdb7cbb.ctex"]
+source_file="res://Assets/Sai_Files/Characters/Arch_Druid/Extra/Arch_Druid_Age_11.png"
+dest_files=["res://.godot/imported/Arch_Druid_Age_11.png-2215e467a4e7c0f20fcb9be0e14f5c21.ctex"]
 
 [params]
 

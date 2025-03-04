@@ -41,6 +41,7 @@ script = ExtResource("4_h5i06")
 thisUnitType = 7
 
 [node name="UnitInfo" type="TextureRect" parent="."]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_left = -74.0
