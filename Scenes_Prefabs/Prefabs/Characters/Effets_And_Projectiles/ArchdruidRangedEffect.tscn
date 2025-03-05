@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf0c35gx0lb58"]
+
+[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/WarriorShockwave.cs" id="1_3uy8p"]
+[ext_resource type="Texture2D" uid="uid://cdxmb8lmp5fhg" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackBeam.png" id="2_uenm2"]
+[ext_resource type="Texture2D" uid="uid://cftjjxs5afue7" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_1.png" id="3_w1vaf"]
+[ext_resource type="Texture2D" uid="uid://cliqs8g2c0r1r" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_2.png" id="4_hkwja"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvfye"]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("3_w1vaf")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_hkwja")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ArchdruidRangedEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
+script = ExtResource("1_3uy8p")
+usedSprite = NodePath("")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(5.54626, -67)
+scale = Vector2(0.854626, 1)
+points = PackedVector2Array(0, 0, 140.943, 46)
+texture = ExtResource("2_uenm2")
+texture_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Line2D"]
+rotation = -1.31598
+sprite_frames = SubResource("SpriteFrames_xvfye")
+autoplay = "default"
