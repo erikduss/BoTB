@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Battle Of The Bookworm"
+config/name="Battle Of The Bookworms"
 run/main_scene="res://Scenes_Prefabs/Scenes/TitleScreen.tscn"
-config/features=PackedStringArray("4.3", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.4", "C#", "Mobile")
+boot_splash/image="uid://dp1txd8rg7mwp"
+config/icon="uid://d3q4v03muanki"
 
 [autoload]
 

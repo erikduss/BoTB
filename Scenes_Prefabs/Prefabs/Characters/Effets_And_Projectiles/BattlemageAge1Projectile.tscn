@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cihveuamoo5gg"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1ProjectilePhysics.cs" id="1_8p23i"]
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1Projectile.cs" id="2_ic06a"]
+[ext_resource type="Script" uid="uid://d1dpwos8gy1r7" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1ProjectilePhysics.cs" id="1_8p23i"]
+[ext_resource type="Script" uid="uid://dot24guovnitm" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1Projectile.cs" id="2_ic06a"]
 [ext_resource type="Texture2D" uid="uid://biao443be0dxv" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_1.png" id="3_04oam"]
 [ext_resource type="Texture2D" uid="uid://d13cxucfmo8x2" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_2.png" id="4_1xx8f"]
 [ext_resource type="Texture2D" uid="uid://dg1t2ymd4cpbl" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_3.png" id="5_udwoy"]

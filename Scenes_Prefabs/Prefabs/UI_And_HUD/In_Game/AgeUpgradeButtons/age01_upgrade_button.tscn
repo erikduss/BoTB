@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4m2i7fhajl2x" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Default_button.png" id="1_044jc"]
 [ext_resource type="Texture2D" uid="uid://cug33b0okulke" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Hover_button.png" id="2_05wng"]
 [ext_resource type="BitMap" uid="uid://dlgq6h1ph38n8" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Clickmask.png" id="3_tka4x"]
-[ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/AgeUpInfoToggler.cs" id="4_02ldh"]
+[ext_resource type="Script" uid="uid://bca60t5d28dsv" path="res://Scripts/UI_And_GUI/In-Game/AgeUpInfoToggler.cs" id="4_02ldh"]
 [ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_hwocq"]
 [ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_cvnfc"]
 

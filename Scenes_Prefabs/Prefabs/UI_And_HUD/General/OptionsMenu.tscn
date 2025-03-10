@@ -1,20 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://c42h4mo5xo22v"]
+[gd_scene load_steps=18 format=3 uid="uid://c42h4mo5xo22v"]
 
-[ext_resource type="Script" path="res://Scripts/UI_And_GUI/General/OptionsMenu.cs" id="1_7upg4"]
-[ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="1_t1oj8"]
-[ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="2_h04ln"]
-[ext_resource type="BitMap" uid="uid://cajmmonjyfu4s" path="res://Assets/UI/ExitButton_ClickMask.png" id="3_6g6k4"]
-[ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="4_4hk8h"]
-[ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="5_sm364"]
-[ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="6_hg1st"]
+[ext_resource type="Script" uid="uid://csqwow26dhc21" path="res://Scripts/UI_And_GUI/General/OptionsMenu.cs" id="1_7upg4"]
+[ext_resource type="Texture2D" uid="uid://du8xf3df6mkg4" path="res://Assets/UI/Slider/CustomGrabber.png" id="2_865cf"]
+[ext_resource type="Texture2D" uid="uid://bg8vxp41lgtt6" path="res://Assets/UI/Slider/CustomGrabberHighlighted.png" id="3_81y48"]
+[ext_resource type="Texture2D" uid="uid://cd50yua83ur0j" path="res://Assets/UI/Slider/sliderBar_1.png" id="4_81y48"]
+[ext_resource type="Texture2D" uid="uid://btb0o52pim7tn" path="res://Assets/UI/Slider/sliderBar_1_fill.png" id="5_4c8os"]
+[ext_resource type="Texture2D" uid="uid://cqj1sn3uh6nwf" path="res://Assets/UI/ReturnButton.png" id="6_81y48"]
+[ext_resource type="Texture2D" uid="uid://y4urwuvyqlk7" path="res://Assets/UI/ReturnButton_Hover.png" id="7_4c8os"]
+[ext_resource type="Texture2D" uid="uid://ct14wryjp55sa" path="res://Assets/UI/SaveButton.png" id="9_4c8os"]
+[ext_resource type="Texture2D" uid="uid://shvy6lk4r1w4" path="res://Assets/UI/SaveButton_Hover.png" id="10_gpqcs"]
+[ext_resource type="BitMap" uid="uid://1be02usg7yph" path="res://Assets/UI/ClickMaskGeneric.png" id="11_d1vfn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c8os"]
+bg_color = Color(0, 0, 0, 0.941176)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yf1e0"]
-font_size = 32
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_adsjs"]
 font_size = 32
 
-[node name="OptionsMenu" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_81y48"]
+content_margin_top = 48.0
+texture = ExtResource("4_81y48")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gpqcs"]
+texture = ExtResource("5_4c8os")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4c8os"]
+texture = ExtResource("5_4c8os")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81y48"]
+bg_color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,19 +47,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7upg4")
+musicAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioPercentage")
+musicAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider")
+otherAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioVolumePercentage")
+otherAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider")
+screenDragSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivityValue")
+screenDragSensitivitySlider = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider")
+screenSidesSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesValue")
+screenSidesSensitivitySlider = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider")
+displayModeOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode/DisplayModeOptionButton")
+screenResolutionsOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton")
+limitFPSOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS/LimitFPSOptionButton")
+fpsLimitSlider = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider")
+fpsLimitValueLabel = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitValue")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4c8os")
 
-[node name="AudioSection" type="Control" parent="Panel"]
-anchors_preset = 0
-offset_top = 90.0
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 0
 offset_right = 1920.0
-offset_bottom = 390.0
+offset_bottom = 1080.0
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 42
+tab_alignment = 1
+current_tab = 0
 
-[node name="Label" type="Label" parent="Panel/AudioSection"]
+[node name="Audio Settings" type="Control" parent="Panel/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="AudioSection" type="Control" parent="Panel/TabContainer/Audio Settings"]
+anchors_preset = 0
+offset_top = 59.0
+offset_right = 1920.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -43,26 +95,322 @@ label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSliderSection" type="Control" parent="Panel/AudioSection"]
+[node name="MusicSliderSection" type="Control" parent="Panel/TabContainer/Audio Settings/AudioSection"]
 anchors_preset = 0
-offset_left = 480.0
-offset_top = 60.0
-offset_right = 1440.0
-offset_bottom = 100.0
+offset_left = 360.0
+offset_top = 100.0
+offset_right = 1560.0
+offset_bottom = 140.0
 
-[node name="Label" type="Label" parent="Panel/AudioSection/MusicSliderSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Music Volume"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="HSlider" type="HSlider" parent="Panel/AudioSection/MusicSliderSection"]
+[node name="MusicAudioSlider" type="HSlider" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
 layout_mode = 0
-offset_left = 250.0
-offset_right = 570.0
+offset_left = 273.0
+offset_top = -8.99998
+offset_right = 773.0
+offset_bottom = 42.0
+scale = Vector2(1.25, 1.25)
+theme_override_icons/grabber = ExtResource("2_865cf")
+theme_override_icons/grabber_highlight = ExtResource("3_81y48")
+theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
+value = 50.0
+
+[node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
+offset_left = 951.0
+offset_right = 1167.0
 offset_bottom = 45.0
-value = 100.0
+text = "50%"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="AlternateAudioSliderSection" type="Control" parent="Panel/TabContainer/Audio Settings/AudioSection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 200.0
+offset_right = 1560.0
+offset_bottom = 240.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Other Volume"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="OtherAudioSlider" type="HSlider" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+layout_mode = 0
+offset_left = 273.0
+offset_top = -8.99998
+offset_right = 773.0
+offset_bottom = 42.0
+scale = Vector2(1.25, 1.25)
+theme_override_icons/grabber = ExtResource("2_865cf")
+theme_override_icons/grabber_highlight = ExtResource("3_81y48")
+theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
+value = 50.0
+
+[node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+offset_left = 951.0
+offset_right = 1167.0
+offset_bottom = 45.0
+text = "50%"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="Gameplay Settings" type="Control" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="GameplaySection" type="Control" parent="Panel/TabContainer/Gameplay Settings"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 59.0
+offset_right = 1920.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 45.0
+text = "Gameplay Settings"
+label_settings = SubResource("LabelSettings_yf1e0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScreenMovementEnabled" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 100.0
+offset_right = 1560.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Screen Movement"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="ScreenMovementOptionButton" type="OptionButton" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
+item_count = 3
+popup/item_0/text = "Use Both"
+popup/item_0/id = 0
+popup/item_1/text = "Only Use Drag Movement"
+popup/item_1/id = 1
+popup/item_2/text = "Only Use Screen Sides Movement"
+popup/item_2/id = 2
+
+[node name="DragSensitivity" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 200.0
+offset_right = 1560.0
+offset_bottom = 280.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Drag Sensitivity"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+offset_left = 273.0
+offset_top = -9.0
+offset_right = 773.0
+offset_bottom = 42.0
+scale = Vector2(1.25, 1.25)
+theme_override_icons/grabber = ExtResource("2_865cf")
+theme_override_icons/grabber_highlight = ExtResource("3_81y48")
+theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
+min_value = -100.0
+
+[node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+offset_left = 951.0
+offset_right = 1167.0
+offset_bottom = 45.0
+text = "Default"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="ScreenSidesSensitivity" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 300.0
+offset_right = 1560.0
+offset_bottom = 380.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Sides Sensitivity"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+offset_left = 273.0
+offset_top = -9.0
+offset_right = 773.0
+offset_bottom = 42.0
+scale = Vector2(1.25, 1.25)
+theme_override_icons/grabber = ExtResource("2_865cf")
+theme_override_icons/grabber_highlight = ExtResource("3_81y48")
+theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
+min_value = -100.0
+
+[node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+offset_left = 951.0
+offset_right = 1167.0
+offset_bottom = 45.0
+text = "Default"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="Graphics Settings" type="Control" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="GraphicsSection" type="Control" parent="Panel/TabContainer/Graphics Settings"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 59.0
+offset_right = 1920.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 45.0
+text = "Graphics Settings"
+label_settings = SubResource("LabelSettings_yf1e0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScreenMode" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 100.0
+offset_right = 1560.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Display Mode"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="DisplayModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
+
+[node name="ScreenResolution" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 200.0
+offset_right = 1560.0
+offset_bottom = 280.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Screen Resolution"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="ScreenResolutionOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
+
+[node name="LimitFPS" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 300.0
+offset_right = 1560.0
+offset_bottom = 380.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Limit FPS"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS"]
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
+item_count = 3
+popup/item_0/text = "No Limit"
+popup/item_0/id = 0
+popup/item_1/text = "Limit FPS"
+popup/item_1/id = 1
+popup/item_2/text = "Vsync Limit"
+popup/item_2/id = 2
+
+[node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 400.0
+offset_right = 1560.0
+offset_bottom = 480.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS Limit"
+label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+offset_left = 273.0
+offset_top = -9.0
+offset_right = 773.0
+offset_bottom = 42.0
+scale = Vector2(1.25, 1.25)
+theme_override_icons/grabber = ExtResource("2_865cf")
+theme_override_icons/grabber_highlight = ExtResource("3_81y48")
+theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
+min_value = 15.0
+max_value = 500.0
+value = 144.0
+
+[node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+offset_left = 951.0
+offset_right = 1167.0
+offset_bottom = 45.0
+text = "144"
+label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="BottomButtons" type="Control" parent="Panel"]
 anchors_preset = 0
@@ -75,18 +423,18 @@ layout_mode = 0
 offset_left = 450.0
 offset_right = 706.0
 offset_bottom = 256.0
-texture_normal = ExtResource("1_t1oj8")
-texture_hover = ExtResource("2_h04ln")
-texture_click_mask = ExtResource("3_6g6k4")
+texture_normal = ExtResource("6_81y48")
+texture_hover = ExtResource("7_4c8os")
+texture_click_mask = ExtResource("11_d1vfn")
 
 [node name="SaveButton" type="TextureButton" parent="Panel/BottomButtons"]
 layout_mode = 0
 offset_left = 1250.0
 offset_right = 1506.0
 offset_bottom = 256.0
-texture_normal = ExtResource("4_4hk8h")
-texture_hover = ExtResource("5_sm364")
-texture_click_mask = ExtResource("6_hg1st")
+texture_normal = ExtResource("9_4c8os")
+texture_hover = ExtResource("10_gpqcs")
+texture_click_mask = ExtResource("11_d1vfn")
 
 [connection signal="pressed" from="Panel/BottomButtons/ReturnButton" to="." method="ReturnButtonPressed"]
 [connection signal="pressed" from="Panel/BottomButtons/SaveButton" to="." method="SaveButtonPressed"]

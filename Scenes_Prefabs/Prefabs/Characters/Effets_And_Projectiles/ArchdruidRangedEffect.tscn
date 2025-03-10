@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bf0c35gx0lb58"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/WarriorShockwave.cs" id="1_3uy8p"]
+[ext_resource type="Script" uid="uid://c6beincon6o0y" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/WarriorShockwave.cs" id="1_3uy8p"]
 [ext_resource type="Texture2D" uid="uid://cdxmb8lmp5fhg" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackBeam.png" id="2_uenm2"]
 [ext_resource type="Texture2D" uid="uid://cftjjxs5afue7" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_1.png" id="3_w1vaf"]
 [ext_resource type="Texture2D" uid="uid://cliqs8g2c0r1r" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_2.png" id="4_hkwja"]
@@ -19,9 +19,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ArchdruidRangedEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
+[node name="ArchdruidRangedEffect" type="Node2D"]
 script = ExtResource("1_3uy8p")
-usedSprite = NodePath("")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(5.54626, -67)

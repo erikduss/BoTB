@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7gh5nd0c74i1"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="1_kplma"]
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_tbw5w"]
+[ext_resource type="Script" uid="uid://2wil4ju2tc1n" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="1_kplma"]
+[ext_resource type="Script" uid="uid://cs0ovkhs4wh1b" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_tbw5w"]
 [ext_resource type="Texture2D" uid="uid://brwv7gmai70lh" path="res://Assets/Characters/Shaman/Ranger_Age_1_JavelinProjectile.png" id="1_tp6cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://uh36gynkovkq" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Default.png" id="1_78jun"]
 [ext_resource type="Texture2D" uid="uid://c7f8gacke8mca" path="res://Assets/UI/Ingame_UI/UnitButtons/MassHealer/BuyMassHealerButton_Hover.png" id="2_h6run"]
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_g8b31"]
-[ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/UnitInfoToggler.cs" id="4_mte0j"]
+[ext_resource type="Script" uid="uid://br2el52ghxaau" path="res://Scripts/UI_And_GUI/In-Game/UnitInfoToggler.cs" id="4_mte0j"]
 [ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_54m7d"]
 [ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_52boh"]
 [ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="7_d62hm"]

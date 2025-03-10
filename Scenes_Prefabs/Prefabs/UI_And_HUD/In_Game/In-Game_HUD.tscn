@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://bc6fmve3t0dyp"]
 
-[ext_resource type="Script" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
+[ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
 [ext_resource type="PackedScene" uid="uid://h20xvonbt2ea" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn" id="3_lfsql"]
 [ext_resource type="PackedScene" uid="uid://bpkw6t72dibh" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Assassin_buy_button.tscn" id="4_d6m5t"]
@@ -20,8 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://bhavacday4phc" path="res://Assets/UI/Ingame_UI/pauseButton_Default.png" id="18_uchjm"]
 [ext_resource type="Texture2D" uid="uid://boi3w66ew64v6" path="res://Assets/UI/Ingame_UI/pauseButton_Hover.png" id="19_n2dlf"]
 [ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="20_315dt"]
-[ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="21_l704b"]
-[ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="22_7qbk6"]
+[ext_resource type="Texture2D" uid="uid://cqj1sn3uh6nwf" path="res://Assets/UI/ReturnButton.png" id="21_03hh6"]
+[ext_resource type="Texture2D" uid="uid://y4urwuvyqlk7" path="res://Assets/UI/ReturnButton_Hover.png" id="22_ovqk1"]
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="23_x1ort"]
 [ext_resource type="Texture2D" uid="uid://cipuu1vm6nomg" path="res://Assets/UI/OptionsButton.png" id="24_pac7x"]
 [ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="25_uj24m"]
@@ -213,8 +213,8 @@ offset_top = 50.0
 offset_right = 316.0
 offset_bottom = 306.0
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("21_l704b")
-texture_hover = ExtResource("22_7qbk6")
+texture_normal = ExtResource("21_03hh6")
+texture_hover = ExtResource("22_ovqk1")
 texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
 

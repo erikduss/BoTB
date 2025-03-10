@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://darf8monhnptv"]
 
-[ext_resource type="Script" path="res://Scripts/Environment/TileSpriteRandomizer.cs" id="1_tva6o"]
+[ext_resource type="Script" uid="uid://jwrbjs2nu0jb" path="res://Scripts/Environment/TileSpriteRandomizer.cs" id="1_tva6o"]
 [ext_resource type="Texture2D" uid="uid://cjke3aoju2eis" path="res://Assets/Environment/Tiles/Grass_00.png" id="2_psd06"]
 [ext_resource type="Texture2D" uid="uid://ct15aq0y75yi" path="res://Assets/Environment/Tiles/Grass_01.png" id="3_kjrci"]
 [ext_resource type="Texture2D" uid="uid://d6mxbcu2m8yb" path="res://Assets/Environment/Tiles/Grass_02.png" id="4_6tkfl"]

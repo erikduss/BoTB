@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cd1twqv7cyuqs"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/TankBuffEffect.cs" id="1_pwu5h"]
+[ext_resource type="Script" uid="uid://cpykkjwiey7nm" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/TankBuffEffect.cs" id="1_pwu5h"]
 [ext_resource type="Texture2D" uid="uid://dmrgyyqrw6t1a" path="res://Assets/Characters/Tank/BuffEffect/TankBuffEffect_01.png" id="2_8c8l3"]
 
 [node name="TankBuffEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]

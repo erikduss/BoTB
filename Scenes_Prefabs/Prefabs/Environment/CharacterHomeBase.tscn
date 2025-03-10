@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bfp7h5i0papxy"]
 
 [ext_resource type="Texture2D" uid="uid://2kfy0qo6csog" path="res://Assets/Environment/cave.png" id="1_aid5j"]
-[ext_resource type="Script" path="res://Scripts/Environment/HomeBaseManager.cs" id="1_vm5ms"]
+[ext_resource type="Script" uid="uid://bktpk1cbtofc3" path="res://Scripts/Environment/HomeBaseManager.cs" id="1_vm5ms"]
 [ext_resource type="Texture2D" uid="uid://dia2twq24p6e3" path="res://Assets/Environment/cave_Damaged75.png" id="3_n6gou"]
 [ext_resource type="Texture2D" uid="uid://d1yu3vccw1dkw" path="res://Assets/Environment/cave_Damaged50.png" id="4_23axs"]
 [ext_resource type="Texture2D" uid="uid://dq2a7jgh3i6yg" path="res://Assets/Environment/cave_Damaged25.png" id="5_q1eqf"]

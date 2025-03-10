@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://2v64nviadrlf"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Ranger.cs" id="1_ejyat"]
+[ext_resource type="Script" uid="uid://qs3a20qhivj1" path="res://Scripts/Characters/Ranger.cs" id="1_ejyat"]
 [ext_resource type="SpriteFrames" uid="uid://0hil3akmecs6" path="res://Assets/Animation_SpriteFrames/Ranger.tres" id="2_wnj2w"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_kvycl"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_hl85l"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_6vg0w"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_5x4al"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_rddlg"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_wdw20"]
+[ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_5x4al"]
+[ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_rddlg"]
+[ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_wdw20"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
 animations = [{

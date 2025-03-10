@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://hpqxhtyr4a1d"]
 
-[ext_resource type="Script" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/AssassinBleedingEffect.cs" id="1_i4thy"]
+[ext_resource type="Script" uid="uid://d32iol6amlmse" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/AssassinBleedingEffect.cs" id="1_i4thy"]
 [ext_resource type="Texture2D" uid="uid://bb8qnru3aasse" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_01.png" id="2_4vbab"]
 [ext_resource type="Texture2D" uid="uid://dybcrlu3cher3" path="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_01.png" id="2_owcqy"]
 [ext_resource type="Texture2D" uid="uid://bu7l21n8e0x7i" path="res://Assets/Characters/Assassin/BleedingEffect/AssassingBleedEffect_02.png" id="3_8gwyv"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://b3tw6bre5waap"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Enforcer.cs" id="1_yi4rh"]
+[ext_resource type="Script" uid="uid://b8ovewxfxcsej" path="res://Scripts/Characters/Enforcer.cs" id="1_yi4rh"]
 [ext_resource type="Texture2D" uid="uid://nc6d5bdff63j" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-1.png" id="2_gmdwq"]
 [ext_resource type="Texture2D" uid="uid://52v01tcs7jp" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-2.png" id="3_kpg04"]
 [ext_resource type="Texture2D" uid="uid://8xpv5366dbth" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-3.png" id="4_st70d"]
@@ -20,9 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_te2df"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_s0plx"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_2jbuc"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_k8pw7"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_fmlvd"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_ltewy"]
+[ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_k8pw7"]
+[ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_fmlvd"]
+[ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_ltewy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s6htk"]
 animations = [{

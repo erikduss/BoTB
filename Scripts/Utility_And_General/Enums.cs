@@ -39,5 +39,27 @@ namespace Erikduss
 			UNIT_STATS,
 			UNIT_GAMEPLAY_VARIABLES
 		}
+
+		public enum ScreenMovementType
+		{
+			Use_Both,
+			Only_Use_Drag_Movement,
+			Only_Use_Screen_Sides_Movement
+		}
+
+		public enum DisplayMode
+		{
+			Windowed,
+			Fullscreen,
+			Fullscreen_Windowed
+		}
+
+		public enum ScreenResolution
+        {
+			RES_1280x720, 
+			RES_1920x1080, 
+			RES_2560x1440, 
+			RES_3840x2160 
+		}
 	}
 }

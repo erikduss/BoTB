@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dqik63ufinua6"]
 
-[ext_resource type="Script" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/IndividualMeteorLogic.cs" id="1_f13pc"]
+[ext_resource type="Script" uid="uid://cemviyxat4w1h" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/IndividualMeteorLogic.cs" id="1_f13pc"]
 [ext_resource type="Texture2D" uid="uid://dkwmdxxv2ablc" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim1.png" id="1_y63eg"]
 [ext_resource type="Texture2D" uid="uid://cgvb0k0ymxduy" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim2.png" id="2_7126s"]
 [ext_resource type="Texture2D" uid="uid://cxendph3jafny" path="res://Assets/Age_Abilities/Meteor_Shower/Diagonals/Variant_1/Meteor_Diagonal_Variant1_Anim3.png" id="3_oghsu"]
