@@ -43,6 +43,7 @@ namespace Erikduss
 
 		//Gameplay Settings
 		public Enums.ScreenMovementType screenMovementTypeToUse;
+        [Export] public OptionButton screenMovementTypeOptionButton;
 
         [Export] public Label screenDragSensitivityValueLabel;
         [Export] public Slider screenDragSensitivitySlider;
@@ -62,13 +63,24 @@ namespace Erikduss
         public override void _Ready()
 		{
 			LoadScreenResolutions();
+			LoadScreenModes();
 
+			SetDefaultValues();
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
 		}
+
+		private void SetDefaultValues()
+		{
+            screenResolutionsOptionButton.Selected = 1;
+            displayModeOptionButton.Selected = 2;
+
+			limitFPSOptionButton.Selected = 1;
+			screenMovementTypeOptionButton.Selected = 0;
+        }
 
 		private void LoadScreenResolutions()
 		{
@@ -81,8 +93,18 @@ namespace Erikduss
 
 				screenResolutionsOptionButton.AddItem(resolutionText);
             }
+        }
 
-			screenResolutionsOptionButton.Selected = 1;
+		private void LoadScreenModes()
+		{
+            for (int i = 0; i < Enum.GetNames(typeof(Enums.DisplayMode)).Length; i++)
+            {
+                string resolutionText = (((Enums.DisplayMode)i).ToString());
+
+                resolutionText = resolutionText.Replace('_', ' ');
+
+                displayModeOptionButton.AddItem(resolutionText);
+            }
         }
 
 		public void ReturnButtonPressed()
@@ -97,5 +119,54 @@ namespace Erikduss
 		{
 
 		}
-	}
+
+		public void MusicAudioSliderOnValueChanged(float value)
+		{
+			musicAudioPercentage.Text = value.ToString() + "%";
+		}
+
+        public void OtherAudioSliderOnValueChanged(float value)
+        {
+            otherAudioPercentage.Text = value.ToString() + "%";
+        }
+
+        public void ScreenDragSensitivitySliderOnValueChanged(float value)
+        {
+			string newValueString = value.ToString();
+
+
+            if (value == 0)
+			{
+				newValueString = "Default";
+			}
+			else if(value > 0)
+			{
+				newValueString = "+" + newValueString;
+			}
+
+            screenDragSensitivityValueLabel.Text = newValueString;
+        }
+
+        public void ScreenSidesSensitivitySliderOnValueChanged(float value)
+        {
+            string newValueString = value.ToString();
+
+
+            if (value == 0)
+            {
+                newValueString = "Default";
+            }
+            else if (value > 0)
+            {
+                newValueString = "+" + newValueString;
+            }
+
+            screenSidesSensitivityValueLabel.Text = newValueString;
+        }
+
+        public void FPSLimitSliderOnValueChanged(float value)
+        {
+			fpsLimitValueLabel.Text = value.ToString();
+        }
+    }
 }

@@ -20,6 +20,7 @@ script = ExtResource("1_wqroa")
 debugText = NodePath("AdsTestButton/TextEdit")
 
 [node name="AdsTestButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1472.0
 offset_top = 108.0
 offset_right = 1728.0

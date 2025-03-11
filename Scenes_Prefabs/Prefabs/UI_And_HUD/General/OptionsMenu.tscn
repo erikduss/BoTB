@@ -39,7 +39,7 @@ axis_stretch_vertical = 1
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81y48"]
 bg_color = Color(0.450648, 0.450648, 0.450648, 1)
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +51,7 @@ musicAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/
 musicAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider")
 otherAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioVolumePercentage")
 otherAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider")
+screenMovementTypeOptionButton = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton")
 screenDragSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivityValue")
 screenDragSensitivitySlider = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider")
 screenSidesSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesValue")
@@ -124,6 +125,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8o
 value = 50.0
 
 [node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
+layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
 offset_bottom = 45.0
@@ -160,6 +162,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8o
 value = 50.0
 
 [node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
 offset_bottom = 45.0
@@ -230,6 +233,7 @@ text = "Drag Sensitivity"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
 offset_right = 773.0
@@ -243,6 +247,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8o
 min_value = -100.0
 
 [node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
 offset_bottom = 45.0
@@ -265,6 +270,7 @@ text = "Sides Sensitivity"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
 offset_right = 773.0
@@ -278,6 +284,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8o
 min_value = -100.0
 
 [node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
 offset_bottom = 45.0
@@ -363,6 +370,7 @@ text = "Limit FPS"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS"]
+layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
@@ -391,6 +399,7 @@ text = "FPS Limit"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
 offset_right = 773.0
@@ -406,6 +415,7 @@ max_value = 500.0
 value = 144.0
 
 [node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
 offset_bottom = 45.0
@@ -436,5 +446,10 @@ texture_normal = ExtResource("9_4c8os")
 texture_hover = ExtResource("10_gpqcs")
 texture_click_mask = ExtResource("11_d1vfn")
 
+[connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider" to="." method="MusicAudioSliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider" to="." method="OtherAudioSliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider" to="." method="ScreenDragSensitivitySliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider" to="." method="ScreenSidesSensitivitySliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider" to="." method="FPSLimitSliderOnValueChanged"]
 [connection signal="pressed" from="Panel/BottomButtons/ReturnButton" to="." method="ReturnButtonPressed"]
 [connection signal="pressed" from="Panel/BottomButtons/SaveButton" to="." method="SaveButtonPressed"]
