@@ -95,7 +95,7 @@ namespace Erikduss
 				ToggleGameIsPaused();
 			}
 
-			if (gameIsPaused) return;
+            if (gameIsPaused) return;
 
 			//Timer for giving the player currency
 			if(currencyGainAmountUpdateTimer > currencyGainRate)

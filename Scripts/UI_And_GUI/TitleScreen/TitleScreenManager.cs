@@ -6,7 +6,8 @@ namespace Erikduss
 	public partial class TitleScreenManager : Control
 	{
         public PackedScene optionsPanelPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn");
-        public PackedScene mobileAdsPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/Titlescreen/MobileAdsPrefab.tscn");
+
+        public PackedScene mobileAdsPrefab;
 
         [Export] public string gameLoadingSceneName = "LoadingToGame";
 
@@ -16,6 +17,8 @@ namespace Erikduss
             //we need to load our ads
             if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             {
+                mobileAdsPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/Titlescreen/MobileAdsPrefab.tscn");
+
                 Control instantiatedAdsComponent = (Control)mobileAdsPrefab.Instantiate();
 
                 AddChild(instantiatedAdsComponent);

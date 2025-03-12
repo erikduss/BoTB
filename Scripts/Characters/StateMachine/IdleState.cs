@@ -51,7 +51,7 @@ namespace Erikduss
 
         public override void TickState(float delta, BaseCharacter character)
         {
-            if(character.isDead) return;
+            if(character.IsDeadOrDestroyed) return;
 
             base.TickState(delta, character);
 
@@ -63,7 +63,7 @@ namespace Erikduss
             {
                 if (character.CurrentTarget != null) 
                 {
-                    if (character.CurrentTarget.currentHealth > 0)
+                    if (character.CurrentTarget.CurrentHealth > 0)
                     {
                         EmitSignal(SignalName.Transitioned, this, "AttackState");
                         return;

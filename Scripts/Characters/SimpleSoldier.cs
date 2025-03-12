@@ -62,7 +62,7 @@ namespace Erikduss
                 }
             }
 
-            if (isDead && !canStillDamage) return; //we cant deal damage if we are dead.
+            if (IsDeadOrDestroyed && !canStillDamage) return; //we cant deal damage if we are dead.
 
             //add any multipliers here
             int damage = unitAttackDamage;

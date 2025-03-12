@@ -8,7 +8,7 @@ namespace Erikduss
         public static GameSettingsLoader Instance { get; private set; }
 
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
-        //public GrassWorldGeneratorSettingsManager grassWorldGeneratorSettingsManager = new GrassWorldGeneratorSettingsManager();
+        public GameUserOptionsManager gameUserOptionsManager = new GameUserOptionsManager();
 
         //Change these to loading in through a file later.
         public bool useAlternativeBloodColor = false;
@@ -19,8 +19,6 @@ namespace Erikduss
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            GD.Print("This is being loaded");
-
             if (Instance == null)
             {
                 Instance = this;
@@ -30,13 +28,13 @@ namespace Erikduss
                 QueueFree();
             }
 
-            //grassWorldGeneratorSettingsManager._Ready();
-
             InitializeWorld();
         }
 
         async void InitializeWorld()
         {
+            gameUserOptionsManager.SetAndLoad();
+
             InitializeAllUnits();
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
@@ -101,6 +99,10 @@ namespace Erikduss
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _Process(double delta)
         {
+            if (Input.IsActionJustPressed("ToggleScreenMode"))
+            {
+                gameUserOptionsManager.ToggleScreenMode();
+            }
         }
 
         /*public void SetValuesOfPlayerGlobalSettings(PlayerGlobalSettingsConfig config)

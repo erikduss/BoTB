@@ -47,7 +47,7 @@ namespace Erikduss
 
         public override void TickState(float delta, BaseCharacter character)
         {
-            if (character.isDead) return;
+            if (character.IsDeadOrDestroyed) return;
 
             base.TickState(delta, character);
 
@@ -313,7 +313,7 @@ namespace Erikduss
 
                 if (distance > character.detectionRange) continue; //chose 144 due to characters being 64x64, plus keeping some margin of error.
 
-                if (frienlyUnit.currentHealth >= frienlyUnit.maxHealth) continue;
+                if (frienlyUnit.CurrentHealth >= frienlyUnit.MaxHealth) continue;
 
                 return true;
             }

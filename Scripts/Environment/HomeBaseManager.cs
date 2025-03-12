@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Erikduss
 {
-	public partial class HomeBaseManager : Node2D
+	public partial class HomeBaseManager : Node2D, IDamageable
 	{
 		[Export] public bool requiresToBeFlipped = false;
         public StaticBody2D StaticBody;
@@ -16,8 +16,25 @@ namespace Erikduss
 
         private int currentBaseSpriteIndex = 0;
 
-        public int currentBaseHealth = 1000;
-        public int maxBaseHealth = 1000;
+        #region Interface Implementation
+        public bool IsDeadOrDestroyed
+        {
+            get { return isDeadOrDestroyed; }
+        }
+        protected bool isDeadOrDestroyed = false;
+
+        public int CurrentHealth
+        {
+            get { return currentHealth; }
+        }
+        protected int currentHealth = 1000; //should be set from a general options static value
+
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
+        protected int maxHealth = 1000; //should be set from a general options static value
+        #endregion
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -98,18 +115,30 @@ namespace Erikduss
         public void TakeDamage(int rawDamage)
         {
             GD.Print("Home base took " + rawDamage + " Damage");
-            currentBaseHealth -= rawDamage;
+            currentHealth -= rawDamage;
+
+            if(currentHealth <= 0)
+            {
+                currentHealth = 0;
+                isDeadOrDestroyed = true;
+            }
+
             UpdateBaseHealthbarAndSprite();
+        }
+
+        public void HealDamage(int rawDamage)
+        {
+            //we dont have a way to heal the homebase yet
         }
 
         private void UpdateBaseHealthbarAndSprite()
         {
             //The health bar filler is 55px wide, which should be equal to 100% of the health.
 
-            float percentageMultiplier = (float)maxBaseHealth / 100f; //should equal 10
+            float percentageMultiplier = (float)MaxHealth / 100f; //should equal 10
             float amountOfHealthPerPercentage = 55f / 100f; //should be 0.55
 
-            float healthPercentage = (float)currentBaseHealth / 10f;
+            float healthPercentage = (float)CurrentHealth / 10f;
 
             if(healthPercentage > 50 && healthPercentage <= 75)
             {

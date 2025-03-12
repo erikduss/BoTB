@@ -40,7 +40,15 @@ namespace Erikduss
 			UNIT_GAMEPLAY_VARIABLES
 		}
 
-		public enum ScreenMovementType
+        public enum UserOptionsConfigHeader
+        {
+            AUDIO_SETTINGS,
+            GAMEPLAY_SETTINGS,
+            GRAPHICS_SETTINGS,
+            ACCESSIBILITY_SETTINGS
+        }
+
+        public enum ScreenMovementType
 		{
 			Use_Both,
 			Only_Use_Drag_Movement,
@@ -50,8 +58,7 @@ namespace Erikduss
 		public enum DisplayMode
 		{
 			Windowed,
-			Fullscreen,
-			Fullscreen_Windowed
+			Fullscreen
 		}
 
 		public enum ScreenResolution
@@ -59,7 +66,8 @@ namespace Erikduss
 			RES_1280x720, 
 			RES_1920x1080, 
 			RES_2560x1440, 
-			RES_3840x2160 
+			RES_3840x2160,
+			OVERRIDE_CUSTOM
 		}
 	}
 }

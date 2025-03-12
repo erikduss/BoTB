@@ -46,7 +46,7 @@ namespace Erikduss
 
         public override void TickState(float delta, BaseCharacter character)
         {
-            if (character.isDead)
+            if (character.IsDeadOrDestroyed)
             {
                 if (unitHasAttacked) return;
 
@@ -159,7 +159,7 @@ namespace Erikduss
                         //chance of applying a bleeding effect = 35 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
-                        if (character.CurrentTarget == null || character.CurrentTarget.isDead) return;
+                        if (character.CurrentTarget == null || character.CurrentTarget.IsDeadOrDestroyed) return;
 
                         int fixedNumber = GameSettingsLoader.Instance.assassinBleedApplyChance - character.CurrentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));
@@ -178,7 +178,7 @@ namespace Erikduss
                         //chance of applying a stun effect = 70 - enemy unit armor
                         //the more armor the unit has, the lower chance of bleeding.
 
-                        if (character.CurrentTarget == null || character.CurrentTarget.isDead) return;
+                        if (character.CurrentTarget == null || character.CurrentTarget.IsDeadOrDestroyed) return;
 
                         int fixedNumber = GameSettingsLoader.Instance.enforcerStunApplyChance - character.CurrentTarget.unitArmor;
                         int randChance = (int)(GD.Randi() % (100));

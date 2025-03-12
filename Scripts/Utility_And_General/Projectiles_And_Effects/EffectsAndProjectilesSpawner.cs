@@ -238,8 +238,8 @@ namespace Erikduss
             foreach (BaseCharacter friendlyTeamUnit in listToSearch)
             {
                 //we cannot heal if they are dead.
-                if (friendlyTeamUnit.isDead) continue;
-                if (friendlyTeamUnit.currentHealth == friendlyTeamUnit.maxHealth) continue; //this could possibly happen with a double heal, we want to prevent adding the icon twice.
+                if (friendlyTeamUnit.IsDeadOrDestroyed) continue;
+                if (friendlyTeamUnit.CurrentHealth == friendlyTeamUnit.MaxHealth) continue; //this could possibly happen with a double heal, we want to prevent adding the icon twice.
 
                 if (checkForMaxDistance)
                 {

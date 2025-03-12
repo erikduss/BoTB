@@ -32,7 +32,7 @@ namespace Erikduss
 
 			if(characterThisEffectIsAttachedTo != null)
 			{
-				if (characterThisEffectIsAttachedTo.isDead)
+				if (characterThisEffectIsAttachedTo.IsDeadOrDestroyed)
 				{
 					destroyTimer = destroyTime;
 

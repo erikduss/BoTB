@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Erikduss
 {
-	public partial class BaseCharacter : CharacterBody2D
+	public partial class BaseCharacter : CharacterBody2D, IDamageable
 	{
         public int uniqueID = -1;
 
@@ -60,7 +60,7 @@ namespace Erikduss
         private float tankBuffDuration = 1.5f;
         private float tankBuffTimer = 0f;
 
-        public bool isDead = false;
+
         private bool startedDeathTimer = false;
         private float deathTimerDuration = 1.5f;
         private float deathTimer = 0f;
@@ -95,8 +95,25 @@ namespace Erikduss
         public float movementSpeed = 50f; //default 50f
         public float detectionRange = 30f; //pixels
 
-        public int currentHealth = 20;
-        public int maxHealth = 20;
+        #region Interface Implementation
+        public bool IsDeadOrDestroyed 
+        { 
+            get { return isDeadOrDestroyed; } 
+        }
+        protected bool isDeadOrDestroyed = false;
+
+        public int CurrentHealth 
+        { 
+            get { return currentHealth; }
+        }
+        protected int currentHealth = 20;
+
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
+        protected int maxHealth = 20;
+        #endregion
 
         public int unitArmor = 20;
         public int unitAttackDamage = 10;
@@ -211,7 +228,7 @@ namespace Erikduss
 		{
             if (GameManager.Instance.gameIsPaused) return;
 
-            if (isDead)
+            if (IsDeadOrDestroyed)
             {
                 if (canStillDamageTimer >= canStillDamageDuration)
                 {
@@ -282,7 +299,7 @@ namespace Erikduss
 
         public override void _PhysicsProcess(double delta)
         {
-            if (GameManager.Instance.gameIsPaused || isDead) return;
+            if (GameManager.Instance.gameIsPaused || IsDeadOrDestroyed) return;
 
             base._PhysicsProcess(delta);
 
@@ -358,7 +375,7 @@ namespace Erikduss
 
         public async virtual void HealDamage(int healAmount)
         {
-            if(isDead) return;
+            if(IsDeadOrDestroyed) return;
 
             currentHealth += healAmount;
 
@@ -383,7 +400,7 @@ namespace Erikduss
 
         public virtual void processDeath()
         {
-            if(isDead) return;
+            if(IsDeadOrDestroyed) return;
 
             if(characterOwner == Enums.TeamOwner.TEAM_01)
             {
@@ -400,7 +417,7 @@ namespace Erikduss
                 }
             }
 
-            isDead = true;
+            isDeadOrDestroyed = true;
 
             CollisionLayer = 0b00;
             CollisionMask = 0b00;
@@ -424,7 +441,7 @@ namespace Erikduss
                 return;
             }
 
-            if(isDead && !canStillDamage) return; //we cant deal damage if we are dead.
+            if(IsDeadOrDestroyed && !canStillDamage) return; //we cant deal damage if we are dead.
 
             //add any multipliers here
             int damage = unitAttackDamage;
