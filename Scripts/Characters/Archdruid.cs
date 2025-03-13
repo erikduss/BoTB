@@ -1,12 +1,18 @@
 using Erikduss;
 using Godot;
 using System;
+using System.Collections;
 
 namespace Erikduss
 {
 	public partial class Archdruid : BaseCharacter
 	{
         //This unit is called "Archdruid"
+
+        public bool isTransformed = false;
+
+        [Export] protected SpriteFrames defaultAnimatedSprite2D;
+        [Export] protected SpriteFrames transformedAnimatedSprite2D;
 
         public override void _Ready()
         {
@@ -48,6 +54,16 @@ namespace Erikduss
             isRangedCharacter = true;
 
             base._Ready();
+        }
+
+        public void ActivateTransformation()
+        {
+            //switch the sprite frames.
+            currentAnimatedSprite.SpriteFrames = isTransformed ? defaultAnimatedSprite2D : transformedAnimatedSprite2D;
+
+            isTransformed = !isTransformed; //update bool
+
+            currentAnimatedSprite.Play("Idle");
         }
     }
 }

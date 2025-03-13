@@ -63,7 +63,14 @@ namespace Erikduss
                         string unitName = thisUnitType.ToString();
                         unitName = unitName.Replace("_", " ");
 
-                        unitNameLabel.LabelSettings.FontSize = 24 + ((7 - unitName.Length) * 2);
+                        int newFontSize = 24 + ((7 - unitName.Length) * 2);
+                        int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
+
+                        Vector2 originalLabelSize = new Vector2(105, 60); //this is the correct size for the name section
+
+                        unitNameLabel.LabelSettings.FontSize = (newFontSize * scaleMultiplier);
+                        unitNameLabel.Scale = new Vector2 (unitNameLabel.Scale.X / scaleMultiplier, unitNameLabel.Scale.Y / scaleMultiplier);
+                        unitNameLabel.Size = originalLabelSize * scaleMultiplier;
 
                         unitNameLabel.Text = unitName;
                     }
@@ -78,6 +85,20 @@ namespace Erikduss
                         if (labelComponent.Name == "UnitCost")
                         {
                             unitCostLabel = labelComponent;
+                            
+                            //int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
+
+                            //Vector2 originalLabelSize = new Vector2(28, 23); //this is the correct size for the name section
+
+                            //unitCostLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                            //unitCostLabel.VerticalAlignment = VerticalAlignment.Center;
+
+                            //unitCostLabel.LabelSettings.FontSize = (16 * scaleMultiplier);
+                            //unitCostLabel.Scale = new Vector2(unitCostLabel.Scale.X / scaleMultiplier, unitCostLabel.Scale.Y / scaleMultiplier);
+                            //unitCostLabel.Size = originalLabelSize * scaleMultiplier;
+
+                            //GD.Print("To font size: " + unitCostLabel.LabelSettings.FontSize);
+
                             unitCostLabel.Text = unitCost.ToString();
                         }
                         else if (labelComponent.Name == "HealthValue")

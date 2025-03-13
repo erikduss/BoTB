@@ -21,8 +21,6 @@ namespace Erikduss
 
         public void ToggleScreenMode()
         {
-            GD.Print(DisplayServer.WindowGetMode());
-
             if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Windowed)
             {
                 DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
@@ -52,8 +50,6 @@ namespace Erikduss
         {
             DisplayServer.WindowMode loadedWindowMode;
 
-            GD.Print("Mode = " + currentlySavedUserOptions.displayMode.ToString());
-
             if (currentlySavedUserOptions.displayMode == Enums.DisplayMode.Windowed) loadedWindowMode = DisplayServer.WindowMode.Windowed;
             else if (currentlySavedUserOptions.displayMode == Enums.DisplayMode.Fullscreen) loadedWindowMode = DisplayServer.WindowMode.ExclusiveFullscreen;
             else loadedWindowMode = DisplayServer.WindowMode.ExclusiveFullscreen; //we will also always need a backup, thats why this is else instead of else if.
@@ -61,6 +57,14 @@ namespace Erikduss
             if(DisplayServer.WindowGetMode() != loadedWindowMode)
             {
                 DisplayServer.WindowSetMode(loadedWindowMode);
+            }
+
+            if(loadedWindowMode == DisplayServer.WindowMode.Windowed)
+            {
+                DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
+                DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.ResizeDisabled, false);
+                DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
+                DisplayServer.WindowSetPosition(new Vector2I(100, 100));
             }
         }
 
@@ -104,8 +108,6 @@ namespace Erikduss
                     newResolution = new Vector2I(xValueResolution, yValueResolution);
                 }
             }
-
-            GD.Print("Loaded screen resolution = " + newResolution);
 
             //we only change the resolution if its not the same
             if (DisplayServer.WindowGetSize() != newResolution)

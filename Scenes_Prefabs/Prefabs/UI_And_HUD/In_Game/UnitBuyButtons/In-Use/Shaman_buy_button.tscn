@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://btjko6ty0wvps"]
 
-[ext_resource type="Texture2D" uid="uid://dyyvsscrf8wv0" path="res://Assets/UI/Ingame_UI/UnitButtons/Tank/BuyTankButton_Default.png" id="1_2wxih"]
-[ext_resource type="Texture2D" uid="uid://b4tl73mv5dilv" path="res://Assets/UI/Ingame_UI/UnitButtons/Tank/BuyTankButton_Hover.png" id="2_ccp7q"]
+[ext_resource type="Texture2D" uid="uid://c71hvvux0ky37" path="res://Assets/UI/Ingame_UI/UnitButtons/Shaman/BuyShamanButton_Default.png" id="1_hi8y7"]
+[ext_resource type="Texture2D" uid="uid://dgktlpjddv3yo" path="res://Assets/UI/Ingame_UI/UnitButtons/Shaman/BuyShamanButton_Hover.png" id="2_x7cnm"]
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_af156"]
 [ext_resource type="Script" uid="uid://br2el52ghxaau" path="res://Scripts/UI_And_GUI/In-Game/UnitInfoToggler.cs" id="4_4w0dx"]
 [ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_y1s82"]
@@ -10,43 +10,40 @@
 [ext_resource type="Texture2D" uid="uid://con05j3gt50un" path="res://Assets/UI/Ingame_UI/Icons/ArmourValue.png" id="8_aejrd"]
 [ext_resource type="Texture2D" uid="uid://ht5ctue3wu44" path="res://Assets/UI/Ingame_UI/Icons/AttackValue.png" id="9_hlnp8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_0jcfk"]
+[sub_resource type="LabelSettings" id="LabelSettings_hi8y7"]
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_wtaue"]
+[sub_resource type="LabelSettings" id="LabelSettings_x7cnm"]
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_k7tb2"]
-font_size = 13
+[sub_resource type="LabelSettings" id="LabelSettings_4akvq"]
+font_size = 26
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_hloiy"]
-font_size = 13
+[sub_resource type="LabelSettings" id="LabelSettings_8xlvp"]
+font_size = 26
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_t1j4p"]
-font_size = 13
+[sub_resource type="LabelSettings" id="LabelSettings_dxdnw"]
+font_size = 26
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2d86a"]
+[sub_resource type="LabelSettings" id="LabelSettings_2fmbg"]
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="TankBuyButton" type="TextureButton"]
-texture_normal = ExtResource("1_2wxih")
-texture_hover = ExtResource("2_ccp7q")
+[node name="ShamanBuyButton" type="TextureButton"]
+texture_normal = ExtResource("1_hi8y7")
+texture_hover = ExtResource("2_x7cnm")
 texture_click_mask = ExtResource("3_af156")
 script = ExtResource("4_4w0dx")
-thisUnitType = 4
-unitHealth = 30
-unitArmour = 30
-unitAttack = 1
-unitDescription = "On attack, increase the attack speed of 2 units behind this."
+thisUnitType = 8
 
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
 z_index = -1
-layout_mode = 0
 offset_left = -74.0
 offset_top = 70.0
 offset_right = 182.0
@@ -62,38 +59,43 @@ offset_right = 263.0
 offset_bottom = 77.0
 
 [node name="UnitCostInfo" type="Control" parent="UnitInfo/HBoxContainer"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 25.0
 offset_right = 65.0
 offset_bottom = 40.0
 
 [node name="UnitCost" type="Label" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
+custom_minimum_size = Vector2(55, 45)
 layout_mode = 2
 offset_top = 19.0
 offset_right = 19.0
 offset_bottom = 42.0
-text = "10"
-label_settings = SubResource("LabelSettings_0jcfk")
+scale = Vector2(0.5, 0.5)
+text = "100"
+label_settings = SubResource("LabelSettings_hi8y7")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="UnitInfo/HBoxContainer/UnitCostInfo"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-offset_left = 15.0
-offset_right = 45.0
+offset_left = 25.0
+offset_right = 55.0
 offset_bottom = 62.0
 texture = ExtResource("6_7q667")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
-custom_minimum_size = Vector2(105, 60)
+custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 offset_left = 73.0
 offset_top = 4.0
 offset_right = 178.0
 offset_bottom = 64.0
 text = "Warrior"
-label_settings = SubResource("LabelSettings_wtaue")
+label_settings = SubResource("LabelSettings_x7cnm")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -119,8 +121,10 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 43.0
 offset_bottom = 20.0
+scale = Vector2(0.5, 0.5)
 text = "20"
-label_settings = SubResource("LabelSettings_k7tb2")
+label_settings = SubResource("LabelSettings_4akvq")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UnitArmourInfo" type="Control" parent="UnitInfo/HBoxContainer"]
@@ -145,8 +149,11 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 35.0
 offset_bottom = 20.0
+scale = Vector2(0.5, 0.5)
 text = "20"
-label_settings = SubResource("LabelSettings_hloiy")
+label_settings = SubResource("LabelSettings_8xlvp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UnitAttackInfo" type="Control" parent="UnitInfo/HBoxContainer"]
 anchors_preset = 0
@@ -170,22 +177,26 @@ offset_left = 20.0
 offset_top = 2.0
 offset_right = 35.0
 offset_bottom = 20.0
+scale = Vector2(0.5, 0.5)
 text = "10"
-label_settings = SubResource("LabelSettings_t1j4p")
+label_settings = SubResource("LabelSettings_dxdnw")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BoxContainer" type="BoxContainer" parent="UnitInfo"]
-custom_minimum_size = Vector2(205, 0)
+custom_minimum_size = Vector2(410, 0)
 layout_mode = 0
 offset_left = 25.0
 offset_top = 85.0
-offset_right = 846.0
-offset_bottom = 125.0
+offset_right = 435.0
+offset_bottom = 370.0
+scale = Vector2(0.5, 0.5)
 
 [node name="UnitDescription" type="Label" parent="UnitInfo/BoxContainer"]
-custom_minimum_size = Vector2(205, 0)
+custom_minimum_size = Vector2(410, 300)
 layout_mode = 2
 text = "Attacks of this unit damages additional units, up to 2 extra units."
-label_settings = SubResource("LabelSettings_2d86a")
+label_settings = SubResource("LabelSettings_2fmbg")
 horizontal_alignment = 1
 autowrap_mode = 3
 

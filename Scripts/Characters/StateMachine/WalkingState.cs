@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Erikduss
 {
@@ -17,7 +16,6 @@ namespace Erikduss
 
         //if in team 1 we only need to check for layer 3 (bit 2) otherwise check for layer 2 (bit 1)
         public uint raycastCollisionMask = 0b1100110;
-        private float stoppingDistance = 42;
 
 
         public override void StateEnter(BaseCharacter character)
@@ -145,7 +143,7 @@ namespace Erikduss
 
                             //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
-                            if (!character.canAttack && distance < (stoppingDistance + 5))
+                            if (!character.canAttack && distance < (GameManager.Instance.unitStoppingDistance + 5))
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
@@ -174,7 +172,7 @@ namespace Erikduss
                             if (distance < 0) distance = -distance;
 
                             //we still need to check if we are close enough to the base to stop.
-                            if (!character.canAttack && distance < (stoppingDistance + 5))
+                            if (!character.canAttack && distance < (GameManager.Instance.unitStoppingDistance + 5))
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
@@ -205,7 +203,7 @@ namespace Erikduss
                             if(!character.checkForAlliesRaycastInstead && character.unitAttackDamage > 0)
                             {
                                 //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
-                                if (distance < stoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
+                                if (distance < GameManager.Instance.unitStoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
                                 {
                                     if (CheckRangedCharacterTarget(character, character.characterOwner))
                                     {
@@ -243,7 +241,7 @@ namespace Erikduss
                                     }
                                 }
 
-                                if (distance < stoppingDistance)
+                                if (distance < GameManager.Instance.unitStoppingDistance)
                                 {
                                     EmitSignal(SignalName.Transitioned, this, "IdleState");
                                     return;
@@ -255,14 +253,14 @@ namespace Erikduss
                             character.CurrentTarget = enemyChar;
 
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
-                            if (!character.canAttack && distance <= stoppingDistance)
+                            if (!character.canAttack && distance <= GameManager.Instance.unitStoppingDistance)
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
                             }
                             else if (character.canAttack)
                             {
-                                if(character.isRangedCharacter || distance <= stoppingDistance)
+                                if(character.isRangedCharacter || distance <= GameManager.Instance.unitStoppingDistance)
                                 {
                                     //Switch to the new state
                                     EmitSignal(SignalName.Transitioned, this, "AttackState");

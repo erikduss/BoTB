@@ -18,7 +18,8 @@ namespace Erikduss
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
 
-		#region Other Unit Settings
+        #region Other Unit Settings
+        public float unitStoppingDistance = 42;
 		public int massHealerHealAmount = 15;
         #endregion
 

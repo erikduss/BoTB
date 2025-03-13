@@ -8,15 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_cvnfc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jcxrx"]
-font_size = 24
+font_size = 48
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l0gp8"]
-font_size = 20
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mkrm2"]
-font_size = 14
+font_size = 28
 font_color = Color(0, 0, 0, 1)
 
 [node name="Age01UpgradeButton" type="TextureButton"]
@@ -42,12 +42,13 @@ mouse_filter = 2
 texture = ExtResource("5_hwocq")
 
 [node name="AgeUpText" type="Label" parent="AgeUpgradeInfo"]
-custom_minimum_size = Vector2(105, 0)
+custom_minimum_size = Vector2(210, 125)
 layout_mode = 2
 offset_left = 73.0
 offset_top = 19.0
 offset_right = 178.0
 offset_bottom = 79.0
+scale = Vector2(0.5, 0.5)
 text = "Age Up"
 label_settings = SubResource("LabelSettings_jcxrx")
 horizontal_alignment = 1
@@ -76,22 +77,25 @@ layout_mode = 2
 offset_left = 90.0
 offset_right = 136.0
 offset_bottom = 28.0
+scale = Vector2(0.5, 0.5)
 text = "1000"
 label_settings = SubResource("LabelSettings_l0gp8")
 
 [node name="BoxContainer" type="BoxContainer" parent="AgeUpgradeInfo"]
-custom_minimum_size = Vector2(205, 0)
+custom_minimum_size = Vector2(410, 0)
 layout_mode = 0
 offset_left = 25.0
 offset_top = 110.0
-offset_right = 846.0
-offset_bottom = 235.0
+offset_right = 435.0
+offset_bottom = 368.0
+scale = Vector2(0.5, 0.5)
 
 [node name="AgeUpDescription" type="Label" parent="AgeUpgradeInfo/BoxContainer"]
-custom_minimum_size = Vector2(205, 0)
+custom_minimum_size = Vector2(410, 225)
 layout_mode = 2
 text = "Upgrades the age you're in. 
-Age upgrading will improve units drastically and empower your special ability."
+Age upgrading will improve units drastically and empower your special ability.
+(Currently unavailable)"
 label_settings = SubResource("LabelSettings_mkrm2")
 horizontal_alignment = 1
 autowrap_mode = 3

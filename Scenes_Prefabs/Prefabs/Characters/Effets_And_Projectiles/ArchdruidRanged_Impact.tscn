@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgl6ldy4wdt4p"]
+
+[ext_resource type="Script" uid="uid://nkub1mftfrp8" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/ArchdruidRangedEffectImpact.cs" id="1_y8dbh"]
+[ext_resource type="Texture2D" uid="uid://dug3g02efj2mw" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png" id="2_nimok"]
+[ext_resource type="Texture2D" uid="uid://ba8b1i2tkrfvk" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_2.png" id="3_8gcgf"]
+[ext_resource type="Texture2D" uid="uid://duscv4ffw3so4" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_3.png" id="4_pox1a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6tpr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nimok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8gcgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pox1a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ArchdruidRanged_Impact" type="Node2D" node_paths=PackedStringArray("animatedSprite2D")]
+script = ExtResource("1_y8dbh")
+animatedSprite2D = NodePath("AnimatedSprite2D")
+destroyTime = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_c6tpr")
+autoplay = "default"
+frame_progress = 0.00956301

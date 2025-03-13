@@ -28,6 +28,9 @@ namespace Erikduss
         public PackedScene healingEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/HealingEffect.tscn");
 
         public PackedScene shamanAge1Projectile = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/ShamanAge1Projectile.tscn");
+
+        public PackedScene archdruidRangedEffect = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/ArchdruidRangedEffect.tscn");
+        public PackedScene archdruidRangedImpact = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/Effets_And_Projectiles/ArchdruidRanged_Impact.tscn");
         #endregion
 
         #region Age Abilities And Effects
@@ -333,6 +336,47 @@ namespace Erikduss
             instantiatedFireball.Name = unitOwner.uniqueID + "_InstantiatedFireball_" + lastUsedVisualEffectID;
 
             AddChild(instantiatedFireball);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnArchdruidRangedAttack(BaseCharacter unitOwner, IDamageable target)
+        {
+            ArchdruidRangedEffect instantiatedEffect = (ArchdruidRangedEffect)archdruidRangedEffect.Instantiate();
+
+            instantiatedEffect.characterThisEffectIsAttachedTo = unitOwner;
+            instantiatedEffect.targetThatWeHit = target;
+
+            float addedXValue = 0;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            instantiatedEffect.GlobalPosition = fixedPosition;
+
+            instantiatedEffect.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
+
+            instantiatedEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedEffect);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnArchdruidRangedAttackImpact(BaseCharacter unitOwner, Vector2 position)
+        {
+            ArchdruidRangedEffectImpact instantiatedEffect = (ArchdruidRangedEffectImpact)archdruidRangedImpact.Instantiate();
+
+            float addedXValue = 0;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(position.X + addedXValue, position.Y + addedYValue);
+            instantiatedEffect.GlobalPosition = fixedPosition;
+
+            instantiatedEffect.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
+
+            instantiatedEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedEffect);
 
             lastUsedVisualEffectID++;
         }

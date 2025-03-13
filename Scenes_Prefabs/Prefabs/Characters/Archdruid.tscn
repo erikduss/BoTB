@@ -1,132 +1,14 @@
-[gd_scene load_steps=34 format=3 uid="uid://dy1ojd3ybmach"]
+[gd_scene load_steps=12 format=3 uid="uid://dy1ojd3ybmach"]
 
 [ext_resource type="Script" uid="uid://b3nicrwtg42tn" path="res://Scripts/Characters/Archdruid.cs" id="1_c5lht"]
-[ext_resource type="Texture2D" uid="uid://cqkg4762dhbsr" path="res://Assets/Characters/Archdruid/Alternative_Attack/Archdruid_Transformed_Age_1_AlternativeAttack01.png" id="2_808ix"]
-[ext_resource type="Texture2D" uid="uid://cselamg8puxl0" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death01.png" id="2_do0wp"]
-[ext_resource type="Texture2D" uid="uid://dumgbr1v7xhcy" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack01.png" id="2_gomva"]
-[ext_resource type="Texture2D" uid="uid://bv8uwbbli8m0x" path="res://Assets/Characters/Archdruid/Idle/Archdruid_Transformed_Age_1_Idle01.png" id="2_xqvh5"]
-[ext_resource type="Texture2D" uid="uid://cheponk3m463v" path="res://Assets/Characters/Archdruid/Idle/Archdruid_Transformed_Age_1_Idle02.png" id="3_1pq04"]
-[ext_resource type="Texture2D" uid="uid://glmu73mwynlb" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death02.png" id="3_08thi"]
-[ext_resource type="Texture2D" uid="uid://1nry856d8b4" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack02.png" id="3_738j0"]
-[ext_resource type="Texture2D" uid="uid://cbi2d6ox58e7s" path="res://Assets/Characters/Archdruid/Alternative_Attack/Archdruid_Transformed_Age_1_AlternativeAttack02.png" id="3_of1m8"]
-[ext_resource type="Texture2D" uid="uid://civydr3collx4" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death03.png" id="4_1xas7"]
-[ext_resource type="Texture2D" uid="uid://daxnk41e1a1hu" path="res://Assets/Characters/Archdruid/Alternative_Attack/Archdruid_Transformed_Age_1_AlternativeAttack03.png" id="4_aisc6"]
-[ext_resource type="Texture2D" uid="uid://cm0w5sfgmqxc1" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack03.png" id="4_o4vtw"]
-[ext_resource type="Texture2D" uid="uid://ompdp2c5gqmv" path="res://Assets/Characters/Archdruid/Idle/Archdruid_Transformed_Age_1_Idle03.png" id="4_srin3"]
-[ext_resource type="Texture2D" uid="uid://huevh8l37uwj" path="res://Assets/Characters/Archdruid/Walk/Archdruid_Transformed_Age_1_Walking01.png" id="5_adnba"]
-[ext_resource type="Texture2D" uid="uid://cr2kyk8sfaq6y" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack04.png" id="5_arexu"]
-[ext_resource type="Texture2D" uid="uid://tn52jc1j2h23" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death04.png" id="5_ce8pr"]
-[ext_resource type="Texture2D" uid="uid://bvjin7pot4k7y" path="res://Assets/Characters/Archdruid/Alternative_Attack/Archdruid_Transformed_Age_1_AlternativeAttack04.png" id="5_p4pli"]
-[ext_resource type="Texture2D" uid="uid://cn7rtt81y5u00" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death05.png" id="6_jux88"]
-[ext_resource type="Texture2D" uid="uid://da8glmxe7dakv" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack05.png" id="6_k4un2"]
-[ext_resource type="Texture2D" uid="uid://duv2o7v8ht8so" path="res://Assets/Characters/Archdruid/Walk/Archdruid_Transformed_Age_1_Walking02.png" id="6_phmy2"]
-[ext_resource type="Texture2D" uid="uid://c6ss5wwnuvgcr" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack06.png" id="7_ajk8u"]
-[ext_resource type="Texture2D" uid="uid://d0r5mkflhuae3" path="res://Assets/Characters/Archdruid/Death/Archdruid_Transformed_Age_1_Death06.png" id="7_dnlkq"]
-[ext_resource type="Texture2D" uid="uid://blpuqr2npc8xg" path="res://Assets/Characters/Archdruid/Walk/Archdruid_Transformed_Age_1_Walking03.png" id="7_kt556"]
-[ext_resource type="Texture2D" uid="uid://c2nktma2fqmkh" path="res://Assets/Characters/Archdruid/Attack/Archdruid_Transformed_Age_1_Attack07.png" id="8_bs4lx"]
+[ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Archdruid.tres" id="2_0sdww"]
+[ext_resource type="SpriteFrames" uid="uid://c45m8u8gsn3xe" path="res://Assets/Animation_SpriteFrames/Archdruid_Transformed.tres" id="3_4veot"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="22_5axaf"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="23_rot0s"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="24_770nm"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="25_iivj8"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="26_bs43b"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="27_28tm7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rs8po"]
-animations = [{
-"frames": [{
-"duration": 1.2,
-"texture": ExtResource("2_808ix")
-}, {
-"duration": 0.33,
-"texture": ExtResource("3_of1m8")
-}, {
-"duration": 1.2,
-"texture": ExtResource("4_aisc6")
-}, {
-"duration": 0.75,
-"texture": ExtResource("5_p4pli")
-}],
-"loop": false,
-"name": &"Alternative_Attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.33,
-"texture": ExtResource("2_gomva")
-}, {
-"duration": 0.33,
-"texture": ExtResource("3_738j0")
-}, {
-"duration": 0.33,
-"texture": ExtResource("4_o4vtw")
-}, {
-"duration": 0.33,
-"texture": ExtResource("5_arexu")
-}, {
-"duration": 0.33,
-"texture": ExtResource("6_k4un2")
-}, {
-"duration": 0.33,
-"texture": ExtResource("7_ajk8u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_bs4lx")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.5,
-"texture": ExtResource("2_do0wp")
-}, {
-"duration": 0.5,
-"texture": ExtResource("3_08thi")
-}, {
-"duration": 0.7,
-"texture": ExtResource("4_1xas7")
-}, {
-"duration": 0.7,
-"texture": ExtResource("5_ce8pr")
-}, {
-"duration": 0.7,
-"texture": ExtResource("6_jux88")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_dnlkq")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_xqvh5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1pq04")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_srin3")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_adnba")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_phmy2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_kt556")
-}],
-"loop": true,
-"name": &"Walking",
-"speed": 5.0
-}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
 animations = [{
@@ -157,15 +39,15 @@ size = Vector2(41, 39)
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_c5lht")
+defaultAnimatedSprite2D = ExtResource("2_0sdww")
+transformedAnimatedSprite2D = ExtResource("3_4veot")
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
-sprite_frames = SubResource("SpriteFrames_rs8po")
+sprite_frames = ExtResource("2_0sdww")
 animation = &"Attack"
 autoplay = "Idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false

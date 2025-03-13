@@ -22,6 +22,8 @@ namespace Erikduss
         {
             base.StateEnter(character);
 
+            CheckAttackModeForHybridCharacters(character);
+
             playedAttackAnimation = false;
             enableTimer = true;
         }
@@ -80,6 +82,14 @@ namespace Erikduss
 
                 //we deal damage through the projectile
                 if(!character.isRangedCharacter) character.DealDamage();
+                else if(character.unitType == Enums.UnitTypes.Archdruid)
+                {
+                    //we also have a melee attack that should do damage with this.
+                    if(currentAttackAnimationName == "Alternative_Attack")
+                    {
+                        character.DealDamage();
+                    }
+                }
 
                 if (character.isRangedCharacter)
                 {
@@ -253,12 +263,118 @@ namespace Erikduss
                     if ((attackDuration - attackTimer) < 0.1f && !executedEffect)
                     {
                         executedEffect = true;
-                        //EffectsAndProjectilesSpawner.Instance.SpawnShamanProjectile(character);
+
+                        Archdruid currentDruidScript = (Archdruid)character;
+
+                        if (!currentDruidScript.isTransformed)
+                        {
+                            currentDruidScript.ActivateTransformation();
+                            return;
+                        }
+
+                        if(currentAttackAnimationName == "Attack")
+                        {
+                            IDamageable targetThatWeHit;
+                            bool weCanActuallyHitIt = true;
+                            float marginOfErrorValue = 5f; //this is in case a unit has moved or anything
+
+                            if (currentDruidScript.CurrentTarget != null)
+                            {
+                                targetThatWeHit = currentDruidScript.CurrentTarget;
+
+                                float distance = currentDruidScript.CurrentTarget.GlobalPosition.X - character.GlobalPosition.X;
+                                if (distance < 0) distance = -distance; //normalize
+
+                                if(distance > (currentDruidScript.detectionRange + marginOfErrorValue)) weCanActuallyHitIt = false;
+                            }
+                            else
+                            {
+                                HomeBaseManager baseThatWeHit = character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.team02HomeBase : GameManager.Instance.team01HomeBase;
+                                targetThatWeHit = baseThatWeHit;
+
+                                float distance = baseThatWeHit.GlobalPosition.X - character.GlobalPosition.X;
+                                if (distance < 0) distance = -distance; //normalize
+
+                                if (distance > (currentDruidScript.detectionRange + marginOfErrorValue)) weCanActuallyHitIt = false;
+                            }
+
+                            if(weCanActuallyHitIt && targetThatWeHit != null)
+                            {
+                                EffectsAndProjectilesSpawner.Instance.SpawnArchdruidRangedAttack(character, targetThatWeHit);
+                            }
+                            else
+                            {
+                                if (!weCanActuallyHitIt)
+                                {
+                                    GD.PrintErr("ERROR, The target of the druid's ranged attack is out of range");
+                                }
+                                if (targetThatWeHit != null)
+                                {
+                                    GD.PrintErr("ERROR, The target of the druid's ranged attack is null");
+                                }
+                            }
+                        }
                     }
                     break;
                 default:
                     GD.PrintErr("UNIT TYPE EFFECT NOT IMPLEMENTED, ATTACK STATE");
                     break;
+            }
+        }
+
+        private void CheckAttackModeForHybridCharacters(BaseCharacter character)
+        {
+            //in this case we only need to do this for the archdruid
+
+            if (character.unitType != Enums.UnitTypes.Archdruid) return; //add more to this if needed in the future
+
+            if(character.unitType == Enums.UnitTypes.Archdruid)
+            {
+                Archdruid currentDruidScript = (Archdruid)character;
+
+                //we can only do both melee and ranged attacks if we are transformed
+                if (!currentDruidScript.isTransformed)
+                {
+                    return;
+                }
+
+                if (currentDruidScript.CurrentTarget != null)
+                {
+                    float distance = character.CurrentTarget.GlobalPosition.X - character.GlobalPosition.X;
+                    if (distance < 0) distance = -distance; //normalize
+
+                    if (distance <= GameManager.Instance.unitStoppingDistance)
+                    {
+                        //we want to do a melee attack instead
+                        currentAttackAnimationName = "Alternative_Attack";
+                        attackDuration = 0.6f;
+                    }
+                    else
+                    {
+                        currentAttackAnimationName = "Attack";
+                        attackDuration = 0.7f;
+                    }
+                }
+                else
+                {
+                    //we are probably hitting the base
+                    int enemyBasePosition = (int)(character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.team02HomeBase.GlobalPosition.X : GameManager.Instance.team01HomeBase.GlobalPosition.X);
+
+                    float distance = enemyBasePosition - character.GlobalPosition.X;
+                    if (distance < 0) distance = -distance; //normalize
+
+                    if (distance <= GameManager.Instance.unitStoppingDistance)
+                    {
+                        //we want to do a melee attack instead
+                        currentAttackAnimationName = "Alternative_Attack";
+                        attackDuration = 0.6f;
+                    }
+                    else
+                    {
+                        currentAttackAnimationName = "Attack";
+                        attackDuration = 0.7f;
+                    }
+                }
             }
         }
     }

@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Globalization;
 using System.Linq;
 
 namespace Erikduss
@@ -109,7 +111,43 @@ namespace Erikduss
 
 		public void ReturnButtonPressed()
 		{
-			if (!hasChangedSettings)
+			GameUserOptionsConfig currSavedConfig = GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions;
+			GameUserOptionsConfig overrideConfig = GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions;
+
+			//check if the audio section is the same
+			if (currSavedConfig.musicVolume != overrideConfig.musicVolume || currSavedConfig.otherVolume != overrideConfig.otherVolume) 
+			{
+				GD.Print("The audio section has changes");
+			}
+
+            //check if the gameplay section is the same
+            if (currSavedConfig.screenMovement != overrideConfig.screenMovement || currSavedConfig.addedDragSensitivity != overrideConfig.addedDragSensitivity ||
+                currSavedConfig.addedSidesSensitivity != overrideConfig.addedSidesSensitivity)
+            {
+                GD.Print("The gameplay section has changes");
+            }
+
+            //check if the graphics section is the same
+            if (currSavedConfig.displayMode != overrideConfig.displayMode || currSavedConfig.screenResolution != overrideConfig.screenResolution || 
+				currSavedConfig.overrideScreenResolution != overrideConfig.overrideScreenResolution || currSavedConfig.limitFPS != overrideConfig.limitFPS ||
+                currSavedConfig.fpsLimit != overrideConfig.fpsLimit)
+			{
+                GD.Print("The graphics section has changes");
+            }
+
+            //check if the Accessibility section is the same
+            if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode)
+            {
+                GD.Print("The accessibility section has changes");
+            }
+
+
+			//if any of the sections have changes, we need to do a popup and warn the player about this and not close the options.
+			//give the player the option to save or to discard
+			//if saving it saves and closes the opions
+			//if discarding it discards and closes the options.
+
+            if (!hasChangedSettings)
 			{
 				QueueFree();
 			}
@@ -123,11 +161,14 @@ namespace Erikduss
 		public void MusicAudioSliderOnValueChanged(float value)
 		{
 			musicAudioPercentage.Text = value.ToString() + "%";
-		}
+			GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.musicVolume = (int)value;
+
+        }
 
         public void OtherAudioSliderOnValueChanged(float value)
         {
             otherAudioPercentage.Text = value.ToString() + "%";
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.otherVolume = (int)value;
         }
 
         public void ScreenDragSensitivitySliderOnValueChanged(float value)
@@ -145,6 +186,8 @@ namespace Erikduss
 			}
 
             screenDragSensitivityValueLabel.Text = newValueString;
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.addedDragSensitivity = (int)value;
         }
 
         public void ScreenSidesSensitivitySliderOnValueChanged(float value)
@@ -162,11 +205,15 @@ namespace Erikduss
             }
 
             screenSidesSensitivityValueLabel.Text = newValueString;
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.addedSidesSensitivity = (int)value;
         }
 
         public void FPSLimitSliderOnValueChanged(float value)
         {
 			fpsLimitValueLabel.Text = value.ToString();
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.fpsLimit = (int)value;
         }
     }
 }
