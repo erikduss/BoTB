@@ -18,21 +18,23 @@ namespace Erikduss
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
 
+        public static float unitGroundYPosition = 815f;
+
         #region Other Unit Settings
-        public float unitStoppingDistance = 42;
-		public int massHealerHealAmount = 15;
+        public static float unitStoppingDistance = 42;
+		public static int massHealerHealAmount = 7;
         #endregion
 
         #region Shop Variables
 
-        public int shopRefreshCost = 5;
-        public int amountOfUnitsInShop = 3;
+        public static int defaultShopRefreshCost = 5;
+        public static int defaultAmountOfUnitsInShop = 3;
 
         #endregion
 
         #region Currency Variables
 
-        private int startingCurrency = 500;
+        private static int startingCurrency = 500;
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
 		private int currencyGainAmount = 1;

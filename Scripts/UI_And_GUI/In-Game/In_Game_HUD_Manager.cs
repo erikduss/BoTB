@@ -126,10 +126,10 @@ namespace Erikduss
 
             if (spendPlayerGold)
 			{
-                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.Instance.shopRefreshCost) return;
+                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost) return;
 
                 //Attempt to spend the currency, if this fails we stop.
-                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.Instance.shopRefreshCost, Enums.TeamOwner.TEAM_01)) return;
+                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01)) return;
             }
 
 			for (int i = unitShopParentNode.GetChildren().Count-1; i >= 0; i--)
@@ -137,7 +137,7 @@ namespace Erikduss
 				unitShopParentNode.GetChild(i).QueueFree();
             }
 
-			for(int i = 0; i < GameManager.Instance.amountOfUnitsInShop; i++)
+			for(int i = 0; i < GameManager.defaultAmountOfUnitsInShop; i++)
 			{
                 Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 

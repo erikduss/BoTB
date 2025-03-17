@@ -143,7 +143,7 @@ namespace Erikduss
 
                             //We dont need to check if we can actually attack it from this range cus we already hit it wiht the raycast.
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy base.
-                            if (!character.canAttack && distance < (GameManager.Instance.unitStoppingDistance + 5))
+                            if (!character.canAttack && distance < (GameManager.unitStoppingDistance + 5))
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
@@ -172,7 +172,7 @@ namespace Erikduss
                             if (distance < 0) distance = -distance;
 
                             //we still need to check if we are close enough to the base to stop.
-                            if (!character.canAttack && distance < (GameManager.Instance.unitStoppingDistance + 5))
+                            if (!character.canAttack && distance < (GameManager.unitStoppingDistance + 5))
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
@@ -203,7 +203,7 @@ namespace Erikduss
                             if(!character.checkForAlliesRaycastInstead && character.unitAttackDamage > 0)
                             {
                                 //Friendly stop distance is a bit bigger than the stopping distance with the enemy.
-                                if (distance < GameManager.Instance.unitStoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
+                                if (distance < GameManager.unitStoppingDistance) //chose a number due to the ranged units having a bigger attack range, but they dont have to stop further away from friendly units.
                                 {
                                     if (CheckRangedCharacterTarget(character, character.characterOwner))
                                     {
@@ -241,7 +241,7 @@ namespace Erikduss
                                     }
                                 }
 
-                                if (distance < GameManager.Instance.unitStoppingDistance)
+                                if (distance < GameManager.unitStoppingDistance)
                                 {
                                     EmitSignal(SignalName.Transitioned, this, "IdleState");
                                     return;
@@ -253,14 +253,14 @@ namespace Erikduss
                             character.CurrentTarget = enemyChar;
 
                             //we need to go to the idle state if we do have a cooldown and are close enough to the enemy.
-                            if (!character.canAttack && distance <= GameManager.Instance.unitStoppingDistance)
+                            if (!character.canAttack && distance <= GameManager.unitStoppingDistance)
                             {
                                 EmitSignal(SignalName.Transitioned, this, "IdleState");
                                 return;
                             }
                             else if (character.canAttack)
                             {
-                                if(character.isRangedCharacter || distance <= GameManager.Instance.unitStoppingDistance)
+                                if(character.isRangedCharacter || distance <= GameManager.unitStoppingDistance)
                                 {
                                     //Switch to the new state
                                     EmitSignal(SignalName.Transitioned, this, "AttackState");
@@ -282,6 +282,20 @@ namespace Erikduss
             }
 
             #endregion
+
+            if (CheckDruidNeedToTransform(character))
+            {
+                Archdruid druid = (Archdruid)character;
+
+                if (druid.isTransformed)
+                {
+                    if (!druid.isTransforming)
+                    {
+                        druid.TransformBack();
+                    }
+                    return;
+                }
+            }
 
             //character.characterBody.Velocity = new Vector2(character.movementSpeed, 0) * delta;
             //character.characterBody.MoveAndSlide();
@@ -386,6 +400,30 @@ namespace Erikduss
             }
 
             return false;
+        }
+
+        private bool CheckDruidNeedToTransform(BaseCharacter character)
+        {
+            if (character.unitType != Enums.UnitTypes.Archdruid) return false;
+
+            Dictionary<string, BaseCharacter> dictionaryToCheck = character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.unitsSpawner.team02AliveUnitDictionary : GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+
+            if (dictionaryToCheck.Count > 0)
+            {
+                BaseCharacter characterToCheck = dictionaryToCheck.First().Value;
+
+                float distance = characterToCheck.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                //if there's an enemy close enough, we dont transform back.
+                if (distance < (character.detectionRange + 15)) return false;
+            }
+
+            //We dont want to transform when we still have an attack cooldown. This is cus we move during this period.
+            if(!character.canAttack) return false;
+
+            return true;
         }
     }
 }

@@ -50,7 +50,8 @@ namespace Erikduss
         {
             if (targetThatWeHit != null)
             {
-                Vector2 newValue = ((Node2D)targetThatWeHit).GlobalPosition - targetingVisualLine.GlobalPosition;
+                Vector2 fixedTargetPosition = new Vector2(((Node2D)targetThatWeHit).GlobalPosition.X, GameManager.unitGroundYPosition);
+                Vector2 newValue = fixedTargetPosition - targetingVisualLine.GlobalPosition;
 
                 if (flipSpite)
                 {

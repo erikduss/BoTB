@@ -1,6 +1,8 @@
 using Erikduss;
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Erikduss
 {
@@ -43,7 +45,15 @@ namespace Erikduss
         private void PlayAttackAnimation(BaseCharacter character)
         {
             playedAttackAnimation = true;
-            character.currentAnimatedSprite.Play(currentAttackAnimationName);
+
+            if (character.currentAnimatedSprite.SpriteFrames.HasAnimation(currentAttackAnimationName))
+            {
+                character.currentAnimatedSprite.Play(currentAttackAnimationName);
+            }
+            else
+            {
+                character.currentAnimatedSprite.Play("Attack");
+            }
         }
 
         public override void TickState(float delta, BaseCharacter character)
@@ -312,6 +322,22 @@ namespace Erikduss
                                 {
                                     GD.PrintErr("ERROR, The target of the druid's ranged attack is null");
                                 }
+
+
+                                Dictionary<string, BaseCharacter> dictionaryToSearch = character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.unitsSpawner.team02AliveUnitDictionary : GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+                                if(dictionaryToSearch.Count > 0)
+                                {
+                                    BaseCharacter targetWeDoubleCheck = dictionaryToSearch.First().Value;
+                                    float distance = targetWeDoubleCheck.GlobalPosition.X - character.GlobalPosition.X;
+
+                                    if (distance < 0) distance = -distance; //normalize
+
+                                    if (distance > (currentDruidScript.detectionRange + marginOfErrorValue))
+                                    {
+                                        GD.Print("We found a target close enough to damage anyways");
+                                        EffectsAndProjectilesSpawner.Instance.SpawnArchdruidRangedAttack(character, targetThatWeHit);
+                                    }
+                                }
                             }
                         }
                     }
@@ -333,8 +359,15 @@ namespace Erikduss
                 Archdruid currentDruidScript = (Archdruid)character;
 
                 //we can only do both melee and ranged attacks if we are transformed
-                if (!currentDruidScript.isTransformed)
+                if (!currentDruidScript.isTransformed || currentDruidScript.isTransforming)
                 {
+                    //we need to prevent the druid from doing damage while transforming.
+                    if (currentDruidScript.isTransforming)
+                    {
+                        unitHasAttacked = true;
+                        playedAttackAnimation = true;
+                    }
+
                     return;
                 }
 
@@ -343,7 +376,7 @@ namespace Erikduss
                     float distance = character.CurrentTarget.GlobalPosition.X - character.GlobalPosition.X;
                     if (distance < 0) distance = -distance; //normalize
 
-                    if (distance <= GameManager.Instance.unitStoppingDistance)
+                    if (distance <= GameManager.unitStoppingDistance)
                     {
                         //we want to do a melee attack instead
                         currentAttackAnimationName = "Alternative_Attack";
@@ -363,7 +396,7 @@ namespace Erikduss
                     float distance = enemyBasePosition - character.GlobalPosition.X;
                     if (distance < 0) distance = -distance; //normalize
 
-                    if (distance <= GameManager.Instance.unitStoppingDistance)
+                    if (distance <= GameManager.unitStoppingDistance)
                     {
                         //we want to do a melee attack instead
                         currentAttackAnimationName = "Alternative_Attack";

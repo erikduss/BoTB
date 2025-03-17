@@ -338,6 +338,8 @@ namespace Erikduss
 
             currentHealth -= fixedDamage;
 
+            EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, rawDamage);
+
             if (currentHealth <= 0) 
             {
                 processDeath();
@@ -380,6 +382,8 @@ namespace Erikduss
             currentHealth += healAmount;
 
             if(currentHealth > maxHealth) currentHealth = maxHealth;
+
+            EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, healAmount, true);
 
             //we need to wait till the effects function is done processing due to changes in the list structure that will give errors.
             while (EffectsAndProjectilesSpawner.Instance.processingHealingEffects)

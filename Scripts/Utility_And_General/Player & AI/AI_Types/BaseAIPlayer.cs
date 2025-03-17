@@ -86,16 +86,16 @@ namespace Erikduss
         {
             if (spendPlayerGold)
             {
-                if (playerCurrentCurrencyAmount < GameManager.Instance.shopRefreshCost) return;
+                if (playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost) return;
 
                 //Attempt to spend the currency, if this fails we stop.
-                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.Instance.shopRefreshCost, Enums.TeamOwner.TEAM_02)) return;
+                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_02)) return;
             }
 
             //we need to clear the shop to make room for the new units.
             currentUnitsInShop.Clear();
 
-            for (int i = 0; i < GameManager.Instance.amountOfUnitsInShop; i++)
+            for (int i = 0; i < GameManager.defaultAmountOfUnitsInShop; i++)
             {
                 Enums.UnitTypes chosenUnitToAddToShop = availableUnitsThatCanBeBought[UnitTheShopRolledFor()];
 

@@ -14,6 +14,10 @@ namespace Erikduss
         [Export] protected SpriteFrames defaultAnimatedSprite2D;
         [Export] protected SpriteFrames transformedAnimatedSprite2D;
 
+        public bool isTransforming = false;
+        private float tranformationTimer = 0;
+        private float transformationDuration = 0.8f;
+
         public override void _Ready()
         {
             //Load Unit Stats
@@ -56,6 +60,30 @@ namespace Erikduss
             base._Ready();
         }
 
+        public override void _Process(double delta)
+        {
+            if (GameManager.Instance.gameIsPaused) return;
+
+            if (!IsDeadOrDestroyed)
+            {
+                //we need to handle transforming back
+                if (isTransforming)
+                {
+                    if(tranformationTimer >= transformationDuration)
+                    {
+                        ActivateTransformation();
+                        isTransforming = false;
+                    }
+                    else
+                    {
+                        tranformationTimer += (float)delta;
+                    }
+                }
+            }
+
+            base._Process(delta);
+        }
+
         public void ActivateTransformation()
         {
             //switch the sprite frames.
@@ -64,6 +92,13 @@ namespace Erikduss
             isTransformed = !isTransformed; //update bool
 
             currentAnimatedSprite.Play("Idle");
+        }
+
+        public void TransformBack()
+        {
+            isTransforming = true;
+            tranformationTimer = 0;
+            currentAnimatedSprite.Play("Transform_Back");
         }
     }
 }

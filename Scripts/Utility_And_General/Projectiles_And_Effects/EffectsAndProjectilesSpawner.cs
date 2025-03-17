@@ -46,7 +46,7 @@ namespace Erikduss
 
         private int lastUsedVisualEffectID = 0;
 
-        public PackedScene trainingDummyFloatingDamage = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn");
+        public PackedScene floatingDamageNumber = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn");
 
         public bool processingHealingEffects = false;
 
@@ -260,7 +260,7 @@ namespace Erikduss
 
                 instantiatedHealingEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
-                friendlyTeamUnit.HealDamage(GameManager.Instance.massHealerHealAmount);
+                friendlyTeamUnit.HealDamage(GameManager.massHealerHealAmount);
                 friendlyTeamUnit.AddChild(instantiatedHealingEffect);
 
                 lastUsedVisualEffectID++;
@@ -369,7 +369,7 @@ namespace Erikduss
             float addedXValue = 0;
             float addedYValue = 2f; //make sure its on the ground.
 
-            Vector2 fixedPosition = new Vector2(position.X + addedXValue, position.Y + addedYValue);
+            Vector2 fixedPosition = new Vector2(position.X + addedXValue, GameManager.unitGroundYPosition);
             instantiatedEffect.GlobalPosition = fixedPosition;
 
             instantiatedEffect.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
@@ -420,9 +420,14 @@ namespace Erikduss
             //this.AddChild(instantiatedMeteorImpact);
         }
 
-        public void SpawnDummyTakenDamageNumber(BaseCharacter unitOwner, int damageTaken)
+        public void SpawnFloatingDamageNumber(BaseCharacter unitOwner, int damageTaken, bool isHealingDamage = false)
         {
-            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)trainingDummyFloatingDamage.Instantiate();
+            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+
+            if (isHealingDamage)
+            {
+                instantiatedDamageNumber.isHealingDamageInstead = true;
+            }
 
             instantiatedDamageNumber.SetHealthLabelValue(damageTaken);
             instantiatedDamageNumber.characterThisEffectIsAttachedTo = unitOwner;

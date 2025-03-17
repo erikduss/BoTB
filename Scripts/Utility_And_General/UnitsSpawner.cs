@@ -56,13 +56,13 @@ namespace Erikduss
         public PackedScene trainingDummyPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Characters/TrainingDummy.tscn");
 
         private float dummyStartingXPosition = -740f; //-342
-        private float dummyYPosition = 815f;
+        private float dummyYPosition = GameManager.unitGroundYPosition;
 
         private float dummyXPositionDifference = 41;
 
         private int trainingDummyCurrentCount = 0;
 
-        private int spawnAmountOfTrainingDummies = 15;
+        private int spawnAmountOfTrainingDummies = 1;
 
         #endregion
 

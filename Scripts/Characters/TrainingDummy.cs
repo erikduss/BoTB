@@ -35,8 +35,6 @@ public partial class TrainingDummy : BaseCharacter
         base.TakeDamage(rawDamage);
 
         currentHealthLabel.Text = currentHealth.ToString();
-
-        EffectsAndProjectilesSpawner.Instance.SpawnDummyTakenDamageNumber(this, rawDamage);
     }
 
     public override void processDeath()
