@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "C#", "Mobile")
 boot_splash/image="uid://dp1txd8rg7mwp"
 config/icon="uid://d3q4v03muanki"
 
+[audio]
+
+buses/default_bus_layout="uid://db020m2himdaw"
+
 [autoload]
 
 GameSettingsLoader="*res://Scripts/Utility_And_General/GameData/DataManagers/GameSettingsLoader.cs"

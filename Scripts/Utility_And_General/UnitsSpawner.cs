@@ -62,7 +62,7 @@ namespace Erikduss
 
         private int trainingDummyCurrentCount = 0;
 
-        private int spawnAmountOfTrainingDummies = 1;
+        private int spawnAmountOfTrainingDummies = 15;
 
         #endregion
 

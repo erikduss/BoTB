@@ -375,13 +375,17 @@ offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
-item_count = 3
+item_count = 5
 popup/item_0/text = "No Limit"
 popup/item_0/id = 0
 popup/item_1/text = "Limit FPS"
 popup/item_1/id = 1
 popup/item_2/text = "Vsync Limit"
 popup/item_2/id = 2
+popup/item_3/text = "Vsync Adaptive"
+popup/item_3/id = 3
+popup/item_4/text = "Vsync Mailbox"
+popup/item_4/id = 4
 
 [node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
 layout_mode = 3

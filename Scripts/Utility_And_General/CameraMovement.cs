@@ -28,6 +28,8 @@ namespace Erikduss
 		{
 			if (GameManager.Instance.gameIsPaused) return;
 
+            if (GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.screenMovement == Enums.ScreenMovementType.Only_Use_Drag_Movement) return;
+
 			Vector2 local_mouse_pos = GetViewport().GetMousePosition();
 
 			//MOVE THE CAMERA TO THE LEFT
@@ -50,13 +52,26 @@ namespace Erikduss
             //This creates a way smoother experience with the dragging method.
             if (multiplySpeed) fixedSpeedMultiplier = fixedSpeedMultiplier * 0.1f;
 
+            float fixedStepSensitivity = step;
+            //This is a drag movement
+            if (multiplySpeed)
+            {
+                float valueToAddToStep = ((float)GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.addedDragSensitivity) / 12.5f;
+                fixedStepSensitivity += valueToAddToStep;
+            }
+            else
+            {
+                float valueToAddToStep = ((float)GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.addedSidesSensitivity) / 12.5f;
+                fixedStepSensitivity += valueToAddToStep;
+            }
+
             //MOVE THE CAMERA TO THE LEFT
             if (moveLeft)
             {
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X > minimumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X - (step * fixedSpeedMultiplier), mainCamera.Position.Y);
+                    mainCamera.Position = new Vector2(mainCamera.Position.X - (fixedStepSensitivity * fixedSpeedMultiplier), mainCamera.Position.Y);
                 }
             }
             //MOVE THE CAMERA TO THE RIGHT
@@ -65,7 +80,7 @@ namespace Erikduss
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X < maximumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X + (step * fixedSpeedMultiplier), mainCamera.Position.Y);
+                    mainCamera.Position = new Vector2(mainCamera.Position.X + (fixedStepSensitivity * fixedSpeedMultiplier), mainCamera.Position.Y);
                 }
             }
         }
@@ -75,6 +90,8 @@ namespace Erikduss
             base._Input(@event);
 
             if(GameManager.Instance.gameIsPaused) return;
+
+            if (GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.screenMovement == Enums.ScreenMovementType.Only_Use_Screen_Sides_Movement) return;
 
 			if(@event is InputEventScreenDrag)
 			{

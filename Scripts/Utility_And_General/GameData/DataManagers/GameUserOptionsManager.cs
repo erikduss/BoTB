@@ -44,6 +44,94 @@ namespace Erikduss
 
             SetScreenMode();
             SetScreenResolution();
+            SetAudioBusVolume("Music");
+            SetAudioBusVolume("Other");
+            SetFPSLimitingMode();
+            SetHemophobiaMode();
+        }
+
+        public void SetHemophobiaMode()
+        {
+            GameSettingsLoader.Instance.useAlternativeBloodColor = currentlySavedUserOptions.enableHemophobiaMode;
+        }
+
+        public void SetFPSLimitingMode()
+        {
+            switch (currentlySavedUserOptions.limitFPS)
+            {
+                //No limit
+                case 0:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
+                    Engine.MaxFps = 0; //0 means max fps
+                    break;
+                //Limit to number
+                case 1:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Disabled);
+                    Engine.MaxFps = currentlySavedUserOptions.fpsLimit; 
+                    break;
+                //Limit with Vsync
+                case 2:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+                    Engine.MaxFps = 0; //0 means max fps
+                    break;
+                //Vsync Adaptive
+                case 3:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Adaptive);
+                    Engine.MaxFps = 0; //0 means max fps
+                    break;
+                //Vsync Mailbox
+                case 4:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Mailbox);
+                    Engine.MaxFps = 0; //0 means max fps
+                    break;
+                //Default is a wrong number is entered in the file.
+                default:
+                    DisplayServer.WindowSetVsyncMode(DisplayServer.VSyncMode.Enabled);
+                    Engine.MaxFps = 0; //0 means max fps
+                    break;
+            }
+        }
+
+        public void SetNewFPSLimit()
+        {
+            if(currentlySavedUserOptions.limitFPS == 1)
+            {
+                Engine.MaxFps = currentlySavedUserOptions.fpsLimit;
+            }
+            else
+            {
+                Engine.MaxFps = 0;
+            }
+        }
+
+        public void SetAudioBusVolume(string audioBusName)
+        {
+            //DB goes from -80 to +24
+            //every 6 db difference = audio volume is halved/doubled
+            /*
+             * -24 -> 0% Volume
+             * -12 25%
+             * 0 -> 50% Volume
+             * 12 -> 75% 
+             * 24 -> 100% Volume
+             */
+            //Every % is equal to 0,48 DB
+            //For example: 69% = 9,12 DB ((69 - 50) * 0,48)
+
+            float audioVolumePercentage = audioBusName == "Music" ? currentlySavedUserOptions.musicVolume : currentlySavedUserOptions.otherVolume;
+
+            float percentageConvertedToDB = (audioVolumePercentage - 50f) * 0.48f;
+
+            AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(audioBusName), percentageConvertedToDB);
+
+            if(currentlySavedUserOptions.musicVolume <= 0)
+            {
+                AudioServer.SetBusMute(AudioServer.GetBusIndex(audioBusName), true);
+            }
+            else if (AudioServer.IsBusMute(AudioServer.GetBusIndex(audioBusName)))
+            {
+                AudioServer.SetBusMute(AudioServer.GetBusIndex(audioBusName), false);
+            }
         }
 
         public void SetScreenMode()

@@ -350,6 +350,12 @@ namespace Erikduss
                 dictionaryToSearch = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
             }
 
+
+            bool setNewRangedTarget = false;
+            BaseCharacter newTarget = null;
+            BaseCharacter backupTarget = null; //in case the main target dies before it sets this new one.
+            float closestUnitDistance = 1000;
+
             foreach (BaseCharacter oppositeTeamUnit in dictionaryToSearch.Values)
             {
                 float distance = oppositeTeamUnit.GlobalPosition.X - character.GlobalPosition.X;
@@ -368,7 +374,26 @@ namespace Erikduss
                     if (oppositeTeamUnit.GlobalPosition.X > character.GlobalPosition.X) continue;
                 }
 
-                character.CurrentTarget = oppositeTeamUnit;
+                setNewRangedTarget = true;
+
+                if(distance < closestUnitDistance)
+                {
+                    backupTarget = newTarget;
+                    closestUnitDistance = distance;
+                    newTarget = oppositeTeamUnit;
+                }
+            }
+
+            if (setNewRangedTarget)
+            {
+                if(newTarget != null && !newTarget.IsDeadOrDestroyed)
+                {
+                    character.CurrentTarget = newTarget;
+                }
+                else
+                {
+                    character.CurrentTarget = backupTarget;
+                }
 
                 return true;
             }
