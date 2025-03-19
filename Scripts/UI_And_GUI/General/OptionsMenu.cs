@@ -9,11 +9,12 @@ namespace Erikduss
 	public partial class OptionsMenu : Control
 	{
 		//we need to prompt the user if they are sure they want to go back if we have changes.
-		private bool hasChangedSettings = false;
+		public bool hasChangedSettings = false;
 
+        public ChangedSettingsWarning changesWarningPanel;
 
-		//What do we need to do?
-		/*
+        //What do we need to do?
+        /*
 		 * We need to load the settings from a save file.
 		 * We need to save these values in a temporary file here so we can compare the current working file to the saved one.
 		 * We need to be able to save the current working file to the save file.
@@ -36,8 +37,8 @@ namespace Erikduss
 		 * Max FPS setting
 		 */
 
-		//Volumes Settings
-		[Export] public Label musicAudioPercentage;
+        //Volumes Settings
+        [Export] public Label musicAudioPercentage;
         [Export] public Slider musicAudioSlider;
 
         [Export] public Label otherAudioPercentage;
@@ -67,13 +68,46 @@ namespace Erikduss
 			LoadScreenResolutions();
 			LoadScreenModes();
 
-			SetDefaultValues();
+            SetLoadedValues();
+
+            foreach (Node childNode in this.GetChildren())
+            {
+                if(childNode is ChangedSettingsWarning)
+                {
+                    changesWarningPanel = childNode as ChangedSettingsWarning;
+                }
+            }
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
 		}
+
+        public void SetLoadedValues()
+        {
+            GameUserOptionsConfig currSavedConfig = GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions;
+
+            musicAudioSlider.Value = currSavedConfig.musicVolume;
+            otherAudioSlider.Value = currSavedConfig.otherVolume;
+
+            screenMovementTypeOptionButton.Selected = (int)currSavedConfig.screenMovement;
+            screenDragSensitivitySlider.Value = currSavedConfig.addedDragSensitivity;
+            screenSidesSensitivitySlider.Value = currSavedConfig.addedSidesSensitivity;
+
+            displayModeOptionButton.Selected = (int)currSavedConfig.displayMode;
+
+            if(currSavedConfig.overrideScreenResolution != string.Empty)
+            {
+                screenResolutionsOptionButton.Selected = screenResolutionsOptionButton.ItemCount - 1;
+            }
+            else
+            {
+                screenResolutionsOptionButton.Selected = (int)currSavedConfig.screenResolution;
+            }
+            limitFPSOptionButton.Selected = currSavedConfig.limitFPS;
+            fpsLimitSlider.Value = currSavedConfig.fpsLimit;
+        }
 
 		private void SetDefaultValues()
 		{
@@ -114,17 +148,21 @@ namespace Erikduss
 			GameUserOptionsConfig currSavedConfig = GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions;
 			GameUserOptionsConfig overrideConfig = GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions;
 
+            string changesWarning = "You have unsaved changes, do you wish to exit or save these changes? You have the following section(s) with changes: \n";
+
 			//check if the audio section is the same
 			if (currSavedConfig.musicVolume != overrideConfig.musicVolume || currSavedConfig.otherVolume != overrideConfig.otherVolume) 
 			{
-				GD.Print("The audio section has changes");
-			}
+                changesWarning = changesWarning + " - Audio Section";
+                hasChangedSettings = true;
+            }
 
             //check if the gameplay section is the same
             if (currSavedConfig.screenMovement != overrideConfig.screenMovement || currSavedConfig.addedDragSensitivity != overrideConfig.addedDragSensitivity ||
                 currSavedConfig.addedSidesSensitivity != overrideConfig.addedSidesSensitivity)
             {
-                GD.Print("The gameplay section has changes");
+                changesWarning = changesWarning + " - Gameplay Section";
+                hasChangedSettings = true;
             }
 
             //check if the graphics section is the same
@@ -132,13 +170,15 @@ namespace Erikduss
 				currSavedConfig.overrideScreenResolution != overrideConfig.overrideScreenResolution || currSavedConfig.limitFPS != overrideConfig.limitFPS ||
                 currSavedConfig.fpsLimit != overrideConfig.fpsLimit)
 			{
-                GD.Print("The graphics section has changes");
+                changesWarning = changesWarning + " - Graphics Section";
+                hasChangedSettings = true;
             }
 
             //check if the Accessibility section is the same
             if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode)
             {
-                GD.Print("The accessibility section has changes");
+                changesWarning = changesWarning + " - Accessibility Section";
+                hasChangedSettings = true;
             }
 
 
@@ -149,14 +189,21 @@ namespace Erikduss
 
             if (!hasChangedSettings)
 			{
-				QueueFree();
-			}
+                Visible = false;
+            }
+            else
+            {
+                changesWarningPanel.changesDescriptionLabel.Text = changesWarning;
+                changesWarningPanel.attachedOptionsMenu = this;
+
+                changesWarningPanel.Visible = true;
+            }
 		}
 
 		public void SaveButtonPressed()
 		{
-
-		}
+            GameSettingsLoader.Instance.gameUserOptionsManager.CreateNewSaveFile(true);
+        }
 
 		public void MusicAudioSliderOnValueChanged(float value)
 		{
@@ -214,6 +261,26 @@ namespace Erikduss
 			fpsLimitValueLabel.Text = value.ToString();
 
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.fpsLimit = (int)value;
+        }
+
+        public void ScreenMovementTypeSelected(int value)
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.screenMovement = (Enums.ScreenMovementType)value;
+        }
+
+        public void DisplayModeSelected(int value)
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.displayMode = (Enums.DisplayMode)value;
+        }
+
+        public void ScreenResolutionSelected(int value)
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.screenResolution = (Enums.ScreenResolution)value;
+        }
+
+        public void LimitFpsOptionSelected(int value)
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.limitFPS = value;
         }
     }
 }

@@ -46,6 +46,8 @@ namespace Erikduss
 
 		private void MoveCamera(bool moveLeft, bool multiplySpeed, float speedMultiplier)
 		{
+            if(GameManager.Instance.gameIsPaused) return;
+
             float fixedSpeedMultiplier = Mathf.Abs(speedMultiplier);
 
             //this value seems to be between 1 and 40 or so, this fixes the speed to be between 0.1 and 4x the speed.

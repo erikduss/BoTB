@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-    public partial class GameUserOptionsConfig : Node, ICloneable
+    public partial class GameUserOptionsConfig : Node
     {
         #region Audio Settings
 
@@ -33,12 +33,6 @@ namespace Erikduss
         #region Accessibility Settings
 
         public bool enableHemophobiaMode = false; //alternate blood color
-
-        //Allow cloning of this to make sure it doesnt link current last loaded values and the current working values.
-        public object Clone()
-        {
-            return this.MemberwiseClone() as GameUserOptionsConfig;
-        }
 
         #endregion
     }

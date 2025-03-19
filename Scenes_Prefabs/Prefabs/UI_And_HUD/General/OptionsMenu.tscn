@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c42h4mo5xo22v"]
+[gd_scene load_steps=19 format=3 uid="uid://c42h4mo5xo22v"]
 
 [ext_resource type="Script" uid="uid://csqwow26dhc21" path="res://Scripts/UI_And_GUI/General/OptionsMenu.cs" id="1_7upg4"]
 [ext_resource type="Texture2D" uid="uid://du8xf3df6mkg4" path="res://Assets/UI/Slider/CustomGrabber.png" id="2_865cf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://y4urwuvyqlk7" path="res://Assets/UI/ReturnButton_Hover.png" id="7_4c8os"]
 [ext_resource type="Texture2D" uid="uid://ct14wryjp55sa" path="res://Assets/UI/SaveButton.png" id="9_4c8os"]
 [ext_resource type="Texture2D" uid="uid://shvy6lk4r1w4" path="res://Assets/UI/SaveButton_Hover.png" id="10_gpqcs"]
+[ext_resource type="PackedScene" uid="uid://dlkyki2iflhp5" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsChangesWarning.tscn" id="11_4c8os"]
 [ext_resource type="BitMap" uid="uid://1be02usg7yph" path="res://Assets/UI/ClickMaskGeneric.png" id="11_d1vfn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c8os"]
@@ -450,10 +451,18 @@ texture_normal = ExtResource("9_4c8os")
 texture_hover = ExtResource("10_gpqcs")
 texture_click_mask = ExtResource("11_d1vfn")
 
+[node name="OptionsChangesWarning" parent="." instance=ExtResource("11_4c8os")]
+visible = false
+layout_mode = 1
+
 [connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider" to="." method="MusicAudioSliderOnValueChanged"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider" to="." method="OtherAudioSliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton" to="." method="ScreenMovementTypeSelected"]
 [connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider" to="." method="ScreenDragSensitivitySliderOnValueChanged"]
 [connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider" to="." method="ScreenSidesSensitivitySliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode/DisplayModeOptionButton" to="." method="DisplayModeSelected"]
+[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton" to="." method="ScreenResolutionSelected"]
+[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS/LimitFPSOptionButton" to="." method="LimitFpsOptionSelected"]
 [connection signal="value_changed" from="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider" to="." method="FPSLimitSliderOnValueChanged"]
 [connection signal="pressed" from="Panel/BottomButtons/ReturnButton" to="." method="ReturnButtonPressed"]
 [connection signal="pressed" from="Panel/BottomButtons/SaveButton" to="." method="SaveButtonPressed"]

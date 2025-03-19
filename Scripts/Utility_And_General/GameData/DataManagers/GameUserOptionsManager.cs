@@ -267,7 +267,8 @@ namespace Erikduss
             }
 
             //set the values to the ones that were loaded
-            overriddenUserOptions = (GameUserOptionsConfig)currentlySavedUserOptions.Clone();
+            OverrideSaveOptions(currentlySavedUserOptions, false);
+            //overriddenUserOptions = (GameUserOptionsConfig)currentlySavedUserOptions.Clone();
         }
 
         public override void CreateNewSaveFile(bool overrideSaveFile)
@@ -297,12 +298,60 @@ namespace Erikduss
             //we need to make sure we set the values
             if (overrideSaveFile)
             {
-                currentlySavedUserOptions = (GameUserOptionsConfig)userOptionsToSave.Clone();
-                overriddenUserOptions = (GameUserOptionsConfig)userOptionsToSave.Clone();
+                //GameUserOptionsConfig overrideWithThis = (GameUserOptionsConfig)userOptionsToSave.Clone();
+
+                //currentlySavedUserOptions = (GameUserOptionsConfig)overrideWithThis.Clone();
+                //overriddenUserOptions = (GameUserOptionsConfig)overrideWithThis.Clone();
+
+                //Using the clone interface causes the game to crash if changed during the game. To prevent crashing, we use the ugly method.
+                OverrideSaveOptions(userOptionsToSave);
+                OverrideSaveOptions(userOptionsToSave, false);
+
+
+                SetAndLoad();
             }
             else
             {
-                overriddenUserOptions = (GameUserOptionsConfig)userOptionsToSave.Clone();
+                OverrideSaveOptions(userOptionsToSave, false);
+                //overriddenUserOptions = (GameUserOptionsConfig)userOptionsToSave.Clone();
+            }
+        }
+
+        private void OverrideSaveOptions(GameUserOptionsConfig newOptions, bool overrideCurrentSaved = true)
+        {
+            if (overrideCurrentSaved)
+            {
+                currentlySavedUserOptions.musicVolume = newOptions.musicVolume;
+                currentlySavedUserOptions.otherVolume = newOptions.otherVolume;
+
+                currentlySavedUserOptions.screenMovement = newOptions.screenMovement;
+                currentlySavedUserOptions.addedDragSensitivity = newOptions.addedDragSensitivity;
+                currentlySavedUserOptions.addedSidesSensitivity = newOptions.addedSidesSensitivity;
+
+                currentlySavedUserOptions.displayMode = newOptions.displayMode;
+                currentlySavedUserOptions.screenResolution = newOptions.screenResolution;
+                currentlySavedUserOptions.overrideScreenResolution = newOptions.overrideScreenResolution;
+                currentlySavedUserOptions.limitFPS = newOptions.limitFPS;
+                currentlySavedUserOptions.fpsLimit = newOptions.fpsLimit;
+
+                currentlySavedUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
+            }
+            else
+            {
+                overriddenUserOptions.musicVolume = newOptions.musicVolume;
+                overriddenUserOptions.otherVolume = newOptions.otherVolume;
+
+                overriddenUserOptions.screenMovement = newOptions.screenMovement;
+                overriddenUserOptions.addedDragSensitivity = newOptions.addedDragSensitivity;
+                overriddenUserOptions.addedSidesSensitivity = newOptions.addedSidesSensitivity;
+
+                overriddenUserOptions.displayMode = newOptions.displayMode;
+                overriddenUserOptions.screenResolution = newOptions.screenResolution;
+                overriddenUserOptions.overrideScreenResolution = newOptions.overrideScreenResolution;
+                overriddenUserOptions.limitFPS = newOptions.limitFPS;
+                overriddenUserOptions.fpsLimit = newOptions.fpsLimit;
+
+                overriddenUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
             }
         }
     }

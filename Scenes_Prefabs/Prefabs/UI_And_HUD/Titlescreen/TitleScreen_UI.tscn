@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=12 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" uid="uid://bbbnt1bybj6sy" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="2_uv18o"]
@@ -10,8 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="6_iqwi5"]
 [ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="7_06yab"]
 [ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="8_tvhyr"]
+[ext_resource type="PackedScene" uid="uid://c42h4mo5xo22v" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn" id="11_nii0d"]
 
-[node name="TitleScreenUi" type="Control"]
+[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,7 @@ offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7dscw")
+optionsPanel = NodePath("OptionsMenu")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
@@ -110,6 +112,10 @@ size_flags_vertical = 4
 texture_normal = ExtResource("7_06yab")
 texture_hover = ExtResource("8_tvhyr")
 texture_click_mask = ExtResource("5_3h1cd")
+
+[node name="OptionsMenu" parent="." instance=ExtResource("11_nii0d")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="StartButton" to="." method="StartGame"]
 [connection signal="pressed" from="OptionsButton" to="." method="OpenOptions"]

@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlkyki2iflhp5"]
+
+[ext_resource type="Script" uid="uid://c1i8ubdom8vly" path="res://Scripts/UI_And_GUI/General/ChangedSettingsWarning.cs" id="1_extr6"]
+[ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="2_ilf5n"]
+[ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="3_foy7t"]
+[ext_resource type="BitMap" uid="uid://1be02usg7yph" path="res://Assets/UI/ClickMaskGeneric.png" id="4_0ppdg"]
+[ext_resource type="Texture2D" uid="uid://ct14wryjp55sa" path="res://Assets/UI/SaveButton.png" id="5_y20wf"]
+[ext_resource type="Texture2D" uid="uid://shvy6lk4r1w4" path="res://Assets/UI/SaveButton_Hover.png" id="6_xikgd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_krd8t"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_upb8f"]
+font_size = 64
+
+[node name="OptionsChangesWarning" type="Control" node_paths=PackedStringArray("changesDescriptionLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_extr6")
+changesDescriptionLabel = NodePath("Panel/Panel/ChangesDescription")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -245.0
+offset_right = 480.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 590.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="DiscardButton" type="TextureButton" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -256.0
+offset_right = 384.0
+grow_vertical = 0
+texture_normal = ExtResource("2_ilf5n")
+texture_hover = ExtResource("3_foy7t")
+texture_click_mask = ExtResource("4_0ppdg")
+
+[node name="SaveButton" type="TextureButton" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -256.0
+offset_right = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_y20wf")
+texture_hover = ExtResource("6_xikgd")
+texture_click_mask = ExtResource("4_0ppdg")
+
+[node name="ChangesTitleWarning" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 264.0
+scale = Vector2(0.5, 0.5)
+text = "Changes Warning!"
+label_settings = SubResource("LabelSettings_krd8t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChangesDescription" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_top = 158.0
+offset_right = 1920.0
+offset_bottom = 608.0
+scale = Vector2(0.5, 0.5)
+label_settings = SubResource("LabelSettings_upb8f")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Panel/Panel/DiscardButton" to="." method="DiscardChanges"]
+[connection signal="pressed" from="Panel/Panel/SaveButton" to="." method="SaveChanges"]

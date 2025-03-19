@@ -17,6 +17,8 @@ namespace Erikduss
 
 		private List<PackedScene> availableUnitsBuyButtons = new List<PackedScene>();
 
+        [Export] private Control optionsPanel;
+
         #region Buy Buttons
 
         public PackedScene warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn");
@@ -201,6 +203,7 @@ namespace Erikduss
         public void InGameOptionsButtonClicked()
         {
             //We open the in game options menu.
+            optionsPanel.Visible = true;
         }
 
         public void InGameExitButtonClicked()

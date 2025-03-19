@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=33 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="25_uj24m"]
 [ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="26_4q0ij"]
 [ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="27_0wxca"]
+[ext_resource type="PackedScene" uid="uid://c42h4mo5xo22v" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn" id="28_ovqk1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 64
@@ -44,7 +45,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 560
 font_color = Color(0, 0, 0, 1)
 
-[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode")]
+[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "optionsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +56,7 @@ script = ExtResource("1_xnpt7")
 currencyAmountLabel = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/CurrencyContainer/CurrencyAmount")
 unitShopParentNode = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer")
 pauseMenuNode = NodePath("Player_Control_HUD/PauseMenuBackground")
+optionsPanel = NodePath("Player_Control_HUD/OptionsMenu")
 
 [node name="Player_Control_HUD" type="Control" parent="."]
 anchors_preset = 0
@@ -247,6 +249,10 @@ texture_normal = ExtResource("26_4q0ij")
 texture_hover = ExtResource("27_0wxca")
 texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
+
+[node name="OptionsMenu" parent="Player_Control_HUD" instance=ExtResource("28_ovqk1")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]
 [connection signal="pressed" from="Player_Control_HUD/AgeAbility/AgeAbilityContainer/AgeAbilityButton" to="." method="PlayerAbilityButtonPressed"]
