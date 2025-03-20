@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfp7h5i0papxy"]
+[gd_scene load_steps=10 format=3 uid="uid://bfp7h5i0papxy"]
 
 [ext_resource type="Texture2D" uid="uid://2kfy0qo6csog" path="res://Assets/Environment/cave.png" id="1_aid5j"]
 [ext_resource type="Script" uid="uid://bktpk1cbtofc3" path="res://Scripts/Environment/HomeBaseManager.cs" id="1_vm5ms"]
@@ -11,9 +11,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owsrj"]
 size = Vector2(151, 161)
 
-[node name="CharacterHomeBase" type="Node2D" node_paths=PackedStringArray("healthBarFiller")]
+[sub_resource type="LabelSettings" id="LabelSettings_7tecn"]
+font_size = 128
+
+[node name="CharacterHomeBase" type="Node2D" node_paths=PackedStringArray("healthBarFiller", "healthBarValueLabel")]
 script = ExtResource("1_vm5ms")
 healthBarFiller = NodePath("HomeBaseHealthBar/HealthBarFiller")
+healthBarValueLabel = NodePath("HomeBaseHealthBar/HealthValueLabel")
 
 [node name="FullHealthSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_aid5j")
@@ -56,9 +60,9 @@ color = Color(0.228807, 0.227435, 0.215575, 1)
 
 [node name="HealthBarFiller" type="ColorRect" parent="HomeBaseHealthBar"]
 layout_mode = 0
-offset_left = 5.0
+offset_left = 5.2
 offset_top = 24.0
-offset_right = 60.0
+offset_right = 60.2
 offset_bottom = 40.0
 color = Color(0.74902, 0, 0, 1)
 
@@ -68,3 +72,15 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("7_2uu43")
 expand_mode = 2
+
+[node name="HealthValueLabel" type="Label" parent="HomeBaseHealthBar"]
+layout_mode = 0
+offset_left = 5.2
+offset_top = 24.0
+offset_right = 1115.2
+offset_bottom = 344.0
+scale = Vector2(0.05, 0.05)
+text = "1000"
+label_settings = SubResource("LabelSettings_7tecn")
+horizontal_alignment = 1
+vertical_alignment = 1

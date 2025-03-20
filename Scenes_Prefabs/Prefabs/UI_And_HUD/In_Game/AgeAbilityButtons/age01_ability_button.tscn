@@ -112,8 +112,8 @@ label_settings = SubResource("LabelSettings_gxo0j")
 
 [node name="CooldownBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 192.0
+offset_bottom = 192.0
 value = 100.0
 texture_progress = ExtResource("7_lynqq")
 

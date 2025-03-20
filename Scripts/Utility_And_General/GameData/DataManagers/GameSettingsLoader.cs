@@ -7,6 +7,8 @@ namespace Erikduss
 	{
         public static GameSettingsLoader Instance { get; private set; }
 
+        public static bool buildIsADemo = true;
+
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
         public GameUserOptionsManager gameUserOptionsManager = new GameUserOptionsManager();
 

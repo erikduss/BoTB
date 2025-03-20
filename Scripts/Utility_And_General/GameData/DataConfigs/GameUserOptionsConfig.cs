@@ -25,7 +25,7 @@ namespace Erikduss
         public Enums.DisplayMode displayMode = Enums.DisplayMode.Fullscreen;
         public Enums.ScreenResolution screenResolution = Enums.ScreenResolution.RES_1920x1080;
         public string overrideScreenResolution = "";
-        public int limitFPS = 1; //default limit fps to 144.
+        public int limitFPS = 3; //default limit fps to 144.
         public int fpsLimit = 144;
 
         #endregion

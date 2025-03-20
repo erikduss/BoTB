@@ -11,6 +11,9 @@ namespace Erikduss
         public bool isHealingDamageInstead = false;
         private Color overrideColor = new Color(0, 1, 0.5f);
 
+        public bool isHomeBaseDamage = false;
+        private Color homeBaseOverrideColor = new Color(0.5f, 0.5f, 0.5f);
+
         public bool destroyThisAfterTime = true;
         [Export] public float destroyTime = 1f;
 
@@ -26,6 +29,11 @@ namespace Erikduss
             if (isHealingDamageInstead)
             {
                 textureRect.SelfModulate = overrideColor;
+            }
+
+            if (isHomeBaseDamage)
+            {
+                textureRect.SelfModulate = homeBaseOverrideColor;
             }
         }
 

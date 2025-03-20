@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=34 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://drd6t22hn0wvm" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age01_ability_button.tscn" id="16_yjnc7"]
 [ext_resource type="Texture2D" uid="uid://bhavacday4phc" path="res://Assets/UI/Ingame_UI/pauseButton_Default.png" id="18_uchjm"]
 [ext_resource type="Texture2D" uid="uid://boi3w66ew64v6" path="res://Assets/UI/Ingame_UI/pauseButton_Hover.png" id="19_n2dlf"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="20_315dt"]
+[ext_resource type="Texture2D" uid="uid://ues2qumbi1fx" path="res://Assets/UI/Ingame_UI/PauseBackgroundPanel.png" id="20_ovqk1"]
 [ext_resource type="Texture2D" uid="uid://cqj1sn3uh6nwf" path="res://Assets/UI/ReturnButton.png" id="21_03hh6"]
 [ext_resource type="Texture2D" uid="uid://y4urwuvyqlk7" path="res://Assets/UI/ReturnButton_Hover.png" id="22_ovqk1"]
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="23_x1ort"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="25_uj24m"]
 [ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="26_4q0ij"]
 [ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="27_0wxca"]
+[ext_resource type="PackedScene" uid="uid://suxfb1khmqn6" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/GameOverUI.tscn" id="28_5yawq"]
 [ext_resource type="PackedScene" uid="uid://c42h4mo5xo22v" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn" id="28_ovqk1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
@@ -45,7 +46,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 560
 font_color = Color(0, 0, 0, 1)
 
-[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "optionsPanel")]
+[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,6 +57,7 @@ script = ExtResource("1_xnpt7")
 currencyAmountLabel = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/CurrencyContainer/CurrencyAmount")
 unitShopParentNode = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer")
 pauseMenuNode = NodePath("Player_Control_HUD/PauseMenuBackground")
+gameOverNode = NodePath("Player_Control_HUD/GameOverBackground")
 optionsPanel = NodePath("Player_Control_HUD/OptionsMenu")
 
 [node name="Player_Control_HUD" type="Control" parent="."]
@@ -198,28 +200,30 @@ texture_click_mask = ExtResource("12_yp65u")
 [node name="PauseMenuBackground" type="TextureRect" parent="Player_Control_HUD"]
 layout_mode = 0
 offset_left = 700.0
-offset_top = 250.0
+offset_top = 200.0
 offset_right = 956.0
-offset_bottom = 506.0
+offset_bottom = 568.0
 scale = Vector2(2, 2)
-texture = ExtResource("20_315dt")
+texture = ExtResource("20_ovqk1")
 
 [node name="Label" type="Label" parent="Player_Control_HUD/PauseMenuBackground"]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 30.0
-offset_right = 175.0
-offset_bottom = 69.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 4280.0
+offset_bottom = 1210.0
 scale = Vector2(0.05, 0.05)
 text = "PAUSED"
 label_settings = SubResource("LabelSettings_st105")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ReturnButton" type="TextureButton" parent="Player_Control_HUD/PauseMenuBackground"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 50.0
+offset_top = 60.0
 offset_right = 316.0
-offset_bottom = 306.0
+offset_bottom = 316.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("21_03hh6")
 texture_hover = ExtResource("22_ovqk1")
@@ -229,9 +233,9 @@ stretch_mode = 0
 [node name="OptionsButton" type="TextureButton" parent="Player_Control_HUD/PauseMenuBackground"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 125.0
+offset_top = 140.0
 offset_right = 316.0
-offset_bottom = 381.0
+offset_bottom = 396.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("24_pac7x")
 texture_hover = ExtResource("25_uj24m")
@@ -241,14 +245,17 @@ stretch_mode = 0
 [node name="ExitButton" type="TextureButton" parent="Player_Control_HUD/PauseMenuBackground"]
 layout_mode = 0
 offset_left = 60.0
-offset_top = 200.0
+offset_top = 220.0
 offset_right = 316.0
-offset_bottom = 456.0
+offset_bottom = 476.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("26_4q0ij")
 texture_hover = ExtResource("27_0wxca")
 texture_click_mask = ExtResource("23_x1ort")
 stretch_mode = 0
+
+[node name="GameOverBackground" parent="Player_Control_HUD" instance=ExtResource("28_5yawq")]
+layout_mode = 0
 
 [node name="OptionsMenu" parent="Player_Control_HUD" instance=ExtResource("28_ovqk1")]
 visible = false

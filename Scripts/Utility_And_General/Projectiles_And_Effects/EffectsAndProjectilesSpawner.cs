@@ -445,5 +445,25 @@ namespace Erikduss
 
             lastUsedVisualEffectID++;
         }
+
+        public void SpawnHomeBaseFloatingDamageNumber(HomeBaseManager baseOwner, int damageTaken)
+        {
+            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+
+            instantiatedDamageNumber.SetHealthLabelValue(damageTaken);
+
+            float addedXValue = (float)(GD.Randi() % 20);
+            addedXValue -= 20;
+            float addedYValue = -100f;
+
+            Vector2 fixedPosition = new Vector2(baseOwner.GlobalPosition.X + addedXValue, baseOwner.GlobalPosition.Y + addedYValue);
+            instantiatedDamageNumber.GlobalPosition = fixedPosition;
+
+            instantiatedDamageNumber.Name = "InstantiatedBaseDamageNumber_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedDamageNumber);
+
+            lastUsedVisualEffectID++;
+        }
     }
 }

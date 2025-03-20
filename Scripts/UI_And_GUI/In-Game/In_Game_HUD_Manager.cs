@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using static Godot.OpenXRInterface;
 
 namespace Erikduss
 {
@@ -11,8 +10,9 @@ namespace Erikduss
 
 		[Export] Control unitShopParentNode;
         [Export] private Control pauseMenuNode;
+        [Export] private Control gameOverNode;
 
-		public TextureProgressBar abilityCooldownBar;
+        public TextureProgressBar abilityCooldownBar;
 		private AgeAbilityInfoToggler abilityCooldownBarScript;
 
 		private List<PackedScene> availableUnitsBuyButtons = new List<PackedScene>();
@@ -47,6 +47,7 @@ namespace Erikduss
             availableUnitsBuyButtons.Add(shamanBuyButtonPrefab);
 
             HidePauseMenu();
+            gameOverNode.Visible = false;
 
             RefreshUnitShop(false);
 		}
@@ -124,7 +125,7 @@ namespace Erikduss
 
         public void RefreshUnitShop(bool spendPlayerGold = true)
 		{
-            if (GameManager.Instance.gameIsPaused) return;
+            if (GameManager.Instance.gameIsPaused || GameManager.Instance.gameIsFinished) return;
 
             if (spendPlayerGold)
 			{
@@ -211,6 +212,17 @@ namespace Erikduss
             //We return back to the main menu.\
             GameManager.Instance.QueueFree();
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/TitleScreen.tscn");
+        }
+
+        public void GameOverTriggered(string outcomeValue)
+        {
+            GameOverInfoScript gameOverInfoScript = gameOverNode.GetNode<GameOverInfoScript>(gameOverNode.GetPath());
+
+            gameOverInfoScript.outcomeLabel.Text = outcomeValue;
+
+            gameOverNode.Visible = true;
+
+
         }
     }
 }

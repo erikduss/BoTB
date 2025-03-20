@@ -65,7 +65,7 @@ namespace Erikduss
                     if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.StaticBody.GetInstanceId())
                     {
                         //we need to do TakeDamage instead of dealdamage on the basecharacter to apply the fireball damage multiplier.
-                        GameManager.Instance.team02HomeBase.TakeDamage(characterThisEffectIsAttachedTo.unitAttackDamage * fireballDamageMultiplier);
+                        GameManager.Instance.team01HomeBase.TakeDamage(characterThisEffectIsAttachedTo.unitAttackDamage * fireballDamageMultiplier);
                         return;
                     }
                 }

@@ -6,6 +6,8 @@ namespace Erikduss
 {
 	public partial class HomeBaseManager : Node2D, IDamageable
 	{
+        public Enums.TeamOwner homeBaseOwner = Enums.TeamOwner.NONE;
+
 		[Export] public bool requiresToBeFlipped = false;
         public StaticBody2D StaticBody;
 
@@ -13,6 +15,7 @@ namespace Erikduss
         public CollisionShape2D colliderShape;
 
         [Export] public ColorRect healthBarFiller;
+        [Export] public Label healthBarValueLabel;
 
         private int currentBaseSpriteIndex = 0;
 
@@ -27,13 +30,13 @@ namespace Erikduss
         {
             get { return currentHealth; }
         }
-        protected int currentHealth = 1000; //should be set from a general options static value
+        protected int currentHealth = 100; //should be set from a general options static value
 
         public int MaxHealth
         {
             get { return maxHealth; }
         }
-        protected int maxHealth = 1000; //should be set from a general options static value
+        protected int maxHealth = 100; //should be set from a general options static value
         #endregion
 
         // Called when the node enters the scene tree for the first time.
@@ -99,12 +102,18 @@ namespace Erikduss
                 colliderShape.Position = new Vector2(52.5f, colliderShape.Position.Y);
 
                 StaticBody.ForceUpdateTransform();
+
+                homeBaseOwner = Enums.TeamOwner.TEAM_02;
             }
             else
             {
                 StaticBody.CollisionLayer = 0b100000; 
                 StaticBody.CollisionMask = 0b100;
+
+                homeBaseOwner = Enums.TeamOwner.TEAM_01;
             }
+
+            healthBarValueLabel.Text = CurrentHealth.ToString();
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -114,14 +123,18 @@ namespace Erikduss
 
         public void TakeDamage(int rawDamage)
         {
-            GD.Print("Home base took " + rawDamage + " Damage");
             currentHealth -= rawDamage;
 
             if(currentHealth <= 0)
             {
                 currentHealth = 0;
                 isDeadOrDestroyed = true;
+                GameManager.Instance.EndCurrentGame();
             }
+
+            healthBarValueLabel.Text = CurrentHealth.ToString();
+
+            EffectsAndProjectilesSpawner.Instance.SpawnHomeBaseFloatingDamageNumber(this, rawDamage);
 
             UpdateBaseHealthbarAndSprite();
         }
@@ -135,6 +148,9 @@ namespace Erikduss
         {
             //The health bar filler is 55px wide, which should be equal to 100% of the health.
 
+
+            //Idk whats going on with these calculations, but should probably recheck it,
+            //1 value is not used and seems to be specifically coded for 1000 health instead of being modular
             float percentageMultiplier = (float)MaxHealth / 100f; //should equal 10
             float amountOfHealthPerPercentage = 55f / 100f; //should be 0.55
 

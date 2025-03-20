@@ -6,6 +6,7 @@ namespace Erikduss
 	public partial class TitleScreenManager : Control
 	{
         [Export] private Control optionsPanel;
+        [Export] private Label currentVersionLabel;
 
         public PackedScene mobileAdsPrefab;
 
@@ -27,6 +28,14 @@ namespace Erikduss
             {
                 GD.Print("we did not load the ads.");
             }
+
+            string versionLabelText = string.Empty;
+
+            if (GameSettingsLoader.buildIsADemo) versionLabelText = "This is a Demo build, some features may be limited. ";
+
+            versionLabelText = versionLabelText + "Version: " +ProjectSettings.GetSetting("application/config/version").ToString();
+
+            currentVersionLabel.Text = versionLabelText;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -17,6 +17,7 @@ namespace Erikduss
 
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
+        public bool gameIsFinished { get; private set; }
 
         public static float unitGroundYPosition = 815f;
 
@@ -98,7 +99,7 @@ namespace Erikduss
 				ToggleGameIsPaused();
 			}
 
-            if (gameIsPaused) return;
+            if (gameIsPaused || gameIsFinished) return;
 
 			//Timer for giving the player currency
 			if(currencyGainAmountUpdateTimer > currencyGainRate)
@@ -179,6 +180,29 @@ namespace Erikduss
             if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
                 inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
+            }
+        }
+
+        public void EndCurrentGame()
+        {
+            if (!gameIsFinished)
+            {
+                if(team01HomeBase.CurrentHealth <=0 || team02HomeBase.CurrentHealth <= 0)
+                {
+                    gameIsFinished = true;
+
+                    //We should show "Victory" or "Defeat" depending on the outcome. (Ingame hud manager)
+                    string outcomeValue = team01HomeBase.CurrentHealth <= 0 ? "Defeat" : "Victory";
+
+                    inGameHUDManager.GameOverTriggered(outcomeValue);
+
+                    //Afterwards, we show some stats of the game, currency earned and a button prompting to return (to main menu).
+
+                }
+                else
+                {
+                    //Did the player leave?
+                }
             }
         }
 	}
