@@ -30,13 +30,13 @@ namespace Erikduss
         {
             get { return currentHealth; }
         }
-        protected int currentHealth = 100; //should be set from a general options static value
+        protected int currentHealth = 1000; //should be set from a general options static value
 
         public int MaxHealth
         {
             get { return maxHealth; }
         }
-        protected int maxHealth = 100; //should be set from a general options static value
+        protected int maxHealth = 1000; //should be set from a general options static value
         #endregion
 
         // Called when the node enters the scene tree for the first time.
