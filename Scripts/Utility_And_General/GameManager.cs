@@ -50,6 +50,8 @@ namespace Erikduss
 		private int playerAbilityCooldownReduction = 1; //reduceing it by 1
         #endregion
 
+        public double matchDuration = 0;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -100,6 +102,8 @@ namespace Erikduss
 			}
 
             if (gameIsPaused || gameIsFinished) return;
+
+            matchDuration += delta;
 
 			//Timer for giving the player currency
 			if(currencyGainAmountUpdateTimer > currencyGainRate)

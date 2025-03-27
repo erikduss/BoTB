@@ -220,9 +220,14 @@ namespace Erikduss
 
             gameOverInfoScript.outcomeLabel.Text = outcomeValue;
 
+            int fixedMatchDuration = (int)GameManager.Instance.matchDuration;
+
+            int minutes = fixedMatchDuration / 60;
+            int seconds = fixedMatchDuration - (minutes * 60);
+
+            gameOverInfoScript.matchDurationLabel.Text = minutes + " minutes " + seconds + " seconds";
+
             gameOverNode.Visible = true;
-
-
         }
     }
 }

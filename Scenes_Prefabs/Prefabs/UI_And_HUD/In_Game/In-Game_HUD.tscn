@@ -256,6 +256,8 @@ stretch_mode = 0
 
 [node name="GameOverBackground" parent="Player_Control_HUD" instance=ExtResource("28_5yawq")]
 layout_mode = 0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="OptionsMenu" parent="Player_Control_HUD" instance=ExtResource("28_ovqk1")]
 visible = false

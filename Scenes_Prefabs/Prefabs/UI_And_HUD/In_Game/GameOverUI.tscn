@@ -14,19 +14,26 @@ font_color = Color(0, 0, 0, 1)
 font_size = 320
 font_color = Color(0, 0, 0, 1)
 
-[node name="GameOverBackground" type="TextureRect" node_paths=PackedStringArray("outcomeLabel", "matchDurationLabel", "currencyRewardLabel")]
-offset_left = 700.0
-offset_top = 200.0
-offset_right = 956.0
-offset_bottom = 568.0
+[node name="GameOverPanel" type="Control" node_paths=PackedStringArray("outcomeLabel", "matchDurationLabel", "currencyRewardLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
 scale = Vector2(2, 2)
-texture = ExtResource("1_wh8bk")
 script = ExtResource("2_os25c")
-outcomeLabel = NodePath("OutcomeLabel")
-matchDurationLabel = NodePath("MatchDuration/MatchDurationValueLabel")
-currencyRewardLabel = NodePath("CurrencyReward/CurrencyRewardValueLabel")
+outcomeLabel = NodePath("GameOverBackground/OutcomeLabel")
+matchDurationLabel = NodePath("GameOverBackground/MatchDuration/MatchDurationValueLabel")
+currencyRewardLabel = NodePath("GameOverBackground/CurrencyReward/CurrencyRewardValueLabel")
 
-[node name="OutcomeLabel" type="Label" parent="."]
+[node name="GameOverBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 606.0
+offset_bottom = 468.0
+texture = ExtResource("1_wh8bk")
+
+[node name="OutcomeLabel" type="Label" parent="GameOverBackground"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -38,14 +45,14 @@ label_settings = SubResource("LabelSettings_st105")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MatchDuration" type="Control" parent="."]
+[node name="MatchDuration" type="Control" parent="GameOverBackground"]
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 90.0
 offset_right = 233.0
 offset_bottom = 137.0
 
-[node name="MatchDurationHeaderLabel" type="Label" parent="MatchDuration"]
+[node name="MatchDurationHeaderLabel" type="Label" parent="GameOverBackground/MatchDuration"]
 layout_mode = 0
 offset_right = 4260.0
 offset_bottom = 520.0
@@ -55,7 +62,7 @@ label_settings = SubResource("LabelSettings_ryq5u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MatchDurationValueLabel" type="Label" parent="MatchDuration"]
+[node name="MatchDurationValueLabel" type="Label" parent="GameOverBackground/MatchDuration"]
 layout_mode = 0
 offset_top = 20.0
 offset_right = 4260.0
@@ -66,14 +73,14 @@ label_settings = SubResource("LabelSettings_ryq5u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrencyReward" type="Control" parent="."]
+[node name="CurrencyReward" type="Control" parent="GameOverBackground"]
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 150.0
 offset_right = 233.0
 offset_bottom = 197.0
 
-[node name="CurrencyRewardHeaderLabel" type="Label" parent="CurrencyReward"]
+[node name="CurrencyRewardHeaderLabel" type="Label" parent="GameOverBackground/CurrencyReward"]
 layout_mode = 0
 offset_right = 4260.0
 offset_bottom = 520.0
@@ -83,7 +90,7 @@ label_settings = SubResource("LabelSettings_ryq5u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrencyRewardValueLabel" type="Label" parent="CurrencyReward"]
+[node name="CurrencyRewardValueLabel" type="Label" parent="GameOverBackground/CurrencyReward"]
 layout_mode = 0
 offset_top = 20.0
 offset_right = 4260.0
@@ -94,7 +101,7 @@ label_settings = SubResource("LabelSettings_ryq5u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnButton" type="TextureButton" parent="."]
+[node name="ReturnButton" type="TextureButton" parent="GameOverBackground"]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 240.0
@@ -106,4 +113,4 @@ texture_hover = ExtResource("3_os25c")
 texture_click_mask = ExtResource("4_ryq5u")
 stretch_mode = 0
 
-[connection signal="pressed" from="ReturnButton" to="." method="ReturnButtonClicked"]
+[connection signal="pressed" from="GameOverBackground/ReturnButton" to="." method="ReturnButtonClicked"]

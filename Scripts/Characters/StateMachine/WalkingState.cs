@@ -398,6 +398,8 @@ namespace Erikduss
                 return true;
             }
 
+            float homeBaseDistanceOffset = 10f; //units were not detecting the home base properly if they were behind another unit.
+
             //we need to check if we can hit the enemy base
             if(team == Enums.TeamOwner.TEAM_01)
             {
@@ -405,7 +407,7 @@ namespace Erikduss
 
                 if (distance < 0) distance = -distance;
 
-                if(distance < (character.detectionRange))
+                if(distance < (character.detectionRange + homeBaseDistanceOffset))
                 {
                     character.unitHasReachedEnemyHomeBase = true;
                     return true;
@@ -417,7 +419,7 @@ namespace Erikduss
 
                 if (distance < 0) distance = -distance;
 
-                if (distance < (character.detectionRange))
+                if (distance < (character.detectionRange + homeBaseDistanceOffset))
                 {
                     character.unitHasReachedEnemyHomeBase = true;
                     return true;

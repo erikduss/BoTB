@@ -74,8 +74,16 @@ namespace Erikduss
                 //we need to attack right away too when we are at the enemy homebase.
                 if (character.unitHasReachedEnemyHomeBase)
                 {
-                    EmitSignal(SignalName.Transitioned, this, "AttackState");
-                    return;
+                    if (!GameManager.Instance.gameIsFinished)
+                    {
+                        EmitSignal(SignalName.Transitioned, this, "AttackState");
+                        return;
+                    }
+                    else
+                    {
+                        EmitSignal(SignalName.Transitioned, this, "IdleState");
+                        return;
+                    }
                 }
 
                 //Switch to the new state
