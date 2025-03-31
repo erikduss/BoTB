@@ -13,7 +13,7 @@ namespace Erikduss
 
         private List<AnimatedSprite2D> animatedMeteorSprites = new List<AnimatedSprite2D>();
 
-        private float projectileVelocity = 200f;
+        public float projectileVelocity = 200f;
 
         private Vector2 savedVelocityBeforePause = Vector2.Zero;
         private bool setVelocity = false;
@@ -30,15 +30,6 @@ namespace Erikduss
                     spriteComponent.Visible = false;
                     animatedMeteorSprites.Add(spriteComponent);
                 }
-            }
-
-            float xVelocity = (float)(GD.Randi() % (500f));
-            xVelocity -= 250f;
-            projectileVelocity = xVelocity;
-
-            if(Mathf.Abs(xVelocity) > 150)
-            {
-                isDiagonalMeteor = true;
             }
 
             if (isDiagonalMeteor) 

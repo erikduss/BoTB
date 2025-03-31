@@ -43,7 +43,7 @@ namespace Erikduss
 
         #region Ability Variables
         
-		public int playerAbilityCooldown = 180; //seconds
+		public int playerAbilityCooldown = 18; //seconds
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1

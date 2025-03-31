@@ -390,17 +390,64 @@ namespace Erikduss
             {
                 IndividualMeteorLogic instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
 
+                //set the meteor's velocity and decide if this is a vertical or diagonal meteor.
+                float xVelocity = (float)(GD.Randi() % (500f));
+                xVelocity -= 250f;
+                instantiatedMeteor.projectileVelocity = xVelocity;
+
+                if (Mathf.Abs(xVelocity) > 150)
+                {
+                    instantiatedMeteor.isDiagonalMeteor = true;
+                }
+
+                instantiatedMeteor.meteorOwner = meteorShowerOwner;
+
+                #region old spawning positions
                 //position should be between:
                 //x -> -904 (-904 + 900 -> -4)
                 //x -> 2824 (2824 - 900 -> 1924)
                 //y should be a random between 0 & 100
 
-                instantiatedMeteor.meteorOwner = meteorShowerOwner;
+                //updated map size values
+                //Seems like the meteors can travel about 900 pixels?
+                //x -> -300 (-300 + 900 -> 600)
+                //x -> 1220 (1220 - 900 -> 320)
 
-                float randXValue = (float)(GD.Randi() % (4 + 1924));
-                randXValue -= 4;
+                //float randXValue = (float)(GD.Randi() % (4 + 1924));
+                //randXValue -= 4;
+                //float randYValue = (float)(GD.Randi() % (1000));
+                //randYValue -= 500;
+                #endregion
+
+
+                //if the meteor goes straight down, it can be between: 0 and 1920
+
+                float randXValue = (float)(GD.Randi() % (920));
                 float randYValue = (float)(GD.Randi() % (1000));
                 randYValue -= 500;
+
+                randXValue += 500f;
+
+                //GD.Print("Rand X: " + randXValue + " _ " + xVelocity);
+                float xPosMultiplier = (randYValue / 1000f);
+
+                if(xPosMultiplier < 0) xPosMultiplier = -xPosMultiplier;
+
+                xPosMultiplier += 1f;
+                //if(xPosMultiplier > 1.1f) xPosMultiplier = 1.1f;
+
+                //if(xVelocity > 0)
+                //{
+                //    randXValue += 768;
+                //}
+                //else
+                //{
+                //    randXValue -= 768;
+                //}
+
+                float addedValue = xVelocity * xPosMultiplier;
+
+                randXValue -= addedValue; //this makes it so it can come from outside of the map into the map.
 
                 instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
 

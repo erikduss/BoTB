@@ -12,11 +12,11 @@ namespace Erikduss
         private float step = 10;
 		private Vector2 viewport_size;
 
-		public float minimumCameraXValue = -1150f;
-		public float maximumCameraXValue = 2070f;
+		public static float minimumCameraXValue = -300; //old values for bigger area: -1150f (Base is at: -905)
+		public static float maximumCameraXValue = 1220; //old values for bigger area: 2070f (Base is at: 2833)
 
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
+        // Called when the node enters the scene tree for the first time.
+        public override void _Ready()
 		{
 			viewport_size = GetViewport().GetVisibleRect().Size;
 
@@ -73,7 +73,11 @@ namespace Erikduss
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X > minimumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X - (fixedStepSensitivity * fixedSpeedMultiplier), mainCamera.Position.Y);
+                    float newXPosition = mainCamera.Position.X - (fixedStepSensitivity * fixedSpeedMultiplier);
+
+                    if(newXPosition < minimumCameraXValue) newXPosition = minimumCameraXValue;
+
+                    mainCamera.Position = new Vector2(newXPosition, mainCamera.Position.Y);
                 }
             }
             //MOVE THE CAMERA TO THE RIGHT
@@ -82,7 +86,11 @@ namespace Erikduss
                 //make sure we cant go off the map with the camera
                 if (mainCamera.Position.X < maximumCameraXValue)
                 {
-                    mainCamera.Position = new Vector2(mainCamera.Position.X + (fixedStepSensitivity * fixedSpeedMultiplier), mainCamera.Position.Y);
+                    float newXPosition = mainCamera.Position.X + (fixedStepSensitivity * fixedSpeedMultiplier);
+
+                    if (newXPosition > maximumCameraXValue) newXPosition = maximumCameraXValue;
+
+                    mainCamera.Position = new Vector2(newXPosition, mainCamera.Position.Y);
                 }
             }
         }

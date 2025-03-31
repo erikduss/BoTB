@@ -7,7 +7,7 @@ namespace Erikduss
 	public partial class Shaman : BaseCharacter
 	{
         //This unit is called "Shaman"
-
+        bool processedDeathEvent = false;
         public override void _Ready()
         {
             //Load Unit Stats
@@ -63,7 +63,11 @@ namespace Erikduss
         {
             base.processDeath();
 
-            if(characterOwner == Enums.TeamOwner.TEAM_01)
+            if (processedDeathEvent) return;
+
+            processedDeathEvent = true;
+
+            if (characterOwner == Enums.TeamOwner.TEAM_01)
             {
                 EffectsAndProjectilesSpawner.Instance.team01AbilityEmpowerAmount--;
             }

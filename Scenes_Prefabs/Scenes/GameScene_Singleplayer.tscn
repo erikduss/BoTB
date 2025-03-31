@@ -23,12 +23,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Background" type="Control" parent="UI"]
+[node name="Background_Big" type="Control" parent="UI"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/Background"]
+[node name="TextureRect" type="TextureRect" parent="UI/Background_Big"]
 layout_mode = 0
 offset_left = -960.0
 offset_top = -20.0
@@ -36,14 +36,14 @@ offset_right = 2880.0
 offset_bottom = 1060.0
 texture = ExtResource("1_ag6v1")
 
-[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect"]
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Big/TextureRect"]
 visible = false
 layout_mode = 0
 offset_right = 3840.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.827451)
 
-[node name="TextureRect2" type="TextureRect" parent="UI/Background"]
+[node name="TextureRect2" type="TextureRect" parent="UI/Background_Big"]
 layout_mode = 0
 offset_left = -4800.0
 offset_top = -20.0
@@ -51,14 +51,14 @@ offset_right = -960.0
 offset_bottom = 1060.0
 texture = ExtResource("1_ag6v1")
 
-[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect2"]
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Big/TextureRect2"]
 visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.827451)
 
-[node name="TextureRect3" type="TextureRect" parent="UI/Background"]
+[node name="TextureRect3" type="TextureRect" parent="UI/Background_Big"]
 layout_mode = 0
 offset_left = 2880.0
 offset_top = -20.0
@@ -66,7 +66,60 @@ offset_right = 6720.0
 offset_bottom = 1060.0
 texture = ExtResource("1_ag6v1")
 
-[node name="ColorRect" type="ColorRect" parent="UI/Background/TextureRect3"]
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Big/TextureRect3"]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
+
+[node name="Background_Small" type="Control" parent="UI"]
+visible = false
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Background_Small"]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 3840.0
+offset_bottom = 1380.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ag6v1")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Small/TextureRect"]
+visible = false
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Background_Small"]
+layout_mode = 0
+offset_left = -1920.0
+offset_top = 300.0
+offset_right = 1920.0
+offset_bottom = 1380.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ag6v1")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Small/TextureRect2"]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.827451)
+
+[node name="TextureRect3" type="TextureRect" parent="UI/Background_Small"]
+layout_mode = 0
+offset_left = 1920.0
+offset_top = 300.0
+offset_right = 5760.0
+offset_bottom = 1380.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ag6v1")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Background_Small/TextureRect3"]
 visible = false
 layout_mode = 0
 offset_right = 1920.0
@@ -284,19 +337,12 @@ position = Vector2(3032, 850)
 [node name="GroundTile65" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
 position = Vector2(3096, 850)
 
-[node name="CharacterHomeBase" parent="Environment" instance=ExtResource("10_fujw8")]
-position = Vector2(-904, 730)
-
-[node name="CharacterHomeBase2" parent="Environment" instance=ExtResource("10_fujw8")]
-position = Vector2(2824, 730)
-requiresToBeFlipped = true
-
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("inGameHUDManager", "unitsSpawner", "team01HomeBase", "team02HomeBase")]
 script = ExtResource("11_ofq7o")
 inGameHUDManager = NodePath("../CanvasLayer/In-gameHud")
 unitsSpawner = NodePath("Spawners")
-team01HomeBase = NodePath("../Environment/CharacterHomeBase")
-team02HomeBase = NodePath("../Environment/CharacterHomeBase2")
+team01HomeBase = NodePath("Spawners/Team_1_Character_Spawner/CharacterHomeBase")
+team02HomeBase = NodePath("Spawners/Team_2_Character_Spawner/CharacterHomeBase2")
 
 [node name="Spawners" type="Node2D" parent="GameManager" node_paths=PackedStringArray("team01UnitsSpawnerLocation", "team02UnitsSpawnerLocation")]
 script = ExtResource("12_8j88c")
@@ -304,7 +350,10 @@ team01UnitsSpawnerLocation = NodePath("Team_1_Character_Spawner")
 team02UnitsSpawnerLocation = NodePath("Team_2_Character_Spawner")
 
 [node name="Team_1_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
-position = Vector2(-905, 815)
+position = Vector2(0, 815)
+
+[node name="CharacterHomeBase" parent="GameManager/Spawners/Team_1_Character_Spawner" instance=ExtResource("10_fujw8")]
+position = Vector2(0, -85)
 
 [node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_1_Character_Spawner"]
 collision_layer = 8
@@ -315,7 +364,11 @@ position = Vector2(-4, -12)
 shape = SubResource("RectangleShape2D_akag0")
 
 [node name="Team_2_Character_Spawner" type="Node2D" parent="GameManager/Spawners"]
-position = Vector2(2833, 815)
+position = Vector2(1920, 815)
+
+[node name="CharacterHomeBase2" parent="GameManager/Spawners/Team_2_Character_Spawner" instance=ExtResource("10_fujw8")]
+position = Vector2(0, -85)
+requiresToBeFlipped = true
 
 [node name="SpawnCollisionChecker" type="Area2D" parent="GameManager/Spawners/Team_2_Character_Spawner"]
 collision_layer = 8
