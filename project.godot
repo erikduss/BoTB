@@ -32,6 +32,7 @@ buses/default_bus_layout="uid://db020m2himdaw"
 [autoload]
 
 GameSettingsLoader="*res://Scripts/Utility_And_General/GameData/DataManagers/GameSettingsLoader.cs"
+AudioManager="*res://Scripts/Utility_And_General/Audio/AudioManager.cs"
 
 [display]
 

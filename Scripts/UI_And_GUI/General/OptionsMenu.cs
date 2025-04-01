@@ -189,10 +189,12 @@ namespace Erikduss
 
             if (!hasChangedSettings)
 			{
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
                 Visible = false;
             }
             else
             {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
                 changesWarningPanel.changesDescriptionLabel.Text = changesWarning;
                 changesWarningPanel.attachedOptionsMenu = this;
 
@@ -202,25 +204,30 @@ namespace Erikduss
 
 		public void SaveButtonPressed()
 		{
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.CreateNewSaveFile(true);
         }
 
 		public void MusicAudioSliderOnValueChanged(float value)
 		{
-			musicAudioPercentage.Text = value.ToString() + "%";
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.sliderChangedAudioClip);
+            musicAudioPercentage.Text = value.ToString() + "%";
 			GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.musicVolume = (int)value;
 
         }
 
         public void OtherAudioSliderOnValueChanged(float value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.sliderChangedAudioClip);
             otherAudioPercentage.Text = value.ToString() + "%";
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.otherVolume = (int)value;
         }
 
         public void ScreenDragSensitivitySliderOnValueChanged(float value)
         {
-			string newValueString = value.ToString();
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.sliderChangedAudioClip);
+
+            string newValueString = value.ToString();
 
 
             if (value == 0)
@@ -239,6 +246,8 @@ namespace Erikduss
 
         public void ScreenSidesSensitivitySliderOnValueChanged(float value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.sliderChangedAudioClip);
+
             string newValueString = value.ToString();
 
 
@@ -258,28 +267,34 @@ namespace Erikduss
 
         public void FPSLimitSliderOnValueChanged(float value)
         {
-			fpsLimitValueLabel.Text = value.ToString();
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.sliderChangedAudioClip);
+
+            fpsLimitValueLabel.Text = value.ToString();
 
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.fpsLimit = (int)value;
         }
 
         public void ScreenMovementTypeSelected(int value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.screenMovement = (Enums.ScreenMovementType)value;
         }
 
         public void DisplayModeSelected(int value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.displayMode = (Enums.DisplayMode)value;
         }
 
         public void ScreenResolutionSelected(int value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.screenResolution = (Enums.ScreenResolution)value;
         }
 
         public void LimitFpsOptionSelected(int value)
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.limitFPS = value;
         }
     }

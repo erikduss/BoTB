@@ -15,6 +15,8 @@ namespace Erikduss
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
+            AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers");
+
             //we need to load our ads
             if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             {
@@ -45,17 +47,19 @@ namespace Erikduss
 
         public void StartGame()
         {
-            GD.Print("Buttin clicked");
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/" + gameLoadingSceneName + ".tscn");
         }
 
         public void OpenOptions()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             optionsPanel.Visible = true;
         }
 
         public void CloseGame()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GetTree().Quit();
         }
 
