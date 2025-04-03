@@ -324,6 +324,28 @@ namespace Erikduss
             currentState = stateToTransitionTo;
         }
 
+        protected virtual void SetNewMaxHealthBasedOnDamageTaken(int damage)
+        {
+            //Units cannot be healed back to their full potential after taking wounds in battle.
+            //This prevents infinite fights (for example, tank vs tank with both a healer behind them)
+
+            int maxHealthReduction = Mathf.RoundToInt(damage * 0.5f);
+
+            if (maxHealthReduction <= 0)
+            {
+                maxHealthReduction = 1;
+            }
+
+            maxHealth = maxHealth - maxHealthReduction;
+
+            //this can happen with the enforcer stun effect mechanic.
+            if(maxHealth == 0 && currentHealth > 0)
+            {
+                currentHealth = 0;
+                processDeath();
+            }
+        }
+
         public virtual void TakeDamage(int rawDamage)
         {
             //raw damage is the damage before any armour damage reduction.
@@ -337,6 +359,8 @@ namespace Erikduss
             if (fixedDamage <= 0) fixedDamage = 1; //We always do at least some damage
 
             currentHealth -= fixedDamage;
+
+            SetNewMaxHealthBasedOnDamageTaken(fixedDamage);
 
             EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, rawDamage);
 
@@ -497,6 +521,9 @@ namespace Erikduss
             float stunDuration = defaultStunDuration;
 
             if (overrideStunDuration > 0) stunDuration = overrideStunDuration;
+
+            //passive buff for enforecer, every stun, reduce the max health of the target by 1.
+            SetNewMaxHealthBasedOnDamageTaken(1);
 
             //we dont want to be stunned permanently
             if (isStunned) return;

@@ -148,13 +148,10 @@ namespace Erikduss
         {
             //The health bar filler is 55px wide, which should be equal to 100% of the health.
 
-
-            //Idk whats going on with these calculations, but should probably recheck it,
-            //1 value is not used and seems to be specifically coded for 1000 health instead of being modular
             float percentageMultiplier = (float)MaxHealth / 100f; //should equal 10
             float amountOfHealthPerPercentage = 55f / 100f; //should be 0.55
 
-            float healthPercentage = (float)CurrentHealth / 10f;
+            float healthPercentage = (float)CurrentHealth / percentageMultiplier;
 
             if(healthPercentage > 50 && healthPercentage <= 75)
             {

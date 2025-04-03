@@ -15,6 +15,8 @@ namespace Erikduss
 		public static float minimumCameraXValue = -300; //old values for bigger area: -1150f (Base is at: -905)
 		public static float maximumCameraXValue = 1220; //old values for bigger area: 2070f (Base is at: 2833)
 
+        private static float sidesMovementYValueThreshold = 350f;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -31,6 +33,8 @@ namespace Erikduss
             if (GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.screenMovement == Enums.ScreenMovementType.Only_Use_Drag_Movement) return;
 
 			Vector2 local_mouse_pos = GetViewport().GetMousePosition();
+
+            if (local_mouse_pos.Y < sidesMovementYValueThreshold) return;
 
 			//MOVE THE CAMERA TO THE LEFT
 			if(local_mouse_pos.X < threshold)
