@@ -115,7 +115,13 @@ namespace Erikduss
         {
             //we need to check if the cooldown is over.
 
-            if (GameManager.Instance.player01Script.playerAbilityCurrentCooldown > 0) return;
+            if (GameManager.Instance.player01Script.playerAbilityCurrentCooldown > 0)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
             GameManager.Instance.ResetPlayerAbilityCooldown(Enums.TeamOwner.TEAM_01);
 
@@ -129,10 +135,20 @@ namespace Erikduss
 
             if (spendPlayerGold)
 			{
-                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost) return;
+                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost)
+                {
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                    return;
+                }
 
                 //Attempt to spend the currency, if this fails we stop.
-                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01)) return;
+                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01))
+                {
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                    return;
+                }
+
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             }
 
 			for (int i = unitShopParentNode.GetChildren().Count-1; i >= 0; i--)
@@ -186,6 +202,7 @@ namespace Erikduss
 
         public void PauseGameButtonClicked()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GameManager.Instance.ToggleGameIsPaused();
         }
 
@@ -203,15 +220,23 @@ namespace Erikduss
 
         public void InGameOptionsButtonClicked()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             //We open the in game options menu.
             optionsPanel.Visible = true;
         }
 
         public void InGameExitButtonClicked()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+            AudioManager.Instance.ClearAudioPlayers();
             //We return back to the main menu.\
             GameManager.Instance.QueueFree();
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/TitleScreen.tscn");
+        }
+
+        public void GenericButtonHover()
+        {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
         }
 
         public void GameOverTriggered(string outcomeValue)

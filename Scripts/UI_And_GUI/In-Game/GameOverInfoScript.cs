@@ -13,6 +13,8 @@ namespace Erikduss
 
         public void ReturnButtonClicked()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+            AudioManager.Instance.ClearAudioPlayers();
             //We return back to the main menu.\
             GameManager.Instance.QueueFree();
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/TitleScreen.tscn");

@@ -15,6 +15,8 @@ namespace Erikduss
 		public BasePlayer player01Script; //this is always a real player.
 		public BasePlayer player02Script; //this can be either a bot or a real player. (in the future)
 
+        [Export] public CameraMovement cameraScript;
+
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
         public bool gameIsFinished { get; private set; }
@@ -43,7 +45,7 @@ namespace Erikduss
 
         #region Ability Variables
         
-		public int playerAbilityCooldown = 18; //seconds
+		public int playerAbilityCooldown = 180; //seconds
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -64,7 +66,7 @@ namespace Erikduss
                 QueueFree();
             }
 
-			gameIsPaused = false;
+            gameIsPaused = false;
 
             player01Script = new BasePlayer();
             player02Script = (BaseAIPlayer)GetParent().GetNode("EnemyAI"); ; //we need to probably instantiate this later with custom ai nodes.
@@ -81,8 +83,10 @@ namespace Erikduss
             //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
             inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
 
-			//The ability bar isnt passed yet at this time
-			//inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
+            AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers", (Node2D)cameraScript);
+
+            //The ability bar isnt passed yet at this time
+            //inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
         }
 
         protected override void Dispose(bool disposing)

@@ -11,6 +11,8 @@ namespace Erikduss
 
         public void DiscardChanges()
         {
+            attachedOptionsMenu.allowSFXFromOptionsMenu = false;
+
             attachedOptionsMenu.SetLoadedValues();
 
             DestroyOptionsMenu();
@@ -18,6 +20,8 @@ namespace Erikduss
 
         public void SaveChanges()
         {
+            attachedOptionsMenu.allowSFXFromOptionsMenu = false;
+
             attachedOptionsMenu.SaveButtonPressed();
 
             DestroyOptionsMenu();
@@ -25,6 +29,8 @@ namespace Erikduss
 
         public void DestroyOptionsMenu()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+
             attachedOptionsMenu.hasChangedSettings = false;
             attachedOptionsMenu.Visible = false;
             attachedOptionsMenu.changesWarningPanel.Visible = false;

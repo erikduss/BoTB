@@ -35,7 +35,7 @@ namespace Erikduss
             }
         }
 
-        public void GenerateAudioStreamPlayers()
+        public void GenerateAudioStreamPlayers(Node2D attachToNode)
         {
             if(musicAudioPlayer == null)
             {
@@ -46,7 +46,14 @@ namespace Erikduss
                 musicAudioPlayer.MaxDistance = 2000;
                 musicAudioPlayer.PanningStrength = 0;
 
-                GetTree().CurrentScene.AddChild(musicAudioPlayer);
+                if (attachToNode != null)
+                {
+                    attachToNode.AddChild(musicAudioPlayer);
+                }
+                else
+                {
+                    GetTree().CurrentScene.AddChild(musicAudioPlayer);
+                }
             }
 
             if(sfxAudioPlayer == null)
@@ -59,7 +66,14 @@ namespace Erikduss
                 sfxAudioPlayer.PanningStrength = 0;
                 sfxAudioPlayer.Stream = new AudioStreamPolyphonic();
 
-                GetTree().CurrentScene.AddChild(sfxAudioPlayer);
+                if (attachToNode != null)
+                {
+                    attachToNode.AddChild(sfxAudioPlayer);
+                }
+                else
+                {
+                    GetTree().CurrentScene.AddChild(sfxAudioPlayer);
+                }
 
                 //needs to kickstart the polyphonic stream.
                 sfxAudioPlayer.Play();

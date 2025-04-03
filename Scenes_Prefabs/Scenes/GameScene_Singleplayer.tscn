@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b21xq6kx61exu"]
+[gd_scene load_steps=12 format=3 uid="uid://b21xq6kx61exu"]
 
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="1_ag6v1"]
 [ext_resource type="PackedScene" uid="uid://bc6fmve3t0dyp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/In-Game_HUD.tscn" id="2_iqt6u"]
 [ext_resource type="Script" uid="uid://cnw58ny305tkx" path="res://Scripts/Utility_And_General/CameraMovement.cs" id="2_ws16a"]
-[ext_resource type="AudioStream" uid="uid://tacer0qpttkh" path="res://Assets/Audio/Music/BotBGameMusicNew.wav" id="3_faq58"]
 [ext_resource type="Script" uid="uid://bqf4oviu0k4q6" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/EffectsAndProjectilesSpawner.cs" id="8_58brg"]
 [ext_resource type="PackedScene" uid="uid://darf8monhnptv" path="res://Scenes_Prefabs/Prefabs/Environment/GroundTile.tscn" id="9_vx3u0"]
 [ext_resource type="PackedScene" uid="uid://bugfy5ssl180s" path="res://Scenes_Prefabs/Prefabs/Spawnable_Objects/FloatingDamageNumber.tscn" id="10_exyf3"]
@@ -131,12 +130,6 @@ offset = Vector2(500, 700)
 zoom = Vector2(3, 3)
 script = ExtResource("2_ws16a")
 mainCamera = NodePath(".")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
-stream = ExtResource("3_faq58")
-autoplay = true
-panning_strength = 0.0
-bus = &"Music"
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -337,12 +330,13 @@ position = Vector2(3032, 850)
 [node name="GroundTile65" parent="Environment/Grass" instance=ExtResource("9_vx3u0")]
 position = Vector2(3096, 850)
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("inGameHUDManager", "unitsSpawner", "team01HomeBase", "team02HomeBase")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("inGameHUDManager", "unitsSpawner", "team01HomeBase", "team02HomeBase", "cameraScript")]
 script = ExtResource("11_ofq7o")
 inGameHUDManager = NodePath("../CanvasLayer/In-gameHud")
 unitsSpawner = NodePath("Spawners")
 team01HomeBase = NodePath("Spawners/Team_1_Character_Spawner/CharacterHomeBase")
 team02HomeBase = NodePath("Spawners/Team_2_Character_Spawner/CharacterHomeBase2")
+cameraScript = NodePath("../Camera2D")
 
 [node name="Spawners" type="Node2D" parent="GameManager" node_paths=PackedStringArray("team01UnitsSpawnerLocation", "team02UnitsSpawnerLocation")]
 script = ExtResource("12_8j88c")

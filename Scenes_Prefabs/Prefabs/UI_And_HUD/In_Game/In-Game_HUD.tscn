@@ -263,8 +263,10 @@ offset_bottom = 0.0
 visible = false
 layout_mode = 1
 
+[connection signal="mouse_entered" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="GenericButtonHover"]
 [connection signal="pressed" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]
 [connection signal="pressed" from="Player_Control_HUD/AgeAbility/AgeAbilityContainer/AgeAbilityButton" to="." method="PlayerAbilityButtonPressed"]
+[connection signal="mouse_entered" from="Player_Control_HUD/PauseButton" to="." method="GenericButtonHover"]
 [connection signal="pressed" from="Player_Control_HUD/PauseButton" to="." method="PauseGameButtonClicked"]
 [connection signal="pressed" from="Player_Control_HUD/PauseMenuBackground/ReturnButton" to="." method="PauseGameButtonClicked"]
 [connection signal="pressed" from="Player_Control_HUD/PauseMenuBackground/OptionsButton" to="." method="InGameOptionsButtonClicked"]

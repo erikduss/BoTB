@@ -650,10 +650,14 @@ namespace Erikduss
 
             bool success = GameManager.Instance.inGameHUDManager.BuyUnitButtonClicked(thisUnitType, unitCost);
 
-            if (!success) buttonPressed = false;
-
+            if (!success)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                buttonPressed = false;
+            }
             else
             {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
                 GameManager.Instance.inGameHUDManager.RefreshUnitShopSpecificButton(this.GetInstanceId());
             }
         }
@@ -670,7 +674,9 @@ namespace Erikduss
 
         public void ShowUnitInfoOnHover()
         {
-            foreach(var child in this.GetChildren())
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+
+            foreach (var child in this.GetChildren())
             {
                 if (child is TextureRect)
                 {

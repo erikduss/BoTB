@@ -27,6 +27,8 @@ namespace Erikduss
 
         public void ShowAgeAbilityInfoOnHover()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+
             abilityProgressbar.TextureProgress = hoverProgressBarTexture;
 
             foreach (var child in this.GetChildren())

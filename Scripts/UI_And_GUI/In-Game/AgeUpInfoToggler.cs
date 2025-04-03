@@ -17,6 +17,8 @@ namespace Erikduss
 
         public void ShowAgeUpInfoOnHover()
         {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+
             foreach (var child in this.GetChildren())
             {
                 if (child is TextureRect)
