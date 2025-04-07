@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class AgeUpInfoToggler : Node
+	public partial class AgeUpInfoToggler : Control
 	{
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

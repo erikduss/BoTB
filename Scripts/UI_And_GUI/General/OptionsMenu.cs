@@ -332,5 +332,10 @@ namespace Erikduss
 
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.limitFPS = value;
         }
+
+        public void PlayGenericButtonHoverSound()
+        {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+        }
     }
 }

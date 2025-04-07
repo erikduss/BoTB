@@ -19,6 +19,19 @@ namespace Erikduss
 
         [Export] private Control optionsPanel;
 
+        public List<Control> currentUnitsInShop = new List<Control>();
+
+        //needed for focus selection
+        [Export] private Control ageUpControl;
+        [Export] private Control ageAbilityControl;
+        [Export] private Control refreshButtonControl;
+        [Export] private Control pauseButtonControl;
+
+        [Export] private Control pauseMenuReturnControl;
+
+        private Control currentlySelectedControl = null;
+        private Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
+
         #region Buy Buttons
 
         public PackedScene warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn");
@@ -49,6 +62,9 @@ namespace Erikduss
             HidePauseMenu();
             gameOverNode.Visible = false;
 
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+
             RefreshUnitShop(false);
 		}
 
@@ -56,6 +72,18 @@ namespace Erikduss
 		public override void _Process(double delta)
 		{
 		}
+
+        public void SelectFirstControlInShop()
+        {
+            if(currentUnitsInShop.Count > 0)
+            {
+                currentUnitsInShop[0].GrabFocus();
+            }
+            else
+            {
+                refreshButtonControl.GrabFocus();
+            }
+        }
 
 		public bool BuyUnitButtonClicked(Enums.UnitTypes unitType, int unitCost)
 		{
@@ -156,13 +184,66 @@ namespace Erikduss
 				unitShopParentNode.GetChild(i).QueueFree();
             }
 
+            currentUnitsInShop.Clear();
+
 			for(int i = 0; i < GameManager.defaultAmountOfUnitsInShop; i++)
 			{
                 Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 
                 unitShopParentNode.AddChild(instantiatedBuyButton);
+                currentUnitsInShop.Add(instantiatedBuyButton);
             }
-		}
+
+            RefreshFocusConnections();
+
+            if (!spendPlayerGold) SelectFirstControlInShop();
+
+        }
+
+        private void RefreshFocusConnections()
+        {
+            int controlIndex = 0;
+
+            foreach (Node child in currentUnitsInShop)
+            {
+                Control childControl = (Control)child;
+
+                //this is always the same.
+                childControl.FocusNeighborBottom = ageUpControl.GetPath();
+                childControl.FocusNeighborTop = ageAbilityControl.GetPath();
+
+                int leftNeightborIndex = controlIndex - 1;
+
+                if (leftNeightborIndex < 0)
+                {
+                    //we need to set the focus to the pause button instead.
+                    childControl.FocusNeighborLeft = pauseButtonControl.GetPath();
+                }
+                else
+                {
+                    childControl.FocusNeighborLeft = currentUnitsInShop[leftNeightborIndex].GetPath();
+                }
+
+                int rightNeighborIndex = controlIndex + 1;
+
+                if (rightNeighborIndex > currentUnitsInShop.Count - 1)
+                {
+                    //we need to set the focus to the refresh button instead.
+                    childControl.FocusNeighborRight = refreshButtonControl.GetPath();
+                }
+                else
+                {
+                    childControl.FocusNeighborRight = currentUnitsInShop[rightNeighborIndex].GetPath();
+                }
+
+                controlIndex++;
+            }
+
+            ageUpControl.FocusNeighborTop = currentUnitsInShop[0].GetPath();
+            ageAbilityControl.FocusNeighborBottom = currentUnitsInShop[0].GetPath();
+
+            pauseButtonControl.FocusNeighborRight = currentUnitsInShop[0].GetPath();
+        }
 
         private int UnitTheShopRolledFor()
         {
@@ -188,14 +269,26 @@ namespace Erikduss
             {
 				if(unitShopParentNode.GetChild(i).GetInstanceId() == id)
 				{
+                    Control controlToRemove = (Control)unitShopParentNode.GetChild(i);
+
+                    int index = currentUnitsInShop.IndexOf(controlToRemove);
+
+                    currentUnitsInShop.Remove(controlToRemove);
+
                     unitShopParentNode.GetChild(i).QueueFree();
 
                     Control instantiatedBuyButton = (Control)availableUnitsBuyButtons[UnitTheShopRolledFor()].Instantiate();
 
                     unitShopParentNode.AddChild(instantiatedBuyButton);
 					unitShopParentNode.MoveChild(instantiatedBuyButton, i);
+
+                    currentUnitsInShop.Insert(index, instantiatedBuyButton);
+
+                    ((Control)unitShopParentNode.GetChild(i)).GrabFocus();
                 }
             }
+
+            RefreshFocusConnections();
         }
 
         #region Handle Game Pausing menu
@@ -209,11 +302,13 @@ namespace Erikduss
         public void ShowPauseMenu()
         {
             pauseMenuNode.Visible = true;
+            pauseMenuReturnControl.GrabFocus();
         }
 
         public void HidePauseMenu()
         {
             pauseMenuNode.Visible = false;
+            pauseButtonControl.GrabFocus();
         }
 
         #endregion
@@ -223,6 +318,14 @@ namespace Erikduss
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             //We open the in game options menu.
             optionsPanel.Visible = true;
+        }
+
+        public void OptionsPanelClosed()
+        {
+            if (!optionsPanel.Visible)
+            {
+                pauseMenuReturnControl.GrabFocus();
+            }
         }
 
         public void InGameExitButtonClicked()
@@ -253,6 +356,21 @@ namespace Erikduss
             gameOverInfoScript.matchDurationLabel.Text = minutes + " minutes " + seconds + " seconds";
 
             gameOverNode.Visible = true;
+        }
+
+        private void OnControlElementFocusChanged(Control control)
+        {
+            if (control != currentlySelectedControl)
+            {
+                //change color back
+                if (currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                }
+            }
+
+            currentlySelectedControl = control;
+            control.SelfModulate = focussedControlColor;
         }
     }
 }

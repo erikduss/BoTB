@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Erikduss
 {
@@ -12,6 +13,12 @@ namespace Erikduss
 
         [Export] public string gameLoadingSceneName = "LoadingToGame";
 
+        public bool handleInput = true;
+
+        [Export] public Control defaultControlSelected;
+        private Control currentlySelectedControl = null;
+        private Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -20,6 +27,8 @@ namespace Erikduss
             //we need to load our ads
             if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             {
+                handleInput = false; //we dont need to handle the input on mobile.
+
                 mobileAdsPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/Titlescreen/MobileAdsPrefab.tscn");
 
                 Control instantiatedAdsComponent = (Control)mobileAdsPrefab.Instantiate();
@@ -38,12 +47,18 @@ namespace Erikduss
             versionLabelText = versionLabelText + "Version: " +ProjectSettings.GetSetting("application/config/version").ToString();
 
             currentVersionLabel.Text = versionLabelText;
+
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+
+            defaultControlSelected.GrabFocus();
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-		}
+            base._Process(delta);
+        }
 
         public void StartGame()
         {
@@ -59,15 +74,43 @@ namespace Erikduss
             ((OptionsMenu)optionsPanel).allowSFXFromOptionsMenu = true;
         }
 
+        public void OptionsPanelClosed()
+        {
+            if (!optionsPanel.Visible)
+            {
+                defaultControlSelected.GrabFocus();
+            }
+        }
+
         public void CloseGame()
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GetTree().Quit();
         }
 
+        public void PlayGenericButtonHoverSound()
+        {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+        }
+
         public void OpenAdsTestingScene()
         {
             GetTree().ChangeSceneToFile("res://addons/admob/sample/Main.tscn");
+        }
+
+        private void OnControlElementFocusChanged(Control control)
+        {
+            if (control != currentlySelectedControl)
+            {
+                //change color back
+                if(currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                }
+            }
+
+            currentlySelectedControl = control;
+            control.SelfModulate = focussedControlColor;
         }
     }
 }

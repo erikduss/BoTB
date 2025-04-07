@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-	public partial class AgeAbilityInfoToggler : Node
+	public partial class AgeAbilityInfoToggler : Control
 	{
         [Export] TextureProgressBar abilityProgressbar;
         Texture2D defaultProgressBarTexture;

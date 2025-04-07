@@ -15,7 +15,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_nii0d"]
 font_size = 480
 
-[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel")]
+[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +25,7 @@ grow_vertical = 2
 script = ExtResource("1_7dscw")
 optionsPanel = NodePath("OptionsMenu")
 currentVersionLabel = NodePath("GameVersionLabel")
+defaultControlSelected = NodePath("StartButton")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
@@ -64,6 +65,12 @@ offset_right = 631.0
 offset_bottom = 706.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../ExitButton")
 texture_normal = ExtResource("3_ftwxo")
 texture_hover = ExtResource("4_17xah")
 texture_click_mask = ExtResource("5_3h1cd")
@@ -76,6 +83,12 @@ offset_right = 631.0
 offset_bottom = 881.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../StartButton")
 texture_normal = ExtResource("5_tgbea")
 texture_hover = ExtResource("6_iqwi5")
 texture_click_mask = ExtResource("5_3h1cd")
@@ -88,6 +101,12 @@ offset_right = 631.0
 offset_bottom = 1056.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../OptionsButton")
 texture_normal = ExtResource("7_06yab")
 texture_hover = ExtResource("8_tvhyr")
 texture_click_mask = ExtResource("5_3h1cd")
@@ -108,6 +127,9 @@ label_settings = SubResource("LabelSettings_nii0d")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[connection signal="mouse_entered" from="StartButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="StartButton" to="." method="StartGame"]
+[connection signal="mouse_entered" from="OptionsButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="OptionsButton" to="." method="OpenOptions"]
+[connection signal="mouse_entered" from="ExitButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="ExitButton" to="." method="CloseGame"]
