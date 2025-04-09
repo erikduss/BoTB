@@ -40,7 +40,7 @@ axis_stretch_vertical = 1
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81y48"]
 bg_color = Color(0.450648, 0.450648, 0.450648, 1)
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +62,9 @@ screenResolutionsOptionButton = NodePath("Panel/TabContainer/Graphics Settings/G
 limitFPSOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS/LimitFPSOptionButton")
 fpsLimitSlider = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider")
 fpsLimitValueLabel = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitValue")
+returnButtonControl = NodePath("Panel/BottomButtons/ReturnButton")
+saveButtonControl = NodePath("Panel/BottomButtons/SaveButton")
+optionsTabContainer = NodePath("Panel/TabContainer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -80,6 +83,12 @@ current_tab = 0
 
 [node name="Audio Settings" type="Control" parent="Panel/TabContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Graphics Settings")
+focus_neighbor_top = NodePath("../../BottomButtons/ReturnButton")
+focus_neighbor_right = NodePath("../Gameplay Settings")
+focus_neighbor_bottom = NodePath("AudioSection/MusicSliderSection/MusicAudioSlider")
+focus_next = NodePath("../Gameplay Settings")
+focus_previous = NodePath("../Graphics Settings")
 metadata/_tab_index = 0
 
 [node name="AudioSection" type="Control" parent="Panel/TabContainer/Audio Settings"]
@@ -118,6 +127,12 @@ offset_top = -8.99998
 offset_right = 773.0
 offset_bottom = 42.0
 scale = Vector2(1.25, 1.25)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../AlternateAudioSliderSection/OtherAudioSlider")
+focus_next = NodePath("../../AlternateAudioSliderSection/OtherAudioSlider")
+focus_previous = NodePath("../..")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
 theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
@@ -155,6 +170,12 @@ offset_top = -8.99998
 offset_right = 773.0
 offset_bottom = 42.0
 scale = Vector2(1.25, 1.25)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../MusicSliderSection/MusicAudioSlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_previous = NodePath("../../MusicSliderSection/MusicAudioSlider")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
 theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
@@ -210,6 +231,10 @@ layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../DragSensitivity/DragSensitivitySlider")
+focus_next = NodePath("../../DragSensitivity/DragSensitivitySlider")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 3
 popup/item_0/text = "Use Both"
@@ -240,6 +265,12 @@ offset_top = -9.0
 offset_right = 773.0
 offset_bottom = 42.0
 scale = Vector2(1.25, 1.25)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ScreenMovementEnabled/ScreenMovementOptionButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ScreenSidesSensitivity/ScreenSidesSlider")
+focus_next = NodePath("../../ScreenSidesSensitivity/ScreenSidesSlider")
+focus_previous = NodePath("../../ScreenMovementEnabled/ScreenMovementOptionButton")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
 theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
@@ -277,6 +308,12 @@ offset_top = -9.0
 offset_right = 773.0
 offset_bottom = 42.0
 scale = Vector2(1.25, 1.25)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../DragSensitivity/DragSensitivitySlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_previous = NodePath("../../DragSensitivity/DragSensitivitySlider")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
 theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
@@ -333,6 +370,10 @@ layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
+focus_next = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
 [node name="ScreenResolution" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
@@ -354,6 +395,12 @@ layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ScreenMode/DisplayModeOptionButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../LimitFPS/LimitFPSOptionButton")
+focus_next = NodePath("../../LimitFPS/LimitFPSOptionButton")
+focus_previous = NodePath("../../ScreenMode/DisplayModeOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
 [node name="LimitFPS" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
@@ -375,6 +422,12 @@ layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../FPSLimitValue/FPSLimitSlider")
+focus_next = NodePath("../../FPSLimitValue/FPSLimitSlider")
+focus_previous = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 5
 popup/item_0/text = "No Limit"
@@ -410,6 +463,12 @@ offset_top = -9.0
 offset_right = 773.0
 offset_bottom = 42.0
 scale = Vector2(1.25, 1.25)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../LimitFPS/LimitFPSOptionButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_previous = NodePath("../../LimitFPS/LimitFPSOptionButton")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
 theme_override_styles/slider = SubResource("StyleBoxTexture_81y48")
@@ -438,6 +497,10 @@ layout_mode = 0
 offset_left = 450.0
 offset_right = 706.0
 offset_bottom = 256.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
 texture_normal = ExtResource("6_81y48")
 texture_hover = ExtResource("7_4c8os")
 texture_click_mask = ExtResource("11_d1vfn")
@@ -447,6 +510,10 @@ layout_mode = 0
 offset_left = 1250.0
 offset_right = 1506.0
 offset_bottom = 256.0
+focus_neighbor_left = NodePath("../ReturnButton")
+focus_neighbor_right = NodePath("../ReturnButton")
+focus_next = NodePath("../ReturnButton")
+focus_previous = NodePath("../ReturnButton")
 texture_normal = ExtResource("9_4c8os")
 texture_hover = ExtResource("10_gpqcs")
 texture_click_mask = ExtResource("11_d1vfn")
@@ -455,6 +522,7 @@ texture_click_mask = ExtResource("11_d1vfn")
 visible = false
 layout_mode = 1
 
+[connection signal="tab_changed" from="Panel/TabContainer" to="." method="TabContainerTabChanged"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider" to="." method="MusicAudioSliderOnValueChanged"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider" to="." method="OtherAudioSliderOnValueChanged"]
 [connection signal="item_selected" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton" to="." method="ScreenMovementTypeSelected"]

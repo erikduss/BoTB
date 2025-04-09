@@ -27,6 +27,12 @@ namespace Erikduss
 
         public void ShowAgeAbilityInfoOnHover()
         {
+            //we dont want to collapse this if we still have focus.
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                if (!HasFocus()) return;
+            }
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
 
             abilityProgressbar.TextureProgress = hoverProgressBarTexture;

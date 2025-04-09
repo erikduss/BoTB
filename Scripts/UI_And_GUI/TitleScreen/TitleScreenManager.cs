@@ -17,7 +17,6 @@ namespace Erikduss
 
         [Export] public Control defaultControlSelected;
         private Control currentlySelectedControl = null;
-        private Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -72,6 +71,7 @@ namespace Erikduss
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             optionsPanel.Visible = true;
             ((OptionsMenu)optionsPanel).allowSFXFromOptionsMenu = true;
+            ((OptionsMenu)optionsPanel).SelectDefaultControl();
         }
 
         public void OptionsPanelClosed()
@@ -100,17 +100,20 @@ namespace Erikduss
 
         private void OnControlElementFocusChanged(Control control)
         {
+
+
             if (control != currentlySelectedControl)
             {
                 //change color back
                 if(currentlySelectedControl != null)
                 {
                     currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
                 }
             }
 
             currentlySelectedControl = control;
-            control.SelfModulate = focussedControlColor;
+            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
         }
     }
 }

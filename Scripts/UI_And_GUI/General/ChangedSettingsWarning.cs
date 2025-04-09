@@ -9,6 +9,16 @@ namespace Erikduss
 
         public OptionsMenu attachedOptionsMenu;
 
+        private Control currentlySelectedControl = null;
+        [Export] private Control defaultSelectedControl;
+
+        public override void _Ready()
+        {
+            base._Ready();
+
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+        }
+
         public void DiscardChanges()
         {
             attachedOptionsMenu.allowSFXFromOptionsMenu = false;
@@ -34,6 +44,27 @@ namespace Erikduss
             attachedOptionsMenu.hasChangedSettings = false;
             attachedOptionsMenu.Visible = false;
             attachedOptionsMenu.changesWarningPanel.Visible = false;
+        }
+
+        private void OnControlElementFocusChanged(Control control)
+        {
+            if (control != currentlySelectedControl)
+            {
+                //change color back
+                if (currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                }
+            }
+
+            currentlySelectedControl = control;
+            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+        }
+
+        public void SetDefaultSelectedControl()
+        {
+            defaultSelectedControl.GrabFocus();
         }
     }
 }

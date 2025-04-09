@@ -63,6 +63,11 @@ namespace Erikduss
 		[Export] public Label fpsLimitValueLabel;
 
 
+        private Control currentlySelectedControl = null;
+        [Export] public Control returnButtonControl;
+        [Export] public Control saveButtonControl;
+        [Export] public TabContainer optionsTabContainer;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -78,6 +83,8 @@ namespace Erikduss
                     changesWarningPanel = childNode as ChangedSettingsWarning;
                 }
             }
+
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -201,6 +208,8 @@ namespace Erikduss
                 allowSFXFromOptionsMenu = false;
 
                 changesWarningPanel.Visible = true;
+
+                changesWarningPanel.SetDefaultSelectedControl();
             }
 		}
 
@@ -336,6 +345,84 @@ namespace Erikduss
         public void PlayGenericButtonHoverSound()
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+        }
+
+        private void OnControlElementFocusChanged(Control control)
+        {
+            if (control != currentlySelectedControl)
+            {
+                //change color back
+                if (currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                }
+            }
+
+            currentlySelectedControl = control;
+            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+        }
+
+        public void SelectDefaultControl()
+        {
+            returnButtonControl.GrabFocus();
+
+            SetNeighborValuesBasedOnTab();
+        }
+
+        public void TabContainerTabChanged(int tabIndex)
+        {
+            SetNeighborValuesBasedOnTab();
+        }
+
+        private void SetNeighborValuesBasedOnTab()
+        {
+            //audio section
+            if (optionsTabContainer.CurrentTab == 0)
+            {
+                returnButtonControl.FocusNeighborTop = otherAudioSlider.GetPath();
+                returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                saveButtonControl.FocusNeighborTop = otherAudioSlider.GetPath();
+                saveButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                //we need to set the first element to link to the tab bar
+                musicAudioSlider.FocusNeighborTop = optionsTabContainer.GetTabBar().GetPath();
+
+                optionsTabContainer.GetTabBar().FocusNeighborTop = returnButtonControl.GetPath();
+                optionsTabContainer.GetTabBar().FocusNeighborBottom = musicAudioSlider.GetPath();
+
+            }
+            //Gameplay Section
+            else if (optionsTabContainer.CurrentTab == 1)
+            {
+                returnButtonControl.FocusNeighborTop = screenSidesSensitivitySlider.GetPath();
+                returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                saveButtonControl.FocusNeighborTop = screenSidesSensitivitySlider.GetPath();
+                saveButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                //we need to set the first element to link to the tab bar
+                screenMovementTypeOptionButton.FocusNeighborTop = optionsTabContainer.GetTabBar().GetPath();
+
+                optionsTabContainer.GetTabBar().FocusNeighborTop = returnButtonControl.GetPath();
+                optionsTabContainer.GetTabBar().FocusNeighborBottom = screenMovementTypeOptionButton.GetPath();
+            }
+            //Graphics section
+            else
+            {
+                returnButtonControl.FocusNeighborTop = fpsLimitSlider.GetPath();
+                returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                saveButtonControl.FocusNeighborTop = fpsLimitSlider.GetPath();
+                saveButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                //we need to set the first element to link to the tab bar
+                displayModeOptionButton.FocusNeighborTop = optionsTabContainer.GetTabBar().GetPath();
+
+                optionsTabContainer.GetTabBar().FocusNeighborTop = returnButtonControl.GetPath();
+                optionsTabContainer.GetTabBar().FocusNeighborBottom = displayModeOptionButton.GetPath();
+            }
         }
     }
 }

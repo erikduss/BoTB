@@ -32,7 +32,7 @@ namespace Erikduss
 
             if (GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.screenMovement == Enums.ScreenMovementType.Only_Use_Drag_Movement) return;
 
-			Vector2 local_mouse_pos = GetViewport().GetMousePosition();
+            Vector2 local_mouse_pos = GetViewport().GetMousePosition();
 
             if (local_mouse_pos.Y < sidesMovementYValueThreshold) return;
 
@@ -48,7 +48,26 @@ namespace Erikduss
             }
         }
 
-		private void MoveCamera(bool moveLeft, bool multiplySpeed, float speedMultiplier)
+        public override void _PhysicsProcess(double delta)
+        {
+            base._PhysicsProcess(delta);
+
+            if (GameManager.Instance.gameIsPaused) return;
+
+            if (Input.IsActionPressed("MoveScreen_Right"))
+            {
+                GD.Print("Right input");
+                MoveCamera(false, false, 1);
+            }
+
+            if (Input.IsActionPressed("MoveScreen_Left"))
+            {
+                GD.Print("Left input");
+                MoveCamera(true, false, 1);
+            }
+        }
+
+        private void MoveCamera(bool moveLeft, bool multiplySpeed, float speedMultiplier)
 		{
             if(GameManager.Instance.gameIsPaused) return;
 
@@ -107,7 +126,7 @@ namespace Erikduss
 
             if (GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions.screenMovement == Enums.ScreenMovementType.Only_Use_Screen_Sides_Movement) return;
 
-			if(@event is InputEventScreenDrag)
+            if (@event is InputEventScreenDrag)
 			{
 				InputEventScreenDrag dragEvent = @event as InputEventScreenDrag;
 

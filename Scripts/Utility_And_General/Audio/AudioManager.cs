@@ -93,6 +93,9 @@ namespace Erikduss
 
         public void PlaySFXAudioClip(AudioStream audioClip)
         {
+            if (sfxAudioPlayer == null) return;
+            if (!sfxAudioPlayer.HasStreamPlayback()) return;
+
             AudioStreamPlaybackPolyphonic playback = (AudioStreamPlaybackPolyphonic)sfxAudioPlayer.GetStreamPlayback();
             playback.PlayStream(audioClip, bus: sfxAudioPlayer.Bus);
         }

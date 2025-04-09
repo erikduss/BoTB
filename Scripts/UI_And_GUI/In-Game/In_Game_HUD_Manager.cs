@@ -30,7 +30,6 @@ namespace Erikduss
         [Export] private Control pauseMenuReturnControl;
 
         private Control currentlySelectedControl = null;
-        private Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
 
         #region Buy Buttons
 
@@ -318,6 +317,8 @@ namespace Erikduss
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             //We open the in game options menu.
             optionsPanel.Visible = true;
+            ((OptionsMenu)optionsPanel).allowSFXFromOptionsMenu = true;
+            ((OptionsMenu)optionsPanel).SelectDefaultControl();
         }
 
         public void OptionsPanelClosed()
@@ -366,11 +367,12 @@ namespace Erikduss
                 if (currentlySelectedControl != null)
                 {
                     currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
                 }
             }
 
             currentlySelectedControl = control;
-            control.SelfModulate = focussedControlColor;
+            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
         }
     }
 }

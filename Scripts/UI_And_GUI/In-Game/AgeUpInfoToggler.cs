@@ -17,6 +17,12 @@ namespace Erikduss
 
         public void ShowAgeUpInfoOnHover()
         {
+            //we dont want to collapse this if we still have focus.
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                if (!HasFocus()) return;
+            }
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
 
             foreach (var child in this.GetChildren())
@@ -37,6 +43,18 @@ namespace Erikduss
 
         public void HideAgeUpInfoOnLoseHover()
         {
+            //we dont want to collapse this if we still have focus.
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                if (HasFocus()) return;
+            }
+
+            //we dont want to collapse this if we still have focus.
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                if (HasFocus()) return;
+            }
+
             foreach (var child in this.GetChildren())
             {
                 if (child is TextureRect)

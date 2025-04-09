@@ -13,7 +13,7 @@ font_size = 96
 [sub_resource type="LabelSettings" id="LabelSettings_upb8f"]
 font_size = 64
 
-[node name="OptionsChangesWarning" type="Control" node_paths=PackedStringArray("changesDescriptionLabel")]
+[node name="OptionsChangesWarning" type="Control" node_paths=PackedStringArray("changesDescriptionLabel", "defaultSelectedControl")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_extr6")
 changesDescriptionLabel = NodePath("Panel/Panel/ChangesDescription")
+defaultSelectedControl = NodePath("Panel/Panel/SaveButton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -57,6 +58,12 @@ offset_left = 128.0
 offset_top = -256.0
 offset_right = 384.0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
 texture_normal = ExtResource("2_ilf5n")
 texture_hover = ExtResource("3_foy7t")
 texture_click_mask = ExtResource("4_0ppdg")
@@ -73,6 +80,12 @@ offset_top = -256.0
 offset_right = -128.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../DiscardButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../DiscardButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../DiscardButton")
+focus_previous = NodePath("../DiscardButton")
 texture_normal = ExtResource("5_y20wf")
 texture_hover = ExtResource("6_xikgd")
 texture_click_mask = ExtResource("4_0ppdg")
