@@ -32,6 +32,9 @@ namespace Erikduss
 
         #region Accessibility Settings
 
+        //this is used for controlers
+        public bool useHighlightFocusMode = false;
+        public Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
         public bool enableHemophobiaMode = false; //alternate blood color
 
         #endregion

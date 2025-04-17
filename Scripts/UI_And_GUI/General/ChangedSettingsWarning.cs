@@ -48,18 +48,22 @@ namespace Erikduss
 
         private void OnControlElementFocusChanged(Control control)
         {
-            if (control != currentlySelectedControl)
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
             {
-                //change color back
-                if (currentlySelectedControl != null)
+                if (control != currentlySelectedControl)
                 {
-                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
-                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                    //change color back
+                    if (currentlySelectedControl != null)
+                    {
+                        currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                        AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                    }
                 }
+
+                control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
             }
 
             currentlySelectedControl = control;
-            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
         }
 
         public void SetDefaultSelectedControl()

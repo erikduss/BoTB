@@ -99,7 +99,7 @@ namespace Erikduss
         #region MassHealer
         public static UnitSettingsConfig Age01_Mass_Healer = new UnitSettingsConfig()
         {
-            unitCost = 25,
+            unitCost = 20,
             unitAvailableInAge = Enums.Ages.AGE_01,
             unitName = "MassHealer",
             unitDescription = "Can't attack, heals up to 6 allies (plus self) around this unit at once. On spawn, Heal all allied units that are currently on the battlefield.",
@@ -129,7 +129,7 @@ namespace Erikduss
         #region Archdruid
         public static UnitSettingsConfig Age01_Archdruid = new UnitSettingsConfig()
         {
-            unitCost = 150,
+            unitCost = 75,
             unitAvailableInAge = Enums.Ages.AGE_01,
             unitName = "Archdruid",
             unitDescription = "Can transform into a very powerful Melee and Ranged unit.",

@@ -48,11 +48,30 @@ namespace Erikduss
             SetAudioBusVolume("Other");
             SetFPSLimitingMode();
             SetHemophobiaMode();
+            SetControllerHighlightMode();
+            SetControllerFocusColor();
         }
 
         public void SetHemophobiaMode()
         {
             GameSettingsLoader.Instance.useAlternativeBloodColor = currentlySavedUserOptions.enableHemophobiaMode;
+        }
+
+        public void SetControllerFocusColor()
+        {
+            GameSettingsLoader.Instance.focussedControlColor = currentlySavedUserOptions.focussedControlColor;
+        }
+
+        public void SetControllerHighlightMode()
+        {
+            GameSettingsLoader.Instance.useHighlightFocusMode = currentlySavedUserOptions.useHighlightFocusMode;
+            if(GetViewport() != null)
+            {
+                if(GetViewport().GuiGetFocusOwner() != null)
+                {
+                    GetViewport().GuiGetFocusOwner().SelfModulate = new Color(1, 1, 1);
+                }
+            }
         }
 
         public void SetFPSLimitingMode()
@@ -222,43 +241,145 @@ namespace Erikduss
             if (err != Error.Ok)
                 CreateNewSaveFile(true);
 
+            bool requiresToBeSaved = false;
+
             // Iterate over all sections.
             foreach (String section in config.GetSections())
             {
                 if (section == Enums.UserOptionsConfigHeader.AUDIO_SETTINGS.ToString())
                 {
-                    currentlySavedUserOptions.musicVolume = (int)config.GetValue(section, "MusicVolume");
-                    currentlySavedUserOptions.otherVolume = (int)config.GetValue(section, "OtherVolume");
+                    if (config.HasSectionKey(section, "MusicVolume"))
+                    {
+                        currentlySavedUserOptions.musicVolume = (int)config.GetValue(section, "MusicVolume");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+                    
+                    if (config.HasSectionKey(section, "OtherVolume"))
+                    {
+                        currentlySavedUserOptions.otherVolume = (int)config.GetValue(section, "OtherVolume");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else if (section == Enums.UserOptionsConfigHeader.GAMEPLAY_SETTINGS.ToString())
                 {
-                    if (!Enum.TryParse(config.GetValue(section, "ScreenMovement").ToString(), out currentlySavedUserOptions.screenMovement))
+                    if (config.HasSectionKey(section, "ScreenMovement"))
                     {
-                        currentlySavedUserOptions.screenMovement = Enums.ScreenMovementType.Use_Both;//we failed so we set it to default
+                        if (!Enum.TryParse(config.GetValue(section, "ScreenMovement").ToString(), out currentlySavedUserOptions.screenMovement))
+                        {
+                            currentlySavedUserOptions.screenMovement = Enums.ScreenMovementType.Use_Both;//we failed so we set it to default
+                        }
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
                     }
 
-                    currentlySavedUserOptions.addedDragSensitivity = (int)config.GetValue(section, "AddedDragSensitivity");
-                    currentlySavedUserOptions.addedSidesSensitivity = (int)config.GetValue(section, "AddedSidesSensitivity");
+                    if (config.HasSectionKey(section, "AddedDragSensitivity"))
+                    {
+                        currentlySavedUserOptions.addedDragSensitivity = (int)config.GetValue(section, "AddedDragSensitivity");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+
+                    if (config.HasSectionKey(section, "AddedSidesSensitivity"))
+                    {
+                        currentlySavedUserOptions.addedSidesSensitivity = (int)config.GetValue(section, "AddedSidesSensitivity");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else if (section == Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString())
                 {
-                    if(!Enum.TryParse(config.GetValue(section, "DisplayMode").ToString(), out currentlySavedUserOptions.displayMode))
+                    if (config.HasSectionKey(section, "DisplayMode"))
                     {
-                        currentlySavedUserOptions.displayMode = Enums.DisplayMode.Fullscreen;//we failed so we set it to default
+                        if (!Enum.TryParse(config.GetValue(section, "DisplayMode").ToString(), out currentlySavedUserOptions.displayMode))
+                        {
+                            currentlySavedUserOptions.displayMode = Enums.DisplayMode.Fullscreen;//we failed so we set it to default
+                        }
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
                     }
 
-                    if (!Enum.TryParse(config.GetValue(section, "ScreenResolution").ToString(), out currentlySavedUserOptions.screenResolution))
+                    if (config.HasSectionKey(section, "ScreenResolution"))
                     {
-                        currentlySavedUserOptions.screenResolution = Enums.ScreenResolution.RES_1920x1080;//we failed so we set it to default
+                        if (!Enum.TryParse(config.GetValue(section, "ScreenResolution").ToString(), out currentlySavedUserOptions.screenResolution))
+                        {
+                            currentlySavedUserOptions.screenResolution = Enums.ScreenResolution.RES_1920x1080;//we failed so we set it to default
+                        }
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+                    
+
+                    if (config.HasSectionKey(section, "OverrideScreenResolution"))
+                    {
+                        currentlySavedUserOptions.overrideScreenResolution = config.GetValue(section, "OverrideScreenResolution").ToString();
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+                    
+                    if (config.HasSectionKey(section, "LimitFPS"))
+                    {
+                        currentlySavedUserOptions.limitFPS = (int)config.GetValue(section, "LimitFPS");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
                     }
 
-                    currentlySavedUserOptions.overrideScreenResolution = config.GetValue(section, "OverrideScreenResolution").ToString();
-                    currentlySavedUserOptions.limitFPS = (int)config.GetValue(section, "LimitFPS");
-                    currentlySavedUserOptions.fpsLimit = (int)config.GetValue(section, "FpsLimit");
+                    if (config.HasSectionKey(section, "FpsLimit"))
+                    {
+                        currentlySavedUserOptions.fpsLimit = (int)config.GetValue(section, "FpsLimit");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else if (section == Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString())
                 {
-                    currentlySavedUserOptions.enableHemophobiaMode = (bool)config.GetValue(section, "EnableHemophobiaMode");
+                    if(config.HasSectionKey(section, "UseHighlightFocusMode"))
+                    {
+                        currentlySavedUserOptions.useHighlightFocusMode = (bool)config.GetValue(section, "UseHighlightFocusMode");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+
+                    if (config.HasSectionKey(section, "FocussedControlColor"))
+                    {
+                        currentlySavedUserOptions.focussedControlColor = (Color)config.GetValue(section, "FocussedControlColor");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
+
+                    if (config.HasSectionKey(section, "EnableHemophobiaMode"))
+                    {
+                        currentlySavedUserOptions.enableHemophobiaMode = (bool)config.GetValue(section, "EnableHemophobiaMode");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else
                 {
@@ -266,14 +387,23 @@ namespace Erikduss
                 }
             }
 
-            //set the values to the ones that were loaded
-            OverrideSaveOptions(currentlySavedUserOptions, false);
+            if (!requiresToBeSaved)
+            {
+                //set the values to the ones that were loaded
+                OverrideSaveOptions(currentlySavedUserOptions, false);
+            }
+            else
+            {
+                CreateNewSaveFile(false);
+            }
             //overriddenUserOptions = (GameUserOptionsConfig)currentlySavedUserOptions.Clone();
         }
 
         public override void CreateNewSaveFile(bool overrideSaveFile)
         {
             base.CreateNewSaveFile(overrideSaveFile);
+
+            GD.Print("We are creating a new options file override:" + overriddenUserOptions);
 
             GameUserOptionsConfig userOptionsToSave = overrideSaveFile ? overriddenUserOptions : currentlySavedUserOptions;
 
@@ -290,6 +420,8 @@ namespace Erikduss
             config.SetValue(Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString(), "LimitFPS", userOptionsToSave.limitFPS);
             config.SetValue(Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString(), "FpsLimit", userOptionsToSave.fpsLimit);
 
+            config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "UseHighlightFocusMode", userOptionsToSave.useHighlightFocusMode);
+            config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "FocussedControlColor", userOptionsToSave.focussedControlColor);
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "EnableHemophobiaMode", userOptionsToSave.enableHemophobiaMode);
 
             // Save it to a file.
@@ -334,6 +466,8 @@ namespace Erikduss
                 currentlySavedUserOptions.limitFPS = newOptions.limitFPS;
                 currentlySavedUserOptions.fpsLimit = newOptions.fpsLimit;
 
+                currentlySavedUserOptions.useHighlightFocusMode = newOptions.useHighlightFocusMode;
+                currentlySavedUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 currentlySavedUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
             }
             else
@@ -351,8 +485,30 @@ namespace Erikduss
                 overriddenUserOptions.limitFPS = newOptions.limitFPS;
                 overriddenUserOptions.fpsLimit = newOptions.fpsLimit;
 
+                overriddenUserOptions.useHighlightFocusMode = newOptions.useHighlightFocusMode;
+                overriddenUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 overriddenUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
             }
+        }
+
+        public void ResetOverrideOptionsConfig()
+        {
+            overriddenUserOptions.musicVolume = currentlySavedUserOptions.musicVolume;
+            overriddenUserOptions.otherVolume = currentlySavedUserOptions.otherVolume;
+
+            overriddenUserOptions.screenMovement = currentlySavedUserOptions.screenMovement;
+            overriddenUserOptions.addedDragSensitivity = currentlySavedUserOptions.addedDragSensitivity;
+            overriddenUserOptions.addedSidesSensitivity = currentlySavedUserOptions.addedSidesSensitivity;
+
+            overriddenUserOptions.displayMode = currentlySavedUserOptions.displayMode;
+            overriddenUserOptions.screenResolution = currentlySavedUserOptions.screenResolution;
+            overriddenUserOptions.overrideScreenResolution = currentlySavedUserOptions.overrideScreenResolution;
+            overriddenUserOptions.limitFPS = currentlySavedUserOptions.limitFPS;
+            overriddenUserOptions.fpsLimit = currentlySavedUserOptions.fpsLimit;
+
+            overriddenUserOptions.useHighlightFocusMode = currentlySavedUserOptions.useHighlightFocusMode;
+            overriddenUserOptions.focussedControlColor = currentlySavedUserOptions.focussedControlColor;
+            overriddenUserOptions.enableHemophobiaMode = currentlySavedUserOptions.enableHemophobiaMode;
         }
     }
 }

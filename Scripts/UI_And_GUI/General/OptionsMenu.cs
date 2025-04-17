@@ -68,6 +68,13 @@ namespace Erikduss
         [Export] public Control saveButtonControl;
         [Export] public TabContainer optionsTabContainer;
 
+        //Gameplay Settings
+        [Export] public OptionButton controllerModeOptionButton;
+        [Export] public OptionButton hemoPhobiaModeOptionButton;
+
+        [Export] public ColorPickerButton controllerModeColorPickerButton;
+
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -96,6 +103,8 @@ namespace Erikduss
         {
             GameUserOptionsConfig currSavedConfig = GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions;
 
+            GameSettingsLoader.Instance.gameUserOptionsManager.ResetOverrideOptionsConfig();
+
             musicAudioSlider.Value = currSavedConfig.musicVolume;
             otherAudioSlider.Value = currSavedConfig.otherVolume;
 
@@ -115,6 +124,11 @@ namespace Erikduss
             }
             limitFPSOptionButton.Selected = currSavedConfig.limitFPS;
             fpsLimitSlider.Value = currSavedConfig.fpsLimit;
+
+            controllerModeOptionButton.Selected = currSavedConfig.useHighlightFocusMode ? 1 : 0;
+            hemoPhobiaModeOptionButton.Selected = currSavedConfig.enableHemophobiaMode ? 1 : 0;
+
+            controllerModeColorPickerButton.Color = currSavedConfig.focussedControlColor;
         }
 
 		private void SetDefaultValues()
@@ -183,7 +197,8 @@ namespace Erikduss
             }
 
             //check if the Accessibility section is the same
-            if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode)
+            if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode || currSavedConfig.useHighlightFocusMode != overrideConfig.useHighlightFocusMode 
+                || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor)
             {
                 changesWarning = changesWarning + " - Accessibility Section";
                 hasChangedSettings = true;
@@ -342,6 +357,36 @@ namespace Erikduss
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.limitFPS = value;
         }
 
+        public void ControllerModeOptionSelected(int value)
+        {
+            if (allowSFXFromOptionsMenu)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
+            }
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.useHighlightFocusMode = value == 0 ? false : true;
+        }
+
+        public void ControllerFocusColorChanged(Color newColor)
+        {
+            if (allowSFXFromOptionsMenu)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
+            }
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.focussedControlColor = newColor;
+        }
+
+        public void HemophobiaModeOptionSelected(int value)
+        {
+            if (allowSFXFromOptionsMenu)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
+            }
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.enableHemophobiaMode = value == 0 ? false : true;
+        }
+
         public void PlayGenericButtonHoverSound()
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
@@ -349,18 +394,27 @@ namespace Erikduss
 
         private void OnControlElementFocusChanged(Control control)
         {
-            if (control != currentlySelectedControl)
+            if (GameSettingsLoader.Instance.useHighlightFocusMode)
             {
-                //change color back
-                if (currentlySelectedControl != null)
+                if (control != currentlySelectedControl)
                 {
-                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
-                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                    //change color back
+                    if (currentlySelectedControl != null)
+                    {
+                        currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                        AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+                    }
                 }
+
+                control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
             }
 
             currentlySelectedControl = control;
-            control.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+        }
+
+        public void ResetControllerModeColorOverride()
+        {
+            controllerModeColorPickerButton.Color = new Color(0.6f, 0.6f, 0.5f);
         }
 
         public void SelectDefaultControl()
@@ -409,7 +463,7 @@ namespace Erikduss
                 optionsTabContainer.GetTabBar().FocusNeighborBottom = screenMovementTypeOptionButton.GetPath();
             }
             //Graphics section
-            else
+            else if (optionsTabContainer.CurrentTab == 2)
             {
                 returnButtonControl.FocusNeighborTop = fpsLimitSlider.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
@@ -422,6 +476,20 @@ namespace Erikduss
 
                 optionsTabContainer.GetTabBar().FocusNeighborTop = returnButtonControl.GetPath();
                 optionsTabContainer.GetTabBar().FocusNeighborBottom = displayModeOptionButton.GetPath();
+            }
+            else
+            {
+                returnButtonControl.FocusNeighborTop = hemoPhobiaModeOptionButton.GetPath();
+                returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                saveButtonControl.FocusNeighborTop = hemoPhobiaModeOptionButton.GetPath();
+                saveButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
+
+                //we need to set the first element to link to the tab bar
+                controllerModeOptionButton.FocusNeighborTop = optionsTabContainer.GetTabBar().GetPath();
+
+                optionsTabContainer.GetTabBar().FocusNeighborTop = returnButtonControl.GetPath();
+                optionsTabContainer.GetTabBar().FocusNeighborBottom = controllerModeOptionButton.GetPath();
             }
         }
     }
