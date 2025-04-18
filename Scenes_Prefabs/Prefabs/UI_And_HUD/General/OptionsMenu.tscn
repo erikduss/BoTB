@@ -532,11 +532,13 @@ text = "Controller Mode"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="ControllerModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Controller Mode Section"]
+layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 focus_next = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 2
@@ -602,6 +604,7 @@ text = "Hemophobia Mode"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="HemophobiaModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Hemophobia Mode Section"]
+layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0

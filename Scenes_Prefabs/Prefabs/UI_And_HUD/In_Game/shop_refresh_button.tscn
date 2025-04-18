@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbqhmcq7vjpxa"]
+
+[ext_resource type="Texture2D" uid="uid://gngs4i322ulf" path="res://Assets/UI/Ingame_UI/refreshButton_Default.png" id="1_c2c6f"]
+[ext_resource type="Texture2D" uid="uid://d3417sfy3r2oj" path="res://Assets/UI/Ingame_UI/refreshButton_Hover.png" id="2_1cop2"]
+[ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="3_rlmqc"]
+[ext_resource type="Texture2D" uid="uid://bw56go5wcquhp" path="res://Assets/UI/Ingame_UI/refreshButton_Info.png" id="4_cger1"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="5_du23h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vgmk3"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sd6kg"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[node name="ShopRefreshButton" type="TextureButton"]
+focus_neighbor_top = NodePath("../../../AgeAbility/AgeAbilityContainer/AgeAbilityButton")
+focus_neighbor_right = NodePath("../../../PauseButton")
+focus_neighbor_bottom = NodePath("../../../AgeUpgrade/AgeUpgradeContainer/AgeUpgradeButton")
+texture_normal = ExtResource("1_c2c6f")
+texture_hover = ExtResource("2_1cop2")
+texture_click_mask = ExtResource("3_rlmqc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 25.0
+offset_right = 149.0
+offset_bottom = 89.0
+mouse_filter = 2
+texture = ExtResource("4_cger1")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 101.0
+offset_bottom = 38.0
+scale = Vector2(0.5, 0.5)
+text = "Refresh"
+label_settings = SubResource("LabelSettings_vgmk3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 20.0
+offset_right = 59.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+text = "5"
+label_settings = SubResource("LabelSettings_sd6kg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 30.0
+offset_bottom = 44.0
+mouse_filter = 2
+texture = ExtResource("5_du23h")
+expand_mode = 3

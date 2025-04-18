@@ -78,7 +78,7 @@ offset_left = 90.0
 offset_right = 136.0
 offset_bottom = 28.0
 scale = Vector2(0.5, 0.5)
-text = "1000"
+text = "250"
 label_settings = SubResource("LabelSettings_l0gp8")
 
 [node name="BoxContainer" type="BoxContainer" parent="AgeUpgradeInfo"]

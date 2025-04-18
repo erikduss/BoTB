@@ -60,6 +60,14 @@ namespace Erikduss
         public void SetControllerFocusColor()
         {
             GameSettingsLoader.Instance.focussedControlColor = currentlySavedUserOptions.focussedControlColor;
+
+            if (GetViewport() != null)
+            {
+                if (GetViewport().GuiGetFocusOwner() != null)
+                {
+                    GetViewport().GuiGetFocusOwner().SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+                }
+            }
         }
 
         public void SetControllerHighlightMode()
@@ -143,7 +151,7 @@ namespace Erikduss
 
             AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(audioBusName), percentageConvertedToDB);
 
-            if(currentlySavedUserOptions.musicVolume <= 0)
+            if(audioVolumePercentage <= 0)
             {
                 AudioServer.SetBusMute(AudioServer.GetBusIndex(audioBusName), true);
             }

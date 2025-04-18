@@ -198,7 +198,7 @@ namespace Erikduss
 
             //check if the Accessibility section is the same
             if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode || currSavedConfig.useHighlightFocusMode != overrideConfig.useHighlightFocusMode 
-                || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor)
+                || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor)
             {
                 changesWarning = changesWarning + " - Accessibility Section";
                 hasChangedSettings = true;
@@ -232,6 +232,21 @@ namespace Erikduss
 		{
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GameSettingsLoader.Instance.gameUserOptionsManager.CreateNewSaveFile(true);
+
+            if (GetViewport() != null)
+            {
+                if (GetViewport().GuiGetFocusOwner() != null)
+                {
+                    if (GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.useHighlightFocusMode)
+                    {
+                        GetViewport().GuiGetFocusOwner().SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+                    }
+                    else
+                    {
+                        GetViewport().GuiGetFocusOwner().SelfModulate = new Color(1, 1, 1);
+                    }
+                }
+            }
         }
 
 		public void MusicAudioSliderOnValueChanged(float value)
@@ -369,11 +384,6 @@ namespace Erikduss
 
         public void ControllerFocusColorChanged(Color newColor)
         {
-            if (allowSFXFromOptionsMenu)
-            {
-                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
-            }
-
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.focussedControlColor = newColor;
         }
 
@@ -414,7 +424,9 @@ namespace Erikduss
 
         public void ResetControllerModeColorOverride()
         {
-            controllerModeColorPickerButton.Color = new Color(0.6f, 0.6f, 0.5f);
+            Color defaultColor = new Color(0.6f, 0.6f, 0.5f);
+            controllerModeColorPickerButton.Color = defaultColor;
+            ControllerFocusColorChanged(defaultColor);
         }
 
         public void SelectDefaultControl()

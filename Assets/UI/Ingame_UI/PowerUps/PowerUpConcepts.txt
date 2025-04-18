@@ -1,0 +1,14 @@
+Age Ability Buff:
+Improves your empowerment of your age ability by 1 permanently.
+
+Gold Gain Buff:
+Improves your gold gained by 20%.
+
+Heal Home Base Buff:
+Heal your home base for 100 health.
+
+Get in there power:
+10 random units, instantly get added to your unit queue for free.
+
+Beefed up:
+Your next x amount of units will have more speed/armor/health.

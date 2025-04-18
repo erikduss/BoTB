@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ry146tee33a5"
+path="res://.godot/imported/PowerUp_Button_clickmask.png-ecf0a9154cfad6f171082d0a9142615c.res"
+
+[deps]
+
+source_file="res://Assets/UI/Ingame_UI/PowerUps/PowerUp_Button_clickmask.png"
+dest_files=["res://.godot/imported/PowerUp_Button_clickmask.png-ecf0a9154cfad6f171082d0a9142615c.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

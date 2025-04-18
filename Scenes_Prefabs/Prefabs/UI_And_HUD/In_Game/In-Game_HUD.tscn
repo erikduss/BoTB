@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=31 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -9,13 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://ct16o8pm0l5rp" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/MassHealer_buy_button.tscn" id="7_lc4p6"]
 [ext_resource type="PackedScene" uid="uid://1aha3mr6cllc" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn" id="8_74f22"]
 [ext_resource type="PackedScene" uid="uid://crdubskge1j78" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn" id="9_0cs4e"]
-[ext_resource type="Texture2D" uid="uid://gngs4i322ulf" path="res://Assets/UI/Ingame_UI/refreshButton_Default.png" id="10_2ns0e"]
 [ext_resource type="PackedScene" uid="uid://di8lr2d0t3ntr" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Archdruid_buy_button.tscn" id="10_d11oe"]
-[ext_resource type="Texture2D" uid="uid://d3417sfy3r2oj" path="res://Assets/UI/Ingame_UI/refreshButton_Hover.png" id="11_ks4ek"]
-[ext_resource type="Texture2D" uid="uid://bw56go5wcquhp" path="res://Assets/UI/Ingame_UI/refreshButton_Info.png" id="12_x7md2"]
+[ext_resource type="PackedScene" uid="uid://cbqhmcq7vjpxa" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/shop_refresh_button.tscn" id="11_ovqk1"]
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="12_yp65u"]
-[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="13_ws1d2"]
+[ext_resource type="PackedScene" uid="uid://bdafram0ww6ol" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/powerup_refresh_button.tscn" id="13_5yawq"]
 [ext_resource type="PackedScene" uid="uid://b8bxjggric8q3" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age01_upgrade_button.tscn" id="15_yfhd6"]
+[ext_resource type="PackedScene" uid="uid://cpm2rydp6mkc0" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/locked_powerup_button.tscn" id="16_3odpb"]
 [ext_resource type="PackedScene" uid="uid://drd6t22hn0wvm" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age01_ability_button.tscn" id="16_yjnc7"]
 [ext_resource type="Texture2D" uid="uid://bhavacday4phc" path="res://Assets/UI/Ingame_UI/pauseButton_Default.png" id="18_uchjm"]
 [ext_resource type="Texture2D" uid="uid://boi3w66ew64v6" path="res://Assets/UI/Ingame_UI/pauseButton_Hover.png" id="19_n2dlf"]
@@ -32,14 +31,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_0l7uc"]
 font_size = 64
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vgmk3"]
-font_size = 24
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_sd6kg"]
-font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_st105"]
@@ -119,58 +110,18 @@ layout_mode = 2
 [node name="ArchdruidBuyButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/UnitShopContainer" instance=ExtResource("10_d11oe")]
 layout_mode = 2
 
-[node name="ShopRefreshButton" type="TextureButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
+[node name="ShopRefreshButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("11_ovqk1")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../AgeAbility/AgeAbilityContainer/AgeAbilityButton")
-focus_neighbor_right = NodePath("../../../PauseButton")
-focus_neighbor_bottom = NodePath("../../../AgeUpgrade/AgeUpgradeContainer/AgeUpgradeButton")
-texture_normal = ExtResource("10_2ns0e")
-texture_hover = ExtResource("11_ks4ek")
-texture_click_mask = ExtResource("12_yp65u")
 
-[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton"]
-layout_mode = 0
-offset_left = 85.0
-offset_top = 25.0
-offset_right = 149.0
-offset_bottom = 89.0
-mouse_filter = 2
-texture = ExtResource("12_x7md2")
-expand_mode = 3
+[node name="HSeparator" type="Control" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
-[node name="Label" type="Label" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 101.0
-offset_bottom = 38.0
-scale = Vector2(0.5, 0.5)
-text = "Refresh"
-label_settings = SubResource("LabelSettings_vgmk3")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="LockedPowerUpButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("16_3odpb")]
+layout_mode = 2
 
-[node name="Label2" type="Label" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 20.0
-offset_right = 59.0
-offset_bottom = 65.0
-scale = Vector2(0.5, 0.5)
-text = "5"
-label_settings = SubResource("LabelSettings_sd6kg")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton/TextureRect"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 19.0
-offset_right = 30.0
-offset_bottom = 44.0
-mouse_filter = 2
-texture = ExtResource("13_ws1d2")
-expand_mode = 3
+[node name="ShopRefreshButton2" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("13_5yawq")]
+layout_mode = 2
 
 [node name="AgeUpgrade" type="MarginContainer" parent="Player_Control_HUD"]
 layout_mode = 0
@@ -298,7 +249,6 @@ offset_bottom = 0.0
 visible = false
 layout_mode = 1
 
-[connection signal="mouse_entered" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="GenericButtonHover"]
 [connection signal="pressed" from="Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton" to="." method="RefreshUnitShop" binds= [true]]
 [connection signal="pressed" from="Player_Control_HUD/AgeAbility/AgeAbilityContainer/AgeAbilityButton" to="." method="PlayerAbilityButtonPressed"]
 [connection signal="mouse_entered" from="Player_Control_HUD/PauseButton" to="." method="GenericButtonHover"]

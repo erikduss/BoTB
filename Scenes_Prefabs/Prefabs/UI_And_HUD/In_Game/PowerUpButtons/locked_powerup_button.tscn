@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpm2rydp6mkc0"]
+
+[ext_resource type="Texture2D" uid="uid://c67vepqjdqh0r" path="res://Assets/UI/Ingame_UI/PowerUps/PowerUp_Button_Locked.png" id="1_hsg70"]
+[ext_resource type="BitMap" uid="uid://ry146tee33a5" path="res://Assets/UI/Ingame_UI/PowerUps/PowerUp_Button_clickmask.png" id="2_uc38e"]
+[ext_resource type="Script" uid="uid://blhr6afopiiim" path="res://Scripts/UI_And_GUI/In-Game/PowerUps/LockedPowerUpInfoToggler.cs" id="3_c16ce"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_rjo4d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tie5p"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkrm2"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_644wk"]
+font_size = 180
+font_color = Color(0, 0, 0, 1)
+
+[node name="LockedPowerUpButton" type="TextureButton" node_paths=PackedStringArray("currentPowerUpProgressLabel")]
+custom_minimum_size = Vector2(0, 128)
+offset_right = 168.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_hsg70")
+texture_click_mask = ExtResource("2_uc38e")
+stretch_mode = 4
+script = ExtResource("3_c16ce")
+currentPowerUpProgressLabel = NodePath("ButtonQuickProgressText")
+
+[node name="LockedPowerUpInfo" type="TextureRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -43.0
+offset_top = 75.0
+offset_right = 213.0
+offset_bottom = 331.0
+pivot_offset = Vector2(128, 0)
+mouse_filter = 2
+texture = ExtResource("5_rjo4d")
+
+[node name="LockedText" type="Label" parent="LockedPowerUpInfo"]
+custom_minimum_size = Vector2(210, 125)
+layout_mode = 2
+offset_left = 73.0
+offset_top = 19.0
+offset_right = 178.0
+offset_bottom = 79.0
+scale = Vector2(0.5, 0.5)
+text = "Locked"
+label_settings = SubResource("LabelSettings_tie5p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="LockedPowerUpInfo"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 80.0
+offset_right = 435.0
+offset_bottom = 402.0
+scale = Vector2(0.5, 0.5)
+
+[node name="LockedPowerUpDescription" type="Label" parent="LockedPowerUpInfo/BoxContainer"]
+custom_minimum_size = Vector2(410, 225)
+layout_mode = 2
+text = "Certain actions and events will give you progress towards unlocking a new random Power Up.
+Every time this is unlocked, you will be rewarded with 1x Power Up Reroll."
+label_settings = SubResource("LabelSettings_mkrm2")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonQuickProgressText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 18.0
+offset_right = 1444.0
+offset_bottom = 348.0
+scale = Vector2(0.1, 0.1)
+text = "1000/1000"
+label_settings = SubResource("LabelSettings_644wk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="ShowPowerUpInfoOnHover"]
+[connection signal="focus_exited" from="." to="." method="HidePowerUpInfoOnLoseHover"]
+[connection signal="mouse_entered" from="." to="." method="ShowPowerUpInfoOnHover"]
+[connection signal="mouse_exited" from="." to="." method="HidePowerUpInfoOnLoseHover"]
+[connection signal="pressed" from="." to="." method="ProcessPowerUpEffect"]
