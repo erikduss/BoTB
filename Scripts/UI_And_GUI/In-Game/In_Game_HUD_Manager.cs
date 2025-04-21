@@ -45,6 +45,18 @@ namespace Erikduss
 
         #endregion
 
+        //PowerUp Hud
+        [Export] private Control powerUpsParentNode;
+        private LockedPowerUpInfoToggler currentLockedPowerUpInfo;
+
+        [Export] private PowerUpRefreshObject powerUpRefreshButton;
+
+        public Control currentShownPowerUp;
+
+        private List<PackedScene> availablePowerUpButtons = new List<PackedScene>();
+        public PackedScene lockedPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/locked_powerup_button.tscn");
+
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -65,7 +77,9 @@ namespace Erikduss
             optionsPanel.VisibilityChanged += OptionsPanelClosed;
 
             RefreshUnitShop(false);
-		}
+            RefreshPowerUp(false);
+            powerUpRefreshButton.SetAmountOfPowerUpRefreshes(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount);
+        }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
@@ -154,6 +168,61 @@ namespace Erikduss
 
             //is always going to be team 1 for now, due to this being the player.
             EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_01);
+        }
+
+        public void RefreshPowerUp(bool spendRerollToken = true)
+        {
+            if (GameManager.Instance.gameIsPaused || GameManager.Instance.gameIsFinished) return;
+
+            if (spendRerollToken)
+            {
+                //if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost)
+                //{
+                //    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                //    return;
+                //}
+
+                ////Attempt to spend the currency, if this fails we stop.
+                //if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01))
+                //{
+                //    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                //    return;
+                //}
+
+                //AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+            }
+
+            if(powerUpsParentNode.GetChildren().Count > 0)
+            {
+                for (int i = powerUpsParentNode.GetChildren().Count - 1; i >= 0; i--)
+                {
+                    powerUpsParentNode.GetChild(i).QueueFree();
+                }
+            }
+
+            currentShownPowerUp = null;
+            currentLockedPowerUpInfo = null;
+
+            if(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount > 0)
+            {
+                //Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[UnitTheShopRolledFor()].Instantiate();
+
+                //powerUpsParentNode.AddChild(instantiatedPowerUpButton);
+                //currentUnitsInShop.Add(instantiatedPowerUpButton);
+            }
+            else
+            {
+                Control instantiatedPowerUpButton = (Control)lockedPowerUpButtonPrefab.Instantiate();
+                powerUpsParentNode.AddChild(instantiatedPowerUpButton);
+                currentShownPowerUp = instantiatedPowerUpButton;
+
+                currentLockedPowerUpInfo = (LockedPowerUpInfoToggler)currentShownPowerUp;
+            }
+
+            //RefreshFocusConnections();
+
+            //if (!spendRerollToken) SelectFirstControlInShop();
+
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)

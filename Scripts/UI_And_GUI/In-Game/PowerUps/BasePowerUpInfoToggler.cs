@@ -41,6 +41,20 @@ namespace Erikduss
             }
         }
 
+        public virtual void ShowPowerUpInfoOnFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            ShowPowerUpInfoOnHover();
+        }
+
+        public virtual void HidePowerUpInfoOnLoseFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            HidePowerUpInfoOnLoseHover();
+        }
+
         public virtual void HidePowerUpInfoOnLoseHover()
         {
             //we dont want to collapse this if we still have focus.

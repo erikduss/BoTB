@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=30 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -14,7 +14,6 @@
 [ext_resource type="BitMap" uid="uid://esd2jqs3o7y4" path="res://Assets/UI/Ingame_UI/UnitButtons/SimpleSoldier/BuySimpleSoldierButton_ClickMask.png" id="12_yp65u"]
 [ext_resource type="PackedScene" uid="uid://bdafram0ww6ol" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/powerup_refresh_button.tscn" id="13_5yawq"]
 [ext_resource type="PackedScene" uid="uid://b8bxjggric8q3" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age01_upgrade_button.tscn" id="15_yfhd6"]
-[ext_resource type="PackedScene" uid="uid://cpm2rydp6mkc0" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/locked_powerup_button.tscn" id="16_3odpb"]
 [ext_resource type="PackedScene" uid="uid://drd6t22hn0wvm" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age01_ability_button.tscn" id="16_yjnc7"]
 [ext_resource type="Texture2D" uid="uid://bhavacday4phc" path="res://Assets/UI/Ingame_UI/pauseButton_Default.png" id="18_uchjm"]
 [ext_resource type="Texture2D" uid="uid://boi3w66ew64v6" path="res://Assets/UI/Ingame_UI/pauseButton_Hover.png" id="19_n2dlf"]
@@ -37,7 +36,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 560
 font_color = Color(0, 0, 0, 1)
 
-[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel", "ageUpControl", "ageAbilityControl", "refreshButtonControl", "pauseButtonControl", "pauseMenuReturnControl")]
+[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel", "ageUpControl", "ageAbilityControl", "refreshButtonControl", "pauseButtonControl", "pauseMenuReturnControl", "powerUpsParentNode", "powerUpRefreshButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +54,8 @@ ageAbilityControl = NodePath("Player_Control_HUD/AgeAbility/AgeAbilityContainer/
 refreshButtonControl = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton")
 pauseButtonControl = NodePath("Player_Control_HUD/PauseButton")
 pauseMenuReturnControl = NodePath("Player_Control_HUD/PauseMenuBackground/ReturnButton")
+powerUpsParentNode = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/PowerUpsContainer")
+powerUpRefreshButton = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/PowerUpRefreshButton")
 
 [node name="Player_Control_HUD" type="Control" parent="."]
 anchors_preset = 0
@@ -117,10 +118,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="LockedPowerUpButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("16_3odpb")]
+[node name="PowerUpsContainer" type="HBoxContainer" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
 layout_mode = 2
 
-[node name="ShopRefreshButton2" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("13_5yawq")]
+[node name="PowerUpRefreshButton" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer" instance=ExtResource("13_5yawq")]
 layout_mode = 2
 
 [node name="AgeUpgrade" type="MarginContainer" parent="Player_Control_HUD"]

@@ -41,6 +41,20 @@ namespace Erikduss
             }
         }
 
+        public void ShowAgeUpInfoOnFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            ShowAgeUpInfoOnHover();
+        }
+
+        public void HideAgeUpInfoOnLoseFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            HideAgeUpInfoOnLoseHover();
+        }
+
         public void HideAgeUpInfoOnLoseHover()
         {
             //we dont want to collapse this if we still have focus.

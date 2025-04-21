@@ -698,6 +698,20 @@ namespace Erikduss
             }
         }
 
+        public void ShowUnitInfoOnFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            ShowUnitInfoOnHover();
+        }
+
+        public void HideUnitInfoOnLoseFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            HideUnitInfoOnLoseHover();
+        }
+
         public void HideUnitInfoOnLoseHover()
         {
             //we dont want to collapse this if we still have focus.

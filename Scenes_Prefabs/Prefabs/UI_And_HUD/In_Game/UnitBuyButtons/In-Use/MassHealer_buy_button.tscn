@@ -199,8 +199,8 @@ label_settings = SubResource("LabelSettings_2d86a")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[connection signal="focus_entered" from="." to="." method="ShowUnitInfoOnHover"]
-[connection signal="focus_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
+[connection signal="focus_entered" from="." to="." method="ShowUnitInfoOnFocus"]
+[connection signal="focus_exited" from="." to="." method="HideUnitInfoOnLoseFocus"]
 [connection signal="mouse_entered" from="." to="." method="ShowUnitInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideUnitInfoOnLoseHover"]
 [connection signal="pressed" from="." to="." method="BuyUnitButtonPressed"]

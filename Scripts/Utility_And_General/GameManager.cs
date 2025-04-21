@@ -76,9 +76,13 @@ namespace Erikduss
 
             player01Script.playerCurrentCurrencyAmount = startingCurrency;
             player01Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+            player01Script.playerCurrentPowerUpProgressAmount = 0;
+            player01Script.playerCurrentPowerUpRerollsAmount = 0;
 
             player02Script.playerCurrentCurrencyAmount = startingCurrency;
             player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+            player02Script.playerCurrentPowerUpProgressAmount = 0;
+            player02Script.playerCurrentPowerUpRerollsAmount = 0;
 
             //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
             inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);

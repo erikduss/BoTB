@@ -100,7 +100,7 @@ label_settings = SubResource("LabelSettings_mkrm2")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[connection signal="focus_entered" from="." to="." method="ShowAgeUpInfoOnHover"]
-[connection signal="focus_exited" from="." to="." method="HideAgeUpInfoOnLoseHover"]
+[connection signal="focus_entered" from="." to="." method="ShowAgeUpInfoOnFocus"]
+[connection signal="focus_exited" from="." to="." method="HideAgeUpInfoOnLoseFocus"]
 [connection signal="mouse_entered" from="." to="." method="ShowAgeUpInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideAgeUpInfoOnLoseHover"]

@@ -10,7 +10,11 @@ namespace Erikduss
 
 		public Enums.Ages currentAgeOfPlayer = Enums.Ages.AGE_01;
 
-		public HomeBaseManager playerBase { get; set; }
+		public int playerCurrentPowerUpProgressAmount { get; set; }
+        public int playerCurrentPowerUpRerollsAmount { get; set; }
+
+
+        public HomeBaseManager playerBase { get; set; }
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()

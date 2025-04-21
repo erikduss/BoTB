@@ -53,6 +53,20 @@ namespace Erikduss
             }
         }
 
+        public void ShowAgeAbilityInfoOnFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            ShowAgeAbilityInfoOnHover();
+        }
+
+        public void HideAgeAbilityInfoOnLoseFocus()
+        {
+            if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;
+
+            HideAgeAbilityInfoOnLoseHover();
+        }
+
         public void HideAgeAbilityInfoOnLoseHover()
         {
             abilityProgressbar.TextureProgress = defaultProgressBarTexture;
