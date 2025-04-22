@@ -13,6 +13,9 @@ namespace Erikduss
 		public int playerCurrentPowerUpProgressAmount { get; set; }
         public int playerCurrentPowerUpRerollsAmount { get; set; }
 
+        public int playerCurrentAmountOfPowerUpsOwed { get; set; }
+
+		public bool hasUnlockedPowerUpCurrently { get; set; }
 
         public HomeBaseManager playerBase { get; set; }
 

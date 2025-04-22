@@ -16,7 +16,7 @@ namespace Erikduss
 
         public bool isTransforming = false;
         private float tranformationTimer = 0;
-        private float transformationDuration = 0.8f;
+        private float transformationDuration = 0.7f;
 
         public override void _Ready()
         {
@@ -72,7 +72,6 @@ namespace Erikduss
                     if(tranformationTimer >= transformationDuration)
                     {
                         ActivateTransformation();
-                        isTransforming = false;
                     }
                     else
                     {
@@ -92,13 +91,27 @@ namespace Erikduss
             isTransformed = !isTransformed; //update bool
 
             currentAnimatedSprite.Play("Idle");
+
+            isTransforming = false;
+        }
+
+        public void TransformCombatMode()
+        {
+            isTransforming = true;
+            tranformationTimer = 0;
+            transformationDuration = 0.9f;
+
+            SetNewAttackCooldownTimer(transformationDuration);
         }
 
         public void TransformBack()
         {
             isTransforming = true;
             tranformationTimer = 0;
+            transformationDuration = 0.7f;
             currentAnimatedSprite.Play("Transform_Back");
+
+            SetNewAttackCooldownTimer(transformationDuration);
         }
     }
 }

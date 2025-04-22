@@ -276,11 +276,23 @@ namespace Erikduss
 
                         Archdruid currentDruidScript = (Archdruid)character;
 
-                        if (!currentDruidScript.isTransformed)
+                        GD.Print("Druid attack mode!");
+
+                        if (!currentDruidScript.isTransforming)
                         {
-                            currentDruidScript.ActivateTransformation();
-                            return;
+                            if (!currentDruidScript.isTransformed)
+                            {
+                                currentDruidScript.TransformCombatMode();
+                                return;
+                            }
                         }
+                        else if (currentDruidScript.isTransforming)
+                        {
+                            GD.Print("We are still transforming in attack state.");
+                            return; //we dont wanna attack while transforming.
+                        }
+
+                        GD.Print("We passed all duid checks");
 
                         if(currentAttackAnimationName == "Attack")
                         {

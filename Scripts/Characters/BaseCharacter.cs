@@ -362,7 +362,20 @@ namespace Erikduss
 
             SetNewMaxHealthBasedOnDamageTaken(fixedDamage);
 
-            EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, rawDamage);
+            EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, fixedDamage);
+
+            //award teams with power up progress.
+            #region PowerUp progress reward
+            int powerUpProgressAmountRewardedSelf = fixedDamage * GameSettingsLoader.powerUpProgressMultiplierOwnUnitDamage;
+            int powerUpProgressAmountRewardedEnemy = (int)MathF.Floor((float)fixedDamage * GameSettingsLoader.powerUpProgressMultiplierOtherUnitDamage);
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(characterOwner, powerUpProgressAmountRewardedSelf);
+            Enums.TeamOwner enemyTeamOwner = characterOwner == Enums.TeamOwner.TEAM_01 ? Enums.TeamOwner.TEAM_02 : Enums.TeamOwner.TEAM_01;
+
+            if (powerUpProgressAmountRewardedEnemy < 0) powerUpProgressAmountRewardedEnemy = 1;
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(enemyTeamOwner, powerUpProgressAmountRewardedEnemy);
+            #endregion
 
             if (currentHealth <= 0) 
             {
@@ -408,6 +421,10 @@ namespace Erikduss
             if(currentHealth > maxHealth) currentHealth = maxHealth;
 
             EffectsAndProjectilesSpawner.Instance.SpawnFloatingDamageNumber(this, healAmount, true);
+
+            int powerUpProgressAmountRewardedSelf = (int)MathF.Floor((float)healAmount * GameSettingsLoader.powerUpProgressMultiplierOwnUnitHealing);
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(characterOwner, powerUpProgressAmountRewardedSelf);
 
             //we need to wait till the effects function is done processing due to changes in the list structure that will give errors.
             while (EffectsAndProjectilesSpawner.Instance.processingHealingEffects)

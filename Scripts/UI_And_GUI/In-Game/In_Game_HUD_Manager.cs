@@ -78,7 +78,6 @@ namespace Erikduss
 
             RefreshUnitShop(false);
             RefreshPowerUp(false);
-            powerUpRefreshButton.SetAmountOfPowerUpRefreshes(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount);
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -203,7 +202,7 @@ namespace Erikduss
             currentShownPowerUp = null;
             currentLockedPowerUpInfo = null;
 
-            if(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount > 0)
+            if(GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed > 0)
             {
                 //Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[UnitTheShopRolledFor()].Instantiate();
 
@@ -223,6 +222,24 @@ namespace Erikduss
 
             //if (!spendRerollToken) SelectFirstControlInShop();
 
+        }
+
+        public bool DoesThePlayerHaveAPowerUpUnlocked()
+        {
+            return GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently;
+        }
+
+        public void UpdateCurrentLockedPowerUpProgress()
+        {
+            if (currentLockedPowerUpInfo != null)
+            {
+                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(GameManager.Instance.player01Script.playerCurrentPowerUpProgressAmount);
+            }
+        }
+
+        public void UpdatePlayerPowerUPRerollAmount()
+        {
+            powerUpRefreshButton.SetAmountOfPowerUpRefreshes(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount);
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)

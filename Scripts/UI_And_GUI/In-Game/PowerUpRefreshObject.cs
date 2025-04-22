@@ -14,7 +14,20 @@ namespace Erikduss
 
         public void RefreshPowerUpButtonClicked()
         {
-            //GameManager.Instance.inGameHUDManager
+            if(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount <= 0)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+
+            if (!GameManager.Instance.inGameHUDManager.DoesThePlayerHaveAPowerUpUnlocked())
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+            GameManager.Instance.inGameHUDManager.RefreshPowerUp();
         }
     }
 }

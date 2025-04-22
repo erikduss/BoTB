@@ -125,7 +125,20 @@ namespace Erikduss
         {
             currentHealth -= rawDamage;
 
-            if(currentHealth <= 0)
+            //award teams with power up progress.
+            #region PowerUp progress reward
+            int powerUpProgressAmountRewardedSelf = rawDamage * GameSettingsLoader.powerUpProgressMultiplierOwnBaseDamage;
+            int powerUpProgressAmountRewardedEnemy = (int)MathF.Floor((float)rawDamage * GameSettingsLoader.powerUpProgressMultiplierOtherBaseDamage);
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(homeBaseOwner, powerUpProgressAmountRewardedSelf);
+            Enums.TeamOwner enemyTeamOwner = homeBaseOwner == Enums.TeamOwner.TEAM_01 ? Enums.TeamOwner.TEAM_02 : Enums.TeamOwner.TEAM_01;
+
+            if (powerUpProgressAmountRewardedEnemy < 0) powerUpProgressAmountRewardedEnemy = 1;
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(enemyTeamOwner, powerUpProgressAmountRewardedEnemy);
+            #endregion
+
+            if (currentHealth <= 0)
             {
                 currentHealth = 0;
                 isDeadOrDestroyed = true;

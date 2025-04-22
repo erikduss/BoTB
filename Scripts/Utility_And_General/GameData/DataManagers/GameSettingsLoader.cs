@@ -20,6 +20,16 @@ namespace Erikduss
         public int enforcerStunApplyChance = 70; //this is a percentage (0-100)
         public int tankBuffApplyChance = 70; //this is a percentage (0-100)
 
+        //Power ups
+        public static int progressNeededToUnlockPower = 1000;
+        public static int powerUpProgressAmountIdle = 1;
+        public static int powerUpProgressAmountAbilityUsed = 200;
+        public static int powerUpProgressMultiplierOwnBaseDamage = 5;
+        public static int powerUpProgressMultiplierOtherBaseDamage = 3;
+        public static int powerUpProgressMultiplierOwnUnitDamage = 1;
+        public static float powerUpProgressMultiplierOtherUnitDamage = 0.5f;
+        public static float powerUpProgressMultiplierOwnUnitHealing = 0.5f;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {

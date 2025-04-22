@@ -71,6 +71,29 @@ namespace Erikduss
             //movement speed is either - or +, this determines the direction of the raycast.
             float direction = character.movementSpeed >= 0 ? 1 : -1;
 
+            if (CheckDruidNeedToTransform(character))
+            {
+                Archdruid druid = (Archdruid)character;
+
+                if (druid.isTransformed)
+                {
+                    if (!druid.isTransforming)
+                    {
+                        druid.TransformBack();
+                        return;
+                    }
+                    else if (druid.isTransforming)
+                    {
+                        return;
+                    }
+
+                }
+                else if (druid.isTransforming)
+                {
+                    return;
+                }
+            }
+
             //The final raycast position based on detectionrange
             Vector2 raycastDetectPosition = new Vector2(character.GlobalPosition.X + (direction * character.detectionRange), character.GlobalPosition.Y);
 
@@ -101,7 +124,7 @@ namespace Erikduss
                 bool staticBodyCheck = outputString.Contains("StaticBody2D");
 
                 //We are not detecting a character collision.
-                if(!charBodyCheck)
+                if (!charBodyCheck)
                 {
                     if (staticBodyCheck) //which means we collide with a static body, which is the enemy base.
                     {
@@ -283,20 +306,6 @@ namespace Erikduss
 
             #endregion
 
-            if (CheckDruidNeedToTransform(character))
-            {
-                Archdruid druid = (Archdruid)character;
-
-                if (druid.isTransformed)
-                {
-                    if (!druid.isTransforming)
-                    {
-                        druid.TransformBack();
-                    }
-                    return;
-                }
-            }
-
             //character.characterBody.Velocity = new Vector2(character.movementSpeed, 0) * delta;
             //character.characterBody.MoveAndSlide();
             character.MoveAndCollide(new Vector2(character.movementSpeed, 0) * delta);
@@ -433,7 +442,24 @@ namespace Erikduss
         {
             if (character.unitType != Enums.UnitTypes.Archdruid) return false;
 
+            Archdruid druid = (Archdruid)character;
+            
+            if (druid.isTransforming)
+            {
+                //we need to stop in place to keep transforming
+                GD.Print("We are still transforming");
+                return true;
+            }
+
+            if (!druid.isTransformed)
+            {
+                //we keep walking
+                return false; 
+            }
+
             Dictionary<string, BaseCharacter> dictionaryToCheck = character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.unitsSpawner.team02AliveUnitDictionary : GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
+
+            GD.Print("There are " + dictionaryToCheck.Count + " enemies alive at the moment");
 
             if (dictionaryToCheck.Count > 0)
             {
@@ -444,12 +470,20 @@ namespace Erikduss
                 if (distance < 0) distance = -distance;
 
                 //if there's an enemy close enough, we dont transform back.
-                if (distance < (character.detectionRange + 15)) return false;
+                if (distance < (character.detectionRange + 15)) {
+                    GD.Print("We are close enough to an enemy");
+                    return false; 
+                }
             }
 
             //We dont want to transform when we still have an attack cooldown. This is cus we move during this period.
-            if(!character.canAttack) return false;
+            if (!character.canAttack)
+            {
+                GD.Print("We still have an attack cooldown");
+                return false;
+            }
 
+            GD.Print("We didnt hit any if statement retun");
             return true;
         }
     }

@@ -78,11 +78,15 @@ namespace Erikduss
             player01Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
             player01Script.playerCurrentPowerUpProgressAmount = 0;
             player01Script.playerCurrentPowerUpRerollsAmount = 0;
+            player01Script.playerCurrentAmountOfPowerUpsOwed = 0;
+            player01Script.hasUnlockedPowerUpCurrently = false;
 
             player02Script.playerCurrentCurrencyAmount = startingCurrency;
             player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
             player02Script.playerCurrentPowerUpProgressAmount = 0;
             player02Script.playerCurrentPowerUpRerollsAmount = 0;
+            player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
+            player02Script.hasUnlockedPowerUpCurrently = false;
 
             //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
             inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
@@ -122,6 +126,9 @@ namespace Erikduss
 
                 //Update HUD
                 inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+
+                UpdatePlayerPowerUpProgress(Enums.TeamOwner.TEAM_01, GameSettingsLoader.powerUpProgressAmountIdle);
+                UpdatePlayerPowerUpProgress(Enums.TeamOwner.TEAM_02, GameSettingsLoader.powerUpProgressAmountIdle);
             }
 			else
 			{
@@ -215,6 +222,35 @@ namespace Erikduss
                 {
                     //Did the player leave?
                 }
+            }
+        }
+
+        public void UpdatePlayerPowerUpProgress(Enums.TeamOwner playerTeam, int addedPowerUpProgress)
+        {
+            BasePlayer playerToChangePowerUpProgressFor = (playerTeam == Enums.TeamOwner.TEAM_01 ? player01Script : player02Script);
+
+            int newPowerUpProgress = playerToChangePowerUpProgressFor.playerCurrentPowerUpProgressAmount + addedPowerUpProgress;
+
+            //check if we go over the max amount.
+            //If we do, reduce it by max amount and leftover powerup progress is saved.
+            if(newPowerUpProgress > GameSettingsLoader.progressNeededToUnlockPower)
+            {
+                newPowerUpProgress -= GameSettingsLoader.progressNeededToUnlockPower;
+                playerToChangePowerUpProgressFor.playerCurrentAmountOfPowerUpsOwed++;
+                playerToChangePowerUpProgressFor.playerCurrentPowerUpRerollsAmount++;
+
+                if (playerTeam == Enums.TeamOwner.TEAM_01)
+                {
+                    inGameHUDManager.RefreshPowerUp(false);
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount();
+                }
+            }
+
+            playerToChangePowerUpProgressFor.playerCurrentPowerUpProgressAmount = newPowerUpProgress;
+
+            if (playerTeam == Enums.TeamOwner.TEAM_01)
+            {
+                inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
             }
         }
 	}

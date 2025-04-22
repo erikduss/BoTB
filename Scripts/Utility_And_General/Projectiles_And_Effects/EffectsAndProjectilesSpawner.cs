@@ -386,6 +386,8 @@ namespace Erikduss
             //set it to the correct one for the team.
             int currentAmountOfMeteorsToSpawn = baseAmountOfMeteorsToSpawn + (meteorShowerOwner == Enums.TeamOwner.TEAM_01 ? team01AbilityEmpowerAmount : team02AbilityEmpowerAmount);
 
+            GameManager.Instance.UpdatePlayerPowerUpProgress(meteorShowerOwner, GameSettingsLoader.powerUpProgressAmountAbilityUsed);
+
             for (int i = 0; i < currentAmountOfMeteorsToSpawn; i++)
             {
                 IndividualMeteorLogic instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
