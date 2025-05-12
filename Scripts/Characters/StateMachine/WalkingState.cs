@@ -33,6 +33,13 @@ namespace Erikduss
             //    raycastCollisionMask = 0b100;
             //}
 
+            if (character.unitType == Enums.UnitTypes.Archdruid)
+            {
+                Archdruid currentDruidScript = (Archdruid)character;
+
+                if (currentDruidScript.isTransforming) return; //prevent the transformation animation from being overriden
+            }
+
             character.currentAnimatedSprite.Play("Walking");
         }
 
@@ -447,7 +454,6 @@ namespace Erikduss
             if (druid.isTransforming)
             {
                 //we need to stop in place to keep transforming
-                GD.Print("We are still transforming");
                 return true;
             }
 
@@ -459,31 +465,28 @@ namespace Erikduss
 
             Dictionary<string, BaseCharacter> dictionaryToCheck = character.characterOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.unitsSpawner.team02AliveUnitDictionary : GameManager.Instance.unitsSpawner.team01AliveUnitDictionary;
 
-            GD.Print("There are " + dictionaryToCheck.Count + " enemies alive at the moment");
-
             if (dictionaryToCheck.Count > 0)
             {
-                BaseCharacter characterToCheck = dictionaryToCheck.First().Value;
+                foreach(BaseCharacter unit in dictionaryToCheck.Values) //getting the first value out of the dictionary is unreliable, so we search through it.
+                {
+                    float distance = unit.GlobalPosition.X - character.GlobalPosition.X;
 
-                float distance = characterToCheck.GlobalPosition.X - character.GlobalPosition.X;
+                    if (distance < 0) distance = -distance;
 
-                if (distance < 0) distance = -distance;
-
-                //if there's an enemy close enough, we dont transform back.
-                if (distance < (character.detectionRange + 15)) {
-                    GD.Print("We are close enough to an enemy");
-                    return false; 
+                    //if there's an enemy close enough, we dont transform back.
+                    if (distance < (character.detectionRange + 15))
+                    {
+                        return false;
+                    }
                 }
             }
 
             //We dont want to transform when we still have an attack cooldown. This is cus we move during this period.
             if (!character.canAttack)
             {
-                GD.Print("We still have an attack cooldown");
                 return false;
             }
 
-            GD.Print("We didnt hit any if statement retun");
             return true;
         }
     }

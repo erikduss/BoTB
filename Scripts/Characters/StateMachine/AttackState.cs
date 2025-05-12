@@ -276,23 +276,19 @@ namespace Erikduss
 
                         Archdruid currentDruidScript = (Archdruid)character;
 
-                        GD.Print("Druid attack mode!");
-
                         if (!currentDruidScript.isTransforming)
                         {
                             if (!currentDruidScript.isTransformed)
                             {
                                 currentDruidScript.TransformCombatMode();
+                                EmitSignal(SignalName.Transitioned, this, "WalkingState"); //we go back to the walking state, because in that state all the logic is located.
                                 return;
                             }
                         }
                         else if (currentDruidScript.isTransforming)
                         {
-                            GD.Print("We are still transforming in attack state.");
                             return; //we dont wanna attack while transforming.
                         }
-
-                        GD.Print("We passed all duid checks");
 
                         if(currentAttackAnimationName == "Attack")
                         {
@@ -346,7 +342,6 @@ namespace Erikduss
 
                                     if (distance > (currentDruidScript.detectionRange + marginOfErrorValue))
                                     {
-                                        GD.Print("We found a target close enough to damage anyways");
                                         EffectsAndProjectilesSpawner.Instance.SpawnArchdruidRangedAttack(character, targetThatWeHit);
                                     }
                                 }

@@ -24,7 +24,7 @@ namespace Erikduss
 
             character.currentAnimatedSprite.Play("Idle");
 
-            if(character.CurrentTarget != null || character.unitHasReachedEnemyHomeBase)
+            if (character.CurrentTarget != null || character.unitHasReachedEnemyHomeBase)
             {
                 //checking for the tank buff causes it so the rangers can move while being buffed by their own attack speed passive. If this is too op, check for exception here.
                 if (character.currentAttackCooldownDuration > 0f && !character.hasActiveTankBuff) currentIdleDuration = character.currentAttackCooldownDuration;

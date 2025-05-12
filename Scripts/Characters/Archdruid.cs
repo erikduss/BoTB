@@ -18,6 +18,9 @@ namespace Erikduss
         private float tranformationTimer = 0;
         private float transformationDuration = 0.7f;
 
+        private static float tranformToCombatModeDuration = 0.1f;
+        private static float tranformToNormalModeDuration = 0.5f;
+
         public override void _Ready()
         {
             //Load Unit Stats
@@ -99,7 +102,7 @@ namespace Erikduss
         {
             isTransforming = true;
             tranformationTimer = 0;
-            transformationDuration = 0.9f;
+            transformationDuration = tranformToCombatModeDuration; //duration is very short, I'm quite sure that the regular attack cooldown is already applied. So making this too long will cause the unit to freeze.
 
             SetNewAttackCooldownTimer(transformationDuration);
         }
@@ -108,7 +111,7 @@ namespace Erikduss
         {
             isTransforming = true;
             tranformationTimer = 0;
-            transformationDuration = 0.7f;
+            transformationDuration = tranformToNormalModeDuration;
             currentAnimatedSprite.Play("Transform_Back");
 
             SetNewAttackCooldownTimer(transformationDuration);
