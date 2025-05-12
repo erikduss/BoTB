@@ -259,6 +259,22 @@ namespace Erikduss
                     {
                         executedEffect = true;
 
+                        if(character.CurrentTarget != null)
+                        {
+                            //we need to prevent an infinite fight in case its 2 healers against eachother. While having melee characters behind it for example.
+                            if(character.CurrentTarget.unitType == Enums.UnitTypes.Mass_Healer)
+                            {
+                                if(character.CurrentHealth > 0 && !character.IsDeadOrDestroyed)
+                                {
+                                    if(character.CurrentTarget.CurrentHealth > 0 && !character.CurrentTarget.IsDeadOrDestroyed)
+                                    {
+                                        //this only ever happens if it's healer vs healer in the front line. Healers can do 1 dmg against other healers.
+                                        character.CurrentTarget.TakeDamage(1);
+                                    }
+                                }
+                            }
+                        }
+
                         EffectsAndProjectilesSpawner.Instance.SpawnMass_Healer_HealingEffect(character);
                     }
                     break;

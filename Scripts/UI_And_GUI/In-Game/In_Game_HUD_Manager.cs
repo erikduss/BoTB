@@ -55,7 +55,10 @@ namespace Erikduss
 
         private List<PackedScene> availablePowerUpButtons = new List<PackedScene>();
         public PackedScene lockedPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/locked_powerup_button.tscn");
-
+        
+        public PackedScene goldGainPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/GoldGain_powerup_button.tscn");
+        public PackedScene abilityEmpowerPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/AbilityEmpower_powerup_button.tscn");
+        public PackedScene healBasePowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/HealBase_powerup_button.tscn");
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -69,6 +72,10 @@ namespace Erikduss
             availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
             availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
             availableUnitsBuyButtons.Add(shamanBuyButtonPrefab);
+
+            availablePowerUpButtons.Add(goldGainPowerUpButtonPrefab);
+            availablePowerUpButtons.Add(abilityEmpowerPowerUpButtonPrefab);
+            availablePowerUpButtons.Add(healBasePowerUpButtonPrefab);
 
             HidePauseMenu();
             gameOverNode.Visible = false;
@@ -175,20 +182,16 @@ namespace Erikduss
 
             if (spendRerollToken)
             {
-                //if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost)
-                //{
-                //    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
-                //    return;
-                //}
+                if (GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount < 1)
+                {
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                    return;
+                }
 
-                ////Attempt to spend the currency, if this fails we stop.
-                //if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01))
-                //{
-                //    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
-                //    return;
-                //}
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
-                //AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+                GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount -= 1;
+                UpdatePlayerPowerUPRerollAmount();
             }
 
             if(powerUpsParentNode.GetChildren().Count > 0)
@@ -202,12 +205,17 @@ namespace Erikduss
             currentShownPowerUp = null;
             currentLockedPowerUpInfo = null;
 
-            if(GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed > 0)
+            //if we unlock a power up from the locked state, or we refresh the shop, we give the player a random powerup option.
+            if(GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed > 0 || spendRerollToken)
             {
-                //Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[UnitTheShopRolledFor()].Instantiate();
+                Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[0].Instantiate();
 
-                //powerUpsParentNode.AddChild(instantiatedPowerUpButton);
-                //currentUnitsInShop.Add(instantiatedPowerUpButton);
+                powerUpsParentNode.AddChild(instantiatedPowerUpButton);
+                currentShownPowerUp = instantiatedPowerUpButton;
+
+                GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+
+                GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = true;
             }
             else
             {
@@ -216,6 +224,8 @@ namespace Erikduss
                 currentShownPowerUp = instantiatedPowerUpButton;
 
                 currentLockedPowerUpInfo = (LockedPowerUpInfoToggler)currentShownPowerUp;
+
+                GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = false;
             }
 
             //RefreshFocusConnections();

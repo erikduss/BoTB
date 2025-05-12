@@ -90,6 +90,7 @@ namespace Erikduss
 
             //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
             inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+            inGameHUDManager.UpdatePlayerPowerUPRerollAmount();
 
             AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers", (Node2D)cameraScript);
 
