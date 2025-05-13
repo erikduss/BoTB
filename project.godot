@@ -80,6 +80,10 @@ MoveScreen_Left={
 
 pointing/emulate_touch_from_mouse=true
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Translations/Battle_Of_The_Bookworms_Translations.cs.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.de.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.en.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.es.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.fi.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.fr.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.ja.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.nl.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.pt.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.ru.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.it.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.ko.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.lt.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.nb.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.pl.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.sv.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.tr.translation", "res://Translations/Battle_Of_The_Bookworms_Translations.zh.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Environment"

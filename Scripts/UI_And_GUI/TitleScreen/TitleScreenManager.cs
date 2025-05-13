@@ -41,9 +41,11 @@ namespace Erikduss
 
             string versionLabelText = string.Empty;
 
-            if (GameSettingsLoader.buildIsADemo) versionLabelText = "This is a Demo build, some features may be limited. ";
+            if (GameSettingsLoader.buildIsADemo) versionLabelText = Tr("DEMO_TEXT");
 
-            versionLabelText = versionLabelText + "Version: " +ProjectSettings.GetSetting("application/config/version").ToString();
+            // "This is a Demo build, some features may be limited. Version: "
+
+            versionLabelText = versionLabelText + ProjectSettings.GetSetting("application/config/version").ToString();
 
             currentVersionLabel.Text = versionLabelText;
 

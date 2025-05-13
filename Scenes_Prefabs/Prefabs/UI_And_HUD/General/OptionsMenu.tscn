@@ -43,7 +43,7 @@ bg_color = Color(0.450648, 0.450648, 0.450648, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpqcs"]
 bg_color = Color(0.45098, 0.45098, 0.45098, 1)
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "controllerModeColorPickerButton")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "languageOptionButton", "controllerModeColorPickerButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,26 +51,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7upg4")
-musicAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioPercentage")
-musicAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider")
-otherAudioPercentage = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioVolumePercentage")
-otherAudioSlider = NodePath("Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider")
-screenMovementTypeOptionButton = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton")
-screenDragSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivityValue")
-screenDragSensitivitySlider = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider")
-screenSidesSensitivityValueLabel = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesValue")
-screenSidesSensitivitySlider = NodePath("Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider")
-displayModeOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode/DisplayModeOptionButton")
-screenResolutionsOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton")
-limitFPSOptionButton = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS/LimitFPSOptionButton")
-fpsLimitSlider = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider")
-fpsLimitValueLabel = NodePath("Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitValue")
+musicAudioPercentage = NodePath("Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection/MusicAudioPercentage")
+musicAudioSlider = NodePath("Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection/MusicAudioSlider")
+otherAudioPercentage = NodePath("Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection/OtherAudioVolumePercentage")
+otherAudioSlider = NodePath("Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection/OtherAudioSlider")
+screenMovementTypeOptionButton = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton")
+screenDragSensitivityValueLabel = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity/DragSensitivityValue")
+screenDragSensitivitySlider = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity/DragSensitivitySlider")
+screenSidesSensitivityValueLabel = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesValue")
+screenSidesSensitivitySlider = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider")
+displayModeOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode/DisplayModeOptionButton")
+screenResolutionsOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton")
+limitFPSOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS/LimitFPSOptionButton")
+fpsLimitSlider = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue/FPSLimitSlider")
+fpsLimitValueLabel = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue/FPSLimitValue")
 returnButtonControl = NodePath("Panel/BottomButtons/ReturnButton")
 saveButtonControl = NodePath("Panel/BottomButtons/SaveButton")
 optionsTabContainer = NodePath("Panel/TabContainer")
-controllerModeOptionButton = NodePath("Panel/TabContainer/Accessibility Settings/Accessibility Section/Controller Mode Section/ControllerModeOptionButton")
-hemoPhobiaModeOptionButton = NodePath("Panel/TabContainer/Accessibility Settings/Accessibility Section/Hemophobia Mode Section/HemophobiaModeOptionButton")
-controllerModeColorPickerButton = NodePath("Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker")
+controllerModeOptionButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section/ControllerModeOptionButton")
+hemoPhobiaModeOptionButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section/HemophobiaModeOptionButton")
+languageOptionButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section/LanguageOptionButton")
+controllerModeColorPickerButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -83,50 +84,52 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 32
 tab_alignment = 1
 current_tab = 0
 
-[node name="Audio Settings" type="Control" parent="Panel/TabContainer"]
+[node name="AUDIO_SETTINGS" type="Control" parent="Panel/TabContainer"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Graphics Settings")
+focus_neighbor_left = NodePath("../GRAPHICS_SETTINGS")
 focus_neighbor_top = NodePath("../../BottomButtons/ReturnButton")
-focus_neighbor_right = NodePath("../Gameplay Settings")
+focus_neighbor_right = NodePath("../GAMEPLAY_SETTINGS")
 focus_neighbor_bottom = NodePath("AudioSection/MusicSliderSection/MusicAudioSlider")
-focus_next = NodePath("../Gameplay Settings")
-focus_previous = NodePath("../Graphics Settings")
+focus_next = NodePath("../GAMEPLAY_SETTINGS")
+focus_previous = NodePath("../GRAPHICS_SETTINGS")
 metadata/_tab_index = 0
 
-[node name="AudioSection" type="Control" parent="Panel/TabContainer/Audio Settings"]
+[node name="AudioSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS"]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
-text = "Audio Settings"
+text = "AUDIO_SETTINGS"
 label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSliderSection" type="Control" parent="Panel/TabContainer/Audio Settings/AudioSection"]
+[node name="MusicSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 140.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Music Volume"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "MUSIC_VOLUME"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="MusicAudioSlider" type="HSlider" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
+[node name="MusicAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -8.99998
@@ -146,7 +149,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 value = 50.0
 
-[node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection"]
+[node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -154,7 +157,7 @@ offset_bottom = 45.0
 text = "50%"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="AlternateAudioSliderSection" type="Control" parent="Panel/TabContainer/Audio Settings/AudioSection"]
+[node name="AlternateAudioSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -162,14 +165,16 @@ offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 240.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Other Volume"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "OTHER_VOLUME"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="OtherAudioSlider" type="HSlider" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+[node name="OtherAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -8.99998
@@ -189,7 +194,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 value = 50.0
 
-[node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection"]
+[node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -197,42 +202,44 @@ offset_bottom = 45.0
 text = "50%"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="Gameplay Settings" type="Control" parent="Panel/TabContainer"]
+[node name="GAMEPLAY_SETTINGS" type="Control" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="GameplaySection" type="Control" parent="Panel/TabContainer/Gameplay Settings"]
+[node name="GameplaySection" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
-text = "Gameplay Settings"
+text = "GAMEPLAY_SETTINGS"
 label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScreenMovementEnabled" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+[node name="ScreenMovementEnabled" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 180.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Screen Movement"
+offset_left = -355.0
+offset_right = 311.0
+offset_bottom = 45.0
+text = "SCREEN_MOVEMENT"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="ScreenMovementOptionButton" type="OptionButton" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled"]
+[node name="ScreenMovementOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -243,28 +250,30 @@ focus_neighbor_bottom = NodePath("../../DragSensitivity/DragSensitivitySlider")
 focus_next = NodePath("../../DragSensitivity/DragSensitivitySlider")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 3
-popup/item_0/text = "Use Both"
+popup/item_0/text = "USE_BOTH_OPTION"
 popup/item_0/id = 0
-popup/item_1/text = "Only Use Drag Movement"
+popup/item_1/text = "ONLY_DRAG_OPTION"
 popup/item_1/id = 1
-popup/item_2/text = "Only Use Screen Sides Movement"
+popup/item_2/text = "ONLY_SIDES_OPTION"
 popup/item_2/id = 2
 
-[node name="DragSensitivity" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+[node name="DragSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 280.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Drag Sensitivity"
+offset_left = -325.0
+offset_right = 275.0
+offset_bottom = 45.0
+text = "DRAG_SENSITIVITY"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+[node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -284,7 +293,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 min_value = -100.0
 
-[node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity"]
+[node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -292,7 +301,7 @@ offset_bottom = 45.0
 text = "Default"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="ScreenSidesSensitivity" type="Control" parent="Panel/TabContainer/Gameplay Settings/GameplaySection"]
+[node name="ScreenSidesSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -300,14 +309,16 @@ offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 380.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Sides Sensitivity"
+offset_left = -325.0
+offset_right = 275.0
+offset_bottom = 45.0
+text = "SIDES_SENSITIVITY"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+[node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -327,7 +338,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 min_value = -100.0
 
-[node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity"]
+[node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -335,28 +346,28 @@ offset_bottom = 45.0
 text = "Default"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="Graphics Settings" type="Control" parent="Panel/TabContainer"]
+[node name="GRAPHICS_SETTINGS" type="Control" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="GraphicsSection" type="Control" parent="Panel/TabContainer/Graphics Settings"]
+[node name="GraphicsSection" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS"]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
-text = "Graphics Settings"
+text = "GRAPHICS_SETTINGS"
 label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScreenMode" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+[node name="ScreenMode" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -364,14 +375,16 @@ offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 180.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Display Mode"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "DISPLAY_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="DisplayModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode"]
+[node name="DisplayModeOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -382,21 +395,23 @@ focus_neighbor_bottom = NodePath("../../ScreenResolution/ScreenResolutionOptionB
 focus_next = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
-[node name="ScreenResolution" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+[node name="ScreenResolution" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 280.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Screen Resolution"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "SCREEN_RESOLUTION"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="ScreenResolutionOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution"]
+[node name="ScreenResolutionOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -409,21 +424,23 @@ focus_next = NodePath("../../LimitFPS/LimitFPSOptionButton")
 focus_previous = NodePath("../../ScreenMode/DisplayModeOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
-[node name="LimitFPS" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+[node name="LimitFPS" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 380.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Limit FPS"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "LIMIT_FPS"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS"]
+[node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -436,18 +453,18 @@ focus_next = NodePath("../../FPSLimitValue/FPSLimitSlider")
 focus_previous = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 5
-popup/item_0/text = "No Limit"
+popup/item_0/text = "NO_LIMIT_OPTION"
 popup/item_0/id = 0
-popup/item_1/text = "Limit FPS"
+popup/item_1/text = "LIMIT_FPS_OPTION"
 popup/item_1/id = 1
-popup/item_2/text = "Vsync Limit"
+popup/item_2/text = "VSYNC_LIMIT_OPTION"
 popup/item_2/id = 2
-popup/item_3/text = "Vsync Adaptive"
+popup/item_3/text = "VSYNC_ADAPTIVE_OPTION"
 popup/item_3/id = 3
-popup/item_4/text = "Vsync Mailbox"
+popup/item_4/text = "VSYNC_MAILBOX_OPTION"
 popup/item_4/id = 4
 
-[node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/Graphics Settings/GraphicsSection"]
+[node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -455,14 +472,16 @@ offset_top = 400.0
 offset_right = 1560.0
 offset_bottom = 480.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "FPS Limit"
+offset_left = -300.0
+offset_right = 250.0
+offset_bottom = 45.0
+text = "FPS_LIMIT"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+[node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -484,7 +503,7 @@ min_value = 15.0
 max_value = 500.0
 value = 144.0
 
-[node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue"]
+[node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -492,46 +511,48 @@ offset_bottom = 45.0
 text = "144"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="Accessibility Settings" type="Control" parent="Panel/TabContainer"]
+[node name="ACCESSIBILITY_SETTINGS" type="Control" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Graphics Settings")
+focus_neighbor_left = NodePath("../GRAPHICS_SETTINGS")
 focus_neighbor_top = NodePath("../../BottomButtons/ReturnButton")
-focus_neighbor_right = NodePath("../Gameplay Settings")
-focus_next = NodePath("../Gameplay Settings")
-focus_previous = NodePath("../Graphics Settings")
+focus_neighbor_right = NodePath("../GAMEPLAY_SETTINGS")
+focus_next = NodePath("../GAMEPLAY_SETTINGS")
+focus_previous = NodePath("../GRAPHICS_SETTINGS")
 metadata/_tab_index = 3
 
-[node name="Accessibility Section" type="Control" parent="Panel/TabContainer/Accessibility Settings"]
+[node name="Accessibility Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS"]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
-text = "Accessibility Settings"
+text = "ACCESSIBILITY_SETTINGS"
 label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Controller Mode Section" type="Control" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section"]
+[node name="Controller Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 140.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Controller Mode Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Controller Mode"
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 45.0
+text = "CONTROLLER_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="ControllerModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Controller Mode Section"]
+[node name="ControllerModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -542,12 +563,12 @@ focus_neighbor_bottom = NodePath("../../ControllerModeColor/OverrideControllerMo
 focus_next = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 2
-popup/item_0/text = "Disabled"
+popup/item_0/text = "DISABLED_OPTION"
 popup/item_0/id = 0
-popup/item_1/text = "Enabled"
+popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="ControllerModeColor" type="Control" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section"]
+[node name="ControllerModeColor" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -555,14 +576,16 @@ offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 240.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Highlight Color"
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 45.0
+text = "HIGHLIGHT_COLOR"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="OverrideControllerModeColorPicker" type="ColorPickerButton" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor"]
+[node name="OverrideControllerModeColorPicker" type="ColorPickerButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -574,7 +597,7 @@ focus_neighbor_bottom = NodePath("../../Hemophobia Mode Section/HemophobiaModeOp
 focus_next = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
 focus_previous = NodePath("../../Controller Mode Section/ControllerModeOptionButton")
 
-[node name="ResetColorButton" type="Button" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor"]
+[node name="ResetColorButton" type="Button" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
 layout_mode = 0
 offset_left = 821.0
 offset_right = 1037.0
@@ -586,9 +609,9 @@ focus_neighbor_bottom = NodePath("../../Hemophobia Mode Section/HemophobiaModeOp
 focus_next = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
 focus_previous = NodePath("../../Controller Mode Section/ControllerModeOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpqcs")
-text = "Reset to Default Color"
+text = "RESET_COLOR_BUTTON"
 
-[node name="Hemophobia Mode Section" type="Control" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section"]
+[node name="Hemophobia Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 360.0
@@ -596,14 +619,16 @@ offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 340.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Hemophobia Mode Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Hemophobia Mode"
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 45.0
+text = "HEMOPHOBIA_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
 
-[node name="HemophobiaModeOptionButton" type="OptionButton" parent="Panel/TabContainer/Accessibility Settings/Accessibility Section/Hemophobia Mode Section"]
+[node name="HemophobiaModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section"]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -611,15 +636,45 @@ offset_bottom = 45.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
-focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_neighbor_bottom = NodePath("../../Language Section/LanguageOptionButton")
+focus_next = NodePath("../../Language Section/LanguageOptionButton")
 focus_previous = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 item_count = 2
-popup/item_0/text = "Disabled"
+popup/item_0/text = "DISABLED_OPTION"
 popup/item_0/id = 0
-popup/item_1/text = "Enabled"
+popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
+
+[node name="Language Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 400.0
+offset_right = 1560.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section"]
+layout_mode = 0
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 45.0
+text = "LANGUAGE"
+label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
+
+[node name="LanguageOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_previous = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
 [node name="BottomButtons" type="Control" parent="Panel"]
 anchors_preset = 0
@@ -658,18 +713,19 @@ visible = false
 layout_mode = 1
 
 [connection signal="tab_changed" from="Panel/TabContainer" to="." method="TabContainerTabChanged"]
-[connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/MusicSliderSection/MusicAudioSlider" to="." method="MusicAudioSliderOnValueChanged"]
-[connection signal="value_changed" from="Panel/TabContainer/Audio Settings/AudioSection/AlternateAudioSliderSection/OtherAudioSlider" to="." method="OtherAudioSliderOnValueChanged"]
-[connection signal="item_selected" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton" to="." method="ScreenMovementTypeSelected"]
-[connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/DragSensitivity/DragSensitivitySlider" to="." method="ScreenDragSensitivitySliderOnValueChanged"]
-[connection signal="value_changed" from="Panel/TabContainer/Gameplay Settings/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider" to="." method="ScreenSidesSensitivitySliderOnValueChanged"]
-[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenMode/DisplayModeOptionButton" to="." method="DisplayModeSelected"]
-[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton" to="." method="ScreenResolutionSelected"]
-[connection signal="item_selected" from="Panel/TabContainer/Graphics Settings/GraphicsSection/LimitFPS/LimitFPSOptionButton" to="." method="LimitFpsOptionSelected"]
-[connection signal="value_changed" from="Panel/TabContainer/Graphics Settings/GraphicsSection/FPSLimitValue/FPSLimitSlider" to="." method="FPSLimitSliderOnValueChanged"]
-[connection signal="item_selected" from="Panel/TabContainer/Accessibility Settings/Accessibility Section/Controller Mode Section/ControllerModeOptionButton" to="." method="ControllerModeOptionSelected"]
-[connection signal="color_changed" from="Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker" to="." method="ControllerFocusColorChanged"]
-[connection signal="pressed" from="Panel/TabContainer/Accessibility Settings/Accessibility Section/ControllerModeColor/ResetColorButton" to="." method="ResetControllerModeColorOverride"]
-[connection signal="item_selected" from="Panel/TabContainer/Accessibility Settings/Accessibility Section/Hemophobia Mode Section/HemophobiaModeOptionButton" to="." method="HemophobiaModeOptionSelected"]
+[connection signal="value_changed" from="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection/MusicAudioSlider" to="." method="MusicAudioSliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection/OtherAudioSlider" to="." method="OtherAudioSliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton" to="." method="ScreenMovementTypeSelected"]
+[connection signal="value_changed" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity/DragSensitivitySlider" to="." method="ScreenDragSensitivitySliderOnValueChanged"]
+[connection signal="value_changed" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider" to="." method="ScreenSidesSensitivitySliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode/DisplayModeOptionButton" to="." method="DisplayModeSelected"]
+[connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton" to="." method="ScreenResolutionSelected"]
+[connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS/LimitFPSOptionButton" to="." method="LimitFpsOptionSelected"]
+[connection signal="value_changed" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue/FPSLimitSlider" to="." method="FPSLimitSliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section/ControllerModeOptionButton" to="." method="ControllerModeOptionSelected"]
+[connection signal="color_changed" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker" to="." method="ControllerFocusColorChanged"]
+[connection signal="pressed" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/ResetColorButton" to="." method="ResetControllerModeColorOverride"]
+[connection signal="item_selected" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section/HemophobiaModeOptionButton" to="." method="HemophobiaModeOptionSelected"]
+[connection signal="item_selected" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section/LanguageOptionButton" to="." method="LanguageOptionSelected"]
 [connection signal="pressed" from="Panel/BottomButtons/ReturnButton" to="." method="ReturnButtonPressed"]
 [connection signal="pressed" from="Panel/BottomButtons/SaveButton" to="." method="SaveButtonPressed"]

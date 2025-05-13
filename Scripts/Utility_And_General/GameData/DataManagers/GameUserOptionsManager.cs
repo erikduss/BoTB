@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Linq;
 
@@ -50,6 +50,75 @@ namespace Erikduss
             SetHemophobiaMode();
             SetControllerHighlightMode();
             SetControllerFocusColor();
+            SetLanguage();
+        }
+
+        public void SetLanguage()
+        {
+            string localeString = "en";
+
+            switch (currentlySavedUserOptions.language)
+            {
+                case Enums.AvailableLanguages.English:
+                    localeString = "en";
+                    break;
+                case Enums.AvailableLanguages.Nederlands_Dutch:
+                    localeString = "nl";
+                    break;
+                case Enums.AvailableLanguages.Русский_Russian:
+                    localeString = "ru";
+                    break;
+                case Enums.AvailableLanguages.Deutsch_German:
+                    localeString = "de";
+                    break;
+                case Enums.AvailableLanguages.Português_Portuguese:
+                    localeString = "pt";
+                    break;
+                case Enums.AvailableLanguages.čeština_Czech:
+                    localeString = "cs";
+                    break;
+                case Enums.AvailableLanguages.Española_Spanish:
+                    localeString = "es";
+                    break;
+                case Enums.AvailableLanguages.suomi_Finnish:
+                    localeString = "fi";
+                    break;
+                case Enums.AvailableLanguages.Français_French:
+                    localeString = "fr";
+                    break;
+                case Enums.AvailableLanguages.日本語_Japanese:
+                    localeString = "ja";
+                    break;
+                case Enums.AvailableLanguages.한국인_Korean:
+                    localeString = "ko";
+                    break;
+                case Enums.AvailableLanguages.Lietuvių_Lithuanian:
+                    localeString = "lt";
+                    break;
+                case Enums.AvailableLanguages.Polski_Polish:
+                    localeString = "pl";
+                    break;
+                case Enums.AvailableLanguages.Türkçe_Turkish:
+                    localeString = "tr";
+                    break;
+                case Enums.AvailableLanguages.简体中文_Chinese:
+                    localeString = "zh";
+                    break;
+                case Enums.AvailableLanguages.Italiana_Italian:
+                    localeString = "it";
+                    break;
+                case Enums.AvailableLanguages.Svenska_Swedish:
+                    localeString = "sv";
+                    break;
+                case Enums.AvailableLanguages.norsk_Norwegian:
+                    localeString = "no";
+                    break;
+                default:
+                    GD.PrintErr("Language not implemented in SetLanguage() in GameUserOptionsManager.cs! " + currentlySavedUserOptions.language);
+                    break;
+            }
+
+            TranslationServer.SetLocale(localeString);
         }
 
         public void SetHemophobiaMode()
@@ -388,6 +457,18 @@ namespace Erikduss
                     {
                         requiresToBeSaved = true;
                     }
+
+                    if (config.HasSectionKey(section, "Language"))
+                    {
+                        if (!Enum.TryParse(config.GetValue(section, "Language").ToString(), out currentlySavedUserOptions.language))
+                        {
+                            currentlySavedUserOptions.language = Enums.AvailableLanguages.English;//we failed so we set it to default
+                        } 
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else
                 {
@@ -431,6 +512,7 @@ namespace Erikduss
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "UseHighlightFocusMode", userOptionsToSave.useHighlightFocusMode);
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "FocussedControlColor", userOptionsToSave.focussedControlColor);
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "EnableHemophobiaMode", userOptionsToSave.enableHemophobiaMode);
+            config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "Language", userOptionsToSave.language.ToString());
 
             // Save it to a file.
             config.Save(fullFilePath);
@@ -477,6 +559,7 @@ namespace Erikduss
                 currentlySavedUserOptions.useHighlightFocusMode = newOptions.useHighlightFocusMode;
                 currentlySavedUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 currentlySavedUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
+                currentlySavedUserOptions.language = newOptions.language;
             }
             else
             {
@@ -496,6 +579,7 @@ namespace Erikduss
                 overriddenUserOptions.useHighlightFocusMode = newOptions.useHighlightFocusMode;
                 overriddenUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 overriddenUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
+                overriddenUserOptions.language = newOptions.language;
             }
         }
 
@@ -517,6 +601,7 @@ namespace Erikduss
             overriddenUserOptions.useHighlightFocusMode = currentlySavedUserOptions.useHighlightFocusMode;
             overriddenUserOptions.focussedControlColor = currentlySavedUserOptions.focussedControlColor;
             overriddenUserOptions.enableHemophobiaMode = currentlySavedUserOptions.enableHemophobiaMode;
+            overriddenUserOptions.language = currentlySavedUserOptions.language;
         }
     }
 }

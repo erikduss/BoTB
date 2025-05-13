@@ -111,21 +111,21 @@ texture_normal = ExtResource("7_06yab")
 texture_hover = ExtResource("8_tvhyr")
 texture_click_mask = ExtResource("5_3h1cd")
 
-[node name="OptionsMenu" parent="." instance=ExtResource("11_nii0d")]
-visible = false
-layout_mode = 1
-
 [node name="GameVersionLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1074.0
+offset_left = 637.0
 offset_top = 1010.0
-offset_right = 17578.0
+offset_right = 25881.0
 offset_bottom = 1665.0
 scale = Vector2(0.05, 0.05)
 text = "This is a Demo build, some features may be limited. "
 label_settings = SubResource("LabelSettings_nii0d")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="OptionsMenu" parent="." instance=ExtResource("11_nii0d")]
+visible = false
+layout_mode = 1
 
 [connection signal="mouse_entered" from="StartButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="StartButton" to="." method="StartGame"]

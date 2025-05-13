@@ -68,9 +68,10 @@ namespace Erikduss
         [Export] public Control saveButtonControl;
         [Export] public TabContainer optionsTabContainer;
 
-        //Gameplay Settings
+        //Accessiblity Settings
         [Export] public OptionButton controllerModeOptionButton;
         [Export] public OptionButton hemoPhobiaModeOptionButton;
+        [Export] public OptionButton languageOptionButton;
 
         [Export] public ColorPickerButton controllerModeColorPickerButton;
 
@@ -80,6 +81,7 @@ namespace Erikduss
 		{
 			LoadScreenResolutions();
 			LoadScreenModes();
+            LoadAvailableLanguages();
 
             SetLoadedValues();
 
@@ -129,6 +131,7 @@ namespace Erikduss
             hemoPhobiaModeOptionButton.Selected = currSavedConfig.enableHemophobiaMode ? 1 : 0;
 
             controllerModeColorPickerButton.Color = currSavedConfig.focussedControlColor;
+            languageOptionButton.Selected = (int)currSavedConfig.language;
         }
 
 		private void SetDefaultValues()
@@ -138,6 +141,19 @@ namespace Erikduss
 
 			limitFPSOptionButton.Selected = 1;
 			screenMovementTypeOptionButton.Selected = 0;
+        }
+
+        private void LoadAvailableLanguages()
+        {
+            for (int i = 0; i < Enum.GetNames(typeof(Enums.AvailableLanguages)).Length; i++)
+            {
+                string languageText = (((Enums.AvailableLanguages)i).ToString());
+
+                if(i != 2) //this is english, we skip it.
+                languageText = languageText.Replace("_", " (") + ")";
+
+                languageOptionButton.AddItem(languageText);
+            }
         }
 
 		private void LoadScreenResolutions()
@@ -198,7 +214,7 @@ namespace Erikduss
 
             //check if the Accessibility section is the same
             if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode || currSavedConfig.useHighlightFocusMode != overrideConfig.useHighlightFocusMode 
-                || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor)
+                || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor || currSavedConfig.language != overrideConfig.language)
             {
                 changesWarning = changesWarning + " - Accessibility Section";
                 hasChangedSettings = true;
@@ -380,6 +396,16 @@ namespace Erikduss
             }
 
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.useHighlightFocusMode = value == 0 ? false : true;
+        }
+
+        public void LanguageOptionSelected(int value)
+        {
+            if (allowSFXFromOptionsMenu)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
+            }
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.language = (Enums.AvailableLanguages)value;
         }
 
         public void ControllerFocusColorChanged(Color newColor)

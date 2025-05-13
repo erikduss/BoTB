@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 
 namespace Erikduss
@@ -69,5 +69,27 @@ namespace Erikduss
 			RES_3840x2160,
 			OVERRIDE_CUSTOM
 		}
+
+		public enum AvailableLanguages
+		{
+            čeština_Czech,
+            Deutsch_German,
+            English,
+            Española_Spanish,
+            suomi_Finnish,
+            Français_French,
+            Italiana_Italian,
+            日本語_Japanese,
+            한국인_Korean,
+            Lietuvių_Lithuanian,
+            norsk_Norwegian,
+            Nederlands_Dutch,
+            Polski_Polish,
+            Português_Portuguese,
+            Русский_Russian,
+            Svenska_Swedish,
+            Türkçe_Turkish,
+            简体中文_Chinese
+        }
 	}
 }
