@@ -11,6 +11,9 @@ namespace Erikduss
         public Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
         public bool useHighlightFocusMode = false;
 
+        public bool userLanguageSupported = false;
+        public bool userHasControllerConnected = false;
+
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
         public GameUserOptionsManager gameUserOptionsManager = new GameUserOptionsManager();
 
@@ -42,17 +45,41 @@ namespace Erikduss
                 QueueFree();
             }
 
+            Input.JoyConnectionChanged += ControllerConnectionChanged;
+
             InitializeWorld();
         }
 
         async void InitializeWorld()
         {
+            if (GameUserOptionsManager.availableLanguageTranslations.Contains(OS.GetLocaleLanguage()))
+            {
+                GD.Print("User custom language supported");
+                userLanguageSupported = true;
+            }
+
             gameUserOptionsManager.SetAndLoad();
 
             InitializeAllUnits();
 
             await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
             //playerGlobalSettingsManager.LoadGlobalPlayerSettings();
+        }
+
+        public void ControllerConnectionChanged(long device, bool isConnected)
+        {
+            //gets called when a device is already connected on game launch.
+
+            if (Input.GetConnectedJoypads().Count > 0)
+            {
+                userHasControllerConnected = true;
+            }
+            else
+            {
+                userHasControllerConnected = false;
+            }
+
+            GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
         }
 
         public async void InitializeAllUnits()

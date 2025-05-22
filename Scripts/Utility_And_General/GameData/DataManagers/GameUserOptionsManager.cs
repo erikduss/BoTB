@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Erikduss
@@ -8,6 +9,27 @@ namespace Erikduss
     {
         public GameUserOptionsConfig currentlySavedUserOptions = new GameUserOptionsConfig();
         public GameUserOptionsConfig overriddenUserOptions = new GameUserOptionsConfig();
+
+        public static List<string> availableLanguageTranslations = new List<string>() { 
+            "en",
+            "nl",
+            "ru",
+            "de",
+            "pt",
+            "cs",
+            "es",
+            "fi",
+            "fr",
+            "ja",
+            "ko",
+            "lt",
+            "pl",
+            "tr",
+            "zh",
+            "it",
+            "sv",
+            "no"
+        };
 
         public override void _Ready()
         {
@@ -52,6 +74,8 @@ namespace Erikduss
             SetControllerFocusColor();
             SetLanguage();
         }
+
+        public event EventHandler LanguageUpdated;
 
         public void SetLanguage()
         {
@@ -114,11 +138,14 @@ namespace Erikduss
                     localeString = "no";
                     break;
                 default:
+                    //if adding a language, make sure to also add the language string to the static list above.
                     GD.PrintErr("Language not implemented in SetLanguage() in GameUserOptionsManager.cs! " + currentlySavedUserOptions.language);
                     break;
             }
 
             TranslationServer.SetLocale(localeString);
+
+            LanguageUpdated?.Invoke(this, new EventArgs());
         }
 
         public void SetHemophobiaMode()

@@ -31,12 +31,23 @@ namespace Erikduss
         private bool needToCheckForHold = false;
         private bool showInfoInstead = false;
 
+        private UnitSettingsConfig loadedUnitConfig;
+
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
             //unit information should be loaded from a data file containing all the units their stats and costs that should be set here.
 
+            SubscribeToEvents();
+
             InitializeUnitInfo();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            UnsubscribeFromEvents();
+
+            base.Dispose(disposing);
         }
 
         private void InitializeUnitInfo()
@@ -46,6 +57,15 @@ namespace Erikduss
 
             LoadUnitValues();
 
+            loadedUnitConfig = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (thisUnitAge.ToString() + "_" + thisUnitType.ToString())).FirstOrDefault().Value;
+
+            LoadUnitName(true);
+
+            UpdateDescription();
+        }
+
+        private void LoadUnitName(bool alsoLoadStats)
+        {
             Node parentNode = this.GetChild(0).GetChild(0);
 
             foreach (Node labelNode in parentNode.GetChildren())
@@ -59,9 +79,7 @@ namespace Erikduss
                     {
                         unitNameLabel = labelComponent;
 
-                        //filter the names of the units that have multiple worlds and replace it with a space.
-                        string unitName = thisUnitType.ToString();
-                        unitName = unitName.Replace("_", " ");
+                        string unitName = Tr(loadedUnitConfig.unitName);
 
                         int newFontSize = 24 + ((7 - unitName.Length) * 2);
                         int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
@@ -69,57 +87,62 @@ namespace Erikduss
                         Vector2 originalLabelSize = new Vector2(105, 60); //this is the correct size for the name section
 
                         unitNameLabel.LabelSettings.FontSize = (newFontSize * scaleMultiplier);
-                        unitNameLabel.Scale = new Vector2 (unitNameLabel.Scale.X / scaleMultiplier, unitNameLabel.Scale.Y / scaleMultiplier);
+                        unitNameLabel.Scale = new Vector2(unitNameLabel.Scale.X / scaleMultiplier, unitNameLabel.Scale.Y / scaleMultiplier);
                         unitNameLabel.Size = originalLabelSize * scaleMultiplier;
 
                         unitNameLabel.Text = unitName;
                     }
                 }
-
-                foreach (Node labelInComp in labelNode.GetChildren())
+                else if (alsoLoadStats)
                 {
-                    if (labelInComp is Label)
+                    foreach (Node labelInComp in labelNode.GetChildren())
                     {
-                        Label labelComponent = labelInComp.GetNode<Label>(labelInComp.GetPath());
-
-                        if (labelComponent.Name == "UnitCost")
+                        if (labelInComp is Label)
                         {
-                            unitCostLabel = labelComponent;
-                            
-                            //int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
+                            Label labelComponent = labelInComp.GetNode<Label>(labelInComp.GetPath());
 
-                            //Vector2 originalLabelSize = new Vector2(28, 23); //this is the correct size for the name section
+                            if (labelComponent.Name == "UnitCost")
+                            {
+                                unitCostLabel = labelComponent;
 
-                            //unitCostLabel.HorizontalAlignment = HorizontalAlignment.Center;
-                            //unitCostLabel.VerticalAlignment = VerticalAlignment.Center;
+                                //int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
 
-                            //unitCostLabel.LabelSettings.FontSize = (16 * scaleMultiplier);
-                            //unitCostLabel.Scale = new Vector2(unitCostLabel.Scale.X / scaleMultiplier, unitCostLabel.Scale.Y / scaleMultiplier);
-                            //unitCostLabel.Size = originalLabelSize * scaleMultiplier;
+                                //Vector2 originalLabelSize = new Vector2(28, 23); //this is the correct size for the name section
 
-                            //GD.Print("To font size: " + unitCostLabel.LabelSettings.FontSize);
+                                //unitCostLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                                //unitCostLabel.VerticalAlignment = VerticalAlignment.Center;
 
-                            unitCostLabel.Text = unitCost.ToString();
-                        }
-                        else if (labelComponent.Name == "HealthValue")
-                        {
-                            unitHealthLabel = labelComponent;
-                            unitHealthLabel.Text = unitHealth.ToString();
-                        }
-                        else if (labelComponent.Name == "ArmorValue")
-                        {
-                            unitArmourLabel = labelComponent;
-                            unitArmourLabel.Text = unitArmour.ToString();
-                        }
-                        else if (labelComponent.Name == "AttackValue")
-                        {
-                            unitAttackLabel = labelComponent;
-                            unitAttackLabel.Text = unitAttack.ToString();
+                                //unitCostLabel.LabelSettings.FontSize = (16 * scaleMultiplier);
+                                //unitCostLabel.Scale = new Vector2(unitCostLabel.Scale.X / scaleMultiplier, unitCostLabel.Scale.Y / scaleMultiplier);
+                                //unitCostLabel.Size = originalLabelSize * scaleMultiplier;
+
+                                //GD.Print("To font size: " + unitCostLabel.LabelSettings.FontSize);
+
+                                unitCostLabel.Text = unitCost.ToString();
+                            }
+                            else if (labelComponent.Name == "HealthValue")
+                            {
+                                unitHealthLabel = labelComponent;
+                                unitHealthLabel.Text = unitHealth.ToString();
+                            }
+                            else if (labelComponent.Name == "ArmorValue")
+                            {
+                                unitArmourLabel = labelComponent;
+                                unitArmourLabel.Text = unitArmour.ToString();
+                            }
+                            else if (labelComponent.Name == "AttackValue")
+                            {
+                                unitAttackLabel = labelComponent;
+                                unitAttackLabel.Text = unitAttack.ToString();
+                            }
                         }
                     }
                 }
             }
+        }
 
+        private void UpdateDescription()
+        {
             Node descriptionParentNode = GetChild(0).GetChild(1);
 
             foreach (Node child in descriptionParentNode.GetChildren())
@@ -130,13 +153,32 @@ namespace Erikduss
                     //Set the unit description through the actual unit info file.
 
                     unitDescriptionLabel = description;
-                    unitDescriptionLabel.Text = unitDescription.ToString();
+                    unitDescriptionLabel.Text = Tr(loadedUnitConfig.unitDescription);
                 }
             }
         }
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+        public void UpdateLanguage(object o, EventArgs e)
+        {
+            //update unit name
+            LoadUnitName(false);
+
+            //update description
+            UpdateDescription();
+        }
+
+        public void SubscribeToEvents()
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated += UpdateLanguage;
+        }
+
+        public void UnsubscribeFromEvents()
+        {
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+        }
+
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _Process(double delta)
 		{
             /*if (needToCheckForHold)
             {

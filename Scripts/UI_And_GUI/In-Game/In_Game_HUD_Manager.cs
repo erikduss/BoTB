@@ -80,8 +80,7 @@ namespace Erikduss
             HidePauseMenu();
             gameOverNode.Visible = false;
 
-            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
-            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+            SubscribeToEvents();
 
             RefreshUnitShop(false);
             RefreshPowerUp(false);
@@ -91,6 +90,31 @@ namespace Erikduss
 		public override void _Process(double delta)
 		{
 		}
+
+        protected override void Dispose(bool disposing)
+        {
+            UnsubscribeFromEvents();
+            base.Dispose(disposing);
+        }
+
+        public void UpdateLanguage(object o, EventArgs e)
+        {
+            //update string that is set through code.
+        }
+
+        public void SubscribeToEvents()
+        {
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated += UpdateLanguage;
+        }
+
+        public void UnsubscribeFromEvents()
+        {
+            GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged -= OptionsPanelClosed;
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+        }
 
         public void SelectFirstControlInShop()
         {

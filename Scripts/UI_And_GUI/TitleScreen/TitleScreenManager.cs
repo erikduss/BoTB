@@ -41,19 +41,41 @@ namespace Erikduss
 
             string versionLabelText = string.Empty;
 
-            if (GameSettingsLoader.buildIsADemo) versionLabelText = Tr("DEMO_TEXT");
+            //if (GameSettingsLoader.buildIsADemo) versionLabelText = Tr("DEMO_TEXT");
 
             // "This is a Demo build, some features may be limited. Version: "
 
-            versionLabelText = versionLabelText + ProjectSettings.GetSetting("application/config/version").ToString();
+            versionLabelText = ProjectSettings.GetSetting("application/config/version").ToString();
 
-            currentVersionLabel.Text = versionLabelText;
+            currentVersionLabel.Text = GameSettingsLoader.buildIsADemo ? Tr("DEMO_TEXT") + versionLabelText : versionLabelText;
 
-            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
-            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+            SubscribeToEvents();
 
             defaultControlSelected.GrabFocus();
 		}
+
+        public void UpdateLanguage(object o, EventArgs e)
+        {
+            string versionLabelText = string.Empty;
+
+            versionLabelText = ProjectSettings.GetSetting("application/config/version").ToString();
+
+            currentVersionLabel.Text = GameSettingsLoader.buildIsADemo ? Tr("DEMO_TEXT") + versionLabelText : versionLabelText;
+        }
+
+        public void SubscribeToEvents()
+        {
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged += OptionsPanelClosed;
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated += UpdateLanguage;
+        }
+
+        public void UnsubscribeFromEvents()
+        {
+            GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            optionsPanel.VisibilityChanged -= OptionsPanelClosed;
+            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+        }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
@@ -65,6 +87,9 @@ namespace Erikduss
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             AudioManager.Instance.ClearAudioPlayers();
+
+            UnsubscribeFromEvents();
+
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/" + gameLoadingSceneName + ".tscn");
         }
 
@@ -86,6 +111,8 @@ namespace Erikduss
 
         public void CloseGame()
         {
+            UnsubscribeFromEvents();
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             GetTree().Quit();
         }

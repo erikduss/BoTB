@@ -53,5 +53,5 @@ offset_left = 120.0
 offset_top = -23.0
 offset_right = 343.0
 offset_bottom = 44.0
-text = "Loading..."
+text = "LOADING_GAME"
 label_settings = SubResource("LabelSettings_y2ltl")
