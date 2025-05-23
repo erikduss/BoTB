@@ -212,7 +212,7 @@ namespace Erikduss
                     gameIsFinished = true;
 
                     //We should show "Victory" or "Defeat" depending on the outcome. (Ingame hud manager)
-                    string outcomeValue = team01HomeBase.CurrentHealth <= 0 ? "Defeat" : "Victory";
+                    string outcomeValue = team01HomeBase.CurrentHealth <= 0 ? Tr("DEFEAT") : Tr("VICTORY");
 
                     inGameHUDManager.GameOverTriggered(outcomeValue);
 

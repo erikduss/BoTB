@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\titlescreen\\titlescreenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\titlescreen\\titlescreenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\ageabilityinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\titlescreen\\titlescreenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\titlescreen\\titlescreenmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\unitinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -268,7 +268,7 @@
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAAAGsAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T12:09:29.047Z",
               "EditorCaption": ""
@@ -283,8 +283,7 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\UnitInfoToggler.cs",
               "ViewState": "AgIAAEAAAAAAAAAAAAAQwFwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T10:29:20.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T10:29:20.083Z"
             },
             {
               "$type": "Document",
@@ -296,8 +295,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameData\\DataManagers\\GameUserOptionsManager.cs",
               "ViewState": "AgIAAGkAAAAAAAAAAAAIwJIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T12:12:17.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T12:12:17.717Z"
             },
             {
               "$type": "Document",
@@ -309,12 +307,11 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameData\\DataConfigs\\UnitsDefaultValues.cs",
               "ViewState": "AgIAAGsAAAAAAAAAAAAQwJYAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T10:42:51.555Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T10:42:51.555Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TitleScreenManager.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
@@ -322,18 +319,17 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAgwE0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T13:38:38.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-30T13:38:38.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AgeAbilityInfoToggler.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\AgeAbilityInfoToggler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-09T12:32:53.139Z",
               "EditorCaption": ""
@@ -348,8 +344,7 @@
               "RelativeToolTip": "Scripts\\Characters\\BaseCharacter.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAAAJMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T13:21:45.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-17T13:21:45.283Z"
             },
             {
               "$type": "Document",
@@ -361,8 +356,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameData\\DataManagers\\GameSettingsLoader.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAAEkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T10:47:13.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T10:47:13.353Z"
             },
             {
               "$type": "Document",
@@ -374,8 +368,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameData\\DataConfigs\\GameUserOptionsConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T12:23:39.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T12:23:39.977Z"
             },
             {
               "$type": "Document",
@@ -387,8 +380,7 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\PowerUps\\HealBasePowerUpInfoToggler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T13:05:09.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-12T13:05:09.259Z"
             },
             {
               "$type": "Document",
@@ -400,8 +392,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\Interfaces_And_Statics\\Enums.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAAAFQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-12T12:30:11.128Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T12:30:11.128Z"
             },
             {
               "$type": "Document",

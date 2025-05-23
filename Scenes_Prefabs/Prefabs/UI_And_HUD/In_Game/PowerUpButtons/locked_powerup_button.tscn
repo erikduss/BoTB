@@ -47,7 +47,7 @@ offset_top = 19.0
 offset_right = 435.0
 offset_bottom = 144.0
 scale = Vector2(0.5, 0.5)
-text = "Locked"
+text = "LOCKED"
 label_settings = SubResource("LabelSettings_tie5p")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -64,8 +64,7 @@ scale = Vector2(0.5, 0.5)
 [node name="LockedPowerUpDescription" type="Label" parent="LockedPowerUpInfo/BoxContainer"]
 custom_minimum_size = Vector2(410, 225)
 layout_mode = 2
-text = "Certain actions and events will give you progress towards unlocking a new random Power Up.
-Every time this is unlocked, you will be rewarded with 1x Power Up Reroll."
+text = "LOCKED_DESCRIPTION"
 label_settings = SubResource("LabelSettings_mkrm2")
 horizontal_alignment = 1
 autowrap_mode = 3

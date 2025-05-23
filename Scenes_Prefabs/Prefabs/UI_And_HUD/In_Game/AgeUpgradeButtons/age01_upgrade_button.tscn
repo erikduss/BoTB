@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8bxjggric8q3"]
+[gd_scene load_steps=11 format=3 uid="uid://b8bxjggric8q3"]
 
 [ext_resource type="Texture2D" uid="uid://b4m2i7fhajl2x" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Default_button.png" id="1_044jc"]
 [ext_resource type="Texture2D" uid="uid://cug33b0okulke" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Hover_button.png" id="2_05wng"]
@@ -17,6 +17,9 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mkrm2"]
 font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_347b3"]
 font_color = Color(0, 0, 0, 1)
 
 [node name="Age01UpgradeButton" type="TextureButton"]
@@ -49,7 +52,7 @@ offset_top = 19.0
 offset_right = 178.0
 offset_bottom = 79.0
 scale = Vector2(0.5, 0.5)
-text = "Age Up"
+text = "AGE_UP"
 label_settings = SubResource("LabelSettings_jcxrx")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -93,10 +96,21 @@ scale = Vector2(0.5, 0.5)
 [node name="AgeUpDescription" type="Label" parent="AgeUpgradeInfo/BoxContainer"]
 custom_minimum_size = Vector2(410, 225)
 layout_mode = 2
-text = "Upgrades the age you're in. 
-Age upgrading will improve units drastically and empower your special ability.
-(Currently unavailable)"
+text = "AGE_UP_DESCRIPTION"
 label_settings = SubResource("LabelSettings_mkrm2")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AgeUpDescription2" type="Label" parent="AgeUpgradeInfo"]
+custom_minimum_size = Vector2(410, 100)
+layout_mode = 2
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 433.0
+offset_bottom = 125.0
+scale = Vector2(0.5, 0.5)
+text = "CURRENTLY_UNAVAILABLE"
+label_settings = SubResource("LabelSettings_347b3")
 horizontal_alignment = 1
 autowrap_mode = 3
 

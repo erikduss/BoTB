@@ -100,6 +100,7 @@ namespace Erikduss
         public void UpdateLanguage(object o, EventArgs e)
         {
             //update string that is set through code.
+            UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
         }
 
         public void SubscribeToEvents()
@@ -171,15 +172,15 @@ namespace Erikduss
                 abilityCooldownBarScript = abilityCooldownBar.GetNode<AgeAbilityInfoToggler>(abilityCooldownBar.GetParent().GetPath());
 			}
 
-            if(fixedCooldownPercentage <= 0) abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: READY";
-            else abilityCooldownBarScript.abilityCooldownLabel.Text = "Cooldown: " + secondsLeftOnCooldown.ToString();
+            if(fixedCooldownPercentage <= 0) abilityCooldownBarScript.abilityCooldownLabel.Text = Tr("COOLDOWN") + ": " + Tr("READY");
+            else abilityCooldownBarScript.abilityCooldownLabel.Text = Tr("COOLDOWN") + ": " + secondsLeftOnCooldown.ToString();
         }
 
         public void UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner team)
         {
             int empowerAmount = team == Enums.TeamOwner.TEAM_01 ? EffectsAndProjectilesSpawner.Instance.team01AbilityEmpowerAmount : EffectsAndProjectilesSpawner.Instance.team02AbilityEmpowerAmount;
             
-            abilityCooldownBarScript.abilityEmpowerLabel.Text = "Empowered: " + empowerAmount;
+            abilityCooldownBarScript.abilityEmpowerLabel.Text = Tr("EMPOWERED") + ": " + empowerAmount;
         }
 
         public void PlayerAbilityButtonPressed()
@@ -474,7 +475,7 @@ namespace Erikduss
             int minutes = fixedMatchDuration / 60;
             int seconds = fixedMatchDuration - (minutes * 60);
 
-            gameOverInfoScript.matchDurationLabel.Text = minutes + " minutes " + seconds + " seconds";
+            gameOverInfoScript.matchDurationLabel.Text = minutes + " " + Tr("MINUTES") + " " + seconds + " " + Tr("SECONDS");
 
             gameOverNode.Visible = true;
         }

@@ -54,7 +54,7 @@ offset_top = 19.0
 offset_right = 217.0
 offset_bottom = 79.0
 scale = Vector2(0.5, 0.5)
-text = "Meteor Shower"
+text = "METEOR_SHOWER"
 label_settings = SubResource("LabelSettings_ga6tc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -88,7 +88,7 @@ scale = Vector2(0.5, 0.5)
 [node name="AbilityDescription" type="Label" parent="AbilityUpgradeInfo/BoxContainer"]
 custom_minimum_size = Vector2(410, 200)
 layout_mode = 2
-text = "Call upon the master Shamans to unleash a powerful Meteor Shower."
+text = "METEOR_SHOWER_DESCRIPTION"
 label_settings = SubResource("LabelSettings_bj01e")
 horizontal_alignment = 1
 autowrap_mode = 3

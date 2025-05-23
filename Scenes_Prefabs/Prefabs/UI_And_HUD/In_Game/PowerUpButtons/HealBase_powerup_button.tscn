@@ -46,7 +46,7 @@ offset_top = 19.0
 offset_right = 435.0
 offset_bottom = 144.0
 scale = Vector2(0.5, 0.5)
-text = "Quick Repairs"
+text = "QUICK_REPAIRS"
 label_settings = SubResource("LabelSettings_tie5p")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -63,7 +63,7 @@ scale = Vector2(0.5, 0.5)
 [node name="HealBasePowerUpDescription" type="Label" parent="HealBasePowerUpInfo/BoxContainer"]
 custom_minimum_size = Vector2(410, 225)
 layout_mode = 2
-text = "Call in the repair crew to repair the damages done to your Home Base. Repairs up to 100 health of your Home Base. (Does not heal over the max health)."
+text = "QUICK_REPAIRS_DESCRIPTION"
 label_settings = SubResource("LabelSettings_mkrm2")
 horizontal_alignment = 1
 autowrap_mode = 3

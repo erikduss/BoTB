@@ -46,7 +46,7 @@ offset_top = 19.0
 offset_right = 435.0
 offset_bottom = 144.0
 scale = Vector2(0.5, 0.5)
-text = "Shaman Party"
+text = "SHAMAN_PARTY"
 label_settings = SubResource("LabelSettings_tie5p")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -63,7 +63,7 @@ scale = Vector2(0.5, 0.5)
 [node name="AbilityEmpowerPowerUpDescription" type="Label" parent="AbilityEmpowerPowerUpInfo/BoxContainer"]
 custom_minimum_size = Vector2(410, 225)
 layout_mode = 2
-text = "Another Master Shaman will join your settlement. Increasing your Age Ability Empowerment by 1."
+text = "SHAMAN_PARTY_DESCRIPTION"
 label_settings = SubResource("LabelSettings_mkrm2")
 horizontal_alignment = 1
 autowrap_mode = 3
