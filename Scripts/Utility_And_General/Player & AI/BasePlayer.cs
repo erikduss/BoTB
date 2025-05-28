@@ -5,7 +5,7 @@ namespace Erikduss
 {
 	public partial class BasePlayer : Node
 	{
-        public int playerCurrentCurrencyAmount { get; set; }
+        public float playerCurrentCurrencyAmount { get; set; }
         public int playerAbilityCurrentCooldown { get; set; }
 
 		public Enums.Ages currentAgeOfPlayer = Enums.Ages.AGE_01;

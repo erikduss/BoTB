@@ -87,7 +87,9 @@ namespace Erikduss
 
         public virtual void ProcessPowerUpEffect()
         {
+            GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = false;
 
+            GameManager.Instance.inGameHUDManager.RefreshPowerUp(false);
         }
     }
 }

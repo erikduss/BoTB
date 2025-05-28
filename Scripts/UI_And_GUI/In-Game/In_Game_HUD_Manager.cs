@@ -152,9 +152,10 @@ namespace Erikduss
 		}
 
         #region Update the Player Currency Amount Label
-		public void UpdatePlayerCurrencyAmountLabel(int newAmount)
+		public void UpdatePlayerCurrencyAmountLabel(float newAmount)
 		{
-			currencyAmountLabel.Text = newAmount.ToString();
+            int newAmountInt = (int)MathF.Floor(newAmount);
+			currencyAmountLabel.Text = newAmountInt.ToString();
 		}
 
         #endregion
@@ -219,6 +220,13 @@ namespace Erikduss
                 UpdatePlayerPowerUPRerollAmount();
             }
 
+            if(GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently && !spendRerollToken)
+            {
+                //We dont need to refesh anything if we already have a powerup active.
+                GD.Print("Prevent refresh");
+                return;
+            }
+
             if(powerUpsParentNode.GetChildren().Count > 0)
             {
                 for (int i = powerUpsParentNode.GetChildren().Count - 1; i >= 0; i--)
@@ -233,12 +241,18 @@ namespace Erikduss
             //if we unlock a power up from the locked state, or we refresh the shop, we give the player a random powerup option.
             if(GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed > 0 || spendRerollToken)
             {
-                Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[0].Instantiate();
+                int randPowerupID = (int)(GD.Randi() % (availablePowerUpButtons.Count));
+
+                Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[randPowerupID].Instantiate();
 
                 powerUpsParentNode.AddChild(instantiatedPowerUpButton);
                 currentShownPowerUp = instantiatedPowerUpButton;
 
-                GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+                //make sure we only reduce the amount owed if we buy process another powerup
+                if (!spendRerollToken)
+                {
+                    GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+                }
 
                 GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = true;
             }

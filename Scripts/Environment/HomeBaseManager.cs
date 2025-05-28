@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Erikduss
 {
@@ -152,9 +153,17 @@ namespace Erikduss
             UpdateBaseHealthbarAndSprite();
         }
 
-        public void HealDamage(int rawDamage)
+        public void HealDamage(int healAmount)
         {
             //we dont have a way to heal the homebase yet
+
+            if (IsDeadOrDestroyed) return;
+
+            currentHealth += healAmount;
+
+            if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+            UpdateBaseHealthbarAndSprite();
         }
 
         private void UpdateBaseHealthbarAndSprite()

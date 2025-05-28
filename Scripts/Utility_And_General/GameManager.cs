@@ -40,12 +40,15 @@ namespace Erikduss
         private static int startingCurrency = 100;
 		private float currencyGainAmountUpdateTimer = 0;
 		private float currencyGainRate = 1f; //every 1 second the player gets currency
-		private int currencyGainAmount = 1;
+		private float currencyGainAmount = 1f;
+
+        public int currencyGainPercentagePlayer01 = 0;
+        public int currencyGainPercentagePlayer02 = 0;
         #endregion
 
         #region Ability Variables
-        
-		public int playerAbilityCooldown = 180; //seconds
+
+        public int playerAbilityCooldown = 180; //seconds
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -122,8 +125,12 @@ namespace Erikduss
 			if(currencyGainAmountUpdateTimer > currencyGainRate)
 			{
 				currencyGainAmountUpdateTimer = 0;
-                player01Script.playerCurrentCurrencyAmount += currencyGainAmount;
-                player02Script.playerCurrentCurrencyAmount += currencyGainAmount;
+
+                GD.Print("Player 1 gained: " + (currencyGainAmount * (currencyGainPercentagePlayer01 > 0 ? 1f + (currencyGainPercentagePlayer01 / 100f) : 1f)));
+                GD.Print("Player 2 gained: " + (currencyGainAmount * (currencyGainPercentagePlayer02 > 0 ? 1f + (currencyGainPercentagePlayer02 / 100f) : 1f)));
+
+                player01Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer01 > 0 ? 1f + (currencyGainPercentagePlayer01 / 100f) : 1f ));
+                player02Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer02 > 0 ? 1f + (currencyGainPercentagePlayer02 / 100f) : 1f ));
 
                 //Update HUD
                 inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
