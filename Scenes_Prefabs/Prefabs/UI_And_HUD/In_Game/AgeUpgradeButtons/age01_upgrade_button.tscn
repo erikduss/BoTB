@@ -20,6 +20,7 @@ font_size = 28
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_347b3"]
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [node name="Age01UpgradeButton" type="TextureButton"]
@@ -39,18 +40,18 @@ layout_mode = 0
 offset_left = 165.0
 offset_top = 40.0
 offset_right = 421.0
-offset_bottom = 296.0
+offset_bottom = 360.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
 texture = ExtResource("5_hwocq")
 
 [node name="AgeUpText" type="Label" parent="AgeUpgradeInfo"]
-custom_minimum_size = Vector2(210, 125)
+custom_minimum_size = Vector2(420, 150)
 layout_mode = 2
-offset_left = 73.0
-offset_top = 19.0
-offset_right = 178.0
-offset_bottom = 79.0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 442.0
+offset_bottom = 174.0
 scale = Vector2(0.5, 0.5)
 text = "AGE_UP"
 label_settings = SubResource("LabelSettings_jcxrx")
@@ -61,9 +62,9 @@ vertical_alignment = 1
 layout_mode = 2
 anchors_preset = 0
 offset_left = 25.0
-offset_top = 85.0
+offset_top = 110.0
 offset_right = 225.0
-offset_bottom = 115.0
+offset_bottom = 140.0
 
 [node name="TextureRect" type="TextureRect" parent="AgeUpgradeInfo/AgeUpCostInfo"]
 custom_minimum_size = Vector2(30, 30)
@@ -88,9 +89,9 @@ label_settings = SubResource("LabelSettings_l0gp8")
 custom_minimum_size = Vector2(410, 0)
 layout_mode = 0
 offset_left = 25.0
-offset_top = 110.0
+offset_top = 140.0
 offset_right = 435.0
-offset_bottom = 368.0
+offset_bottom = 460.0
 scale = Vector2(0.5, 0.5)
 
 [node name="AgeUpDescription" type="Label" parent="AgeUpgradeInfo/BoxContainer"]

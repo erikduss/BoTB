@@ -33,7 +33,7 @@ font_size = 64
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_st105"]
-font_size = 560
+font_size = 512
 font_color = Color(0, 0, 0, 1)
 
 [node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel", "ageUpControl", "ageAbilityControl", "refreshButtonControl", "pauseButtonControl", "pauseMenuReturnControl", "powerUpsParentNode", "powerUpRefreshButton")]
@@ -115,7 +115,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="HSeparator" type="Control" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
 [node name="PowerUpsContainer" type="HBoxContainer" parent="Player_Control_HUD/Currency&UnitShop/HBoxContainer"]

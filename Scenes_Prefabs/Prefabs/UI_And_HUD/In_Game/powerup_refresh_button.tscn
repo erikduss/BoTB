@@ -27,19 +27,18 @@ amountOfPowerUpRefreshesAvailable = NodePath("TextureRect/AmountOfRefreshesAvail
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 85.0
-offset_top = 25.0
-offset_right = 149.0
-offset_bottom = 89.0
+offset_top = 17.0
+offset_right = 181.0
+offset_bottom = 113.0
 mouse_filter = 2
 texture = ExtResource("4_cyphh")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 101.0
-offset_bottom = 38.0
+offset_top = 8.5
+offset_right = 210.0
+offset_bottom = 42.5
 scale = Vector2(0.5, 0.5)
 text = "REFRESH_BUTTON"
 label_settings = SubResource("LabelSettings_vgmk3")
@@ -48,10 +47,10 @@ vertical_alignment = 1
 
 [node name="AmountOfRefreshesAvailableText" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 20.0
-offset_right = 108.0
-offset_bottom = 65.0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 166.0
+offset_bottom = 81.0
 scale = Vector2(0.5, 0.5)
 text = "x1"
 label_settings = SubResource("LabelSettings_sd6kg")

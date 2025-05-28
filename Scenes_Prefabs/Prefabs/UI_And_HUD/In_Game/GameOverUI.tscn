@@ -7,7 +7,7 @@
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="4_ryq5u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_st105"]
-font_size = 560
+font_size = 512
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ryq5u"]

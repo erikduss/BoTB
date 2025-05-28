@@ -186,12 +186,12 @@ namespace Erikduss
 			GameUserOptionsConfig currSavedConfig = GameSettingsLoader.Instance.gameUserOptionsManager.currentlySavedUserOptions;
 			GameUserOptionsConfig overrideConfig = GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions;
 
-            string changesWarning = "You have unsaved changes, do you wish to exit or save these changes? You have the following section(s) with changes: \n";
+            string changesWarning = Tr("CHANGES_DESCRIPTION");
 
 			//check if the audio section is the same
 			if (currSavedConfig.musicVolume != overrideConfig.musicVolume || currSavedConfig.otherVolume != overrideConfig.otherVolume) 
 			{
-                changesWarning = changesWarning + " - Audio Section";
+                changesWarning = changesWarning + " \n  - " + Tr("AUDIO_SETTINGS");
                 hasChangedSettings = true;
             }
 
@@ -199,7 +199,7 @@ namespace Erikduss
             if (currSavedConfig.screenMovement != overrideConfig.screenMovement || currSavedConfig.addedDragSensitivity != overrideConfig.addedDragSensitivity ||
                 currSavedConfig.addedSidesSensitivity != overrideConfig.addedSidesSensitivity)
             {
-                changesWarning = changesWarning + " - Gameplay Section";
+                changesWarning = changesWarning + " \n  - " + Tr("GAMEPLAY_SETTINGS");
                 hasChangedSettings = true;
             }
 
@@ -208,7 +208,7 @@ namespace Erikduss
 				currSavedConfig.overrideScreenResolution != overrideConfig.overrideScreenResolution || currSavedConfig.limitFPS != overrideConfig.limitFPS ||
                 currSavedConfig.fpsLimit != overrideConfig.fpsLimit)
 			{
-                changesWarning = changesWarning + " - Graphics Section";
+                changesWarning = changesWarning + " \n  - " + Tr("GRAPHICS_SETTINGS");
                 hasChangedSettings = true;
             }
 
@@ -216,7 +216,7 @@ namespace Erikduss
             if (currSavedConfig.enableHemophobiaMode != overrideConfig.enableHemophobiaMode || currSavedConfig.useHighlightFocusMode != overrideConfig.useHighlightFocusMode 
                 || currSavedConfig.focussedControlColor != overrideConfig.focussedControlColor || currSavedConfig.language != overrideConfig.language)
             {
-                changesWarning = changesWarning + " - Accessibility Section";
+                changesWarning = changesWarning + " \n  - " + Tr("ACCESSIBILITY_SETTINGS");
                 hasChangedSettings = true;
             }
 

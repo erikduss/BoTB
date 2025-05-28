@@ -79,16 +79,35 @@ namespace Erikduss
                     {
                         unitNameLabel = labelComponent;
 
+                        if (unitNameLabel == null) return;
+
                         string unitName = Tr(loadedUnitConfig.unitName);
 
                         int newFontSize = 24 + ((7 - unitName.Length) * 2);
                         int scaleMultiplier = 2; //make the text twice as big, but scale label down to make text clearer.
 
-                        Vector2 originalLabelSize = new Vector2(105, 60); //this is the correct size for the name section
+                        Vector2 originalLabelSize = new Vector2(95, 80); //this is the correct size for the name section
 
-                        unitNameLabel.LabelSettings.FontSize = (newFontSize * scaleMultiplier);
-                        unitNameLabel.Scale = new Vector2(unitNameLabel.Scale.X / scaleMultiplier, unitNameLabel.Scale.Y / scaleMultiplier);
-                        unitNameLabel.Size = originalLabelSize * scaleMultiplier;
+                        for (int i =32; i > 0; i--)
+                        {
+                            unitNameLabel.LabelSettings.FontSize = i;
+
+                            if (unitNameLabel.LabelSettings.Font == null)
+                            {
+                                unitNameLabel.LabelSettings.Font = new FontVariation();
+                            }
+
+                            if(unitNameLabel.LabelSettings.Font.GetStringSize(unitName, HorizontalAlignment.Center, -1, i).X <= originalLabelSize.X)
+                            {
+                                //we found a size that fits
+                                break;
+                            }
+                        }
+                        
+
+                        //unitNameLabel.LabelSettings.FontSize = (newFontSize * scaleMultiplier);
+                        //unitNameLabel.Scale = new Vector2(unitNameLabel.Scale.X / scaleMultiplier, unitNameLabel.Scale.Y / scaleMultiplier);
+                        //unitNameLabel.Size = originalLabelSize * scaleMultiplier;
 
                         unitNameLabel.Text = unitName;
                     }
