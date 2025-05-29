@@ -41,10 +41,11 @@ namespace Erikduss
             {
                 musicAudioPlayer = new AudioStreamPlayer2D();
                 musicAudioPlayer.Bus = "Music";
-                musicAudioPlayer.Autoplay = true;
+                musicAudioPlayer.Autoplay = !GameSettingsLoader.Instance.gameUserOptionsManager.muteMusicAudio;
                 musicAudioPlayer.Stream = gameMusicAudioClip;
                 musicAudioPlayer.MaxDistance = 2000;
                 musicAudioPlayer.PanningStrength = 0;
+                musicAudioPlayer.StreamPaused = GameSettingsLoader.Instance.gameUserOptionsManager.muteMusicAudio;
 
                 if (attachToNode != null)
                 {
@@ -53,6 +54,11 @@ namespace Erikduss
                 else
                 {
                     GetTree().CurrentScene.AddChild(musicAudioPlayer);
+                }
+
+                if(GameSettingsLoader.Instance.gameUserOptionsManager.muteMusicAudio)
+                {
+                    musicAudioPlayer.StreamPaused = true;
                 }
             }
 
@@ -65,6 +71,7 @@ namespace Erikduss
                 sfxAudioPlayer.MaxPolyphony = amountOfDefaultMaxSFXClipsAtOnce;
                 sfxAudioPlayer.PanningStrength = 0;
                 sfxAudioPlayer.Stream = new AudioStreamPolyphonic();
+                sfxAudioPlayer.StreamPaused = GameSettingsLoader.Instance.gameUserOptionsManager.muteOtherAudio;
 
                 if (attachToNode != null)
                 {
@@ -86,6 +93,21 @@ namespace Erikduss
             sfxAudioPlayer = null;
         }
 
+        public void SetMuteMusicAudio(bool mute)
+        {
+            musicAudioPlayer.StreamPaused = mute;
+
+            if(!mute && !musicAudioPlayer.Playing)
+            {
+                musicAudioPlayer.Play();
+            }
+        }
+
+        public void SetMuteOtherAudio(bool mute)
+        {
+            sfxAudioPlayer.StreamPaused = mute;
+        }
+
         public void PlayMusicAudioClip(AudioStream audioClip)
         {
 
@@ -95,6 +117,8 @@ namespace Erikduss
         {
             if (sfxAudioPlayer == null) return;
             if (!sfxAudioPlayer.HasStreamPlayback()) return;
+
+            if (sfxAudioPlayer.StreamPaused || GameSettingsLoader.Instance.gameUserOptionsManager.muteOtherAudio) return;
 
             AudioStreamPlaybackPolyphonic playback = (AudioStreamPlaybackPolyphonic)sfxAudioPlayer.GetStreamPlayback();
             playback.PlayStream(audioClip, bus: sfxAudioPlayer.Bus);

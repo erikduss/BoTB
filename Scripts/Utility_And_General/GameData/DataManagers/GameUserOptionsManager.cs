@@ -31,6 +31,9 @@ namespace Erikduss
             "no"
         };
 
+        public bool muteMusicAudio = false;
+        public bool muteOtherAudio = false;
+
         public override void _Ready()
         {
             base._Ready();
@@ -250,10 +253,44 @@ namespace Erikduss
             if(audioVolumePercentage <= 0)
             {
                 AudioServer.SetBusMute(AudioServer.GetBusIndex(audioBusName), true);
+
+                if (audioBusName == "Music")
+                {
+                    muteMusicAudio = true;
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.SetMuteMusicAudio(true);
+                    }
+                }
+                else
+                {
+                    muteOtherAudio = true;
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.SetMuteOtherAudio(true);
+                    }
+                }
             }
             else if (AudioServer.IsBusMute(AudioServer.GetBusIndex(audioBusName)))
             {
                 AudioServer.SetBusMute(AudioServer.GetBusIndex(audioBusName), false);
+
+                if (audioBusName == "Music")
+                {
+                    muteMusicAudio = false;
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.SetMuteMusicAudio(false);
+                    }
+                }
+                else
+                {
+                    muteOtherAudio = false;
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.SetMuteOtherAudio(false);
+                    }
+                }
             }
         }
 
