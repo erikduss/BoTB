@@ -310,7 +310,7 @@ namespace Erikduss
                         {
                             IDamageable targetThatWeHit;
                             bool weCanActuallyHitIt = true;
-                            float marginOfErrorValue = 5f; //this is in case a unit has moved or anything
+                            float marginOfErrorValue = 25f; //this is in case a unit has moved or anything
 
                             if (currentDruidScript.CurrentTarget != null)
                             {
@@ -342,7 +342,7 @@ namespace Erikduss
                                 {
                                     GD.PrintErr("ERROR, The target of the druid's ranged attack is out of range");
                                 }
-                                if (targetThatWeHit != null)
+                                if (targetThatWeHit == null)
                                 {
                                     GD.PrintErr("ERROR, The target of the druid's ranged attack is null");
                                 }

@@ -84,7 +84,7 @@ namespace Erikduss
 
                 if (druid.isTransformed)
                 {
-                    if (!druid.isTransforming)
+                    if (!druid.isTransforming && !character.unitHasReachedEnemyHomeBase) //we should not transform back if we are at the home base.
                     {
                         druid.TransformBack();
                         return;
@@ -478,6 +478,34 @@ namespace Erikduss
                     {
                         return false;
                     }
+                }
+            }
+
+            float homeBaseDistanceOffset = 15f; //units were not detecting the home base properly if they were behind another unit.
+
+            //we need to check if we can hit the enemy base
+            if (character.characterOwner == Enums.TeamOwner.TEAM_01)
+            {
+                float distance = GameManager.Instance.team02HomeBase.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance < (character.detectionRange + homeBaseDistanceOffset))
+                {
+                    character.unitHasReachedEnemyHomeBase = true;
+                    return false;
+                }
+            }
+            else
+            {
+                float distance = GameManager.Instance.team01HomeBase.GlobalPosition.X - character.GlobalPosition.X;
+
+                if (distance < 0) distance = -distance;
+
+                if (distance < (character.detectionRange + homeBaseDistanceOffset))
+                {
+                    character.unitHasReachedEnemyHomeBase = true;
+                    return false;
                 }
             }
 
