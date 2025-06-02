@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp1txd8rg7mwp"
-path="res://.godot/imported/GameTitle_Dark.png-8015c539b9e70cec7141021afb81c26e.ctex"
+path="res://.godot/imported/GameTitleDark.png-e32725339b283c1e44dc3793974380a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Trailer/GameTitle_Dark.png"
-dest_files=["res://.godot/imported/GameTitle_Dark.png-8015c539b9e70cec7141021afb81c26e.ctex"]
+source_file="res://Assets/Trailer/GameTitleDark.png"
+dest_files=["res://.godot/imported/GameTitleDark.png-e32725339b283c1e44dc3793974380a1.ctex"]
 
 [params]
 

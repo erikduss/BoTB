@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://4j4tdnclenc6"]
+
+[ext_resource type="Script" uid="uid://bp4vtbnb58q54" path="res://Scripts/TestLoadSplashScreen.cs" id="1_8j36r"]
+
+[node name="TempTestSplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8j36r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.362829, 0.362829, 0.362829, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 198.0
+offset_bottom = 198.0
+text = "Load"
+
+[connection signal="pressed" from="Button" to="." method="LoadLoadingScreen"]

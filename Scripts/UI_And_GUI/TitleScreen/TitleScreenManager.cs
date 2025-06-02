@@ -23,6 +23,7 @@ namespace Erikduss
 		{
             AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers", GetTree().CurrentScene);
 
+            
             //we need to load our ads
             if (OS.GetName() == "Android" || OS.GetName() == "iOS")
             {
