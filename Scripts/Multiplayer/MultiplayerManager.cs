@@ -66,16 +66,16 @@ namespace Erikduss
             JoinLobby("defaultLobby");
         }
 
-        public void CreateNewLobby(string lobbyName = "defaultLobby")
+        public void CreateNewLobby(string lobbyName = "defaultLobby", string lobbyPassword = "")
         {
-            GDSync.CreateLobby(lobbyName, "", true, 2);
+            GDSync.CreateLobby(lobbyName, lobbyPassword, true, 2);
 
-            JoinLobby(lobbyName);
+            JoinLobby(lobbyName, lobbyPassword);
         }
 
-        public void JoinLobby(string lobbyName)
+        public void JoinLobby(string lobbyName, string lobbyPassword = "")
         {
-            GDSync.JoinLobby(lobbyName);
+            GDSync.JoinLobby(lobbyName, lobbyPassword);
         }
 
         public void Connected()

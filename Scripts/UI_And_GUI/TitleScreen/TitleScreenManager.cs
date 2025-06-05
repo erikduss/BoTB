@@ -21,6 +21,19 @@ namespace Erikduss
         [Export] private Control mainTitleScreenUI;
         [Export] private Control matchPrepScreenUI;
 
+        [Export] private Control createLobbyPanel;
+        [Export] private Control joinLobbyPanel;
+
+        //Joining And creating lobby variables
+        [Export] private LineEdit lobbyCreateNameLineEdit;
+        [Export] private LineEdit lobbyCreatePasswordLineEdit;
+
+        [Export] private LineEdit lobbyJoinNameLineEdit;
+        [Export] private LineEdit lobbyJoinPasswordLineEdit;
+
+        //multiplayer
+        [Export] public TitleScreenMultiplayerLobbyManager lobbyMultiplayerManager;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -107,6 +120,76 @@ namespace Erikduss
         {
             mainTitleScreenUI.Visible = true;
             matchPrepScreenUI.Visible = false;
+        }
+
+        public void ShowLobbyCreateUI()
+        {
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = false;
+
+            createLobbyPanel.Visible = true;
+        }
+
+        public void HideLobbyCreateUI()
+        {
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = true;
+
+            createLobbyPanel.Visible = false;
+
+            lobbyCreateNameLineEdit.Text = string.Empty;
+            lobbyCreatePasswordLineEdit.Text = string.Empty;
+        }
+
+        public void ShowLobbyJoinUI()
+        {
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = false;
+
+            joinLobbyPanel.Visible = true;
+        }
+
+        public void HideLobbyJoinUI()
+        {
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = true;
+
+            joinLobbyPanel.Visible = false;
+
+            lobbyJoinNameLineEdit.Text = string.Empty;
+            lobbyJoinPasswordLineEdit.Text = string.Empty;
+        }
+
+        public void AttemptToCreateLobbyButtonPressed()
+        {
+            bool success = DidWeSucceedCreatingALobby();
+
+            lobbyMultiplayerManager.CreateNewLobby(lobbyCreateNameLineEdit.Text, lobbyCreatePasswordLineEdit.Text);
+
+            //we join with a lobby joined event from the server.
+        }
+
+        private bool DidWeSucceedCreatingALobby()
+        {
+            if (lobbyCreateNameLineEdit.Text == string.Empty) return false;
+
+            return true;
+        }
+
+        public void AttemptToJoinLobbyButtonPressed()
+        {
+            bool success = DidWeSucceedJoiningALobby();
+
+            lobbyMultiplayerManager.JoinLobby(lobbyCreateNameLineEdit.Text, lobbyCreatePasswordLineEdit.Text);
+
+            //we join with a lobby joined event from the server.
+        }
+
+        private bool DidWeSucceedJoiningALobby()
+        {
+            if (lobbyJoinNameLineEdit.Text == string.Empty) return false;
+
+            return true;
         }
 
         public void OpenOptions()

@@ -1,35 +1,37 @@
-[gd_scene load_steps=21 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=16 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" uid="uid://bbbnt1bybj6sy" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="2_uv18o"]
-[ext_resource type="Texture2D" uid="uid://hl7ql6gcdg2j" path="res://Assets/UI/StartButton.png" id="3_ftwxo"]
 [ext_resource type="Texture2D" uid="uid://5cil1evarrf5" path="res://Assets/Trailer/GameTitle.png" id="3_s3ws6"]
-[ext_resource type="Texture2D" uid="uid://bdipr5l56nfhp" path="res://Assets/UI/StartButton_Hover.png" id="4_17xah"]
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="5_3h1cd"]
-[ext_resource type="Texture2D" uid="uid://cipuu1vm6nomg" path="res://Assets/UI/OptionsButton.png" id="5_tgbea"]
-[ext_resource type="Texture2D" uid="uid://bhxtxo6roo7c5" path="res://Assets/UI/OptionsButton_Hover.png" id="6_iqwi5"]
-[ext_resource type="Texture2D" uid="uid://c0g8b2gwu03c0" path="res://Assets/UI/ExitButton.png" id="7_06yab"]
-[ext_resource type="Texture2D" uid="uid://dou0qbvq3x4nb" path="res://Assets/UI/ExitButton_Hover.png" id="8_tvhyr"]
 [ext_resource type="PackedScene" uid="uid://c42h4mo5xo22v" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/OptionsMenu.tscn" id="11_nii0d"]
 [ext_resource type="Script" uid="uid://7jg6y4mli47v" path="res://Scripts/Multiplayer/TitleScreenMultiplayerLobbyManager.cs" id="12_px6yw"]
-[ext_resource type="Texture2D" uid="uid://cqj1sn3uh6nwf" path="res://Assets/UI/ReturnButton.png" id="13_8xals"]
 [ext_resource type="Texture2D" uid="uid://88m5ckc1wfrm" path="res://Assets/UI/GenericButton.png" id="13_j6v8c"]
 [ext_resource type="Texture2D" uid="uid://bgk6pg7dr3p80" path="res://Assets/UI/GenericButton_Hover.png" id="14_he7sw"]
-[ext_resource type="Texture2D" uid="uid://y4urwuvyqlk7" path="res://Assets/UI/ReturnButton_Hover.png" id="14_jmsse"]
 [ext_resource type="BitMap" uid="uid://1be02usg7yph" path="res://Assets/UI/ClickMaskGeneric.png" id="15_j6v8c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j61ag"]
+font_size = 280
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nii0d"]
 font_size = 480
-
-[sub_resource type="LabelSettings" id="LabelSettings_33qjo"]
-font_size = 320
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_px6yw"]
 font_size = 23
 font_color = Color(1, 0, 1, 1)
 
-[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "mainTitleScreenUI", "matchPrepScreenUI")]
+[sub_resource type="LabelSettings" id="LabelSettings_33qjo"]
+font_size = 280
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1ljj"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_htfmo"]
+font_size = 48
+
+[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "mainTitleScreenUI", "matchPrepScreenUI", "createLobbyPanel", "joinLobbyPanel", "lobbyCreateNameLineEdit", "lobbyCreatePasswordLineEdit", "lobbyJoinNameLineEdit", "lobbyJoinPasswordLineEdit", "lobbyMultiplayerManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +43,14 @@ optionsPanel = NodePath("OptionsMenu")
 currentVersionLabel = NodePath("GameVersionLabel")
 defaultControlSelected = NodePath("MainTitleScreenUI/StartButton")
 mainTitleScreenUI = NodePath("MainTitleScreenUI")
-matchPrepScreenUI = NodePath("MatchPrepScreenUI")
+matchPrepScreenUI = NodePath("MatchPrepScreenUI/PreLobbyPanel")
+createLobbyPanel = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby")
+joinLobbyPanel = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby")
+lobbyCreateNameLineEdit = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyName/NameInputField")
+lobbyCreatePasswordLineEdit = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyPassword/PasswordInputField")
+lobbyJoinNameLineEdit = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyName/NameInputField")
+lobbyJoinPasswordLineEdit = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyPassword/PasswordInputField")
+lobbyMultiplayerManager = NodePath("MatchPrepScreenUI/PreLobbyPanel")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
@@ -92,9 +101,19 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../OptionsButton")
 focus_next = NodePath("../OptionsButton")
 focus_previous = NodePath("../ExitButton")
-texture_normal = ExtResource("3_ftwxo")
-texture_hover = ExtResource("4_17xah")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("5_3h1cd")
+
+[node name="ButtonText" type="Label" parent="MainTitleScreenUI/StartButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "START_BUTTON"
+label_settings = SubResource("LabelSettings_j61ag")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OptionsButton" type="TextureButton" parent="MainTitleScreenUI"]
 layout_mode = 2
@@ -110,9 +129,18 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 focus_previous = NodePath("../StartButton")
-texture_normal = ExtResource("5_tgbea")
-texture_hover = ExtResource("6_iqwi5")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("5_3h1cd")
+
+[node name="ButtonText" type="Label" parent="MainTitleScreenUI/OptionsButton"]
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "OPTIONS_BUTTON"
+label_settings = SubResource("LabelSettings_j61ag")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ExitButton" type="TextureButton" parent="MainTitleScreenUI"]
 layout_mode = 2
@@ -128,9 +156,18 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../StartButton")
 focus_next = NodePath("../StartButton")
 focus_previous = NodePath("../OptionsButton")
-texture_normal = ExtResource("7_06yab")
-texture_hover = ExtResource("8_tvhyr")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("5_3h1cd")
+
+[node name="ButtonText" type="Label" parent="MainTitleScreenUI/ExitButton"]
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "EXIT_BUTTON"
+label_settings = SubResource("LabelSettings_j61ag")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameVersionLabel" type="Label" parent="."]
 layout_mode = 0
@@ -149,22 +186,35 @@ visible = false
 layout_mode = 1
 
 [node name="MatchPrepScreenUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextEdit" type="Label" parent="MatchPrepScreenUI"]
+visible = false
+layout_mode = 0
+offset_left = 804.0
+offset_top = 519.0
+offset_right = 1341.0
+offset_bottom = 926.0
+text = "Debug Networking: 
+"
+label_settings = SubResource("LabelSettings_px6yw")
+autowrap_mode = 3
+
+[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("networkingDebug")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="MultiplayerTest" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("networkingDebug")]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("12_px6yw")
-networkingDebug = NodePath("TextEdit")
+networkingDebug = NodePath("../TextEdit")
 
-[node name="SingleplayerButton" type="TextureButton" parent="MatchPrepScreenUI/MultiplayerTest"]
-offset_left = 374.0
+[node name="SingleplayerButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
+layout_mode = 0
+offset_left = 375.0
 offset_top = 450.0
-offset_right = 630.0
+offset_right = 631.0
 offset_bottom = 706.0
 focus_neighbor_left = NodePath("../SaveButton")
 focus_neighbor_right = NodePath("../SaveButton")
@@ -174,7 +224,7 @@ texture_normal = ExtResource("13_j6v8c")
 texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("15_j6v8c")
 
-[node name="Label" type="Label" parent="MatchPrepScreenUI/MultiplayerTest/SingleplayerButton"]
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/PreLobbyPanel/SingleplayerButton"]
 layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 2560.0
@@ -184,11 +234,12 @@ label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreateLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/MultiplayerTest"]
-offset_left = 377.0
-offset_top = 589.0
-offset_right = 633.0
-offset_bottom = 845.0
+[node name="CreateLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 575.0
+offset_right = 631.0
+offset_bottom = 831.0
 focus_neighbor_left = NodePath("../SaveButton")
 focus_neighbor_right = NodePath("../SaveButton")
 focus_next = NodePath("../SaveButton")
@@ -197,7 +248,7 @@ texture_normal = ExtResource("13_j6v8c")
 texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("15_j6v8c")
 
-[node name="Label" type="Label" parent="MatchPrepScreenUI/MultiplayerTest/CreateLobbyButton"]
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/PreLobbyPanel/CreateLobbyButton"]
 layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 2560.0
@@ -207,11 +258,12 @@ label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="JoinLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/MultiplayerTest"]
-offset_left = 377.0
-offset_top = 728.0
-offset_right = 633.0
-offset_bottom = 984.0
+[node name="JoinLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 700.0
+offset_right = 631.0
+offset_bottom = 956.0
 focus_neighbor_left = NodePath("../SaveButton")
 focus_neighbor_right = NodePath("../SaveButton")
 focus_next = NodePath("../SaveButton")
@@ -220,7 +272,7 @@ texture_normal = ExtResource("13_j6v8c")
 texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("15_j6v8c")
 
-[node name="Label" type="Label" parent="MatchPrepScreenUI/MultiplayerTest/JoinLobbyButton"]
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/PreLobbyPanel/JoinLobbyButton"]
 layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 2560.0
@@ -230,38 +282,285 @@ label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button3" type="Button" parent="MatchPrepScreenUI/MultiplayerTest"]
-layout_mode = 0
-offset_left = 847.0
-offset_top = 532.0
-offset_right = 947.0
-offset_bottom = 632.0
-text = "Play
-Multiplayer"
-
-[node name="TextEdit" type="Label" parent="MatchPrepScreenUI/MultiplayerTest"]
-layout_mode = 0
-offset_left = 648.0
-offset_top = 663.0
-offset_right = 1185.0
-offset_bottom = 1070.0
-text = "Debug Networking: 
-"
-label_settings = SubResource("LabelSettings_px6yw")
-autowrap_mode = 3
-
-[node name="ReturnButton" type="TextureButton" parent="MatchPrepScreenUI/MultiplayerTest"]
-offset_left = 374.0
-offset_top = 866.0
-offset_right = 630.0
-offset_bottom = 1122.0
+[node name="ReturnButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
+offset_left = 375.0
+offset_top = 825.0
+offset_right = 631.0
+offset_bottom = 1081.0
 focus_neighbor_left = NodePath("../SaveButton")
 focus_neighbor_right = NodePath("../SaveButton")
 focus_next = NodePath("../SaveButton")
 focus_previous = NodePath("../SaveButton")
-texture_normal = ExtResource("13_8xals")
-texture_hover = ExtResource("14_jmsse")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/PreLobbyPanel/ReturnButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RETURN_BUTTON"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LobbyPanel" type="Control" parent="MatchPrepScreenUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CreatingLobby" type="Control" parent="MatchPrepScreenUI/LobbyPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundOpacityForText" type="ColorRect" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 471.0
+offset_right = 749.0
+offset_bottom = 763.0
+color = Color(0, 0, 0, 0.894118)
+
+[node name="Label" type="Label" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/BackgroundOpacityForText"]
+layout_mode = 0
+offset_right = 1004.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+text = "Creating Lobby"
+label_settings = SubResource("LabelSettings_s1ljj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LobbyName" type="Control" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby"]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 520.0
+offset_right = 749.0
+offset_bottom = 670.0
+
+[node name="NameLabel" type="Label" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyName"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+scale = Vector2(0.5, 0.5)
+text = "Lobby Name"
+label_settings = SubResource("LabelSettings_htfmo")
+vertical_alignment = 1
+
+[node name="NameInputField" type="LineEdit" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyName"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 40.0
+offset_right = 812.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Enter Lobby Name"
+max_length = 16
+
+[node name="LobbyPassword" type="Control" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 620.0
+offset_right = 749.0
+offset_bottom = 770.0
+
+[node name="PasswordLabel" type="Label" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyPassword"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+scale = Vector2(0.5, 0.5)
+text = "Password"
+label_settings = SubResource("LabelSettings_htfmo")
+vertical_alignment = 1
+
+[node name="PasswordInputField" type="LineEdit" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyPassword"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 40.0
+offset_right = 812.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Password (Optional)"
+max_length = 16
+
+[node name="ConfirmCreateLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby"]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 700.0
+offset_right = 781.0
+offset_bottom = 956.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ConfirmCreateLobbyButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "Confirm"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby"]
+offset_left = 225.0
+offset_top = 700.0
+offset_right = 481.0
+offset_bottom = 956.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RETURN_BUTTON"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoiningLobby" type="Control" parent="MatchPrepScreenUI/LobbyPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundOpacityForText" type="ColorRect" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 471.0
+offset_right = 749.0
+offset_bottom = 763.0
+color = Color(0, 0, 0, 0.894118)
+
+[node name="Label" type="Label" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/BackgroundOpacityForText"]
+offset_right = 1004.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+text = "Join Lobby"
+label_settings = SubResource("LabelSettings_s1ljj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LobbyName" type="Control" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby"]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 520.0
+offset_right = 749.0
+offset_bottom = 670.0
+
+[node name="NameLabel" type="Label" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyName"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+scale = Vector2(0.5, 0.5)
+text = "Lobby Name"
+label_settings = SubResource("LabelSettings_htfmo")
+vertical_alignment = 1
+
+[node name="NameInputField" type="LineEdit" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyName"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 40.0
+offset_right = 812.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Enter Lobby Name"
+max_length = 16
+
+[node name="LobbyPassword" type="Control" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 620.0
+offset_right = 749.0
+offset_bottom = 770.0
+
+[node name="PasswordLabel" type="Label" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyPassword"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+scale = Vector2(0.5, 0.5)
+text = "Password"
+label_settings = SubResource("LabelSettings_htfmo")
+vertical_alignment = 1
+
+[node name="PasswordInputField" type="LineEdit" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyPassword"]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 40.0
+offset_right = 812.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 48
+placeholder_text = "Password (Optional)"
+max_length = 16
+
+[node name="ConfirmJoinLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby"]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 700.0
+offset_right = 781.0
+offset_bottom = 956.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ConfirmJoinLobbyButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "Confirm"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby"]
+offset_left = 225.0
+offset_top = 700.0
+offset_right = 481.0
+offset_bottom = 956.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RETURN_BUTTON"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="MainTitleScreenUI/StartButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="MainTitleScreenUI/StartButton" to="." method="ShowMatchPrepUI"]
@@ -269,8 +568,11 @@ texture_click_mask = ExtResource("15_j6v8c")
 [connection signal="pressed" from="MainTitleScreenUI/OptionsButton" to="." method="OpenOptions"]
 [connection signal="mouse_entered" from="MainTitleScreenUI/ExitButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="MainTitleScreenUI/ExitButton" to="." method="CloseGame"]
-[connection signal="pressed" from="MatchPrepScreenUI/MultiplayerTest/SingleplayerButton" to="." method="StartGame"]
-[connection signal="pressed" from="MatchPrepScreenUI/MultiplayerTest/CreateLobbyButton" to="MatchPrepScreenUI/MultiplayerTest" method="MultiplayerInitializationButtonPressed"]
-[connection signal="pressed" from="MatchPrepScreenUI/MultiplayerTest/JoinLobbyButton" to="MatchPrepScreenUI/MultiplayerTest" method="JoinButtonPressed"]
-[connection signal="pressed" from="MatchPrepScreenUI/MultiplayerTest/Button3" to="MatchPrepScreenUI/MultiplayerTest" method="StartGameButtonPressed"]
-[connection signal="pressed" from="MatchPrepScreenUI/MultiplayerTest/ReturnButton" to="." method="HideMatchPrepUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/SingleplayerButton" to="." method="StartGame"]
+[connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/CreateLobbyButton" to="." method="ShowLobbyCreateUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/JoinLobbyButton" to="." method="ShowLobbyJoinUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/ReturnButton" to="." method="HideMatchPrepUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ConfirmCreateLobbyButton" to="." method="AttemptToCreateLobbyButtonPressed"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton" to="." method="HideLobbyCreateUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ConfirmJoinLobbyButton" to="." method="AttemptToJoinLobbyButtonPressed"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton" to="." method="HideLobbyJoinUI"]

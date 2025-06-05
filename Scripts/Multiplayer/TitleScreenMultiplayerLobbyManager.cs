@@ -3,7 +3,7 @@ using System;
 
 namespace Erikduss
 {
-    public partial class TitleScreenMultiplayerLobbyManager : Node
+    public partial class TitleScreenMultiplayerLobbyManager : Control
     {
         [Export] public Label networkingDebug;
 
@@ -18,10 +18,11 @@ namespace Erikduss
 
         public void InitializeMultiplayerServices()
         {
+            networkingDebug.Visible = true;
             MultiplayerManager.Instance.InitializeMultiplayer();
         }
 
-        public async void MultiplayerInitializationButtonPressed()
+        public async void CreateNewLobby(string lobbyName, string lobbyPassword)
         {
             InitializeMultiplayerServices();
 
@@ -35,7 +36,7 @@ namespace Erikduss
 
             if (MultiplayerManager.Instance.isCurrentlyConnectedToServices)
             {
-                MultiplayerManager.Instance.CreateNewLobby();
+                MultiplayerManager.Instance.CreateNewLobby(lobbyName, lobbyPassword);
             }
             else
             {
@@ -43,7 +44,7 @@ namespace Erikduss
             }
         }
 
-        public async void JoinButtonPressed()
+        public async void JoinLobby(string lobbyName, string lobbyPassword)
         {
             InitializeMultiplayerServices();
 
@@ -57,7 +58,7 @@ namespace Erikduss
 
             if (MultiplayerManager.Instance.isCurrentlyConnectedToServices)
             {
-                MultiplayerManager.Instance.JoinLobby("defaultLobby");
+                MultiplayerManager.Instance.JoinLobby(lobbyName, lobbyPassword);
             }
             else
             {
