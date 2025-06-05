@@ -18,6 +18,9 @@ namespace Erikduss
         [Export] public Control defaultControlSelected;
         private Control currentlySelectedControl = null;
 
+        [Export] private Control mainTitleScreenUI;
+        [Export] private Control matchPrepScreenUI;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -92,6 +95,18 @@ namespace Erikduss
             UnsubscribeFromEvents();
 
             GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/" + gameLoadingSceneName + ".tscn");
+        }
+
+        public void ShowMatchPrepUI()
+        {
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = true;
+        }
+
+        public void HideMatchPrepUI()
+        {
+            mainTitleScreenUI.Visible = true;
+            matchPrepScreenUI.Visible = false;
         }
 
         public void OpenOptions()

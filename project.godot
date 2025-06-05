@@ -8,6 +8,13 @@
 
 config_version=5
 
+[GD-Sync]
+
+version="0.10"
+csharp=true
+publicKey="2c95c65d4574b939"
+privateKey="4ead5fac4c33a701"
+
 [application]
 
 config/name="Battle of the Bookworms"
@@ -33,6 +40,9 @@ buses/default_bus_layout="uid://db020m2himdaw"
 
 GameSettingsLoader="*res://Scripts/Utility_And_General/GameData/DataManagers/GameSettingsLoader.cs"
 AudioManager="*res://Scripts/Utility_And_General/Audio/AudioManager.cs"
+GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
+GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
+MultiplayerManager="*res://Scripts/Multiplayer/MultiplayerManager.cs"
 
 [display]
 
@@ -46,7 +56,7 @@ project/assembly_name="Battle Of The Bookworm"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/admob/plugin.cfg")
 
 [input]
 
