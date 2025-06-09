@@ -270,7 +270,8 @@ public partial class GDSync : Node
 
 	public static string GetLobbyName()
 	{
-		return (string)GDSYNC.Call("get_lobby_name");
+        //get_lobby_name -> lobby_get_name
+        return (string)GDSYNC.Call("lobby_get_name");
 	}
 
 	public static int GetLobbyPlayerLimit()

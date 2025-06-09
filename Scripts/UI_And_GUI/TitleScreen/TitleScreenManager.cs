@@ -164,7 +164,12 @@ namespace Erikduss
         {
             bool success = DidWeSucceedCreatingALobby();
 
-            lobbyMultiplayerManager.CreateNewLobby(lobbyCreateNameLineEdit.Text, lobbyCreatePasswordLineEdit.Text);
+            string lobbyName = lobbyCreateNameLineEdit.Text;
+            string lobbyPassword = lobbyCreatePasswordLineEdit.Text;
+
+            createLobbyPanel.Visible = false;
+
+            lobbyMultiplayerManager.CreateNewLobby(lobbyName, lobbyPassword);
 
             //we join with a lobby joined event from the server.
         }
@@ -180,7 +185,12 @@ namespace Erikduss
         {
             bool success = DidWeSucceedJoiningALobby();
 
-            lobbyMultiplayerManager.JoinLobby(lobbyCreateNameLineEdit.Text, lobbyCreatePasswordLineEdit.Text);
+            string lobbyName = lobbyJoinNameLineEdit.Text;
+            string lobbyPassword = lobbyJoinPasswordLineEdit.Text;
+
+            joinLobbyPanel.Visible = false;
+
+            lobbyMultiplayerManager.JoinLobby(lobbyName, lobbyPassword);
 
             //we join with a lobby joined event from the server.
         }

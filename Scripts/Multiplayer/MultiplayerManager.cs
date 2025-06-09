@@ -9,7 +9,10 @@ namespace Erikduss
 
         public bool isCurrentlyConnectedToServices = false;
 
-        public Label networkingDebug;
+        public bool isHostOfLobby = false;
+        public TitleScreenMultiplayerLobbyManager titlescreenMultiplayerLobby;
+
+        private int currentPlayerID = 1;
 
         public override void _Ready()
         {
@@ -36,6 +39,9 @@ namespace Erikduss
             GDSync.Disconnected += Disconnected;
 
             GDSync.SyncedEventTriggered += Synced_Event_Triggered;
+
+            GDSync.ClientJoined += Client_Joined;
+            GDSync.ClientLeft += Client_Left;
         }
 
         protected override void Dispose(bool disposing)
@@ -53,11 +59,15 @@ namespace Erikduss
 
             GDSync.SyncedEventTriggered -= Synced_Event_Triggered;
 
+            GDSync.ClientJoined -= Client_Joined;
+            GDSync.ClientLeft -= Client_Left;
+
             base.Dispose(disposing);
         }
 
         public void InitializeMultiplayer()
         {
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Attemptiong To Connect To Multiplayer Services....";
             GDSync.StartMultiplayer();
         }
 
@@ -69,6 +79,8 @@ namespace Erikduss
         public void CreateNewLobby(string lobbyName = "defaultLobby", string lobbyPassword = "")
         {
             GDSync.CreateLobby(lobbyName, lobbyPassword, true, 2);
+
+            isHostOfLobby = true;
 
             JoinLobby(lobbyName, lobbyPassword);
         }
@@ -82,7 +94,7 @@ namespace Erikduss
         {
             GD.Print("Connected");
 
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Connected To Multiplayer Services.";
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Connected To Multiplayer Services.";
 
             isCurrentlyConnectedToServices = true;
         }
@@ -91,7 +103,7 @@ namespace Erikduss
         {
             GD.Print("Disconnected");
 
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Disconnected from Multiplayer Services.";
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Disconnected from Multiplayer Services.";
 
             isCurrentlyConnectedToServices = false;
         }
@@ -99,18 +111,20 @@ namespace Erikduss
         public void Connection_Failed(int error)
         {
 
+            isHostOfLobby = false;
+
             switch (error)
             {
                 case (int)GDSync.CONNECTION_FAILED.INVALID_PUBLIC_KEY:
                     GD.PrintErr("INVALID PUBLIC KEY ENTERED");
-                    networkingDebug.Text = networkingDebug.Text + "\n" + "Invalid Public Key Error";
+                    titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Invalid Public Key Error";
                     break;
                 case (int)GDSync.CONNECTION_FAILED.TIMEOUT:
                     GD.PrintErr("CONNECTION TIMEOUT");
-                    networkingDebug.Text = networkingDebug.Text + "\n" + "Connection Timeout Error";
+                    titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Connection Timeout Error";
                     break;
                 default:
-                    networkingDebug.Text = networkingDebug.Text + "\n" + "Other Connection Error";
+                    titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Other Connection Error";
                     break;
             }
         }
@@ -118,14 +132,14 @@ namespace Erikduss
         public void Lobby_Created(string lobbyName)
         {
             GD.Print("Created lobby: " + lobbyName);
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Created Lobby";
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Created Lobby";
         }
 
         public void Lobby_Creation_Failed(string lobbyName, int error)
         {
             GD.Print("Failed to create lobby: " + lobbyName);
 
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Failed to create Lobby";
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to create Lobby";
 
             if (error == (int)GDSync.LOBBY_CREATION_ERROR.LOBBY_ALREADY_EXISTS)
             {
@@ -137,14 +151,38 @@ namespace Erikduss
         {
             GD.Print("Joined lobby: " + lobbyName);
 
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Joined Lobby";
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Joined Lobby";
+
+            titlescreenMultiplayerLobby.OpenLobby(isHostOfLobby);
         }
 
         public void Lobby_Join_Failed(string lobbyName, int error)
         {
             GD.Print("Failed to join lobby: " + lobbyName);
 
-            networkingDebug.Text = networkingDebug.Text + "\n" + "Failed to join lobby";
+            switch (error)
+            {
+                case (int)GDSync.LOBBY_JOIN_ERROR.DUPLICATE_USERNAME:
+                        titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Duplicate Username";
+                    break;
+                case (int)GDSync.LOBBY_JOIN_ERROR.INCORRECT_PASSWORD:
+                        titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Incorrect Password";
+                    break;
+                case (int)GDSync.LOBBY_JOIN_ERROR.LOBBY_DOES_NOT_EXIST:
+                        titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Lobby does not exist";
+                    break;
+                case (int)GDSync.LOBBY_JOIN_ERROR.LOBBY_IS_CLOSED:
+                        titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Lobby is closed";
+                    break;
+                case (int)GDSync.LOBBY_JOIN_ERROR.LOBBY_IS_FULL:
+                        titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Lobby is full";
+                    break;
+                default:
+                    titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Failed to join lobby: Unknown error";
+                    break;
+            }
+
+            isHostOfLobby = false;
         }
 
         public void Synced_Event_Triggered(string eventName, Godot.Collections.Array parameters)
@@ -155,6 +193,25 @@ namespace Erikduss
 
                 GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/LoadingToGame.tscn");
             }
+        }
+
+        public void Client_Joined(int clientID)
+        {
+            GD.Print("Client Joined: " + clientID);
+
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " joined the lobby.";
+
+            titlescreenMultiplayerLobby.ClientJoinedLobby(clientID, currentPlayerID);
+            currentPlayerID++;
+        }
+
+        public void Client_Left(int clientID)
+        {
+            GD.Print("Client Left: " + clientID);
+
+            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
+
+            titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
         }
     }
 }
