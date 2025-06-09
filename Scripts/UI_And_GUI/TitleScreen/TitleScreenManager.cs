@@ -195,6 +195,13 @@ namespace Erikduss
             //we join with a lobby joined event from the server.
         }
 
+        public void LeaveLobbyButtonPressed()
+        {
+            lobbyMultiplayerManager.LeaveCurrentLobby();
+
+            ShowMatchPrepUI();
+        }
+
         private bool DidWeSucceedJoiningALobby()
         {
             if (lobbyJoinNameLineEdit.Text == string.Empty) return false;

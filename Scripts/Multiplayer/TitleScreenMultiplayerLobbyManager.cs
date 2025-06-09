@@ -1,10 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Erikduss
 {
     public partial class TitleScreenMultiplayerLobbyManager : Control
     {
+        [Export] public TitleScreenManager titleScreenManager;
+
         [Export] public Label networkingDebug;
 
         public int maxConnectionAttemptTime = 10;
@@ -15,6 +19,8 @@ namespace Erikduss
         [Export] public Control lobbyPanel;
         [Export] public Label lobbyNameLabel;
         [Export] public TextureButton startGameButton;
+
+        List<Control> currentPlayers = new List<Control>();
 
         public override void _Ready()
         {
@@ -82,6 +88,36 @@ namespace Erikduss
             GDSync.CreateSyncedEvent("LoadToGame");
         }
 
+        public async void LeaveCurrentLobby()
+        {
+            GDSync.LeaveLobby();
+
+            lobbyPanel.Visible = false;
+
+            networkingDebug.Text = "Networking Status: ";
+            networkingDebug.Visible = false;
+
+            await ToSignal(GetTree().CreateTimer(2.5f), "timeout");
+
+            //reset everything
+            MultiplayerManager.Instance.currentPlayerID = 1;
+
+            for (int i = 0; i < currentPlayers.Count; i++)
+            {
+                if (currentPlayers[i] != null && !currentPlayers[i].IsQueuedForDeletion())
+                {
+                    currentPlayers[i].CallDeferred("DeleteThisLobbyEntry");
+                }
+            }
+
+            currentPlayers.Clear();
+        }
+
+        private void ClearLastLobby()
+        {
+
+        }
+
         public void OpenLobby(bool isTheHost)
         {
             lobbyNameLabel.Text = GDSync.GetLobbyName();
@@ -101,15 +137,37 @@ namespace Erikduss
             GD.Print("There are: " + GDSync.GetLobbyPlayerCount() + " players in the lobby." + clientID);
 
             playerPanel.Position = new Vector2(0, ((playerID * 100) - 50 ));
+
+            currentPlayers.Add(playerPanel);
         }
 
         public void ClientLeftLobby(int clientID)
         {
-            Control playerPanel = (Control)GetNodeOrNull(clientID.ToString());
-
-            if(playerPanel != null)
+            //this means the host left, so we abandon the lobby.
+            if (!MultiplayerManager.Instance.isHostOfLobby)
             {
-                playerPanel.QueueFree();
+                titleScreenManager.LeaveLobbyButtonPressed();
+            }
+            else
+            {
+                Control playerPanel = (Control)GetNodeOrNull(clientID.ToString());
+
+                GD.Print("We should remove player: " + clientID);
+
+                if (playerPanel != null)
+                {
+                    GD.Print("Removed player");
+                    playerPanel.QueueFree();
+                }
+                else
+                {
+                    Control playerToRemove = currentPlayers.First(a => a.Name == clientID.ToString());
+
+                    if (playerToRemove != null)
+                    {
+                        playerToRemove.QueueFree();
+                    }
+                }
             }
         }
     }

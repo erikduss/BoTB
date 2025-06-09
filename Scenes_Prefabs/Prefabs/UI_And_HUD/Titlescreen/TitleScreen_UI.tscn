@@ -204,12 +204,13 @@ text = "Networking Status:
 label_settings = SubResource("LabelSettings_px6yw")
 autowrap_mode = 3
 
-[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton")]
+[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("titleScreenManager", "networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("12_px6yw")
+titleScreenManager = NodePath("../..")
 networkingDebug = NodePath("../TextEdit")
 playerPanelParent = NodePath("../LobbyPanel/CreatedMultiplayerLobby/BackgroundOpacityForText")
 lobbyPanel = NodePath("../LobbyPanel/CreatedMultiplayerLobby")
@@ -659,5 +660,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton" to="." method="HideLobbyCreateUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ConfirmJoinLobbyButton" to="." method="AttemptToJoinLobbyButtonPressed"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton" to="." method="HideLobbyJoinUI"]
-[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton" to="." method="AttemptToJoinLobbyButtonPressed"]
-[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ReturnButton" to="." method="HideLobbyJoinUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton" to="MatchPrepScreenUI/PreLobbyPanel" method="StartGameButtonPressed"]
+[connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ReturnButton" to="." method="LeaveLobbyButtonPressed"]

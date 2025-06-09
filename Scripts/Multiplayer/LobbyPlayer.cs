@@ -16,6 +16,18 @@ namespace Erikduss
             GDSync.ConnectGDSyncOwnerChanged(this, new Callable(this, "OwnerChanged"));
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            GDSync.DisconnectGDSyncOwnerChanged(this, new Callable(this, "OwnerChanged"));
+
+            base.Dispose(disposing);
+        }
+
+        public void DeleteThisLobbyEntry()
+        {
+            QueueFree();
+        }
+
         public void OwnerChanged(int ownerID)
         {
             isOwner = GDSync.IsGDSyncOwner(this);

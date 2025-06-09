@@ -259,7 +259,8 @@ public partial class GDSync : Node
 
 	public static void LeaveLobby()
 	{
-		GDSYNC.Call("leave_lobby");
+        //leavy_lobby -> lobby_leave
+        GDSYNC.Call("lobby_leave");
 	}
 
 	public static int GetLobbyPlayerCount()

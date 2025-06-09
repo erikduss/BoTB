@@ -12,7 +12,7 @@ namespace Erikduss
         public bool isHostOfLobby = false;
         public TitleScreenMultiplayerLobbyManager titlescreenMultiplayerLobby;
 
-        private int currentPlayerID = 1;
+        public int currentPlayerID = 1;
 
         public override void _Ready()
         {
@@ -145,6 +145,10 @@ namespace Erikduss
             {
                 JoinLobby(lobbyName);
             }
+            else
+            {
+                titlescreenMultiplayerLobby.titleScreenManager.LeaveLobbyButtonPressed();
+            }
         }
 
         public void Lobby_Joined(string lobbyName)
@@ -183,6 +187,9 @@ namespace Erikduss
             }
 
             isHostOfLobby = false;
+
+            //reset ui
+            titlescreenMultiplayerLobby.titleScreenManager.LeaveLobbyButtonPressed();
         }
 
         public void Synced_Event_Triggered(string eventName, Godot.Collections.Array parameters)
@@ -212,6 +219,7 @@ namespace Erikduss
             titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
 
             titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
+            currentPlayerID--;
         }
     }
 }
