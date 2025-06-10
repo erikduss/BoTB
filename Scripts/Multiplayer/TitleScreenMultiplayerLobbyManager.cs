@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Erikduss
 {
@@ -11,7 +13,7 @@ namespace Erikduss
 
         [Export] public Label networkingDebug;
 
-        public int maxConnectionAttemptTime = 10;
+        public int maxConnectionAttemptTime = 20;
 
         [Export] public Control playerPanelParent;
         public PackedScene playerPanelPrefab;
@@ -21,6 +23,8 @@ namespace Erikduss
         [Export] public TextureButton startGameButton;
 
         List<Control> currentPlayers = new List<Control>();
+
+        public int amountOfPlayersCurrentlyReady = 0;
 
         public override void _Ready()
         {
@@ -85,6 +89,12 @@ namespace Erikduss
         {
             GD.Print("There are currently: " + GDSync.GetLobbyPlayerCount() + " players in the lobby");
 
+            AudioManager.Instance.ClearAudioPlayers();
+
+            //we can only go into the game if we actually pass the ready check, which automatically enabled and disabled the button. So we dont need a check here
+            MultiplayerManager.Instance.playersAreInGame = true;
+            MultiplayerManager.Instance.isUsingMultiplayer = true;
+
             GDSync.CreateSyncedEvent("LoadToGame");
         }
 
@@ -139,6 +149,8 @@ namespace Erikduss
             playerPanel.Position = new Vector2(0, ((playerID * 100) - 50 ));
 
             currentPlayers.Add(playerPanel);
+
+            UpdateReadyCheck(false, false);
         }
 
         public void ClientLeftLobby(int clientID)
@@ -156,6 +168,12 @@ namespace Erikduss
 
                 if (playerPanel != null)
                 {
+                    LobbyPlayer player = (LobbyPlayer)playerPanel;
+                    if (player.readyCheckbox.ButtonPressed)
+                    {
+                        amountOfPlayersCurrentlyReady--;
+                    }
+
                     GD.Print("Removed player");
                     playerPanel.QueueFree();
                 }
@@ -163,11 +181,51 @@ namespace Erikduss
                 {
                     Control playerToRemove = currentPlayers.First(a => a.Name == clientID.ToString());
 
+                    LobbyPlayer player = (LobbyPlayer)playerToRemove;
+                    if (player.readyCheckbox.ButtonPressed)
+                    {
+                        amountOfPlayersCurrentlyReady--;
+                    }
+
                     if (playerToRemove != null)
                     {
                         playerToRemove.QueueFree();
                     }
                 }
+            }
+
+            UpdateReadyCheck(false, false);
+        }
+        public void UpdateReadyCheck(bool ready, bool updateAmountReady = true)
+        {
+            if (updateAmountReady)
+            {
+                if (ready)
+                {
+                    amountOfPlayersCurrentlyReady++;
+                }
+                else
+                {
+                    amountOfPlayersCurrentlyReady--;
+                }
+            }
+            else
+            {
+                if(amountOfPlayersCurrentlyReady > 1)
+                {
+                    amountOfPlayersCurrentlyReady--;
+                }
+            }
+
+            if (!MultiplayerManager.Instance.isHostOfLobby) return;
+
+            if(amountOfPlayersCurrentlyReady == 2)
+            {
+                startGameButton.Disabled = false;
+            }
+            else
+            {
+                startGameButton.Disabled = true;
             }
         }
     }

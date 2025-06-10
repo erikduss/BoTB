@@ -37,6 +37,8 @@ namespace Erikduss
 
         public void GenerateAudioStreamPlayers(Node2D attachToNode)
         {
+            GD.Print("Generate audioplayers");
+
             if(musicAudioPlayer == null)
             {
                 musicAudioPlayer = new AudioStreamPlayer2D();

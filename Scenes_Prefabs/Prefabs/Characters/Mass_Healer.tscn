@@ -135,6 +135,7 @@ sprite_frames = SubResource("SpriteFrames_t4uf8")
 animation = &"Death"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
 animation = &"Idle"
 autoplay = "Idle"

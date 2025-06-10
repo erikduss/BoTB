@@ -10,6 +10,8 @@ namespace Erikduss
         public bool isCurrentlyConnectedToServices = false;
 
         public bool isHostOfLobby = false;
+        public bool playersAreInGame = false;
+        public bool isUsingMultiplayer = false;
         public TitleScreenMultiplayerLobbyManager titlescreenMultiplayerLobby;
 
         public int currentPlayerID = 1;
@@ -71,11 +73,6 @@ namespace Erikduss
             GDSync.StartMultiplayer();
         }
 
-        public void JoinButtonPressed()
-        {
-            JoinLobby("defaultLobby");
-        }
-
         public void CreateNewLobby(string lobbyName = "defaultLobby", string lobbyPassword = "")
         {
             GDSync.CreateLobby(lobbyName, lobbyPassword, true, 2);
@@ -103,7 +100,10 @@ namespace Erikduss
         {
             GD.Print("Disconnected");
 
-            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Disconnected from Multiplayer Services.";
+            if (!playersAreInGame)
+            {
+                titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Disconnected from Multiplayer Services.";
+            }
 
             isCurrentlyConnectedToServices = false;
         }
@@ -216,9 +216,13 @@ namespace Erikduss
         {
             GD.Print("Client Left: " + clientID);
 
-            titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
+            if (!playersAreInGame)
+            {
+                titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
 
-            titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
+                titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
+            }
+            
             currentPlayerID--;
         }
     }

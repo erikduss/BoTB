@@ -57,6 +57,8 @@ namespace Erikduss
 
         public double matchDuration = 0;
 
+        public bool isMultiplayerMatch = false;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -69,10 +71,26 @@ namespace Erikduss
                 QueueFree();
             }
 
+            if (MultiplayerManager.Instance != null)
+            {
+                if (MultiplayerManager.Instance.isUsingMultiplayer)
+                {
+                    isMultiplayerMatch = true;
+                }
+            }
+
             gameIsPaused = false;
 
             player01Script = new BasePlayer();
-            player02Script = (BaseAIPlayer)GetParent().GetNode("EnemyAI"); ; //we need to probably instantiate this later with custom ai nodes.
+
+            if (isMultiplayerMatch)
+            {
+                player02Script = new BasePlayer();
+            }
+            else
+            {
+                player02Script = (BaseAIPlayer)GetParent().GetNode("EnemyAI"); ; //we need to probably instantiate this later with custom ai nodes.
+            }
 
             player01Script.playerBase = team01HomeBase;
             player02Script.playerBase = team02HomeBase;

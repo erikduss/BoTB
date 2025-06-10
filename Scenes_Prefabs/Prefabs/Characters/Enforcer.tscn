@@ -132,6 +132,7 @@ animation = &"Attack"
 autoplay = "Idle"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
 animation = &"Idle"
 autoplay = "Idle"

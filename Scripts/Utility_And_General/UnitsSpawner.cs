@@ -287,7 +287,18 @@ namespace Erikduss
 				case Enums.UnitTypes.Warrior:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    SimpleSoldier instantiatedSimpleSoldier = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+                    SimpleSoldier instantiatedSimpleSoldier;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedSimpleSoldier = (SimpleSoldier)GDSync.MultiplayerInstantiate(simpleSoldierPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedSimpleSoldier, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedSimpleSoldier = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -298,7 +309,10 @@ namespace Erikduss
 
                     instantiatedSimpleSoldier.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedSimpleSoldier);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedSimpleSoldier);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedSimpleSoldier, uniqueUnitName);
@@ -309,7 +323,18 @@ namespace Erikduss
 				case Enums.UnitTypes.Ranger:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Ranger instantiatedRanger = (Ranger)rangerPrefab.Instantiate();
+                    Ranger instantiatedRanger;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedRanger = (Ranger)GDSync.MultiplayerInstantiate(rangerPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedRanger, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedRanger = (Ranger)rangerPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedRanger.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -320,7 +345,10 @@ namespace Erikduss
 
                     instantiatedRanger.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedRanger);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedRanger);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedRanger, uniqueUnitName);
@@ -331,8 +359,19 @@ namespace Erikduss
                 case Enums.UnitTypes.Assassin:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Assassin instantiatedAssassin = (Assassin)assassinPrefab.Instantiate();
+                    Assassin instantiatedAssassin;
 
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedAssassin = (Assassin)GDSync.MultiplayerInstantiate(assassinPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedAssassin, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedAssassin = (Assassin)assassinPrefab.Instantiate();
+                    }
+                    
                     //determine the position based on the team
                     instantiatedAssassin.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedAssassin.characterOwner = team;
@@ -342,7 +381,10 @@ namespace Erikduss
 
                     instantiatedAssassin.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedAssassin);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedAssassin);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedAssassin, uniqueUnitName);
@@ -353,7 +395,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Enforcer:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Enforcer instantiatedEnforcer = (Enforcer)enforcerPrefab.Instantiate();
+                    Enforcer instantiatedEnforcer;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedEnforcer = (Enforcer)GDSync.MultiplayerInstantiate(enforcerPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedEnforcer, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedEnforcer = (Enforcer)enforcerPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedEnforcer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -364,7 +417,10 @@ namespace Erikduss
 
                     instantiatedEnforcer.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedEnforcer);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedEnforcer);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedEnforcer, uniqueUnitName);
@@ -375,7 +431,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Tank:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Tank instantiatedTank = (Tank)tankPrefab.Instantiate();
+                    Tank instantiatedTank;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedTank = (Tank)GDSync.MultiplayerInstantiate(tankPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedTank, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedTank = (Tank)tankPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedTank.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -386,7 +453,10 @@ namespace Erikduss
 
                     instantiatedTank.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedTank);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedTank);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedTank, uniqueUnitName);
@@ -397,7 +467,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Battlemage:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Battlemage instantiatedBattlemage = (Battlemage)battleMagePrefab.Instantiate();
+                    Battlemage instantiatedBattlemage;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedBattlemage = (Battlemage)GDSync.MultiplayerInstantiate(battleMagePrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedBattlemage, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedBattlemage = (Battlemage)battleMagePrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedBattlemage.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -408,7 +489,10 @@ namespace Erikduss
 
                     instantiatedBattlemage.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedBattlemage);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedBattlemage);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedBattlemage, uniqueUnitName);
@@ -419,7 +503,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Mass_Healer:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Mass_Healer instantiatedMassHealer = (Mass_Healer)massHealerPrefab.Instantiate();
+                    Mass_Healer instantiatedMassHealer;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedMassHealer = (Mass_Healer)GDSync.MultiplayerInstantiate(massHealerPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedMassHealer, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedMassHealer = (Mass_Healer)massHealerPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedMassHealer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -430,7 +525,10 @@ namespace Erikduss
 
                     instantiatedMassHealer.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedMassHealer);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedMassHealer);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedMassHealer, uniqueUnitName);
@@ -441,7 +539,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Shaman:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Shaman instantiatedShaman = (Shaman)shamanPrefab.Instantiate();
+                    Shaman instantiatedShaman;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedShaman = (Shaman)GDSync.MultiplayerInstantiate(shamanPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedShaman, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedShaman = (Shaman)shamanPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedShaman.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -452,7 +561,10 @@ namespace Erikduss
 
                     instantiatedShaman.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedShaman);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedShaman);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedShaman, uniqueUnitName);
@@ -463,7 +575,18 @@ namespace Erikduss
                 case Enums.UnitTypes.Archdruid:
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    Archdruid instantiatedArchdruid = (Archdruid)archdruidPrefab.Instantiate();
+                    Archdruid instantiatedArchdruid;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedArchdruid = (Archdruid)GDSync.MultiplayerInstantiate(archdruidPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedArchdruid, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedArchdruid = (Archdruid)archdruidPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedArchdruid.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -474,7 +597,10 @@ namespace Erikduss
 
                     instantiatedArchdruid.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedArchdruid);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedArchdruid);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedArchdruid, uniqueUnitName);
@@ -484,7 +610,18 @@ namespace Erikduss
                     break;
                 case Enums.UnitTypes.TrainingDummy:
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    TrainingDummy instantiatedTrainingDummy = (TrainingDummy)trainingDummyPrefab.Instantiate();
+                    TrainingDummy instantiatedTrainingDummy;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedTrainingDummy = (TrainingDummy)GDSync.MultiplayerInstantiate(trainingDummyPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedTrainingDummy, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedTrainingDummy = (TrainingDummy)trainingDummyPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
 
@@ -496,7 +633,10 @@ namespace Erikduss
 
                     instantiatedTrainingDummy.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedTrainingDummy);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedTrainingDummy);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedTrainingDummy, uniqueUnitName);
@@ -510,7 +650,18 @@ namespace Erikduss
 					GD.PrintErr("UNIT NOT IMPLEMENTED, UNITSPAWNER, SPAWNUNITFROMQUEUE");
 
                     //NOTE: IF CAST TO NOTE2D DOESNT WORK, DOUBLE CHECK SCRIPTS ATTACHED TO PREFAB, MAKE SURE THEY INHERIT NOTE2D NOT NODE.
-                    SimpleSoldier instantiatedNoType = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+                    SimpleSoldier instantiatedNoType;
+
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        //we only instantiate through the host, due to it being synced either way.
+                        instantiatedNoType = (SimpleSoldier)GDSync.MultiplayerInstantiate(simpleSoldierPrefab, this);
+                        GDSync.SetGDSyncOwner(instantiatedNoType, GDSync.GetClientID());
+                    }
+                    else
+                    {
+                        instantiatedNoType = (SimpleSoldier)simpleSoldierPrefab.Instantiate();
+                    }
 
                     //determine the position based on the team
                     instantiatedNoType.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
@@ -521,7 +672,10 @@ namespace Erikduss
 
                     instantiatedNoType.uniqueID = lastUsedUnitID;
 
-                    AddChild(instantiatedNoType);
+                    if (!GameManager.Instance.isMultiplayerMatch)
+                    {
+                        AddChild(instantiatedNoType);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedNoType, uniqueUnitName);

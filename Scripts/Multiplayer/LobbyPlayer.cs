@@ -7,7 +7,7 @@ namespace Erikduss
     {
         private bool isOwner;
 
-        [Export] private CheckBox readyCheckbox;
+        [Export] public CheckBox readyCheckbox;
 
         public override void _Ready()
         {
@@ -39,6 +39,7 @@ namespace Erikduss
         public void readyValueChanged(bool toggledOn)
         {
             readyCheckbox.Text = toggledOn ? "Ready" : "Not Ready";
+            MultiplayerManager.Instance.titlescreenMultiplayerLobby.UpdateReadyCheck(toggledOn);
         }
     }
 }
