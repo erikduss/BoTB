@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace Erikduss
 {
@@ -14,6 +15,9 @@ namespace Erikduss
 
 		public BasePlayer player01Script; //this is always a real player.
 		public BasePlayer player02Script; //this can be either a bot or a real player. (in the future)
+
+        public PackedScene aiPlayerNode = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/enemy_ai.tscn");
+        public PackedScene playerSceneNodePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Player_Scene.tscn");
 
         [Export] public CameraMovement cameraScript;
 
@@ -81,15 +85,67 @@ namespace Erikduss
 
             gameIsPaused = false;
 
-            player01Script = new BasePlayer();
-
             if (isMultiplayerMatch)
             {
+                if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
+                {
+                    int clientID = GDSync.GetClientID();
+
+                    GD.Print("I am the host!" + clientID);
+
+                    Node instantiatedPlayer = playerSceneNodePrefab.Instantiate();
+                    AddChild(instantiatedPlayer);
+                    instantiatedPlayer.Name = clientID.ToString();
+
+                    player01Script = (BasePlayer)instantiatedPlayer;
+                    GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
+
+                    //spawn other player
+                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+
+                    Node otherInstantiatedPlayer = playerSceneNodePrefab.Instantiate();
+                    AddChild(otherInstantiatedPlayer);
+                    otherInstantiatedPlayer.Name = otherClientID.ToString();
+
+                    player02Script = (BasePlayer)otherInstantiatedPlayer;
+                    GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
+                }
+                else
+                {
+                    //spawn other player
+                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+
+                    Node otherInstantiatedPlayer = playerSceneNodePrefab.Instantiate();
+                    AddChild(otherInstantiatedPlayer);
+                    otherInstantiatedPlayer.Name = otherClientID.ToString();
+
+                    player01Script = (BasePlayer)otherInstantiatedPlayer;
+                    GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
+
+                    //spawn self
+                    int clientID = GDSync.GetClientID();
+
+                    GD.Print("I am NOT the host!" + clientID);
+
+                    Node instantiatedPlayer = playerSceneNodePrefab.Instantiate();
+                    AddChild(instantiatedPlayer);
+                    instantiatedPlayer.Name = clientID.ToString();
+
+                    player02Script = (BasePlayer)instantiatedPlayer;
+                    GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
+                }
+
                 player02Script = new BasePlayer();
             }
             else
             {
-                player02Script = (BaseAIPlayer)GetParent().GetNode("EnemyAI"); ; //we need to probably instantiate this later with custom ai nodes.
+                player01Script = new BasePlayer();
+
+                Node instantiatedAI = aiPlayerNode.Instantiate();
+
+                AddChild(instantiatedAI);
+
+                player02Script = (BaseAIPlayer)instantiatedAI; //we need to probably instantiate this later with custom ai nodes.
             }
 
             player01Script.playerBase = team01HomeBase;

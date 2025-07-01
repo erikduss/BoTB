@@ -89,13 +89,31 @@ namespace Erikduss
 
         public void UnsubscribeFromEvents()
         {
-            GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
-            optionsPanel.VisibilityChanged -= OptionsPanelClosed;
-            GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+            if (GetViewport() != null)
+            {
+                GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            }
+
+            if( optionsPanel != null)
+            {
+                optionsPanel.VisibilityChanged -= OptionsPanelClosed;
+            }
+            
+            if(GameSettingsLoader.Instance != null)
+            {
+                GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+            }
         }
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+        protected override void Dispose(bool disposing)
+        {
+            //UnsubscribeFromEvents();
+
+            base.Dispose(disposing);
+        }
+
+        // Called every frame. 'delta' is the elapsed time since the previous frame.
+        public override void _Process(double delta)
 		{
             base._Process(delta);
         }

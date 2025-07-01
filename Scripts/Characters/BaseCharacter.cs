@@ -19,7 +19,7 @@ namespace Erikduss
 		public AnimatedSprite2D currentAnimatedSprite;
         public CollisionShape2D unitCollisionShape;
 
-		public Enums.Ages currentAge = Enums.Ages.AGE_02;
+		public Enums.Ages currentAge = Enums.Ages.AGE_01;
 
         public BaseCharacter CurrentTarget
         {

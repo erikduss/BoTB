@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Erikduss
 {
@@ -15,6 +16,8 @@ namespace Erikduss
         public TitleScreenMultiplayerLobbyManager titlescreenMultiplayerLobby;
 
         public int currentPlayerID = 1;
+
+        public List<int> playersInLobby = new List<int>();
 
         public override void _Ready()
         {
@@ -198,6 +201,11 @@ namespace Erikduss
             {
                 GD.Print("Loading to Game through Multiplayer");
 
+                isUsingMultiplayer = true; //this only happens when its actually a multiplayer match.
+
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+                AudioManager.Instance.ClearAudioPlayers();
+
                 GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/LoadingToGame.tscn");
             }
         }
@@ -210,6 +218,8 @@ namespace Erikduss
 
             titlescreenMultiplayerLobby.ClientJoinedLobby(clientID, currentPlayerID);
             currentPlayerID++;
+
+            playersInLobby.Add(clientID);
         }
 
         public void Client_Left(int clientID)
@@ -223,6 +233,8 @@ namespace Erikduss
                 titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
             }
             
+            playersInLobby.Remove(clientID);
+
             currentPlayerID--;
         }
     }
