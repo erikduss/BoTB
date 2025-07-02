@@ -82,8 +82,11 @@ namespace Erikduss
 
             SubscribeToEvents();
 
-            RefreshUnitShop(false);
-            RefreshPowerUp(false);
+            if(!GameManager.Instance.isMultiplayerMatch || GameManager.Instance.isHostOfMultiplayerMatch) 
+            {
+                RefreshUnitShop(false);
+                RefreshPowerUp(false);
+            }
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -217,7 +220,7 @@ namespace Erikduss
                 AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
                 GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount -= 1;
-                UpdatePlayerPowerUPRerollAmount();
+                UpdatePlayerPowerUPRerollAmount(GameManager.Instance.player01Script);
             }
 
             if(GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently && !spendRerollToken)
@@ -286,9 +289,9 @@ namespace Erikduss
             }
         }
 
-        public void UpdatePlayerPowerUPRerollAmount()
+        public void UpdatePlayerPowerUPRerollAmount(BasePlayer player)
         {
-            powerUpRefreshButton.SetAmountOfPowerUpRefreshes(GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount);
+            powerUpRefreshButton.SetAmountOfPowerUpRefreshes(player.playerCurrentPowerUpRerollsAmount);
         }
 
         public void RefreshUnitShop(bool spendPlayerGold = true)

@@ -63,6 +63,8 @@ namespace Erikduss
 
         public bool isMultiplayerMatch = false;
 
+        public bool isHostOfMultiplayerMatch = false;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
@@ -87,55 +89,57 @@ namespace Erikduss
 
             if (isMultiplayerMatch)
             {
+                //add multiplayer event connections
+                GDSync.SyncedEventTriggered += Synced_Event_Triggered;
+
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
                 {
+                    isHostOfMultiplayerMatch = true;
+
                     int clientID = GDSync.GetClientID();
 
                     GD.Print("I am the host!" + clientID);
 
-                    Node instantiatedPlayer = playerSceneNodePrefab.Instantiate();
-                    AddChild(instantiatedPlayer);
+                    Node instantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this);
+                    //AddChild(instantiatedPlayer);
                     instantiatedPlayer.Name = clientID.ToString();
 
                     player01Script = (BasePlayer)instantiatedPlayer;
-                    GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
+                    //GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
 
                     //spawn other player
                     int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
-
-                    Node otherInstantiatedPlayer = playerSceneNodePrefab.Instantiate();
-                    AddChild(otherInstantiatedPlayer);
+                    Node otherInstantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this);
+                    //AddChild(otherInstantiatedPlayer);
                     otherInstantiatedPlayer.Name = otherClientID.ToString();
 
                     player02Script = (BasePlayer)otherInstantiatedPlayer;
-                    GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
+                    //GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
                 }
                 else
                 {
-                    //spawn other player
-                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                    ////spawn other player
+                    //int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
 
-                    Node otherInstantiatedPlayer = playerSceneNodePrefab.Instantiate();
-                    AddChild(otherInstantiatedPlayer);
-                    otherInstantiatedPlayer.Name = otherClientID.ToString();
+                    //Node otherInstantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this); ;
+                    //AddChild(otherInstantiatedPlayer);
+                    //otherInstantiatedPlayer.Name = otherClientID.ToString();
 
-                    player01Script = (BasePlayer)otherInstantiatedPlayer;
-                    GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
+                    //player01Script = (BasePlayer)otherInstantiatedPlayer;
+                    //GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
 
-                    //spawn self
-                    int clientID = GDSync.GetClientID();
+                    ////spawn self
+                    //int clientID = GDSync.GetClientID();
 
-                    GD.Print("I am NOT the host!" + clientID);
+                    //GD.Print("I am NOT the host!" + clientID);
 
-                    Node instantiatedPlayer = playerSceneNodePrefab.Instantiate();
-                    AddChild(instantiatedPlayer);
-                    instantiatedPlayer.Name = clientID.ToString();
+                    //Node instantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this); ;
+                    //AddChild(instantiatedPlayer);
+                    //instantiatedPlayer.Name = clientID.ToString();
 
-                    player02Script = (BasePlayer)instantiatedPlayer;
-                    GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
+                    //player02Script = (BasePlayer)instantiatedPlayer;
+                    //GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
                 }
-
-                player02Script = new BasePlayer();
             }
             else
             {
@@ -148,26 +152,40 @@ namespace Erikduss
                 player02Script = (BaseAIPlayer)instantiatedAI; //we need to probably instantiate this later with custom ai nodes.
             }
 
-            player01Script.playerBase = team01HomeBase;
-            player02Script.playerBase = team02HomeBase;
+            if(!isMultiplayerMatch || isHostOfMultiplayerMatch)
+            {
+                player01Script.playerBase = team01HomeBase;
+                player02Script.playerBase = team02HomeBase;
 
-            player01Script.playerCurrentCurrencyAmount = startingCurrency;
-            player01Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
-            player01Script.playerCurrentPowerUpProgressAmount = 0;
-            player01Script.playerCurrentPowerUpRerollsAmount = 0;
-            player01Script.playerCurrentAmountOfPowerUpsOwed = 0;
-            player01Script.hasUnlockedPowerUpCurrently = false;
+                player01Script.playerCurrentCurrencyAmount = startingCurrency;
+                player01Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+                player01Script.playerCurrentPowerUpProgressAmount = 0;
+                player01Script.playerCurrentPowerUpRerollsAmount = 0;
+                player01Script.playerCurrentAmountOfPowerUpsOwed = 0;
+                player01Script.hasUnlockedPowerUpCurrently = false;
 
-            player02Script.playerCurrentCurrencyAmount = startingCurrency;
-            player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
-            player02Script.playerCurrentPowerUpProgressAmount = 0;
-            player02Script.playerCurrentPowerUpRerollsAmount = 0;
-            player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
-            player02Script.hasUnlockedPowerUpCurrently = false;
+                player02Script.playerCurrentCurrencyAmount = startingCurrency;
+                player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
+                player02Script.playerCurrentPowerUpProgressAmount = 0;
+                player02Script.playerCurrentPowerUpRerollsAmount = 0;
+                player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
+                player02Script.hasUnlockedPowerUpCurrently = false;
+            }
 
-            //in this case in singleplayer we are always player 01, in the future in multiplayer this needs to be a network event call.
-            inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
-            inGameHUDManager.UpdatePlayerPowerUPRerollAmount();
+            if (isMultiplayerMatch)
+            {
+                if (isHostOfMultiplayerMatch)
+                {
+                    //this will call it for all clients
+                    GDSync.CreateSyncedEvent("UpdateCurrencies");
+                }
+            }
+            else
+            {
+                //in singleplayer we are always the first player
+                inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+                inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);
+            }
 
             AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers", (Node2D)cameraScript);
 
@@ -179,6 +197,11 @@ namespace Erikduss
         {
             base.Dispose(disposing);
 
+            if(isMultiplayerMatch)
+            {
+                GDSync.SyncedEventTriggered -= Synced_Event_Triggered;
+            }
+
 			//We need to set the instance to null to reset the game variables.
 			Instance = null;
         }
@@ -188,12 +211,23 @@ namespace Erikduss
 		{
 			if (Input.IsActionJustPressed("Pause"))
 			{
-				ToggleGameIsPaused();
-			}
+                if (isMultiplayerMatch)
+                {
+                    //dont think we need to be the host to do this.
+                    GDSync.CreateSyncedEvent("PauseGameToggle");
+                }
+                else
+                {
+                    ToggleGameIsPaused();
+                }
+            }
 
             if (gameIsPaused || gameIsFinished) return;
 
             matchDuration += delta;
+
+            //if this is a multiplayer game and we are not the host, we dont execute any code below this.
+            if (isMultiplayerMatch && !isHostOfMultiplayerMatch) return;
 
 			//Timer for giving the player currency
 			if(currencyGainAmountUpdateTimer > currencyGainRate)
@@ -206,8 +240,22 @@ namespace Erikduss
                 player01Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer01 > 0 ? 1f + (currencyGainPercentagePlayer01 / 100f) : 1f ));
                 player02Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer02 > 0 ? 1f + (currencyGainPercentagePlayer02 / 100f) : 1f ));
 
+                GD.Print("From Host: P1: " + player01Script.playerCurrentCurrencyAmount);
+                GD.Print("From Host: P2: " + player02Script.playerCurrentCurrencyAmount);
+
                 //Update HUD
-                inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+                if (isMultiplayerMatch)
+                {
+                    player01Script.SyncCurrency();
+                    player02Script.SyncCurrency();
+
+                    //this will call it for all clients
+                    GDSync.CreateSyncedEvent("UpdateCurrencies");
+                }
+                else
+                {
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+                }
 
                 UpdatePlayerPowerUpProgress(Enums.TeamOwner.TEAM_01, GameSettingsLoader.powerUpProgressAmountIdle);
                 UpdatePlayerPowerUpProgress(Enums.TeamOwner.TEAM_02, GameSettingsLoader.powerUpProgressAmountIdle);
@@ -324,7 +372,7 @@ namespace Erikduss
                 if (playerTeam == Enums.TeamOwner.TEAM_01)
                 {
                     inGameHUDManager.RefreshPowerUp(false);
-                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount();
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);
                 }
             }
 
@@ -335,5 +383,36 @@ namespace Erikduss
                 inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
             }
         }
-	}
+
+        #region Multiplayer events
+
+        public void Synced_Event_Triggered(string eventName, Godot.Collections.Array parameters)
+        {
+            switch (eventName)
+            {
+                case "UpdateCurrencies":
+                    GD.Print("Networking: Updating Currencies");
+
+                    //AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+                    //AudioManager.Instance.ClearAudioPlayers();
+
+                    float currencyAmount = isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
+                    float currencyAmountother = !isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
+
+                    GD.Print("I have: " + isHostOfMultiplayerMatch + " " + currencyAmount);
+                    GD.Print("Other person has: " + currencyAmountother);
+
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount);
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(isHostOfMultiplayerMatch ? player01Script : player02Script);
+                    break;
+                case "PauseGameToggle":
+                    GD.Print("Networking: Pausing Game");
+
+                    ToggleGameIsPaused();
+                    break;
+            }
+        }
+
+        #endregion
+    }
 }
