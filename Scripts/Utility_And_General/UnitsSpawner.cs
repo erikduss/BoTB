@@ -82,6 +82,8 @@ namespace Erikduss
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
 			//Note: Both teams need their own timers and statements due to both players behaving differently, 1 player could have units queued while the other could have no queue.
 			if(team01UnitSpawnAttemptTimer <= 0f)
 			{
@@ -161,7 +163,6 @@ namespace Erikduss
 			if(team == Enums.TeamOwner.TEAM_01)
 			{
 				string uniqueIDString = team01UnitSpawnIDCurrentValue + "_" + ((uint)unitAge);
-				GD.Print("Adding to Queue: " + uniqueIDString);
 				team01UnitSpawnIDCurrentValue++;
 
                 team01UnitQueueDictionary.Add(uniqueIDString, unitType);
@@ -303,6 +304,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedSimpleSoldier.characterOwner = team;
+                    GD.Print("Set the owner to: " + team.ToString());
                     instantiatedSimpleSoldier.currentAge = unitAge;
 
                     instantiatedSimpleSoldier.Name = "InstantiatedSimpleSoldier_" + lastUsedUnitID;

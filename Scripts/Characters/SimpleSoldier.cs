@@ -10,6 +10,8 @@ namespace Erikduss
 
         public override void _Ready()
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             //Load Unit Stats
 
             UnitSettingsConfig loadedUnitSettings;

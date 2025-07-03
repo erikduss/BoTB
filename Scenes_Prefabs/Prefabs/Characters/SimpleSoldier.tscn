@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d1vfnajg2txn3"]
+[gd_scene load_steps=28 format=3 uid="uid://d1vfnajg2txn3"]
 
 [ext_resource type="Script" uid="uid://dvbb7ce83srab" path="res://Scripts/Characters/SimpleSoldier.cs" id="1_vbjra"]
 [ext_resource type="Texture2D" uid="uid://cipr6s44htgep" path="res://Assets/Characters/Warrior_Age_1/Idle/Warrior_Age_1-Idle_Frame-1.png" id="2_2d4t6"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://lk7hup7fsxc8" path="res://Assets/Characters/Warrior_Age_1/Death/Warrior_Age_1_Death05.png" id="10_wmyg8"]
 [ext_resource type="Texture2D" uid="uid://duj67lv0wgw0h" path="res://Assets/Characters/Warrior_Age_1/Death/Warrior_Age_1_Death06.png" id="11_6s4li"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="17_7y0jb"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="18_2k4l1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ah70f"]
 animations = [{
@@ -131,6 +132,14 @@ sprite_frames = SubResource("SpriteFrames_ah70f")
 animation = &"Attack"
 autoplay = "Idle"
 
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("18_2k4l1")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
@@ -152,3 +161,11 @@ attackDuration = 0.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("18_2k4l1")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

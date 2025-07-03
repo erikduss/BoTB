@@ -120,9 +120,23 @@ namespace Erikduss
 
         #endregion
 
+        bool reloadedReady = false;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
+            if (GameManager.Instance.isHostOfMultiplayerMatch && GameManager.Instance.isMultiplayerMatch)
+            {
+                if (!reloadedReady && uniqueID == -1)
+                {
+                    GD.Print("We reload");
+                    ReApplyReadyOnMultiplayer();
+                    return;
+                }
+            }
+
             foreach (Node childNode in this.GetChildren())
             {
                 if (childNode is AnimatedSprite2D)
@@ -159,6 +173,8 @@ namespace Erikduss
 
             if (characterOwner == Enums.TeamOwner.TEAM_02)
             {
+                GD.Print("We are from team 2!");
+
                 movementSpeed = -movementSpeed; // this one needs to go the other direction.
                 currentAnimatedSprite.FlipH = true;
                 CollisionLayer = 0b100;
@@ -166,6 +182,8 @@ namespace Erikduss
             }
             else
             {
+                GD.Print("Our team is: " + characterOwner.ToString());
+
                 CollisionLayer = 0b10;
                 CollisionMask = 0b1000111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
             }
@@ -193,8 +211,20 @@ namespace Erikduss
                 initialStartingState.StateEnter(this);
                 currentState = initialStartingState;
             }
-
             #endregion
+        }
+
+        async void ReApplyReadyOnMultiplayer()
+        {
+            while (uniqueID < 0)
+            {
+                await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+            }
+            
+            reloadedReady = true;
+            GD.Print("Is ID set? " + uniqueID);
+
+            _Ready();
         }
 
         protected override void Dispose(bool disposing)
@@ -226,6 +256,8 @@ namespace Erikduss
         // Called every frame. 'delta' is the elapsed time since the previous frame.
         public override void _Process(double delta)
 		{
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             if (GameManager.Instance.gameIsPaused || GameManager.Instance.gameIsFinished) return;
 
             if (IsDeadOrDestroyed)

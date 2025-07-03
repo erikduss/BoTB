@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
@@ -20,6 +21,7 @@ namespace Erikduss
         public PackedScene playerSceneNodePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Player_Scene.tscn");
 
         [Export] public CameraMovement cameraScript;
+        public Enums.TeamOwner clientTeamOwner = Enums.TeamOwner.NONE; //this is set to eithe team 1 or team 2, depending on multiplayer host priority.
 
         //TODO, Move these settings to a general settings file and script.
 		public bool gameIsPaused { get; private set; }
@@ -92,8 +94,13 @@ namespace Erikduss
                 //add multiplayer event connections
                 GDSync.SyncedEventTriggered += Synced_Event_Triggered;
 
+                GDSync.ExposeFunction(new Callable(this, "SpendNonHostClientCurrency"));
+                GDSync.ExposeFunction(new Callable(this, "ProcessSpawnRequestPlayer2"));
+
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
                 {
+                    clientTeamOwner = Enums.TeamOwner.TEAM_01;
+
                     isHostOfMultiplayerMatch = true;
 
                     int clientID = GDSync.GetClientID();
@@ -118,31 +125,16 @@ namespace Erikduss
                 }
                 else
                 {
-                    ////spawn other player
-                    //int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                    clientTeamOwner = Enums.TeamOwner.TEAM_02;
 
-                    //Node otherInstantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this); ;
-                    //AddChild(otherInstantiatedPlayer);
-                    //otherInstantiatedPlayer.Name = otherClientID.ToString();
-
-                    //player01Script = (BasePlayer)otherInstantiatedPlayer;
-                    //GDSync.SetGDSyncOwner(otherInstantiatedPlayer, otherClientID);
-
-                    ////spawn self
-                    //int clientID = GDSync.GetClientID();
-
-                    //GD.Print("I am NOT the host!" + clientID);
-
-                    //Node instantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this); ;
-                    //AddChild(instantiatedPlayer);
-                    //instantiatedPlayer.Name = clientID.ToString();
-
-                    //player02Script = (BasePlayer)instantiatedPlayer;
-                    //GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
+                    //we dont need to do anything else here. Spawning is done through the host.
                 }
             }
             else
             {
+                //singleplayer
+                clientTeamOwner = Enums.TeamOwner.TEAM_01;
+
                 player01Script = new BasePlayer();
 
                 Node instantiatedAI = aiPlayerNode.Instantiate();
@@ -272,10 +264,18 @@ namespace Erikduss
                 player01Script.playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
                 player02Script.playerAbilityCurrentCooldown -= playerAbilityCooldownReduction;
 
-                //Update HUD
-                inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
-				//update empowred label
-				inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
+                if (isMultiplayerMatch)
+                {
+                    //this will call it for all clients
+                    GDSync.CreateSyncedEvent("UpdateAbilityInfo");
+                }
+                else
+                {
+                    //Update HUD
+                    inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
+                    //update empowred label
+                    inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
+                }
             }
             else
             {
@@ -307,17 +307,42 @@ namespace Erikduss
 
 			if (playerToSpendCurrencyFor.playerCurrentCurrencyAmount < amount) return false;
 
-            if (playerTeam == Enums.TeamOwner.TEAM_02) GD.Print("The AI Has: " + playerToSpendCurrencyFor.playerCurrentCurrencyAmount + " After spending: " + amount);
+            if (playerTeam == Enums.TeamOwner.TEAM_02) GD.Print("Player 2 Has: " + playerToSpendCurrencyFor.playerCurrentCurrencyAmount + " After spending: " + amount);
 
             playerToSpendCurrencyFor.playerCurrentCurrencyAmount -= amount;
-			
+
             //update HUD
-            if(playerTeam == Enums.TeamOwner.TEAM_01)
+            if (isMultiplayerMatch)
             {
-                inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+                if (!isHostOfMultiplayerMatch)
+                {
+                    //call the function on the host to spend our currency.
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(this, "SpendNonHostClientCurrency"), [amount]);
+                }
+            }
+            else
+            {
+                if (playerTeam == Enums.TeamOwner.TEAM_01)
+                {
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
+                }
             }
 
 			return true;
+        }
+
+        public void SpendNonHostClientCurrency(int amount)
+        {
+            player02Script.playerCurrentCurrencyAmount -= amount;
+
+            //this will call it for all clients
+            GDSync.CreateSyncedEvent("UpdateCurrencies");
+        }
+
+        public void ProcessSpawnRequestPlayer2(int unitType)
+        {
+            GD.Print("received buy request");
+            unitsSpawner.ProcessBuyingUnit(TeamOwner.TEAM_02, (Enums.UnitTypes)unitType);
         }
 
 		public void ResetPlayerAbilityCooldown(Enums.TeamOwner playerTeam)
@@ -326,7 +351,12 @@ namespace Erikduss
 
             playerToResetCooldownFor.playerAbilityCurrentCooldown = playerAbilityCooldown;
 
-            if (playerTeam == Enums.TeamOwner.TEAM_01)
+            if (isMultiplayerMatch)
+            {
+                //this will call it for all clients
+                GDSync.CreateSyncedEvent("UpdateAbilityInfo");
+            }
+            else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
                 inGameHUDManager.UpdatePlayerAbilityCooldownBar(player01Script.playerAbilityCurrentCooldown);
             }
@@ -340,8 +370,10 @@ namespace Erikduss
                 {
                     gameIsFinished = true;
 
+                    HomeBaseManager playerHomeBase = clientTeamOwner == Enums.TeamOwner.TEAM_01 ? team01HomeBase : team02HomeBase;
+
                     //We should show "Victory" or "Defeat" depending on the outcome. (Ingame hud manager)
-                    string outcomeValue = team01HomeBase.CurrentHealth <= 0 ? Tr("DEFEAT") : Tr("VICTORY");
+                    string outcomeValue = playerHomeBase.CurrentHealth <= 0 ? Tr("DEFEAT") : Tr("VICTORY");
 
                     inGameHUDManager.GameOverTriggered(outcomeValue);
 
@@ -369,7 +401,11 @@ namespace Erikduss
                 playerToChangePowerUpProgressFor.playerCurrentAmountOfPowerUpsOwed++;
                 playerToChangePowerUpProgressFor.playerCurrentPowerUpRerollsAmount++;
 
-                if (playerTeam == Enums.TeamOwner.TEAM_01)
+                if (isMultiplayerMatch)
+                {
+                    inGameHUDManager.RefreshPowerUp(false);
+                }
+                else if (playerTeam == Enums.TeamOwner.TEAM_01)
                 {
                     inGameHUDManager.RefreshPowerUp(false);
                     inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);
@@ -378,7 +414,11 @@ namespace Erikduss
 
             playerToChangePowerUpProgressFor.playerCurrentPowerUpProgressAmount = newPowerUpProgress;
 
-            if (playerTeam == Enums.TeamOwner.TEAM_01)
+            if (isMultiplayerMatch)
+            {
+                GDSync.CreateSyncedEvent("UpdatePowerUpInfo");
+            }
+            else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
                 inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
             }
@@ -391,16 +431,11 @@ namespace Erikduss
             switch (eventName)
             {
                 case "UpdateCurrencies":
-                    GD.Print("Networking: Updating Currencies");
-
                     //AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
                     //AudioManager.Instance.ClearAudioPlayers();
 
                     float currencyAmount = isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
                     float currencyAmountother = !isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
-
-                    GD.Print("I have: " + isHostOfMultiplayerMatch + " " + currencyAmount);
-                    GD.Print("Other person has: " + currencyAmountother);
 
                     inGameHUDManager.UpdatePlayerCurrencyAmountLabel(isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount);
                     inGameHUDManager.UpdatePlayerPowerUPRerollAmount(isHostOfMultiplayerMatch ? player01Script : player02Script);
@@ -410,9 +445,29 @@ namespace Erikduss
 
                     ToggleGameIsPaused();
                     break;
+                case "UpdateAbilityInfo":
+                    
+                    //Update HUD
+                    inGameHUDManager.UpdatePlayerAbilityCooldownBar(GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
+                    //update empowred label
+                    inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(clientTeamOwner);
+                    break;
+                case "UpdatePowerupInfo":
+
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(GetLocalClientPlayerScript());
+                    inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
+
+                    break;
             }
         }
 
         #endregion
+
+        public BasePlayer GetLocalClientPlayerScript()
+        {
+            BasePlayer player = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
+
+            return player;
+        }
     }
 }

@@ -89,6 +89,8 @@ namespace Erikduss
         {
             GD.Print("There are currently: " + GDSync.GetLobbyPlayerCount() + " players in the lobby");
 
+            startGameButton.Disabled = true;
+
             AudioManager.Instance.ClearAudioPlayers();
 
             //we can only go into the game if we actually pass the ready check, which automatically enabled and disabled the button. So we dont need a check here

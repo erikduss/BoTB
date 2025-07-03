@@ -87,6 +87,11 @@ namespace Erikduss
                 RefreshUnitShop(false);
                 RefreshPowerUp(false);
             }
+            else if (GameManager.Instance.isMultiplayerMatch)
+            {
+                RefreshUnitShop(false);
+                RefreshPowerUp(false);
+            }
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -103,7 +108,7 @@ namespace Erikduss
         public void UpdateLanguage(object o, EventArgs e)
         {
             //update string that is set through code.
-            UpdatePlayerAbilityEmpowerAmount(Enums.TeamOwner.TEAM_01);
+            UpdatePlayerAbilityEmpowerAmount(GameManager.Instance.clientTeamOwner);
         }
 
         public void SubscribeToEvents()
@@ -135,21 +140,31 @@ namespace Erikduss
 		public bool BuyUnitButtonClicked(Enums.UnitTypes unitType, int unitCost)
 		{
 
-			//check for the current age the player is in, this will determine the cost of the soldier and which one it will spawn.
+            //check for the current age the player is in, this will determine the cost of the soldier and which one it will spawn.
 
-			//check for gold requirement
-			if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < unitCost) return false; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
+            //check for gold requirement
+            BasePlayer playerToCheck = GameManager.Instance.GetLocalClientPlayerScript();
+
+            if (playerToCheck.playerCurrentCurrencyAmount < unitCost) return false; //this needs to be changed to determine the cost based on age and get the cost from a seperate script/file.
 
 			//other requirements?
 
 			//Attempt to spend the currency, if this fails we stop.
-			if (!GameManager.Instance.SpendPlayerCurrency(unitCost, Enums.TeamOwner.TEAM_01)) return false;
+			if (!GameManager.Instance.SpendPlayerCurrency(unitCost, GameManager.Instance.clientTeamOwner)) return false;
 
             //add soldier to spawn queue in a (few) second(s).
 
             //this is always team one due to the player having to click this. If going multiplayer, this needs to be adjusted and processed by the server.
 
-            GameManager.Instance.unitsSpawner.ProcessBuyingUnit(Enums.TeamOwner.TEAM_01, unitType);
+            if(GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                //call the function on the host to spend our currency.
+                GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "ProcessSpawnRequestPlayer2"), [(int)unitType]);
+            }
+            else
+            {
+                GameManager.Instance.unitsSpawner.ProcessBuyingUnit(GameManager.Instance.clientTeamOwner, unitType);
+            }
 
 			return true;
 		}
@@ -190,8 +205,9 @@ namespace Erikduss
         public void PlayerAbilityButtonPressed()
         {
             //we need to check if the cooldown is over.
+            BasePlayer playerToCheck = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
 
-            if (GameManager.Instance.player01Script.playerAbilityCurrentCooldown > 0)
+            if (playerToCheck.playerAbilityCurrentCooldown > 0)
             {
                 AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
                 return;
@@ -199,19 +215,20 @@ namespace Erikduss
 
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
-            GameManager.Instance.ResetPlayerAbilityCooldown(Enums.TeamOwner.TEAM_01);
+            GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
 
-            //is always going to be team 1 for now, due to this being the player.
-            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_01);
+            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
         }
 
         public void RefreshPowerUp(bool spendRerollToken = true)
         {
             if (GameManager.Instance.gameIsPaused || GameManager.Instance.gameIsFinished) return;
 
+            BasePlayer player = GameManager.Instance.GetLocalClientPlayerScript();
+
             if (spendRerollToken)
             {
-                if (GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount < 1)
+                if (player.playerCurrentPowerUpRerollsAmount < 1)
                 {
                     AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
                     return;
@@ -219,15 +236,19 @@ namespace Erikduss
 
                 AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
-                GameManager.Instance.player01Script.playerCurrentPowerUpRerollsAmount -= 1;
-                UpdatePlayerPowerUPRerollAmount(GameManager.Instance.player01Script);
+                player.playerCurrentPowerUpRerollsAmount -= 1;
+                UpdatePlayerPowerUPRerollAmount(player);
             }
 
-            if(GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently && !spendRerollToken)
+            //due to this being called on ready, player will be null for the client that is not the host due to delayed assignment
+            if(player != null)
             {
-                //We dont need to refesh anything if we already have a powerup active.
-                GD.Print("Prevent refresh");
-                return;
+                if (player.hasUnlockedPowerUpCurrently && !spendRerollToken)
+                {
+                    //We dont need to refesh anything if we already have a powerup active.
+                    GD.Print("Prevent refresh");
+                    return;
+                }
             }
 
             if(powerUpsParentNode.GetChildren().Count > 0)
@@ -241,8 +262,12 @@ namespace Erikduss
             currentShownPowerUp = null;
             currentLockedPowerUpInfo = null;
 
+            int powerupsOwed = 0;
+
+            if (player != null) powerupsOwed = player.playerCurrentAmountOfPowerUpsOwed;
+
             //if we unlock a power up from the locked state, or we refresh the shop, we give the player a random powerup option.
-            if(GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed > 0 || spendRerollToken)
+            if (powerupsOwed > 0 || spendRerollToken)
             {
                 int randPowerupID = (int)(GD.Randi() % (availablePowerUpButtons.Count));
 
@@ -254,10 +279,10 @@ namespace Erikduss
                 //make sure we only reduce the amount owed if we buy process another powerup
                 if (!spendRerollToken)
                 {
-                    GameManager.Instance.player01Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+                    player.playerCurrentAmountOfPowerUpsOwed -= 1;
                 }
 
-                GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = true;
+                player.hasUnlockedPowerUpCurrently = true;
             }
             else
             {
@@ -267,7 +292,10 @@ namespace Erikduss
 
                 currentLockedPowerUpInfo = (LockedPowerUpInfoToggler)currentShownPowerUp;
 
-                GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = false;
+                if(player != null)
+                {
+                    player.hasUnlockedPowerUpCurrently = false;
+                }
             }
 
             //RefreshFocusConnections();
@@ -276,16 +304,18 @@ namespace Erikduss
 
         }
 
-        public bool DoesThePlayerHaveAPowerUpUnlocked()
+        public bool DoesThePlayerHaveAPowerUpUnlocked(BasePlayer player)
         {
-            return GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently;
+            return player.hasUnlockedPowerUpCurrently;
         }
 
         public void UpdateCurrentLockedPowerUpProgress()
         {
             if (currentLockedPowerUpInfo != null)
             {
-                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(GameManager.Instance.player01Script.playerCurrentPowerUpProgressAmount);
+                BasePlayer player = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
+
+                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(player.playerCurrentPowerUpProgressAmount);
             }
         }
 
@@ -296,18 +326,22 @@ namespace Erikduss
 
         public void RefreshUnitShop(bool spendPlayerGold = true)
 		{
+            //this is controlled by the client, currency check is done through both the client and the host.
+
             if (GameManager.Instance.gameIsPaused || GameManager.Instance.gameIsFinished) return;
+
+            BasePlayer player = GameManager.Instance.GetLocalClientPlayerScript();
 
             if (spendPlayerGold)
 			{
-                if (GameManager.Instance.player01Script.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost)
+                if (player.playerCurrentCurrencyAmount < GameManager.defaultShopRefreshCost)
                 {
                     AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
                     return;
                 }
 
                 //Attempt to spend the currency, if this fails we stop.
-                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, Enums.TeamOwner.TEAM_01))
+                if (!GameManager.Instance.SpendPlayerCurrency(GameManager.defaultShopRefreshCost, player.playerTeam))
                 {
                     AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
                     return;
@@ -433,7 +467,15 @@ namespace Erikduss
         public void PauseGameButtonClicked()
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
-            GameManager.Instance.ToggleGameIsPaused();
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                GDSync.CreateSyncedEvent("PauseGameToggle");
+            }
+            else
+            {
+                GameManager.Instance.ToggleGameIsPaused();
+            }
         }
 
         public void ShowPauseMenu()

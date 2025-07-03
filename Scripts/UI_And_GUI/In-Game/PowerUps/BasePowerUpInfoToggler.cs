@@ -87,7 +87,9 @@ namespace Erikduss
 
         public virtual void ProcessPowerUpEffect()
         {
-            GameManager.Instance.player01Script.hasUnlockedPowerUpCurrently = false;
+            BasePlayer player = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
+
+            player.hasUnlockedPowerUpCurrently = false;
 
             GameManager.Instance.inGameHUDManager.RefreshPowerUp(false);
         }
