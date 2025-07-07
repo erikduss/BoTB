@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf0c35gx0lb58"]
+[gd_scene load_steps=7 format=3 uid="uid://bf0c35gx0lb58"]
 
 [ext_resource type="Script" uid="uid://dkge4am5wv7wj" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/ArchdruidRangedEffect.cs" id="1_j3cqu"]
 [ext_resource type="Texture2D" uid="uid://cdxmb8lmp5fhg" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackBeam.png" id="2_uenm2"]
 [ext_resource type="Texture2D" uid="uid://cftjjxs5afue7" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_1.png" id="3_w1vaf"]
 [ext_resource type="Texture2D" uid="uid://cliqs8g2c0r1r" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_2.png" id="4_hkwja"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_ttvl5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xvfye"]
 animations = [{
@@ -35,3 +36,27 @@ texture_mode = 2
 rotation = -1.31598
 sprite_frames = SubResource("SpriteFrames_xvfye")
 autoplay = "default"
+
+[node name="PropertySynchronizer" type="Node" parent="Line2D/AnimatedSprite2D"]
+script = ExtResource("5_ttvl5")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer" type="Node" parent="Line2D"]
+script = ExtResource("5_ttvl5")
+node_path = NodePath("..")
+properties = PackedStringArray("points")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer2" type="Node" parent="."]
+script = ExtResource("5_ttvl5")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

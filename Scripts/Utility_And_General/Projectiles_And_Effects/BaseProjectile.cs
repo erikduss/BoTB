@@ -28,6 +28,8 @@ namespace Erikduss
 
         public override void _PhysicsProcess(double delta)
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             if (GameManager.Instance.gameIsPaused) return;
 
             base._PhysicsProcess(delta);
@@ -51,6 +53,8 @@ namespace Erikduss
 
         public virtual void OnCollisionEnter(Node2D body)
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             //we shouldnt hit ourselves, this can happen if we get this call too quickly before we set our collisionmasks and stuff.
             if (body.Name == projectileOwnerChar.Name) return;
 

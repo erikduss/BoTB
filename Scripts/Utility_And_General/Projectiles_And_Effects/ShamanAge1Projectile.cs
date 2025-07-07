@@ -19,6 +19,8 @@ namespace Erikduss
 
         public override void OnCollisionEnter(Node2D body)
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             if (body.Name == projectileOwnerChar.Name) return;
 
             animatedSprite.Play("TargetHit");

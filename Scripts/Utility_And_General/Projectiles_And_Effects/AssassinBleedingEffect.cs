@@ -46,7 +46,9 @@ namespace Erikduss
 		{
 			base._Process(delta);
 
-			if (currentBleedTimes >= bleedTimes) return;
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
+            if (currentBleedTimes >= bleedTimes) return;
 			if (unitThisIsDamaging.IsDeadOrDestroyed) return;
 
 			if (bleedingTimer > bleedDamageInterval)

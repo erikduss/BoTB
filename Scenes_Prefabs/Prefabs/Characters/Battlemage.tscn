@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c0lx5tdd4sonk"]
+[gd_scene load_steps=32 format=3 uid="uid://c0lx5tdd4sonk"]
 
 [ext_resource type="Script" uid="uid://dh84ayceemm8e" path="res://Scripts/Characters/Battlemage.cs" id="1_ybu32"]
 [ext_resource type="Texture2D" uid="uid://b6ph3hnh8aobm" path="res://Assets/Characters/Battlemage/Attack/Battlemage_Age_1_Attack01.png" id="2_8f7kr"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bvn4pg3gr8cbe" path="res://Assets/Characters/Battlemage/Walk/Battlemage_Age_1_Walking02.png" id="10_blygw"]
 [ext_resource type="Texture2D" uid="uid://piplpj7maj8e" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death06.png" id="11_bp1wc"]
 [ext_resource type="Texture2D" uid="uid://cks4gxefsk0yd" path="res://Assets/Characters/Battlemage/Walk/Battlemage_Age_1_Walking03.png" id="11_n33jg"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="22_sr78o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_evnro"]
 animations = [{
@@ -152,6 +153,14 @@ sprite_frames = SubResource("SpriteFrames_evnro")
 animation = &"Idle"
 autoplay = "Idle"
 
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("22_sr78o")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
@@ -173,3 +182,11 @@ attackDuration = 0.6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("22_sr78o")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

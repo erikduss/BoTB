@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d28fjljsqqypm"]
+[gd_scene load_steps=4 format=3 uid="uid://d28fjljsqqypm"]
 
 [ext_resource type="Script" uid="uid://c6beincon6o0y" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/WarriorShockwave.cs" id="1_5vwuw"]
 [ext_resource type="Texture2D" uid="uid://ckq4bde060kcd" path="res://Assets/Characters/Warrior_Age_1/Warrior_Shockwave_Visual.png" id="1_rsk2d"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_g0up7"]
 
 [node name="SimpleSoldierShockwave" type="Node2D" node_paths=PackedStringArray("usedSprite")]
 script = ExtResource("1_5vwuw")
@@ -9,3 +10,19 @@ usedSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rsk2d")
+
+[node name="PropertySynchronizer" type="Node" parent="Sprite2D"]
+script = ExtResource("3_g0up7")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer2" type="Node" parent="."]
+script = ExtResource("3_g0up7")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

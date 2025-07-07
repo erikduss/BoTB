@@ -78,7 +78,18 @@ namespace Erikduss
 
         public void SpawnWarriorShockwave(BaseCharacter unitOwner, float xMultiplier)
         {
-            WarriorShockwave instantiatedShockwave = (WarriorShockwave)warriorAttackVisualEffect.Instantiate();
+            WarriorShockwave instantiatedShockwave;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedShockwave = (WarriorShockwave)GDSync.MultiplayerInstantiate(warriorAttackVisualEffect, this);
+                GDSync.SetGDSyncOwner(instantiatedShockwave, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedShockwave = (WarriorShockwave)warriorAttackVisualEffect.Instantiate();
+            }
 
             float offSetX = 60f * xMultiplier;
             float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;
@@ -91,14 +102,28 @@ namespace Erikduss
 
             instantiatedShockwave.Name = unitOwner.uniqueID + "_InstantiatedShockwave_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedShockwave);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedShockwave);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnRangerProjectile(BaseCharacter unitOwner)
         {
-            RangerAge1ProjectilePhysics instantiatedProjectile = (RangerAge1ProjectilePhysics)rangerAge1Projectile.Instantiate();
+            RangerAge1ProjectilePhysics instantiatedProjectile;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedProjectile = (RangerAge1ProjectilePhysics)GDSync.MultiplayerInstantiate(rangerAge1Projectile, this);
+                GDSync.SetGDSyncOwner(instantiatedProjectile, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedProjectile = (RangerAge1ProjectilePhysics)rangerAge1Projectile.Instantiate();
+            }
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
             instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
@@ -115,14 +140,28 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedProjectile);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedProjectile);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnAssassinBleedingEffect(BaseCharacter unitOwner)
         {
-            AssassinBleedingEffect instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+            AssassinBleedingEffect instantiatedBleedingEffect;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedBleedingEffect = (AssassinBleedingEffect)GDSync.MultiplayerInstantiate(assassinBleedingEffect, unitOwner.CurrentTarget);
+                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+            }
 
             //Note: This effect is applied on the TARGET, keep this in mind.
 
@@ -133,14 +172,29 @@ namespace Erikduss
 
             instantiatedBleedingEffect.Name = unitOwner.uniqueID + "_InstantiatedBleedEffect_" + lastUsedVisualEffectID;
 
-            unitOwner.CurrentTarget.AddChild(instantiatedBleedingEffect);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                unitOwner.CurrentTarget.AddChild(instantiatedBleedingEffect);
+            }
 
             lastUsedVisualEffectID++;
         }
 
+        //I dont think this is used anymore
         public void SpawnTestingBleedingEffect(BaseCharacter bleedTarget)
         {
-            AssassinBleedingEffect instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+            AssassinBleedingEffect instantiatedBleedingEffect;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedBleedingEffect = (AssassinBleedingEffect)GDSync.MultiplayerInstantiate(assassinBleedingEffect, bleedTarget);
+                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedBleedingEffect = (AssassinBleedingEffect)assassinBleedingEffect.Instantiate();
+            }
 
             //Note: This effect is applied on the TARGET, keep this in mind.
 
@@ -151,14 +205,28 @@ namespace Erikduss
 
             instantiatedBleedingEffect.Name = bleedTarget.uniqueID + "_InstantiatedBleedEffect_" + lastUsedVisualEffectID;
 
-            bleedTarget.AddChild(instantiatedBleedingEffect);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                bleedTarget.AddChild(instantiatedBleedingEffect);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnEnforcerStunEffect(BaseCharacter unitOwner)
         {
-            EnforcerStunEffect instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
+            EnforcerStunEffect instantiatedStunEffect;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedStunEffect = (EnforcerStunEffect)GDSync.MultiplayerInstantiate(enforcerStunEffect, unitOwner.CurrentTarget);
+                GDSync.SetGDSyncOwner(instantiatedStunEffect, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedStunEffect = (EnforcerStunEffect)enforcerStunEffect.Instantiate();
+            }
 
             instantiatedStunEffect.characterThisEffectIsAttachedTo = unitOwner.CurrentTarget;
             instantiatedStunEffect.flipSpite = unitOwner.CurrentTarget.movementSpeed >= 0 ? false : true;
@@ -166,7 +234,11 @@ namespace Erikduss
             instantiatedStunEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
             unitOwner.CurrentTarget.ApplyStunEffect();
-            unitOwner.CurrentTarget.AddChild(instantiatedStunEffect);
+
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                unitOwner.CurrentTarget.AddChild(instantiatedStunEffect);
+            }
 
             lastUsedVisualEffectID++;
         }
@@ -208,7 +280,18 @@ namespace Erikduss
                     if (friendlyTeamUnit.GlobalPosition.X < unitOwner.GlobalPosition.X) continue;
                 }
 
-                TankBuffEffect instantiatedBuffEffect = (TankBuffEffect)tankBuffEffect.Instantiate();
+                TankBuffEffect instantiatedBuffEffect;
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    //we only instantiate through the host, due to it being synced either way.
+                    instantiatedBuffEffect = (TankBuffEffect)GDSync.MultiplayerInstantiate(tankBuffEffect, friendlyTeamUnit);
+                    GDSync.SetGDSyncOwner(instantiatedBuffEffect, GDSync.GetClientID());
+                }
+                else
+                {
+                    instantiatedBuffEffect = (TankBuffEffect)tankBuffEffect.Instantiate();
+                }
 
                 instantiatedBuffEffect.characterThisEffectIsAttachedTo = friendlyTeamUnit;
                 instantiatedBuffEffect.flipSpite = friendlyTeamUnit.movementSpeed >= 0 ? false : true;
@@ -216,7 +299,11 @@ namespace Erikduss
                 instantiatedBuffEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
                 friendlyTeamUnit.ApplyTankBuffEffect(instantiatedBuffEffect.destroyTime);
-                friendlyTeamUnit.AddChild(instantiatedBuffEffect);
+
+                if (!GameManager.Instance.isMultiplayerMatch)
+                {
+                    friendlyTeamUnit.AddChild(instantiatedBuffEffect);
+                }
 
                 lastUsedVisualEffectID++;
             }
@@ -253,7 +340,18 @@ namespace Erikduss
                     if (distance > (unitOwner.detectionRange + 10)) continue; //can only heal units in range (with slight extra margin of error.
                 }
 
-                HealingEffect instantiatedHealingEffect = (HealingEffect)healingEffect.Instantiate();
+                HealingEffect instantiatedHealingEffect;
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    //we only instantiate through the host, due to it being synced either way.
+                    instantiatedHealingEffect = (HealingEffect)GDSync.MultiplayerInstantiate(healingEffect, friendlyTeamUnit);
+                    GDSync.SetGDSyncOwner(instantiatedHealingEffect, GDSync.GetClientID());
+                }
+                else
+                {
+                    instantiatedHealingEffect = (HealingEffect)healingEffect.Instantiate();
+                }
 
                 instantiatedHealingEffect.characterThisEffectIsAttachedTo = friendlyTeamUnit;
                 instantiatedHealingEffect.flipSpite = friendlyTeamUnit.movementSpeed >= 0 ? false : true;
@@ -261,7 +359,11 @@ namespace Erikduss
                 instantiatedHealingEffect.Name = unitOwner.uniqueID + "_InstantiatedStunEffect_" + lastUsedVisualEffectID;
 
                 friendlyTeamUnit.HealDamage(GameManager.massHealerHealAmount);
-                friendlyTeamUnit.AddChild(instantiatedHealingEffect);
+
+                if (!GameManager.Instance.isMultiplayerMatch)
+                {
+                    friendlyTeamUnit.AddChild(instantiatedHealingEffect);
+                }
 
                 lastUsedVisualEffectID++;
             }
@@ -271,7 +373,18 @@ namespace Erikduss
 
         public void SpawnBattlemageProjectile(BaseCharacter unitOwner)
         {
-            BattlemageAge1ProjectilePhysics instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+            BattlemageAge1ProjectilePhysics instantiatedProjectile;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedProjectile = (BattlemageAge1ProjectilePhysics)GDSync.MultiplayerInstantiate(battleMageAge1Projectile, this);
+                GDSync.SetGDSyncOwner(instantiatedProjectile, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+            }
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
             instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
@@ -288,14 +401,28 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedProjectile);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedProjectile);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnShamanProjectile(BaseCharacter unitOwner)
         {
-            ShamanAge1ProjectilePhysics instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+            ShamanAge1ProjectilePhysics instantiatedProjectile;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedProjectile = (ShamanAge1ProjectilePhysics)GDSync.MultiplayerInstantiate(shamanAge1Projectile, this);
+                GDSync.SetGDSyncOwner(instantiatedProjectile, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+            }
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
             instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
@@ -312,14 +439,28 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedProjectile);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedProjectile);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnBattlemageFireball(BaseCharacter unitOwner)
         {
-            BattlemageFireballLogic instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+            BattlemageFireballLogic instantiatedFireball;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedFireball = (BattlemageFireballLogic)GDSync.MultiplayerInstantiate(battleMageFireball, this);
+                GDSync.SetGDSyncOwner(instantiatedFireball, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+            }
 
             instantiatedFireball.fireballOwner = unitOwner.characterOwner;
             instantiatedFireball.characterThisEffectIsAttachedTo = unitOwner;
@@ -335,14 +476,28 @@ namespace Erikduss
 
             instantiatedFireball.Name = unitOwner.uniqueID + "_InstantiatedFireball_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedFireball);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedFireball);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnArchdruidRangedAttack(BaseCharacter unitOwner, IDamageable target)
         {
-            ArchdruidRangedEffect instantiatedEffect = (ArchdruidRangedEffect)archdruidRangedEffect.Instantiate();
+            ArchdruidRangedEffect instantiatedEffect;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedEffect = (ArchdruidRangedEffect)GDSync.MultiplayerInstantiate(archdruidRangedEffect, this);
+                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedEffect = (ArchdruidRangedEffect)archdruidRangedEffect.Instantiate();
+            }
 
             instantiatedEffect.characterThisEffectIsAttachedTo = unitOwner;
             instantiatedEffect.targetThatWeHit = target;
@@ -357,14 +512,28 @@ namespace Erikduss
 
             instantiatedEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedEffect);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedEffect);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnArchdruidRangedAttackImpact(BaseCharacter unitOwner, Vector2 position)
         {
-            ArchdruidRangedEffectImpact instantiatedEffect = (ArchdruidRangedEffectImpact)archdruidRangedImpact.Instantiate();
+            ArchdruidRangedEffectImpact instantiatedEffect;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedEffect = (ArchdruidRangedEffectImpact)GDSync.MultiplayerInstantiate(archdruidRangedImpact, this);
+                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedEffect = (ArchdruidRangedEffectImpact)archdruidRangedImpact.Instantiate();
+            }
 
             float addedXValue = 0;
             float addedYValue = 2f; //make sure its on the ground.
@@ -376,7 +545,10 @@ namespace Erikduss
 
             instantiatedEffect.Name = unitOwner.uniqueID + "_InstantiatedEffect_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedEffect);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedEffect);
+            }
 
             lastUsedVisualEffectID++;
         }
@@ -390,7 +562,18 @@ namespace Erikduss
 
             for (int i = 0; i < currentAmountOfMeteorsToSpawn; i++)
             {
-                IndividualMeteorLogic instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
+                IndividualMeteorLogic instantiatedMeteor;
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    //we only instantiate through the host, due to it being synced either way.
+                    instantiatedMeteor = (IndividualMeteorLogic)GDSync.MultiplayerInstantiate(meteorAbilyObjectPrefab, this);
+                    GDSync.SetGDSyncOwner(instantiatedMeteor, GDSync.GetClientID());
+                }
+                else
+                {
+                    instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
+                }
 
                 //set the meteor's velocity and decide if this is a vertical or diagonal meteor.
                 float xVelocity = (float)(GD.Randi() % (500f));
@@ -453,25 +636,53 @@ namespace Erikduss
 
                 instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
 
-                this.AddChild(instantiatedMeteor);
+                if (!GameManager.Instance.isMultiplayerMatch)
+                {
+                    this.AddChild(instantiatedMeteor);
+                }
             }
         }
 
         public void SpawnMeteorImpactAtPosition(Vector2 impactPosition, Enums.TeamOwner meteorOwner)
         {
-            MeteorImpactLogic instantiatedMeteorImpact = (MeteorImpactLogic)meteorImpactObjectPrefab.Instantiate();
+            MeteorImpactLogic instantiatedMeteorImpact;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedMeteorImpact = (MeteorImpactLogic)GDSync.MultiplayerInstantiate(meteorImpactObjectPrefab, this);
+                GDSync.SetGDSyncOwner(instantiatedMeteorImpact, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedMeteorImpact = (MeteorImpactLogic)meteorImpactObjectPrefab.Instantiate();
+            }
 
             instantiatedMeteorImpact.meteorImpactOwner = meteorOwner;
             instantiatedMeteorImpact.GlobalPosition = impactPosition;
 
-            CallDeferred("add_child", instantiatedMeteorImpact);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                CallDeferred("add_child", instantiatedMeteorImpact);
+            }
 
             //this.AddChild(instantiatedMeteorImpact);
         }
 
         public void SpawnFloatingDamageNumber(BaseCharacter unitOwner, int damageTaken, bool isHealingDamage = false)
         {
-            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+            FloatingDamageNumber instantiatedDamageNumber;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedDamageNumber = (FloatingDamageNumber)GDSync.MultiplayerInstantiate(floatingDamageNumber, this);
+                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+            }
 
             if (isHealingDamage)
             {
@@ -490,14 +701,28 @@ namespace Erikduss
 
             instantiatedDamageNumber.Name = unitOwner.uniqueID + "_InstantiatedDamageNumber_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedDamageNumber);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedDamageNumber);
+            }
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnHomeBaseFloatingDamageNumber(HomeBaseManager baseOwner, int damageTaken)
         {
-            FloatingDamageNumber instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+            FloatingDamageNumber instantiatedDamageNumber;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                //we only instantiate through the host, due to it being synced either way.
+                instantiatedDamageNumber = (FloatingDamageNumber)GDSync.MultiplayerInstantiate(floatingDamageNumber, this);
+                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientID());
+            }
+            else
+            {
+                instantiatedDamageNumber = (FloatingDamageNumber)floatingDamageNumber.Instantiate();
+            }
 
             instantiatedDamageNumber.SetHealthLabelValue(damageTaken);
 
@@ -510,7 +735,10 @@ namespace Erikduss
 
             instantiatedDamageNumber.Name = "InstantiatedBaseDamageNumber_" + lastUsedVisualEffectID;
 
-            AddChild(instantiatedDamageNumber);
+            if (!GameManager.Instance.isMultiplayerMatch)
+            {
+                AddChild(instantiatedDamageNumber);
+            }
 
             lastUsedVisualEffectID++;
         }

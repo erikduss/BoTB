@@ -226,14 +226,8 @@ namespace Erikduss
 			{
 				currencyGainAmountUpdateTimer = 0;
 
-                GD.Print("Player 1 gained: " + (currencyGainAmount * (currencyGainPercentagePlayer01 > 0 ? 1f + (currencyGainPercentagePlayer01 / 100f) : 1f)));
-                GD.Print("Player 2 gained: " + (currencyGainAmount * (currencyGainPercentagePlayer02 > 0 ? 1f + (currencyGainPercentagePlayer02 / 100f) : 1f)));
-
                 player01Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer01 > 0 ? 1f + (currencyGainPercentagePlayer01 / 100f) : 1f ));
                 player02Script.playerCurrentCurrencyAmount += (currencyGainAmount * (currencyGainPercentagePlayer02 > 0 ? 1f + (currencyGainPercentagePlayer02 / 100f) : 1f ));
-
-                GD.Print("From Host: P1: " + player01Script.playerCurrentCurrencyAmount);
-                GD.Print("From Host: P2: " + player02Script.playerCurrentCurrencyAmount);
 
                 //Update HUD
                 if (isMultiplayerMatch)
@@ -318,6 +312,11 @@ namespace Erikduss
                 {
                     //call the function on the host to spend our currency.
                     GDSync.CallFuncOn(GDSync.GetHost(), new Callable(this, "SpendNonHostClientCurrency"), [amount]);
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player02Script.playerCurrentCurrencyAmount);
+                }
+                else
+                {
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(player01Script.playerCurrentCurrencyAmount);
                 }
             }
             else
@@ -446,7 +445,9 @@ namespace Erikduss
                     ToggleGameIsPaused();
                     break;
                 case "UpdateAbilityInfo":
-                    
+
+                    GD.Print("My ability cooldown is: " + GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
+
                     //Update HUD
                     inGameHUDManager.UpdatePlayerAbilityCooldownBar(GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
                     //update empowred label

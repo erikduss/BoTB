@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3tw6bre5waap"]
+[gd_scene load_steps=28 format=3 uid="uid://b3tw6bre5waap"]
 
 [ext_resource type="Script" uid="uid://b8ovewxfxcsej" path="res://Scripts/Characters/Enforcer.cs" id="1_yi4rh"]
 [ext_resource type="Texture2D" uid="uid://nc6d5bdff63j" path="res://Assets/Characters/Enforcer/Attack/Enforcer_Age_1-Attack_Frame-1.png" id="2_gmdwq"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://nkl5tmgpf20y" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-1.png" id="15_sfkls"]
 [ext_resource type="Texture2D" uid="uid://bxuvn6k5ihwaw" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-2.png" id="16_vgig6"]
 [ext_resource type="Texture2D" uid="uid://bta01pljk4x4c" path="res://Assets/Characters/Enforcer/Walk/Enforcer_Age_1-Walk_Frame-3.png" id="17_oa8dv"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="18_1uni6"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_te2df"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_s0plx"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_2jbuc"]
@@ -131,6 +132,14 @@ sprite_frames = SubResource("SpriteFrames_s6htk")
 animation = &"Attack"
 autoplay = "Idle"
 
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("18_1uni6")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
@@ -152,3 +161,11 @@ attackDuration = 0.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("18_1uni6")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c55abin23ux74"]
+[gd_scene load_steps=4 format=3 uid="uid://c55abin23ux74"]
 
 [ext_resource type="Script" uid="uid://2oh0jyd2c77m" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/HealingEffect.cs" id="1_3swaj"]
 [ext_resource type="Texture2D" uid="uid://4rvk2ifn52qx" path="res://Assets/Characters/Mass_Healer/HealEffect/HealEffect_01.png" id="2_w63ab"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_sq00i"]
 
 [node name="HealingEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
 script = ExtResource("1_3swaj")
@@ -10,3 +11,19 @@ usedSprite = NodePath("Sprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_w63ab")
 offset = Vector2(0, 16)
+
+[node name="PropertySynchronizer" type="Node" parent="Sprite2D"]
+script = ExtResource("3_sq00i")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer2" type="Node" parent="."]
+script = ExtResource("3_sq00i")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

@@ -39,6 +39,7 @@ namespace Erikduss
 
         public override void _Process(double delta)
         {
+            //doesnt need to be checked for multiplayer stuff, we just delete.
             base._Process(delta);
 
             if (GameManager.Instance.gameIsPaused) return;
@@ -52,6 +53,7 @@ namespace Erikduss
                 if (!calledDestroy)
                 {
                     calledDestroy = true;
+
                     QueueFree();
                 }
             }

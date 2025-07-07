@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd1twqv7cyuqs"]
+[gd_scene load_steps=4 format=3 uid="uid://cd1twqv7cyuqs"]
 
 [ext_resource type="Script" uid="uid://cpykkjwiey7nm" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/TankBuffEffect.cs" id="1_pwu5h"]
 [ext_resource type="Texture2D" uid="uid://dmrgyyqrw6t1a" path="res://Assets/Characters/Tank/BuffEffect/TankBuffEffect_01.png" id="2_8c8l3"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_mracu"]
 
 [node name="TankBuffEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
 script = ExtResource("1_pwu5h")
@@ -10,3 +11,19 @@ usedSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8c8l3")
+
+[node name="PropertySynchronizer" type="Node" parent="Sprite2D"]
+script = ExtResource("3_mracu")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("3_mracu")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

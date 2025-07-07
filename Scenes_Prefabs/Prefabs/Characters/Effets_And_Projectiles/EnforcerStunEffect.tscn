@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2ggu63c5hhoj"]
+[gd_scene load_steps=4 format=3 uid="uid://b2ggu63c5hhoj"]
 
 [ext_resource type="Script" uid="uid://dupxbludhvgy" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/EnforcerStunEffect.cs" id="1_dc0rx"]
 [ext_resource type="Texture2D" uid="uid://bmh8k4rc87qt8" path="res://Assets/Characters/Enforcer/StunEffect/EnforcerStunEffect_01.png" id="2_qsctb"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_okmi8"]
 
 [node name="EnforcerStunEffect" type="Node2D" node_paths=PackedStringArray("usedSprite")]
 script = ExtResource("1_dc0rx")
@@ -10,3 +11,19 @@ usedSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qsctb")
+
+[node name="PropertySynchronizer" type="Node" parent="Sprite2D"]
+script = ExtResource("3_okmi8")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer2" type="Node" parent="."]
+script = ExtResource("3_okmi8")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

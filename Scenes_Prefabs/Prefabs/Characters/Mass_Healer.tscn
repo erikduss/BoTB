@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cuo3x0iddpsrk"]
+[gd_scene load_steps=29 format=3 uid="uid://cuo3x0iddpsrk"]
 
 [ext_resource type="Script" uid="uid://ifc4l70hg747" path="res://Scripts/Characters/Mass_Healer.cs" id="1_sggt1"]
 [ext_resource type="Texture2D" uid="uid://dpf1ft2tf2ahu" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-1.png" id="2_wbyp6"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dwtjfja64evif" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-1.png" id="15_ekr2u"]
 [ext_resource type="Texture2D" uid="uid://cx03m2i5uxlmj" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-2.png" id="16_2ooxs"]
 [ext_resource type="Texture2D" uid="uid://2km8b8nqaghr" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-3.png" id="17_36vrw"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="19_ldjog"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t4uf8"]
 animations = [{
@@ -132,7 +133,16 @@ initialStartingState = NodePath("StateMachine_States/IdleState")
 
 [node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t4uf8")
-animation = &"Death"
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("19_ldjog")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
 
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -154,3 +164,11 @@ script = ExtResource("8_ocdob")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("19_ldjog")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bugfy5ssl180s"]
+[gd_scene load_steps=5 format=3 uid="uid://bugfy5ssl180s"]
 
 [ext_resource type="Script" uid="uid://b7feh12of88ae" path="res://Scripts/Spawnable_Objects/FloatingDamageNumber.cs" id="1_c8eor"]
 [ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="1_ftf5v"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_bappt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mv5me"]
 font_size = 18
@@ -39,3 +40,19 @@ text = "-10"
 label_settings = SubResource("LabelSettings_mv5me")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PropertySynchronizer" type="Node" parent="TextureRect/DamageNumber"]
+script = ExtResource("3_bappt")
+node_path = NodePath("..")
+properties = PackedStringArray("text")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("3_bappt")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

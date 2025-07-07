@@ -66,6 +66,16 @@ namespace Erikduss
         public void SyncCurrency()
         {
             GDSync.SyncVar(this, "playerCurrentCurrencyAmount");
+
+            GDSync.SyncVar(this, "playerAbilityCurrentCooldown");
+
+            GDSync.SyncVar(this, "playerCurrentPowerUpProgressAmount");
+
+            GDSync.SyncVar(this, "playerCurrentPowerUpRerollsAmount");
+
+            GDSync.SyncVar(this, "playerCurrentAmountOfPowerUpsOwed");
+
+            GDSync.SyncVar(this, "hasUnlockedPowerUpCurrently");
         }
 	}
 }

@@ -125,6 +125,8 @@ namespace Erikduss
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
+            GDSync.ExposeFunction(new Callable(this, "DestroyOnMultiplayerClient"));
+
             if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
 
             if (GameManager.Instance.isHostOfMultiplayerMatch && GameManager.Instance.isMultiplayerMatch)
@@ -227,6 +229,14 @@ namespace Erikduss
             _Ready();
         }
 
+        //for some reason, without variables, this throws an error. We dont need any, so we give it a random one.
+        public void DestroyOnMultiplayerClient(bool randombool)
+        {
+            GD.Print("Random bool: " + randombool);
+
+            QueueFree();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if(clearTargetOnTheseUnits.Count > 0)
@@ -273,6 +283,9 @@ namespace Erikduss
 
                 if(deathTimer >= deathTimerDuration)
                 {
+                    int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                    GDSync.CallFuncOn(otherClient, new Callable(this, "DestroyOnMultiplayerClient"), [true]);
+
                     QueueFree();
                 }
                 else

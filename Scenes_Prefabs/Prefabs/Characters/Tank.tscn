@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5cheo8ebeacq"]
+[gd_scene load_steps=12 format=3 uid="uid://c5cheo8ebeacq"]
 
 [ext_resource type="Script" uid="uid://xg8g8i2utlbe" path="res://Scripts/Characters/Tank.cs" id="1_s7j8i"]
 [ext_resource type="SpriteFrames" uid="uid://cm5bawlsnyig" path="res://Assets/Animation_SpriteFrames/Tank.tres" id="2_qgsqo"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_j7qmu"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_sruqt"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_kj2t4"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_w8qwd"]
@@ -45,6 +46,14 @@ sprite_frames = ExtResource("2_qgsqo")
 animation = &"Attack"
 autoplay = "Idle"
 
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("3_j7qmu")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
@@ -66,3 +75,11 @@ attackDuration = 0.5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("3_j7qmu")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

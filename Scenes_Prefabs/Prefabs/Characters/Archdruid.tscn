@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy1ojd3ybmach"]
+[gd_scene load_steps=13 format=3 uid="uid://dy1ojd3ybmach"]
 
 [ext_resource type="Script" uid="uid://b3nicrwtg42tn" path="res://Scripts/Characters/Archdruid.cs" id="1_c5lht"]
 [ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Archdruid.tres" id="2_0sdww"]
 [ext_resource type="SpriteFrames" uid="uid://c45m8u8gsn3xe" path="res://Assets/Animation_SpriteFrames/Archdruid_Transformed.tres" id="3_4veot"]
+[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_reo3g"]
 [ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="22_5axaf"]
 [ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="23_rot0s"]
 [ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="24_770nm"]
@@ -49,6 +50,14 @@ sprite_frames = ExtResource("2_0sdww")
 animation = &"Attack"
 autoplay = "Idle"
 
+[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+script = ExtResource("4_reo3g")
+node_path = NodePath("..")
+properties = PackedStringArray("flip_h", "animation", "frame")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+
 [node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_7gtr4")
@@ -70,3 +79,11 @@ attackDuration = 0.7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
+
+[node name="PropertySynchronizer" type="Node" parent="."]
+script = ExtResource("4_reo3g")
+node_path = NodePath("..")
+properties = PackedStringArray("global_position")
+interpolated = false
+interpolation_speed = 1.0
+metadata/_custom_type_script = "uid://dp5f7tjsyrske"

@@ -10,6 +10,12 @@ namespace Erikduss
         bool processedDeathEvent = false;
         public override void _Ready()
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                base._Ready();
+                return;
+            }
+
             //Load Unit Stats
 
             UnitSettingsConfig loadedUnitSettings;
