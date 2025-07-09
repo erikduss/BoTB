@@ -162,6 +162,12 @@ namespace Erikduss
                 player02Script.playerCurrentPowerUpRerollsAmount = 0;
                 player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
                 player02Script.hasUnlockedPowerUpCurrently = false;
+
+                GD.Print("P1 has: " + player01Script.playerAbilityCurrentCooldown);
+                GD.Print("P2 has: " + player02Script.playerAbilityCurrentCooldown);
+
+                player01Script.SyncCurrency();
+                player02Script.SyncCurrency();
             }
 
             if (isMultiplayerMatch)
@@ -169,7 +175,7 @@ namespace Erikduss
                 if (isHostOfMultiplayerMatch)
                 {
                     //this will call it for all clients
-                    GDSync.CreateSyncedEvent("UpdateCurrencies");
+                    GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
                 }
             }
             else
@@ -221,6 +227,8 @@ namespace Erikduss
             //if this is a multiplayer game and we are not the host, we dont execute any code below this.
             if (isMultiplayerMatch && !isHostOfMultiplayerMatch) return;
 
+            bool updatePlayerHudMultiplayer = false;
+
 			//Timer for giving the player currency
 			if(currencyGainAmountUpdateTimer > currencyGainRate)
 			{
@@ -235,8 +243,8 @@ namespace Erikduss
                     player01Script.SyncCurrency();
                     player02Script.SyncCurrency();
 
-                    //this will call it for all clients
-                    GDSync.CreateSyncedEvent("UpdateCurrencies");
+                    //We do the call at the end of the update loop to make sure it's not called multiple times to optimize internet data usage.
+                    updatePlayerHudMultiplayer = true; 
                 }
                 else
                 {
@@ -260,8 +268,8 @@ namespace Erikduss
 
                 if (isMultiplayerMatch)
                 {
-                    //this will call it for all clients
-                    GDSync.CreateSyncedEvent("UpdateAbilityInfo");
+                    //We do the call at the end of the update loop to make sure it's not called multiple times to optimize internet data usage.
+                    updatePlayerHudMultiplayer = true;
                 }
                 else
                 {
@@ -274,6 +282,13 @@ namespace Erikduss
             else
             {
                 playerAbilityUpdateTimer += (float)delta;
+            }
+
+            if(isMultiplayerMatch && updatePlayerHudMultiplayer)
+            {
+                //this will call it for all clients
+                GD.Print("Send update event!");
+                GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
             }
         }
 
@@ -335,7 +350,7 @@ namespace Erikduss
             player02Script.playerCurrentCurrencyAmount -= amount;
 
             //this will call it for all clients
-            GDSync.CreateSyncedEvent("UpdateCurrencies");
+            GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
         }
 
         public void ProcessSpawnRequestPlayer2(int unitType)
@@ -353,7 +368,7 @@ namespace Erikduss
             if (isMultiplayerMatch)
             {
                 //this will call it for all clients
-                GDSync.CreateSyncedEvent("UpdateAbilityInfo");
+                GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
             }
             else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
@@ -413,9 +428,13 @@ namespace Erikduss
 
             playerToChangePowerUpProgressFor.playerCurrentPowerUpProgressAmount = newPowerUpProgress;
 
-            if (isMultiplayerMatch)
+            if (isMultiplayerMatch && isHostOfMultiplayerMatch)
             {
-                GDSync.CreateSyncedEvent("UpdatePowerUpInfo");
+                //we want to prevent double updates.
+                if(addedPowerUpProgress != GameSettingsLoader.powerUpProgressAmountIdle)
+                {
+                    GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+                }
             }
             else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
@@ -429,15 +448,23 @@ namespace Erikduss
         {
             switch (eventName)
             {
-                case "UpdateCurrencies":
-                    //AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
-                    //AudioManager.Instance.ClearAudioPlayers();
+                case "SyncUpdatePlayerHud":
+                    //Update Currency
 
-                    float currencyAmount = isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
-                    float currencyAmountother = !isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount;
+                    GD.Print("came here at client: " + clientTeamOwner);
 
-                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(isHostOfMultiplayerMatch ? player01Script.playerCurrentCurrencyAmount : player02Script.playerCurrentCurrencyAmount);
-                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(isHostOfMultiplayerMatch ? player01Script : player02Script);
+                    inGameHUDManager.UpdatePlayerCurrencyAmountLabel(GetLocalClientPlayerScript().playerCurrentCurrencyAmount);
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(GetLocalClientPlayerScript());
+
+                    //Update Ability Info
+                    inGameHUDManager.UpdatePlayerAbilityCooldownBar(GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
+                    //update empowred label
+                    inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(clientTeamOwner);
+
+                    //Update powerups
+                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(GetLocalClientPlayerScript());
+                    inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
+
                     break;
                 case "PauseGameToggle":
                     GD.Print("Networking: Pausing Game");
@@ -446,17 +473,10 @@ namespace Erikduss
                     break;
                 case "UpdateAbilityInfo":
 
-                    GD.Print("My ability cooldown is: " + GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
-
-                    //Update HUD
-                    inGameHUDManager.UpdatePlayerAbilityCooldownBar(GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
-                    //update empowred label
-                    inGameHUDManager.UpdatePlayerAbilityEmpowerAmount(clientTeamOwner);
+                    
                     break;
                 case "UpdatePowerupInfo":
-
-                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(GetLocalClientPlayerScript());
-                    inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
+                    
 
                     break;
             }

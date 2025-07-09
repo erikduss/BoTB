@@ -313,9 +313,7 @@ namespace Erikduss
         {
             if (currentLockedPowerUpInfo != null)
             {
-                BasePlayer player = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
-
-                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(player.playerCurrentPowerUpProgressAmount);
+                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(GameManager.Instance.GetLocalClientPlayerScript().playerCurrentPowerUpProgressAmount);
             }
         }
 

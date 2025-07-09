@@ -27,6 +27,8 @@ namespace Erikduss
         {
             base._Process(delta);
 
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             if(effectActiveTimer < effectMaxActiveTime)
             {
                 this.GlobalPosition = characterThisEffectIsAttachedTo.GlobalPosition;

@@ -53,7 +53,8 @@ autoplay = "Idle"
 [node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
 script = ExtResource("4_reo3g")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "animation", "frame")
+reliable = true
+properties = PackedStringArray("sprite_frames", "animation", "frame", "flip_h")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"

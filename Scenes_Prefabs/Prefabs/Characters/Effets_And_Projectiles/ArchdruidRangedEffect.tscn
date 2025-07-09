@@ -48,7 +48,7 @@ metadata/_custom_type_script = "uid://dp5f7tjsyrske"
 [node name="PropertySynchronizer" type="Node" parent="Line2D"]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("points")
+properties = PackedStringArray("points", "visible")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"
@@ -56,7 +56,7 @@ metadata/_custom_type_script = "uid://dp5f7tjsyrske"
 [node name="PropertySynchronizer2" type="Node" parent="."]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("global_position", "visible")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"
