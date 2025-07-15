@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
@@ -215,9 +216,26 @@ namespace Erikduss
 
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
-            GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                if (GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
 
-            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                    EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                }
+                else
+                {
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "ProcessExecuteAbilityRequestPlayer2"), [true]);
+                }
+            }
+            else
+            {
+                GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
+
+                EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+            }
+                
         }
 
         public void RefreshPowerUp(bool spendRerollToken = true)

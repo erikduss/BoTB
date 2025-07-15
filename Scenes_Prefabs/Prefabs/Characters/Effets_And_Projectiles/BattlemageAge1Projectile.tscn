@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cihveuamoo5gg"]
+[gd_scene load_steps=11 format=3 uid="uid://cihveuamoo5gg"]
 
 [ext_resource type="Script" uid="uid://d1dpwos8gy1r7" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1ProjectilePhysics.cs" id="1_8p23i"]
 [ext_resource type="Script" uid="uid://dot24guovnitm" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageAge1Projectile.cs" id="2_ic06a"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bhlvn8yv2bvdx" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_4.png" id="6_4048v"]
 [ext_resource type="Texture2D" uid="uid://4fhxf6v5y1mj" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_5.png" id="7_hodqs"]
 [ext_resource type="Texture2D" uid="uid://ch0srjrj40vty" path="res://Assets/Characters/Battlemage/Projectile/Battlemage_Age_1_ThrowingKnifeProjectile_Frame_6.png" id="8_ufr2b"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="9_mku3k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
 size = Vector2(33, 10)
@@ -69,22 +68,6 @@ rigidBody = NodePath("..")
 sprite_frames = SubResource("SpriteFrames_hkd1n")
 animation = &"TargetHit"
 autoplay = "default"
-
-[node name="PropertySynchronizer" type="Node" parent="Node2D/AnimatedSprite2D"]
-script = ExtResource("9_mku3k")
-node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "frame")
-interpolated = false
-interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
-
-[node name="PropertySynchronizer2" type="Node" parent="."]
-script = ExtResource("9_mku3k")
-node_path = NodePath("..")
-properties = PackedStringArray("global_position")
-interpolated = false
-interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
 
 [connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
 [connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

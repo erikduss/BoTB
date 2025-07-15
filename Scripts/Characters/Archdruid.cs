@@ -2,6 +2,7 @@ using Erikduss;
 using Godot;
 using System;
 using System.Collections;
+using System.Linq;
 
 namespace Erikduss
 {
@@ -23,6 +24,28 @@ namespace Erikduss
 
         public override void _Ready()
         {
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                GDSync.ExposeFunction(new Callable(this, "SetNewSpriteFrameMultiplayer"));
+
+                if (!GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    foreach (Node childNode in this.GetChildren())
+                    {
+                        if (childNode is AnimatedSprite2D)
+                        {
+                            AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
+
+                            spriteComponent.Visible = false;
+                            animatedSpritesAgeBased.Add(spriteComponent);
+                        }
+                    }
+
+                    currentAnimatedSprite = animatedSpritesAgeBased[0];
+                    currentAnimatedSprite.Visible = true;
+                }
+            }
+
             if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
             {
                 base._Ready();
@@ -73,13 +96,21 @@ namespace Erikduss
         {
             if (GameManager.Instance.gameIsPaused) return;
 
-            if (!IsDeadOrDestroyed)
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
+                if (!IsDeadOrDestroyed)
             {
                 //we need to handle transforming back
                 if (isTransforming)
                 {
                     if(tranformationTimer >= transformationDuration)
                     {
+                        if(GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
+                        {
+                            int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                            GDSync.CallFuncOn(otherClient, new Callable(this, "SetNewSpriteFrameMultiplayer"), [isTransformed]);
+                        }
+
                         ActivateTransformation();
                     }
                     else
@@ -90,6 +121,11 @@ namespace Erikduss
             }
 
             base._Process(delta);
+        }
+
+        public void SetNewSpriteFrameMultiplayer(bool isCurrentlyTransformed)
+        {
+            currentAnimatedSprite.SpriteFrames = isCurrentlyTransformed ? defaultAnimatedSprite2D : transformedAnimatedSprite2D;
         }
 
         public void ActivateTransformation()

@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "G:\\Godot\\Git\\BoTB\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\spawnable_objects\\age_ability_powers\\individualmeteorlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\spawnable_objects\\age_ability_powers\\individualmeteorlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\effectsandprojectilesspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\effectsandprojectilesspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\spawnable_objects\\age_ability_powers\\meteorimpactlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\spawnable_objects\\age_ability_powers\\meteorimpactlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\baseprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\baseprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\baseprojectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\baseprojectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\player \u0026 ai\\baseplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\player \u0026 ai\\baseplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\archdruid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\archdruid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\archdruidrangedeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,20 +55,8 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\powerups\\lockedpowerupinfotoggler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\ui_and_gui\\in-game\\in_game_hud_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\baseprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\baseprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\destroyableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\destroyableobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\tank.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,10 +79,6 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\battlemage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\archdruid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\archdruid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\shaman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\shaman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -79,16 +99,8 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\multiplayer\\multiplayermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\basecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\interfaces_and_statics\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\interfaces_and_statics\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\effectsandprojectilesspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\effectsandprojectilesspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\unitsspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,20 +111,8 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\assassinbleedingeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\shamanage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\shamanage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\tankbuffeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\tankbuffeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\baseprojectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\baseprojectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\battlemageage1projectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\gamedata\\datamanagers\\unitssettingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -239,36 +239,12 @@
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\characters\\statemachine\\idlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\spawnable_objects\\age_ability_powers\\individualmeteorlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\spawnable_objects\\age_ability_powers\\individualmeteorlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\battlemagefireballlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\battlemagefireballlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\archdruidrangedeffectimpact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\archdruidrangedeffectimpact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\warriorshockwave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\warriorshockwave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\healingeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\healingeffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\rangerage1projectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\rangerage1projectilephysics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\rangerage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\utility_and_general\\projectiles_and_effects\\rangerage1projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\spawnable_objects\\age_ability_powers\\meteorimpactlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|solutionrelative:scripts\\spawnable_objects\\age_ability_powers\\meteorimpactlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B620610-0887-457B-9971-CCE27C243BAA}|Battle Of The Bookworm.csproj|g:\\godot\\git\\botb\\scripts\\utility_and_general\\projectiles_and_effects\\enforcerstuneffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -286,7 +262,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -303,7 +279,99 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 3,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\GameManager.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
+              "RelativeToolTip": "Scripts\\Utility_And_General\\GameManager.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAADgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T12:31:43.885Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EffectsAndProjectilesSpawner.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
+              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
+              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
+              "ViewState": "AgIAAFQCAAAAAAAAAAAAAJQCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T14:28:19.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IndividualMeteorLogic.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
+              "RelativeDocumentMoniker": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
+              "RelativeToolTip": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T13:21:44.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "In_Game_HUD_Manager.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
+              "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
+              "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAAAOoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-22T12:09:29.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MeteorImpactLogic.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
+              "RelativeDocumentMoniker": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
+              "RelativeToolTip": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T09:58:38.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BattlemageAge1Projectile.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
+              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
+              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T12:14:32.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BaseProjectile.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
+              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
+              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAFoAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T12:08:02.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "MultiplayerManager.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Multiplayer\\MultiplayerManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Multiplayer\\MultiplayerManager.cs",
@@ -311,51 +379,63 @@
               "RelativeToolTip": "Scripts\\Multiplayer\\MultiplayerManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAMEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T09:53:36.962Z",
-              "IsPinned": true
+              "WhenOpened": "2025-06-04T09:53:36.962Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\GameManager.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\GameManager.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\GameManager.cs",
-              "ViewState": "AgIAAJABAAAAAAAAAAAQwLEBAABYAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "BaseProjectilePhysics.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
+              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
+              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T12:31:43.885Z",
+              "WhenOpened": "2025-02-12T12:07:33.674Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
+              "Title": "BaseCharacter.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\BaseCharacter.cs",
+              "RelativeDocumentMoniker": "Scripts\\Characters\\BaseCharacter.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\BaseCharacter.cs",
+              "RelativeToolTip": "Scripts\\Characters\\BaseCharacter.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAAAJsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T13:21:45.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "BasePlayer.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Player \u0026 AI\\BasePlayer.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Player \u0026 AI\\BasePlayer.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Player \u0026 AI\\BasePlayer.cs",
               "RelativeToolTip": "Scripts\\Utility_And_General\\Player \u0026 AI\\BasePlayer.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAAACkAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAuwCgAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T12:11:01.392Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LockedPowerUpInfoToggler.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
-              "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
-              "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "Archdruid.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Archdruid.cs",
+              "RelativeDocumentMoniker": "Scripts\\Characters\\Archdruid.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Archdruid.cs",
+              "RelativeToolTip": "Scripts\\Characters\\Archdruid.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAAAH4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-18T12:48:07.663Z",
+              "WhenOpened": "2025-03-03T14:15:07.003Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "ArchdruidRangedEffect.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\ArchdruidRangedEffect.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\ArchdruidRangedEffect.cs",
@@ -363,38 +443,23 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\ArchdruidRangedEffect.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAAAB0AAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T13:46:52.533Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-13T13:46:52.533Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "In_Game_HUD_Manager.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
-              "ViewState": "AgIAABsBAAAAAAAAAAAIwDsBAABDAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "LockedPowerUpInfoToggler.cs",
+              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
+              "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
+              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
+              "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\PowerUps\\LockedPowerUpInfoToggler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T12:09:29.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-18T12:48:07.663Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BaseProjectile.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectile.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T12:08:02.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "DestroyableObject.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\DestroyableObject.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\DestroyableObject.cs",
@@ -406,19 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BattlemageAge1Projectile.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1Projectile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T12:14:32.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "Tank.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Tank.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Tank.cs",
@@ -430,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "Ranger.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Ranger.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Ranger.cs",
@@ -442,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "Mass_Healer.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Mass_Healer.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Mass_Healer.cs",
@@ -454,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "Enforcer.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Enforcer.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Enforcer.cs",
@@ -466,7 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Battlemage.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Battlemage.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Battlemage.cs",
@@ -478,19 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Archdruid.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Archdruid.cs",
-              "RelativeDocumentMoniker": "Scripts\\Characters\\Archdruid.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Archdruid.cs",
-              "RelativeToolTip": "Scripts\\Characters\\Archdruid.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T14:15:07.003Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "Shaman.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Shaman.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Shaman.cs",
@@ -502,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Assassin.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\Assassin.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\Assassin.cs",
@@ -514,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "SimpleSoldier.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\SimpleSoldier.cs",
               "RelativeDocumentMoniker": "Scripts\\Characters\\SimpleSoldier.cs",
@@ -526,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "FloatingDamageNumber.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\FloatingDamageNumber.cs",
               "RelativeDocumentMoniker": "Scripts\\Spawnable_Objects\\FloatingDamageNumber.cs",
@@ -538,19 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "BaseCharacter.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\BaseCharacter.cs",
-              "RelativeDocumentMoniker": "Scripts\\Characters\\BaseCharacter.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Characters\\BaseCharacter.cs",
-              "RelativeToolTip": "Scripts\\Characters\\BaseCharacter.cs",
-              "ViewState": "AgIAAA8BAAAAAAAAAAAAAB4BAABtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T13:21:45.283Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "IDamageable.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Interfaces_And_Statics\\IDamageable.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Interfaces_And_Statics\\IDamageable.cs",
@@ -562,19 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "EffectsAndProjectilesSpawner.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\EffectsAndProjectilesSpawner.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAD4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T14:28:19.747Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "UnitsSpawner.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\UnitsSpawner.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\UnitsSpawner.cs",
@@ -586,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "AssassinBleedingEffect.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\AssassinBleedingEffect.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\AssassinBleedingEffect.cs",
@@ -598,19 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ShamanAge1Projectile.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\ShamanAge1Projectile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\ShamanAge1Projectile.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\ShamanAge1Projectile.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\ShamanAge1Projectile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T09:36:18.747Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "TankBuffEffect.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\TankBuffEffect.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\TankBuffEffect.cs",
@@ -619,30 +624,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T12:32:08.816Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BaseProjectilePhysics.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BaseProjectilePhysics.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwB8AAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T12:07:33.674Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "BattlemageAge1ProjectilePhysics.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1ProjectilePhysics.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1ProjectilePhysics.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1ProjectilePhysics.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageAge1ProjectilePhysics.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T12:14:45.551Z"
             },
             {
               "$type": "Document",
@@ -1007,30 +988,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 59,
-              "Title": "IndividualMeteorLogic.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
-              "RelativeDocumentMoniker": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
-              "RelativeToolTip": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\IndividualMeteorLogic.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwGQAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-05T13:21:44.089Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "BattlemageFireballLogic.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageFireballLogic.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageFireballLogic.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageFireballLogic.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\BattlemageFireballLogic.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAADgv1AAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T12:35:09.367Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
               "Title": "ArchdruidRangedEffectImpact.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\ArchdruidRangedEffectImpact.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\ArchdruidRangedEffectImpact.cs",
@@ -1042,19 +999,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "WarriorShockwave.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\WarriorShockwave.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\WarriorShockwave.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\WarriorShockwave.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\WarriorShockwave.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T12:32:54.893Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 60,
               "Title": "HealingEffect.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\HealingEffect.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\HealingEffect.cs",
@@ -1066,43 +1011,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "RangerAge1ProjectilePhysics.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1ProjectilePhysics.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1ProjectilePhysics.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1ProjectilePhysics.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1ProjectilePhysics.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T10:23:53.346Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "RangerAge1Projectile.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1Projectile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1Projectile.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1Projectile.cs",
-              "RelativeToolTip": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\RangerAge1Projectile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T10:24:03.566Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "MeteorImpactLogic.cs",
-              "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
-              "RelativeDocumentMoniker": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
-              "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
-              "RelativeToolTip": "Scripts\\Spawnable_Objects\\Age_Ability_Powers\\MeteorImpactLogic.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAowB4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T09:58:38.978Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 61,
               "Title": "EnforcerStunEffect.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Utility_And_General\\Projectiles_And_Effects\\EnforcerStunEffect.cs",
               "RelativeDocumentMoniker": "Scripts\\Utility_And_General\\Projectiles_And_Effects\\EnforcerStunEffect.cs",
@@ -1114,7 +1023,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 62,
               "Title": "TileSpriteRandomizer.cs",
               "DocumentMoniker": "G:\\Godot\\Git\\BoTB\\Scripts\\Environment\\TileSpriteRandomizer.cs",
               "RelativeDocumentMoniker": "Scripts\\Environment\\TileSpriteRandomizer.cs",

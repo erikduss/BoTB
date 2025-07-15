@@ -54,7 +54,7 @@ namespace Erikduss
 
         #region Ability Variables
 
-        public int playerAbilityCooldown = 180; //seconds
+        public int playerAbilityCooldown = 8; //seconds 180
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -95,7 +95,9 @@ namespace Erikduss
                 GDSync.SyncedEventTriggered += Synced_Event_Triggered;
 
                 GDSync.ExposeFunction(new Callable(this, "SpendNonHostClientCurrency"));
-                GDSync.ExposeFunction(new Callable(this, "ProcessSpawnRequestPlayer2"));
+                GDSync.ExposeFunction(new Callable(this, "ProcessSpawnRequestPlayer2")); 
+                GDSync.ExposeFunction(new Callable(this, "ProcessExecuteAbilityRequestPlayer2"));
+
 
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
                 {
@@ -155,6 +157,7 @@ namespace Erikduss
                 player01Script.playerCurrentPowerUpRerollsAmount = 0;
                 player01Script.playerCurrentAmountOfPowerUpsOwed = 0;
                 player01Script.hasUnlockedPowerUpCurrently = false;
+                player01Script.playerTeam = TeamOwner.TEAM_01;
 
                 player02Script.playerCurrentCurrencyAmount = startingCurrency;
                 player02Script.playerAbilityCurrentCooldown = playerAbilityCooldown;
@@ -162,6 +165,7 @@ namespace Erikduss
                 player02Script.playerCurrentPowerUpRerollsAmount = 0;
                 player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
                 player02Script.hasUnlockedPowerUpCurrently = false;
+                player02Script.playerTeam = TeamOwner.TEAM_02;
 
                 GD.Print("P1 has: " + player01Script.playerAbilityCurrentCooldown);
                 GD.Print("P2 has: " + player02Script.playerAbilityCurrentCooldown);
@@ -186,6 +190,8 @@ namespace Erikduss
             }
 
             AudioManager.Instance.CallDeferred("GenerateAudioStreamPlayers", (Node2D)cameraScript);
+
+            EffectsAndProjectilesSpawner.Instance.ExposeMultiplayerFunctions();
 
             //The ability bar isnt passed yet at this time
             //inGameHUDManager.UpdatePlayerAbilityCooldownBar(playerAbilityCurrentCooldown);
@@ -376,6 +382,15 @@ namespace Erikduss
             }
         }
 
+        public void ProcessExecuteAbilityRequestPlayer2(bool randomBool)
+        {
+            GD.Print("received ability execution request");
+
+            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(TeamOwner.TEAM_02);
+
+            ResetPlayerAbilityCooldown(TeamOwner.TEAM_02);
+        }
+
         public void EndCurrentGame()
         {
             if (!gameIsFinished)
@@ -450,8 +465,6 @@ namespace Erikduss
             {
                 case "SyncUpdatePlayerHud":
                     //Update Currency
-
-                    GD.Print("came here at client: " + clientTeamOwner);
 
                     inGameHUDManager.UpdatePlayerCurrencyAmountLabel(GetLocalClientPlayerScript().playerCurrentCurrencyAmount);
                     inGameHUDManager.UpdatePlayerPowerUPRerollAmount(GetLocalClientPlayerScript());

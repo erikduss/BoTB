@@ -38,6 +38,8 @@ namespace Erikduss
 
         public void OnCollisionEnter(Node2D body)
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             int amountOfAliveUnitsOfEnemyTeam;
 
             if (fireballOwner == Enums.TeamOwner.TEAM_01)

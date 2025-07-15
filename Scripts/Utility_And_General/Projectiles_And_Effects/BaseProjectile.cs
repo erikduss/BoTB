@@ -8,6 +8,7 @@ namespace Erikduss
         [Export] public BaseProjectilePhysics rigidBody;
 
         public BaseCharacter projectileOwnerChar;
+        public ulong projectileOwnerInstanceID;
         public Enums.TeamOwner projectileOwner = Enums.TeamOwner.TEAM_01;
 
         protected bool dealtDamage = false;
@@ -28,8 +29,6 @@ namespace Erikduss
 
         public override void _PhysicsProcess(double delta)
         {
-            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
-
             if (GameManager.Instance.gameIsPaused) return;
 
             base._PhysicsProcess(delta);
@@ -53,10 +52,8 @@ namespace Erikduss
 
         public virtual void OnCollisionEnter(Node2D body)
         {
-            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
-
             //we shouldnt hit ourselves, this can happen if we get this call too quickly before we set our collisionmasks and stuff.
-            if (body.Name == projectileOwnerChar.Name) return;
+            if (body.GetInstanceId() == projectileOwnerInstanceID) return;
 
             if(body == null) return;
             if (!body.IsInsideTree()) return;
@@ -67,10 +64,41 @@ namespace Erikduss
 
             if (dealtDamage) return;
 
+            if(GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                dealtDamage = true;
+
+                //we check if we hit the enemy base, if we did we need to instant destroy the projectile.
+                if (projectileOwner == Enums.TeamOwner.TEAM_01)
+                {
+                    if (body.GetInstanceId() == GameManager.Instance.team02HomeBase.StaticBody.GetInstanceId())
+                    {
+                        DestroyObject();
+                        destroyTimer = destroyTime;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.StaticBody.GetInstanceId())
+                    {
+                        DestroyObject();
+                        destroyTimer = destroyTime;
+                        return;
+                    }
+                }
+
+                //we need to always return cus we are not the host
+                return;
+            }
+
             if (projectileOwnerChar.CurrentTarget != null && body.GetInstanceId() == projectileOwnerChar.CurrentTarget.GetInstanceId() && !projectileOwnerChar.IsDeadOrDestroyed)
             {
                 dealtDamage = true;
-                projectileOwnerChar.DealDamage();
+                if (GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    projectileOwnerChar.DealDamage();
+                }
             }
             else
             {
@@ -80,7 +108,10 @@ namespace Erikduss
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
-                        projectileOwnerChar.DealDamage();
+                        if (GameManager.Instance.isHostOfMultiplayerMatch)
+                        {
+                            projectileOwnerChar.DealDamage();
+                        }
                         DestroyObject();
                         destroyTimer = destroyTime;
                         return;
@@ -92,7 +123,10 @@ namespace Erikduss
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
-                        projectileOwnerChar.DealDamage();
+                        if (GameManager.Instance.isHostOfMultiplayerMatch)
+                        {
+                            projectileOwnerChar.DealDamage();
+                        }
                         DestroyObject();
                         destroyTimer = destroyTime;
                         return;
@@ -108,7 +142,10 @@ namespace Erikduss
 
                     dealtDamage = true;
                     projectileOwnerChar.CurrentTarget = enemyChar;
-                    projectileOwnerChar.DealDamage();
+                    if (GameManager.Instance.isHostOfMultiplayerMatch)
+                    {
+                        projectileOwnerChar.DealDamage();
+                    }
                 }
                 catch
                 {

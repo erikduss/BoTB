@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using static Godot.TextServer;
 using static System.Net.Mime.MediaTypeNames;
@@ -63,6 +64,20 @@ namespace Erikduss
             }
         }
 
+        public void ExposeMultiplayerFunctions()
+        {
+            //expose multiplayer functions.
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientWarriorShockwave"));
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientRangerProjectile"));
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientBattlemageProjectile"));
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientShamanProjectile")); 
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientBattlemageFireball"));
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientMeteorsAgeAbilityProjectiles"));
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -80,6 +95,17 @@ namespace Erikduss
         {
             WarriorShockwave instantiatedShockwave;
 
+            int owner = unitOwner.characterOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+
+            int otherClientID = 0;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+            }
+            
+
+            /*
             if (GameManager.Instance.isMultiplayerMatch)
             {
                 //we only instantiate through the host, due to it being synced either way.
@@ -90,22 +116,29 @@ namespace Erikduss
             {
                 instantiatedShockwave = (WarriorShockwave)warriorAttackVisualEffect.Instantiate();
             }
+            */
 
             float offSetX = 60f * xMultiplier;
             float addedXValue = unitOwner.movementSpeed >= 0 ? offSetX : -offSetX;
             float addedYValue = 2f; //make sure its on the ground.
 
             Vector2 fixedPosition = new Vector2(unitOwner.GlobalPosition.X + addedXValue, unitOwner.GlobalPosition.Y + addedYValue);
+            
+            //spawn the shockwave
+            instantiatedShockwave = (WarriorShockwave)warriorAttackVisualEffect.Instantiate();
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientWarriorShockwave"), [owner, fixedPosition]);
+            }
+
             instantiatedShockwave.GlobalPosition = fixedPosition;
 
             instantiatedShockwave.flipSpite = unitOwner.movementSpeed >= 0 ? false : true;
 
             instantiatedShockwave.Name = unitOwner.uniqueID + "_InstantiatedShockwave_" + lastUsedVisualEffectID;
 
-            if (!GameManager.Instance.isMultiplayerMatch)
-            {
-                AddChild(instantiatedShockwave);
-            }
+            AddChild(instantiatedShockwave);
 
             lastUsedVisualEffectID++;
         }
@@ -114,6 +147,19 @@ namespace Erikduss
         {
             RangerAge1ProjectilePhysics instantiatedProjectile;
 
+            instantiatedProjectile = (RangerAge1ProjectilePhysics)rangerAge1Projectile.Instantiate();
+
+            int owner = unitOwner.characterOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+
+            int otherClientID = 0;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientRangerProjectile"), [owner, unitOwner.GlobalPosition, unitOwner.GetInstanceId()]);
+            }
+
+            /*
             if (GameManager.Instance.isMultiplayerMatch)
             {
                 //we only instantiate through the host, due to it being synced either way.
@@ -124,6 +170,7 @@ namespace Erikduss
             {
                 instantiatedProjectile = (RangerAge1ProjectilePhysics)rangerAge1Projectile.Instantiate();
             }
+            */
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
             instantiatedProjectile.attachedProjectileScript.SetNewOwner(unitOwner.characterOwner);
@@ -140,16 +187,22 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
+            AddChild(instantiatedProjectile);
+
+            /*
             if (!GameManager.Instance.isMultiplayerMatch)
             {
                 AddChild(instantiatedProjectile);
             }
+            */
 
             lastUsedVisualEffectID++;
         }
 
         public void SpawnAssassinBleedingEffect(BaseCharacter unitOwner)
         {
+            //this effect needs to move with a character, meaning that in multiplayer the client doesnt know the spawned units
+            //This is handled through the host, so we still need to multiplayer instantiate them.
             AssassinBleedingEffect instantiatedBleedingEffect;
 
             if (GameManager.Instance.isMultiplayerMatch)
@@ -375,15 +428,16 @@ namespace Erikduss
         {
             BattlemageAge1ProjectilePhysics instantiatedProjectile;
 
+            instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+
+            int owner = unitOwner.characterOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+
+            int otherClientID = 0;
+
             if (GameManager.Instance.isMultiplayerMatch)
             {
-                //we only instantiate through the host, due to it being synced either way.
-                instantiatedProjectile = (BattlemageAge1ProjectilePhysics)GDSync.MultiplayerInstantiate(battleMageAge1Projectile, this);
-                GDSync.SetGDSyncOwner(instantiatedProjectile, GDSync.GetClientID());
-            }
-            else
-            {
-                instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+                otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientBattlemageProjectile"), [owner, unitOwner.GlobalPosition, unitOwner.GetInstanceId()]);
             }
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
@@ -401,10 +455,7 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
-            if (!GameManager.Instance.isMultiplayerMatch)
-            {
-                AddChild(instantiatedProjectile);
-            }
+            AddChild(instantiatedProjectile);
 
             lastUsedVisualEffectID++;
         }
@@ -413,15 +464,16 @@ namespace Erikduss
         {
             ShamanAge1ProjectilePhysics instantiatedProjectile;
 
+            instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+
+            int owner = unitOwner.characterOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+
+            int otherClientID = 0;
+
             if (GameManager.Instance.isMultiplayerMatch)
             {
-                //we only instantiate through the host, due to it being synced either way.
-                instantiatedProjectile = (ShamanAge1ProjectilePhysics)GDSync.MultiplayerInstantiate(shamanAge1Projectile, this);
-                GDSync.SetGDSyncOwner(instantiatedProjectile, GDSync.GetClientID());
-            }
-            else
-            {
-                instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+                otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientShamanProjectile"), [owner, unitOwner.GlobalPosition, unitOwner.GetInstanceId()]);
             }
 
             instantiatedProjectile.attachedProjectileScript.projectileOwner = unitOwner.characterOwner;
@@ -439,10 +491,7 @@ namespace Erikduss
 
             instantiatedProjectile.Name = unitOwner.uniqueID + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
 
-            if (!GameManager.Instance.isMultiplayerMatch)
-            {
-                AddChild(instantiatedProjectile);
-            }
+            AddChild(instantiatedProjectile);
 
             lastUsedVisualEffectID++;
         }
@@ -451,15 +500,16 @@ namespace Erikduss
         {
             BattlemageFireballLogic instantiatedFireball;
 
+            instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+
+            int owner = unitOwner.characterOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+
+            int otherClientID = 0;
+
             if (GameManager.Instance.isMultiplayerMatch)
             {
-                //we only instantiate through the host, due to it being synced either way.
-                instantiatedFireball = (BattlemageFireballLogic)GDSync.MultiplayerInstantiate(battleMageFireball, this);
-                GDSync.SetGDSyncOwner(instantiatedFireball, GDSync.GetClientID());
-            }
-            else
-            {
-                instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+                otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientBattlemageFireball"), [owner, unitOwner.GlobalPosition]);
             }
 
             instantiatedFireball.fireballOwner = unitOwner.characterOwner;
@@ -476,10 +526,7 @@ namespace Erikduss
 
             instantiatedFireball.Name = unitOwner.uniqueID + "_InstantiatedFireball_" + lastUsedVisualEffectID;
 
-            if (!GameManager.Instance.isMultiplayerMatch)
-            {
-                AddChild(instantiatedFireball);
-            }
+            AddChild(instantiatedFireball);
 
             lastUsedVisualEffectID++;
         }
@@ -564,16 +611,11 @@ namespace Erikduss
             {
                 IndividualMeteorLogic instantiatedMeteor;
 
-                if (GameManager.Instance.isMultiplayerMatch)
-                {
-                    //we only instantiate through the host, due to it being synced either way.
-                    instantiatedMeteor = (IndividualMeteorLogic)GDSync.MultiplayerInstantiate(meteorAbilyObjectPrefab, this);
-                    GDSync.SetGDSyncOwner(instantiatedMeteor, GDSync.GetClientID());
-                }
-                else
-                {
-                    instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
-                }
+                instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
+
+                instantiatedMeteor.meteorOwner = meteorShowerOwner;
+
+                //instantiate location, velocity, etc.
 
                 //set the meteor's velocity and decide if this is a vertical or diagonal meteor.
                 float xVelocity = (float)(GD.Randi() % (500f));
@@ -585,7 +627,37 @@ namespace Erikduss
                     instantiatedMeteor.isDiagonalMeteor = true;
                 }
 
-                instantiatedMeteor.meteorOwner = meteorShowerOwner;
+                //if the meteor goes straight down, it can be between: 0 and 1920
+
+                float randXValue = (float)(GD.Randi() % (920));
+                float randYValue = (float)(GD.Randi() % (1000));
+                randYValue -= 500;
+
+                randXValue += 500f;
+
+                //GD.Print("Rand X: " + randXValue + " _ " + xVelocity);
+                float xPosMultiplier = (randYValue / 1000f);
+
+                if (xPosMultiplier < 0) xPosMultiplier = -xPosMultiplier;
+
+                xPosMultiplier += 1f;
+
+                float addedValue = xVelocity * xPosMultiplier;
+
+                randXValue -= addedValue; //this makes it so it can come from outside of the map into the map.
+
+                Vector2 spawnPosition = new Vector2(randXValue, randYValue);
+
+                instantiatedMeteor.GlobalPosition = spawnPosition;
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    int owner = meteorShowerOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                    GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientMeteorsAgeAbilityProjectiles"), [owner, spawnPosition, xVelocity]);
+                }
+
+                this.AddChild(instantiatedMeteor);
 
                 #region old spawning positions
                 //position should be between:
@@ -602,23 +674,7 @@ namespace Erikduss
                 //randXValue -= 4;
                 //float randYValue = (float)(GD.Randi() % (1000));
                 //randYValue -= 500;
-                #endregion
 
-
-                //if the meteor goes straight down, it can be between: 0 and 1920
-
-                float randXValue = (float)(GD.Randi() % (920));
-                float randYValue = (float)(GD.Randi() % (1000));
-                randYValue -= 500;
-
-                randXValue += 500f;
-
-                //GD.Print("Rand X: " + randXValue + " _ " + xVelocity);
-                float xPosMultiplier = (randYValue / 1000f);
-
-                if(xPosMultiplier < 0) xPosMultiplier = -xPosMultiplier;
-
-                xPosMultiplier += 1f;
                 //if(xPosMultiplier > 1.1f) xPosMultiplier = 1.1f;
 
                 //if(xVelocity > 0)
@@ -629,42 +685,23 @@ namespace Erikduss
                 //{
                 //    randXValue -= 768;
                 //}
-
-                float addedValue = xVelocity * xPosMultiplier;
-
-                randXValue -= addedValue; //this makes it so it can come from outside of the map into the map.
-
-                instantiatedMeteor.GlobalPosition = new Vector2(randXValue, randYValue);
-
-                if (!GameManager.Instance.isMultiplayerMatch)
-                {
-                    this.AddChild(instantiatedMeteor);
-                }
+                #endregion
             }
         }
 
         public void SpawnMeteorImpactAtPosition(Vector2 impactPosition, Enums.TeamOwner meteorOwner)
         {
+            //we dont need to multiplayer instantiate this because this does not need to move anywhere. 
+            //And multiplayer instatiation was causing issues due to the call deferred requirement.
+
             MeteorImpactLogic instantiatedMeteorImpact;
 
-            if (GameManager.Instance.isMultiplayerMatch)
-            {
-                //we only instantiate through the host, due to it being synced either way.
-                instantiatedMeteorImpact = (MeteorImpactLogic)GDSync.MultiplayerInstantiate(meteorImpactObjectPrefab, this);
-                GDSync.SetGDSyncOwner(instantiatedMeteorImpact, GDSync.GetClientID());
-            }
-            else
-            {
-                instantiatedMeteorImpact = (MeteorImpactLogic)meteorImpactObjectPrefab.Instantiate();
-            }
+            instantiatedMeteorImpact = (MeteorImpactLogic)meteorImpactObjectPrefab.Instantiate();
 
             instantiatedMeteorImpact.meteorImpactOwner = meteorOwner;
             instantiatedMeteorImpact.GlobalPosition = impactPosition;
 
-            if (!GameManager.Instance.isMultiplayerMatch)
-            {
-                CallDeferred("add_child", instantiatedMeteorImpact);
-            }
+            CallDeferred("add_child", instantiatedMeteorImpact);
 
             //this.AddChild(instantiatedMeteorImpact);
         }
@@ -742,5 +779,165 @@ namespace Erikduss
 
             lastUsedVisualEffectID++;
         }
+
+        #region Multiplayer Client Sync Functions
+        public void SpawnClientRangerProjectile(int playerTeam, Vector2 projectileSpawnPosition, ulong projectileOwnerInstanceID)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            RangerAge1ProjectilePhysics instantiatedProjectile;
+
+            instantiatedProjectile = (RangerAge1ProjectilePhysics)rangerAge1Projectile.Instantiate();
+
+            instantiatedProjectile.attachedProjectileScript.projectileOwner = projectileTeamOwner;
+            instantiatedProjectile.attachedProjectileScript.SetNewOwner(projectileTeamOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerInstanceID = projectileOwnerInstanceID;
+
+            // we dont need to set this, cus we dont do collision checks when we are not the host.
+            //instantiatedProjectile.attachedProjectileScript.projectileOwnerChar = unitOwner;
+
+            float offSetX = 30f;
+            float addedXValue = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(projectileSpawnPosition.X + addedXValue, projectileSpawnPosition.Y + addedYValue);
+            instantiatedProjectile.GlobalPosition = fixedPosition;
+
+            instantiatedProjectile.attachedProjectileScript.flipSpite = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? false : true;
+
+            instantiatedProjectile.Name = projectileTeamOwner.ToString() + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnClientWarriorShockwave(int playerTeam, Vector2 projectileSpawnPosition)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            WarriorShockwave instantiatedShockwave;
+
+            instantiatedShockwave = (WarriorShockwave)warriorAttackVisualEffect.Instantiate();
+
+            instantiatedShockwave.GlobalPosition = projectileSpawnPosition;
+
+            instantiatedShockwave.flipSpite = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? false : true;
+
+            instantiatedShockwave.Name = projectileTeamOwner.ToString() + "_InstantiatedShockwave_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedShockwave);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnClientBattlemageProjectile(int playerTeam, Vector2 projectileSpawnPosition, ulong projectileOwnerInstanceID)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            BattlemageAge1ProjectilePhysics instantiatedProjectile;
+
+            instantiatedProjectile = (BattlemageAge1ProjectilePhysics)battleMageAge1Projectile.Instantiate();
+
+            instantiatedProjectile.attachedProjectileScript.projectileOwner = projectileTeamOwner;
+            instantiatedProjectile.attachedProjectileScript.SetNewOwner(projectileTeamOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerInstanceID = projectileOwnerInstanceID;
+
+            float offSetX = 30f;
+            float addedXValue = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(projectileSpawnPosition.X + addedXValue, projectileSpawnPosition.Y + addedYValue);
+            instantiatedProjectile.GlobalPosition = fixedPosition;
+
+            instantiatedProjectile.attachedProjectileScript.flipSpite = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? false : true;
+
+            instantiatedProjectile.Name = projectileTeamOwner.ToString() + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnClientShamanProjectile(int playerTeam, Vector2 projectileSpawnPosition, ulong projectileOwnerInstanceID)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            ShamanAge1ProjectilePhysics instantiatedProjectile;
+
+            instantiatedProjectile = (ShamanAge1ProjectilePhysics)shamanAge1Projectile.Instantiate();
+
+            instantiatedProjectile.attachedProjectileScript.projectileOwner = projectileTeamOwner;
+            instantiatedProjectile.attachedProjectileScript.SetNewOwner(projectileTeamOwner);
+            instantiatedProjectile.attachedProjectileScript.projectileOwnerInstanceID = projectileOwnerInstanceID;
+
+            float offSetX = 30f;
+            float addedXValue = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(projectileSpawnPosition.X + addedXValue, projectileSpawnPosition.Y + addedYValue);
+            instantiatedProjectile.GlobalPosition = fixedPosition;
+
+            instantiatedProjectile.attachedProjectileScript.flipSpite = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? false : true;
+
+            instantiatedProjectile.Name = projectileTeamOwner.ToString() + "_InstantiatedProjectile_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedProjectile);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnClientBattlemageFireball(int playerTeam, Vector2 projectileSpawnPosition)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            BattlemageFireballLogic instantiatedFireball;
+
+            instantiatedFireball = (BattlemageFireballLogic)battleMageFireball.Instantiate();
+
+            instantiatedFireball.fireballOwner = projectileTeamOwner;
+
+            float offSetX = 90f;
+            float addedXValue = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? offSetX : -offSetX;
+            float addedYValue = 2f; //make sure its on the ground.
+
+            Vector2 fixedPosition = new Vector2(projectileSpawnPosition.X + addedXValue, projectileSpawnPosition.Y + addedYValue);
+            instantiatedFireball.GlobalPosition = fixedPosition;
+
+            instantiatedFireball.flipSpite = projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? false : true;
+
+            instantiatedFireball.Name = projectileTeamOwner.ToString() + "_InstantiatedFireball_" + lastUsedVisualEffectID;
+
+            AddChild(instantiatedFireball);
+
+            lastUsedVisualEffectID++;
+        }
+
+        public void SpawnClientMeteorsAgeAbilityProjectiles(int playerTeam, Vector2 projectileSpawnPosition, float xVelocity)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            IndividualMeteorLogic instantiatedMeteor;
+
+            instantiatedMeteor = (IndividualMeteorLogic)meteorAbilyObjectPrefab.Instantiate();
+
+            instantiatedMeteor.meteorOwner = projectileTeamOwner;
+
+            //instantiate location, velocity, etc.
+
+            //set the meteor's velocity and decide if this is a vertical or diagonal meteor.
+            instantiatedMeteor.projectileVelocity = xVelocity;
+
+            if (Mathf.Abs(xVelocity) > 150)
+            {
+                instantiatedMeteor.isDiagonalMeteor = true;
+            }
+
+            instantiatedMeteor.GlobalPosition = projectileSpawnPosition;
+
+            this.AddChild(instantiatedMeteor);
+        }
+
+        #endregion
     }
 }

@@ -19,6 +19,8 @@ namespace Erikduss
 
         public void OnCollisionEnter(Node2D body)
         {
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+
             BaseCharacter enemyChar = body.GetNode<BaseCharacter>(body.GetPath());
 
             //We should not deal damage to our own units.
