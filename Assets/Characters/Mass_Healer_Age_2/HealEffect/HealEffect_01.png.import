@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4rvk2ifn52qx"
-path="res://.godot/imported/HealEffect_01.png-3a12eec582f6c916a5819ab25a4963bd.ctex"
+path="res://.godot/imported/HealEffect_01.png-c7143a397638b3f9630deccaea00fc8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Mass_Healer/HealEffect/HealEffect_01.png"
-dest_files=["res://.godot/imported/HealEffect_01.png-3a12eec582f6c916a5819ab25a4963bd.ctex"]
+source_file="res://Assets/Characters/Mass_Healer_Age_2/HealEffect/HealEffect_01.png"
+dest_files=["res://.godot/imported/HealEffect_01.png-c7143a397638b3f9630deccaea00fc8e.ctex"]
 
 [params]
 

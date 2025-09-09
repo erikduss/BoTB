@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://duksx3b48kocn"]
+
+[ext_resource type="Texture2D" uid="uid://c4ray1b5mty01" path="res://Assets/Characters/Warrior_Age_2/Attack/Warrior_Age_2_Attack01.png" id="1_j6pac"]
+[ext_resource type="Texture2D" uid="uid://c5qhniltu2vbp" path="res://Assets/Characters/Warrior_Age_2/Attack/Warrior_Age_2_Attack02.png" id="2_dd4n6"]
+[ext_resource type="Texture2D" uid="uid://c602r1yyg87n5" path="res://Assets/Characters/Warrior_Age_2/Attack/Warrior_Age_2_Attack03.png" id="3_hgp7x"]
+[ext_resource type="Texture2D" uid="uid://der0icagus4ae" path="res://Assets/Characters/Warrior_Age_2/Attack/Warrior_Age_2_Attack04.png" id="4_88083"]
+[ext_resource type="Texture2D" uid="uid://cf0aecrndb78m" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death01.png" id="5_q2v5e"]
+[ext_resource type="Texture2D" uid="uid://cx8pjhowdxa81" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death02.png" id="6_hpoxb"]
+[ext_resource type="Texture2D" uid="uid://bl0c2t4dieg0p" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death03.png" id="7_vwtbf"]
+[ext_resource type="Texture2D" uid="uid://dyurhtwyou8mi" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death04.png" id="8_hx3av"]
+[ext_resource type="Texture2D" uid="uid://c40vtvjr20asc" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death05.png" id="9_mwy5r"]
+[ext_resource type="Texture2D" uid="uid://dfnvyws2pwq77" path="res://Assets/Characters/Warrior_Age_2/Death/Warrior_Age_2_Death06.png" id="10_ni5kc"]
+[ext_resource type="Texture2D" uid="uid://bo7adcaoaqsan" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2-Idle_Frame-1.png" id="11_g6po8"]
+[ext_resource type="Texture2D" uid="uid://dxy0opj1wp1nl" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2-Idle_Frame-2.png" id="12_7p2au"]
+[ext_resource type="Texture2D" uid="uid://c8tfjfwa0s1r7" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2-Idle_Frame-3.png" id="13_xr0ed"]
+[ext_resource type="Texture2D" uid="uid://bdmpxtu8hbqdm" path="res://Assets/Characters/Warrior_Age_2/Walk/Warrior_Age_2-Frame-1.png" id="14_hanny"]
+[ext_resource type="Texture2D" uid="uid://buvvkog1qeb4t" path="res://Assets/Characters/Warrior_Age_2/Walk/Warrior_Age_2-Frame-2.png" id="15_1vhoh"]
+[ext_resource type="Texture2D" uid="uid://tr21make2q3r" path="res://Assets/Characters/Warrior_Age_2/Walk/Warrior_Age_2-Frame-3.png" id="16_x8bf5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": ExtResource("1_j6pac")
+}, {
+"duration": 0.3,
+"texture": ExtResource("2_dd4n6")
+}, {
+"duration": 0.3,
+"texture": ExtResource("3_hgp7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_88083")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_q2v5e")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_hpoxb")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_vwtbf")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_hx3av")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_mwy5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ni5kc")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_g6po8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7p2au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xr0ed")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_hanny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1vhoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_x8bf5")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg2owbyewo0vi"
-path="res://.godot/imported/Shaman_Age01_Idle01.png-87973e02c7bd2699489d7f567012b641.ctex"
+path="res://.godot/imported/Shaman_Age01_Idle01.png-cf2b1dc5dd0a0a1f7a5eab205db41e92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Shaman/Shaman_Age01_Idle01.png"
-dest_files=["res://.godot/imported/Shaman_Age01_Idle01.png-87973e02c7bd2699489d7f567012b641.ctex"]
+source_file="res://Assets/Characters/Shaman_Age_2/Shaman_Age01_Idle01.png"
+dest_files=["res://.godot/imported/Shaman_Age01_Idle01.png-cf2b1dc5dd0a0a1f7a5eab205db41e92.ctex"]
 
 [params]
 

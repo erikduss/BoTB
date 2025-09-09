@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmrgyyqrw6t1a"
-path="res://.godot/imported/TankBuffEffect_01.png-8109e7fa124a35e9cacda6ad9bbeaadb.ctex"
+path="res://.godot/imported/TankBuffEffect_01.png-154ace93344cb4ef9b18a628a9b52037.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Tank/BuffEffect/TankBuffEffect_01.png"
-dest_files=["res://.godot/imported/TankBuffEffect_01.png-8109e7fa124a35e9cacda6ad9bbeaadb.ctex"]
+source_file="res://Assets/Characters/Tank_Age_2/BuffEffect/TankBuffEffect_01.png"
+dest_files=["res://.godot/imported/TankBuffEffect_01.png-154ace93344cb4ef9b18a628a9b52037.ctex"]
 
 [params]
 

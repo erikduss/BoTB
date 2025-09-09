@@ -23,7 +23,7 @@ namespace Erikduss
             UnitSettingsConfig loadedUnitSettings;
 
             //select the correct config file.
-            switch (currentAge)
+            switch (unitCreatedAge)
             {
                 case Enums.Ages.AGE_01:
                     loadedUnitSettings = GameSettingsLoader.Instance.unitSettingsManager.Age01_BattlemageSettingsConfig;

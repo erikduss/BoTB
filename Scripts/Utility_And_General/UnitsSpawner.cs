@@ -244,7 +244,7 @@ namespace Erikduss
 
             if (team == Enums.TeamOwner.TEAM_01)
             {
-                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.currentAge);
+                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.unitCreatedAge);
                 lastUsedUnitID++;
                 team01AliveUnitDictionary.Add(uniqueIDString, unitChar);
 
@@ -252,7 +252,7 @@ namespace Erikduss
             }
             else
             {
-                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.currentAge);
+                uniqueIDString = lastUsedUnitID + "_" + ((uint)unitChar.unitCreatedAge);
                 lastUsedUnitID++;
                 team02AliveUnitDictionary.Add(uniqueIDString, unitChar);
 
@@ -305,7 +305,7 @@ namespace Erikduss
                     instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedSimpleSoldier.characterOwner = team;
                     GD.Print("Set the owner to: " + team.ToString());
-                    instantiatedSimpleSoldier.currentAge = unitAge;
+                    instantiatedSimpleSoldier.unitCreatedAge = unitAge;
 
                     instantiatedSimpleSoldier.Name = "InstantiatedSimpleSoldier_" + lastUsedUnitID;
 
@@ -341,7 +341,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedRanger.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedRanger.characterOwner = team;
-                    instantiatedRanger.currentAge = unitAge;
+                    instantiatedRanger.unitCreatedAge = unitAge;
 
                     instantiatedRanger.Name = "InstantiatedRanger_" + lastUsedUnitID;
 
@@ -377,7 +377,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedAssassin.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedAssassin.characterOwner = team;
-                    instantiatedAssassin.currentAge = unitAge;
+                    instantiatedAssassin.unitCreatedAge = unitAge;
 
                     instantiatedAssassin.Name = "instantiatedAssassin_" + lastUsedUnitID;
 
@@ -413,7 +413,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedEnforcer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedEnforcer.characterOwner = team;
-                    instantiatedEnforcer.currentAge = unitAge;
+                    instantiatedEnforcer.unitCreatedAge = unitAge;
 
                     instantiatedEnforcer.Name = "instantiatedEnforcer_" + lastUsedUnitID;
 
@@ -449,7 +449,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedTank.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedTank.characterOwner = team;
-                    instantiatedTank.currentAge = unitAge;
+                    instantiatedTank.unitCreatedAge = unitAge;
 
                     instantiatedTank.Name = "instantiatedTank_" + lastUsedUnitID;
 
@@ -485,7 +485,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedBattlemage.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedBattlemage.characterOwner = team;
-                    instantiatedBattlemage.currentAge = unitAge;
+                    instantiatedBattlemage.unitCreatedAge = unitAge;
 
                     instantiatedBattlemage.Name = "instantiatedBattlemage_" + lastUsedUnitID;
 
@@ -521,7 +521,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedMassHealer.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedMassHealer.characterOwner = team;
-                    instantiatedMassHealer.currentAge = unitAge;
+                    instantiatedMassHealer.unitCreatedAge = unitAge;
 
                     instantiatedMassHealer.Name = "instantiatedMassHealer_" + lastUsedUnitID;
 
@@ -557,7 +557,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedShaman.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedShaman.characterOwner = team;
-                    instantiatedShaman.currentAge = unitAge;
+                    instantiatedShaman.unitCreatedAge = unitAge;
 
                     instantiatedShaman.Name = "instantiatedShaman_" + lastUsedUnitID;
 
@@ -593,7 +593,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedArchdruid.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedArchdruid.characterOwner = team;
-                    instantiatedArchdruid.currentAge = unitAge;
+                    instantiatedArchdruid.unitCreatedAge = unitAge;
 
                     instantiatedArchdruid.Name = "instantiatedArchdruid_" + lastUsedUnitID;
 
@@ -629,7 +629,7 @@ namespace Erikduss
 
                     instantiatedTrainingDummy.GlobalPosition =  new Vector2(dummyStartingXPosition + (dummyXPositionDifference * trainingDummyCurrentCount), dummyYPosition);
                     instantiatedTrainingDummy.characterOwner = team;
-                    instantiatedTrainingDummy.currentAge = unitAge;
+                    instantiatedTrainingDummy.unitCreatedAge = unitAge;
 
                     instantiatedTrainingDummy.Name = "instantiatedTrainingDummy_" + lastUsedUnitID;
 
@@ -668,7 +668,7 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedNoType.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedNoType.characterOwner = team;
-                    instantiatedNoType.currentAge = unitAge;
+                    instantiatedNoType.unitCreatedAge = unitAge;
 
                     instantiatedNoType.Name = "InstantiatedNoTyoe_" + lastUsedUnitID;
 

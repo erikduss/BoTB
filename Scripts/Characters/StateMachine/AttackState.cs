@@ -46,13 +46,13 @@ namespace Erikduss
         {
             playedAttackAnimation = true;
 
-            if (character.currentAnimatedSprite.SpriteFrames.HasAnimation(currentAttackAnimationName))
+            if (character.characterAnimatedSprite.SpriteFrames.HasAnimation(currentAttackAnimationName))
             {
-                character.currentAnimatedSprite.Play(currentAttackAnimationName);
+                character.characterAnimatedSprite.Play(currentAttackAnimationName);
             }
             else
             {
-                character.currentAnimatedSprite.Play("Attack");
+                character.characterAnimatedSprite.Play("Attack");
             }
         }
 

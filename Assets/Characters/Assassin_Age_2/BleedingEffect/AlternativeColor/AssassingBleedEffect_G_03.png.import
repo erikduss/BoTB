@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcf5hypkb4s1e"
-path="res://.godot/imported/AssassingBleedEffect_G_03.png-0b540ab34a269c81d3ffe8ea4c634a5c.ctex"
+path="res://.godot/imported/AssassingBleedEffect_G_03.png-fcd0678d865393dc47810a640a22fc9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Assassin/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_03.png"
-dest_files=["res://.godot/imported/AssassingBleedEffect_G_03.png-0b540ab34a269c81d3ffe8ea4c634a5c.ctex"]
+source_file="res://Assets/Characters/Assassin_Age_2/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_03.png"
+dest_files=["res://.godot/imported/AssassingBleedEffect_G_03.png-fcd0678d865393dc47810a640a22fc9b.ctex"]
 
 [params]
 

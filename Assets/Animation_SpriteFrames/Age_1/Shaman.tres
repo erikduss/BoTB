@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://1jiij33arghg"]
+
+[ext_resource type="Texture2D" uid="uid://dfhbw3bo82wa6" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack01.png" id="1_rgmml"]
+[ext_resource type="Texture2D" uid="uid://bhp2ef7txssf2" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack02.png" id="2_j0lx2"]
+[ext_resource type="Texture2D" uid="uid://tvclyhpu4bf1" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack03.png" id="3_nx352"]
+[ext_resource type="Texture2D" uid="uid://c1ln6nau36b7q" path="res://Assets/Characters/Shaman/Attack/Shaman_Age_1_Attack04.png" id="4_fjgxf"]
+[ext_resource type="Texture2D" uid="uid://b50g4fam57fye" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death01.png" id="5_4mw86"]
+[ext_resource type="Texture2D" uid="uid://m263lr4b6cdr" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death02.png" id="6_f2o55"]
+[ext_resource type="Texture2D" uid="uid://1qt0govf8suh" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death03.png" id="7_sh2xq"]
+[ext_resource type="Texture2D" uid="uid://do22a1xnnja2d" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death04.png" id="8_5dq2x"]
+[ext_resource type="Texture2D" uid="uid://bgsed8dlu7fuu" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death05.png" id="9_ihd0j"]
+[ext_resource type="Texture2D" uid="uid://w8ohk3mkg7hg" path="res://Assets/Characters/Shaman/Death/Shaman_Age_1_Death06.png" id="10_c68l0"]
+[ext_resource type="Texture2D" uid="uid://cugyy6k1j081i" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle01.png" id="11_vpc4u"]
+[ext_resource type="Texture2D" uid="uid://ct7w1pntjssxt" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle02.png" id="12_y1byf"]
+[ext_resource type="Texture2D" uid="uid://m86n435e0dqc" path="res://Assets/Characters/Shaman/Idle/Shaman_Age_1_Idle03.png" id="13_avhn8"]
+[ext_resource type="Texture2D" uid="uid://ve74yvo8ibkb" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking01.png" id="14_heqjt"]
+[ext_resource type="Texture2D" uid="uid://d3bxqx1v0lw8g" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking02.png" id="15_rnqdy"]
+[ext_resource type="Texture2D" uid="uid://nfe05g7q7hcq" path="res://Assets/Characters/Shaman/Walk/Shaman_Age_1_Walking03.png" id="16_eyltj"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_rgmml")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_j0lx2")
+}, {
+"duration": 0.6,
+"texture": ExtResource("3_nx352")
+}, {
+"duration": 0.6,
+"texture": ExtResource("4_fjgxf")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_4mw86")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_f2o55")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_sh2xq")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_5dq2x")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_ihd0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c68l0")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_vpc4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_y1byf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_avhn8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_heqjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rnqdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_eyltj")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

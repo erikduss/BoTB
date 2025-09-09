@@ -21,7 +21,7 @@ public partial class TrainingDummy : BaseCharacter
         movementSpeed = 0;
 
         characterOwner = Enums.TeamOwner.TEAM_02;
-        currentAge = Enums.Ages.AGE_01;
+        unitCreatedAge = Enums.Ages.AGE_01;
 
         unitType = Enums.UnitTypes.TrainingDummy;
 

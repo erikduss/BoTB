@@ -40,7 +40,7 @@ namespace Erikduss
                 if (currentDruidScript.isTransforming) return; //prevent the transformation animation from being overriden
             }
 
-            character.currentAnimatedSprite.Play("Walking");
+            character.characterAnimatedSprite.Play("Walking");
         }
 
         public override void StateExit(BaseCharacter character)
@@ -86,6 +86,7 @@ namespace Erikduss
                 {
                     if (!druid.isTransforming && !character.unitHasReachedEnemyHomeBase) //we should not transform back if we are at the home base.
                     {
+                        //there's a bug with the druid that it infinitly transforms when against another druid.
                         druid.TransformBack();
                         return;
                     }

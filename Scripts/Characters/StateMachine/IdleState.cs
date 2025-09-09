@@ -22,7 +22,7 @@ namespace Erikduss
         {
             base.StateEnter(character);
 
-            character.currentAnimatedSprite.Play("Idle");
+            character.characterAnimatedSprite.Play("Idle");
 
             if (character.CurrentTarget != null || character.unitHasReachedEnemyHomeBase)
             {

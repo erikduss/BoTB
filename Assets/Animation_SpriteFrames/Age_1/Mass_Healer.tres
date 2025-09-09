@@ -1,0 +1,93 @@
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://dony4rrjmxrg8"]
+
+[ext_resource type="Texture2D" uid="uid://dpf1ft2tf2ahu" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-1.png" id="1_akxy3"]
+[ext_resource type="Texture2D" uid="uid://bpaoebiw0sppm" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-2.png" id="2_b45dh"]
+[ext_resource type="Texture2D" uid="uid://bm3ct78c3tjhi" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-3.png" id="3_7eqoi"]
+[ext_resource type="Texture2D" uid="uid://bnkoajvxauvm1" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-4.png" id="4_52kj4"]
+[ext_resource type="Texture2D" uid="uid://byvnc6dfwj4xd" path="res://Assets/Characters/Mass_Healer/Attack/Mass_Healer_Age_1-Attack_Frame-5.png" id="5_afkw6"]
+[ext_resource type="Texture2D" uid="uid://dpkf43tilj4ho" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-1.png" id="6_2mckj"]
+[ext_resource type="Texture2D" uid="uid://dku17rk7g3hov" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-2.png" id="7_unenr"]
+[ext_resource type="Texture2D" uid="uid://dcbd13d2m1ita" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-3.png" id="8_0jksn"]
+[ext_resource type="Texture2D" uid="uid://dshno0k1x3bbx" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-4.png" id="9_oun83"]
+[ext_resource type="Texture2D" uid="uid://cc8ewji223u2a" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-5.png" id="10_3i3jq"]
+[ext_resource type="Texture2D" uid="uid://cbc6f5vc5uabk" path="res://Assets/Characters/Mass_Healer/Death/Mass_Healer_Age_1-Death_Frame-6.png" id="11_ar4jw"]
+[ext_resource type="Texture2D" uid="uid://cbbcke1bab2ra" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-1.png" id="12_enqso"]
+[ext_resource type="Texture2D" uid="uid://blqggy814jahr" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-2.png" id="13_aiyki"]
+[ext_resource type="Texture2D" uid="uid://dkcuskd2m8c8i" path="res://Assets/Characters/Mass_Healer/Idle/Mass_Healer_Age_1-Idle_Frame-3.png" id="14_cnym2"]
+[ext_resource type="Texture2D" uid="uid://dwtjfja64evif" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-1.png" id="15_wypxt"]
+[ext_resource type="Texture2D" uid="uid://cx03m2i5uxlmj" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-2.png" id="16_wg2h3"]
+[ext_resource type="Texture2D" uid="uid://2km8b8nqaghr" path="res://Assets/Characters/Mass_Healer/Walk/Mass_Healer_Age_1-Walk_Frame-3.png" id="17_i0gge"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_akxy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b45dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7eqoi")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_52kj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_afkw6")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("6_2mckj")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_unenr")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_0jksn")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_oun83")
+}, {
+"duration": 0.7,
+"texture": ExtResource("10_3i3jq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ar4jw")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_enqso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_aiyki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cnym2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_wypxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_wg2h3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_i0gge")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

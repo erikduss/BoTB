@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdxmb8lmp5fhg"
-path="res://.godot/imported/Archdruid_Age_1_RangedAttackBeam.png-b49826eef622b13c8ab55dbc0a64925a.ctex"
+path="res://.godot/imported/Archdruid_Age_1_RangedAttackBeam.png-a20d60b9a503382b64ad35b27ad0da60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_RangedAttackBeam.png"
-dest_files=["res://.godot/imported/Archdruid_Age_1_RangedAttackBeam.png-b49826eef622b13c8ab55dbc0a64925a.ctex"]
+source_file="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_RangedAttackBeam.png"
+dest_files=["res://.godot/imported/Archdruid_Age_1_RangedAttackBeam.png-a20d60b9a503382b64ad35b27ad0da60.ctex"]
 
 [params]
 

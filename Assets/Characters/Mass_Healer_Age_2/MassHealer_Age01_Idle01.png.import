@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd4m4vene35ju"
-path="res://.godot/imported/MassHealer_Age01_Idle01.png-a4d6788bcf98dc727ae7182c5f2a72f9.ctex"
+path="res://.godot/imported/MassHealer_Age01_Idle01.png-93ea530da878899d3ea13134a392e0a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Mass_Healer/MassHealer_Age01_Idle01.png"
-dest_files=["res://.godot/imported/MassHealer_Age01_Idle01.png-a4d6788bcf98dc727ae7182c5f2a72f9.ctex"]
+source_file="res://Assets/Characters/Mass_Healer_Age_2/MassHealer_Age01_Idle01.png"
+dest_files=["res://.godot/imported/MassHealer_Age01_Idle01.png-93ea530da878899d3ea13134a392e0a7.ctex"]
 
 [params]
 

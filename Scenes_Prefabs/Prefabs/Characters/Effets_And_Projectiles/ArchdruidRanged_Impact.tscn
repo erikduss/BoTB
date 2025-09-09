@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgl6ldy4wdt4p"]
 
 [ext_resource type="Script" uid="uid://nkub1mftfrp8" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/ArchdruidRangedEffectImpact.cs" id="1_y8dbh"]
-[ext_resource type="Texture2D" uid="uid://dug3g02efj2mw" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png" id="2_nimok"]
-[ext_resource type="Texture2D" uid="uid://ba8b1i2tkrfvk" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_2.png" id="3_8gcgf"]
-[ext_resource type="Texture2D" uid="uid://duscv4ffw3so4" path="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_3.png" id="4_pox1a"]
+[ext_resource type="Texture2D" uid="uid://dug3g02efj2mw" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png" id="2_nimok"]
+[ext_resource type="Texture2D" uid="uid://ba8b1i2tkrfvk" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_2.png" id="3_8gcgf"]
+[ext_resource type="Texture2D" uid="uid://duscv4ffw3so4" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_3.png" id="4_pox1a"]
 [ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_nimok"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c6tpr"]

@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://cv4uxpj3ub8qv"]
+
+[ext_resource type="Texture2D" uid="uid://cumlv4lm7j5ck" path="res://Assets/Characters/Enforcer _Age_2/Attack/Enforcer_Age_2-Attack_Frame-1.png" id="1_r6kjq"]
+[ext_resource type="Texture2D" uid="uid://dspobg1ps0147" path="res://Assets/Characters/Enforcer _Age_2/Attack/Enforcer_Age_2-Attack_Frame-2.png" id="2_q1ebi"]
+[ext_resource type="Texture2D" uid="uid://b4dgcuqgyxkiv" path="res://Assets/Characters/Enforcer _Age_2/Attack/Enforcer_Age_2-Attack_Frame-3.png" id="3_khpor"]
+[ext_resource type="Texture2D" uid="uid://vcjw8q4fnagi" path="res://Assets/Characters/Enforcer _Age_2/Attack/Enforcer_Age_2-Attack_Frame-4.png" id="4_uvdvs"]
+[ext_resource type="Texture2D" uid="uid://du8k2813ku2oj" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-1.png" id="5_symyq"]
+[ext_resource type="Texture2D" uid="uid://cteccpfhpt36o" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-2.png" id="6_o4qhf"]
+[ext_resource type="Texture2D" uid="uid://hdjuv06kx7i" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-3.png" id="7_guysj"]
+[ext_resource type="Texture2D" uid="uid://dxqr1d7p5ropf" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-4.png" id="8_3h5gw"]
+[ext_resource type="Texture2D" uid="uid://colgfs3ky7rpw" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-5.png" id="9_aeelb"]
+[ext_resource type="Texture2D" uid="uid://dg2gtlv7jaipe" path="res://Assets/Characters/Enforcer _Age_2/Death/Enforcer_Age_2-Death_Frame-6.png" id="10_gmdff"]
+[ext_resource type="Texture2D" uid="uid://sre2vixx5ita" path="res://Assets/Characters/Enforcer _Age_2/Idle/Enforcer_Age_2-Idle_Frame-1.png" id="11_bretu"]
+[ext_resource type="Texture2D" uid="uid://bh82x5yl544ur" path="res://Assets/Characters/Enforcer _Age_2/Idle/Enforcer_Age_2-Idle_Frame-2.png" id="12_phrrs"]
+[ext_resource type="Texture2D" uid="uid://u6603agotdim" path="res://Assets/Characters/Enforcer _Age_2/Idle/Enforcer_Age_3-Idle_Frame-3.png" id="13_83dic"]
+[ext_resource type="Texture2D" uid="uid://cfyhsel4m3hgo" path="res://Assets/Characters/Enforcer _Age_2/Walk/Enforcer_Age_2-Walk_Frame-1.png" id="14_dl4rg"]
+[ext_resource type="Texture2D" uid="uid://dc66iqie220jd" path="res://Assets/Characters/Enforcer _Age_2/Walk/Enforcer_Age_2-Walk_Frame-2.png" id="15_xy465"]
+[ext_resource type="Texture2D" uid="uid://48sucrgd6j5v" path="res://Assets/Characters/Enforcer _Age_2/Walk/Enforcer_Age_3-Walk_Frame-3.png" id="16_12dl5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_r6kjq")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_q1ebi")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_khpor")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_uvdvs")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_symyq")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_o4qhf")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_guysj")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_3h5gw")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_aeelb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gmdff")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_bretu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_phrrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_83dic")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_dl4rg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xy465")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_12dl5")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

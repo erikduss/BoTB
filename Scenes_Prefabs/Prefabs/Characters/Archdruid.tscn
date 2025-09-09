@@ -1,37 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy1ojd3ybmach"]
+[gd_scene load_steps=11 format=3 uid="uid://dy1ojd3ybmach"]
 
 [ext_resource type="Script" uid="uid://b3nicrwtg42tn" path="res://Scripts/Characters/Archdruid.cs" id="1_c5lht"]
-[ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Archdruid.tres" id="2_0sdww"]
-[ext_resource type="SpriteFrames" uid="uid://c45m8u8gsn3xe" path="res://Assets/Animation_SpriteFrames/Archdruid_Transformed.tres" id="3_4veot"]
+[ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Age_1/Archdruid.tres" id="2_0sdww"]
+[ext_resource type="SpriteFrames" uid="uid://c45m8u8gsn3xe" path="res://Assets/Animation_SpriteFrames/Age_1/Archdruid_Transformed.tres" id="3_4veot"]
+[ext_resource type="SpriteFrames" uid="uid://cciowkwkcmctn" path="res://Assets/Animation_SpriteFrames/Age_2/Archdruid_Transformed_Age_2.tres" id="4_0sdww"]
 [ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_reo3g"]
-[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="22_5axaf"]
-[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="23_rot0s"]
-[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="24_770nm"]
+[ext_resource type="SpriteFrames" uid="uid://bjtv3qbkynq3j" path="res://Assets/Animation_SpriteFrames/Age_2/Archdruid_Age_2.tres" id="5_4veot"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="25_iivj8"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="26_bs43b"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="27_28tm7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_5axaf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_rot0s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_770nm")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"Walking",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
@@ -40,17 +17,17 @@ size = Vector2(41, 39)
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_c5lht")
-defaultAnimatedSprite2D = ExtResource("2_0sdww")
-transformedAnimatedSprite2D = ExtResource("3_4veot")
+transformedAnimatedSpriteFramesAgeBased = [ExtResource("3_4veot"), ExtResource("4_0sdww")]
+animatedSpriteFramesAgeBased = [ExtResource("2_0sdww"), ExtResource("5_4veot")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+[node name="AnimationController" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = ExtResource("2_0sdww")
-animation = &"Attack"
+animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
 script = ExtResource("4_reo3g")
 node_path = NodePath("..")
 reliable = true
@@ -58,12 +35,6 @@ properties = PackedStringArray("animation", "frame", "flip_h")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"
-
-[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_7gtr4")
-animation = &"Idle"
-autoplay = "Idle"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 

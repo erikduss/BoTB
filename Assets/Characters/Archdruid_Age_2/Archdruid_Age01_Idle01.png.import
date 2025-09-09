@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crofxcxih7254"
-path="res://.godot/imported/Archdruid_Age01_Idle01.png-e898236814373070ec4080c9608dd9ab.ctex"
+path="res://.godot/imported/Archdruid_Age01_Idle01.png-6074a67dc3cf20159021902e070e1e42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Archdruid/Archdruid_Age01_Idle01.png"
-dest_files=["res://.godot/imported/Archdruid_Age01_Idle01.png-e898236814373070ec4080c9608dd9ab.ctex"]
+source_file="res://Assets/Characters/Archdruid_Age_2/Archdruid_Age01_Idle01.png"
+dest_files=["res://.godot/imported/Archdruid_Age01_Idle01.png-6074a67dc3cf20159021902e070e1e42.ctex"]
 
 [params]
 

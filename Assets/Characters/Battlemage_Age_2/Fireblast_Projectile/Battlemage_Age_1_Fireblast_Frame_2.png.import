@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmgrbgamd1lwj"
-path="res://.godot/imported/Battlemage_Age_1_Fireblast_Frame_2.png-d5916f8cc15fdaea25204632d10b39c4.ctex"
+path="res://.godot/imported/Battlemage_Age_1_Fireblast_Frame_2.png-d10263c645576e94cd68c84ef0296616.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png"
-dest_files=["res://.godot/imported/Battlemage_Age_1_Fireblast_Frame_2.png-d5916f8cc15fdaea25204632d10b39c4.ctex"]
+source_file="res://Assets/Characters/Battlemage_Age_2/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png"
+dest_files=["res://.godot/imported/Battlemage_Age_1_Fireblast_Frame_2.png-d10263c645576e94cd68c84ef0296616.ctex"]
 
 [params]
 

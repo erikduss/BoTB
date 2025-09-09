@@ -12,8 +12,7 @@ namespace Erikduss
 
         public bool isTransformed = false;
 
-        [Export] protected SpriteFrames defaultAnimatedSprite2D;
-        [Export] protected SpriteFrames transformedAnimatedSprite2D;
+        [Export] protected SpriteFrames[] transformedAnimatedSpriteFramesAgeBased = new SpriteFrames[2];
 
         public bool isTransforming = false;
         private float tranformationTimer = 0;
@@ -37,12 +36,9 @@ namespace Erikduss
                             AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
 
                             spriteComponent.Visible = false;
-                            animatedSpritesAgeBased.Add(spriteComponent);
+                            characterAnimatedSprite = spriteComponent;
                         }
                     }
-
-                    currentAnimatedSprite = animatedSpritesAgeBased[0];
-                    currentAnimatedSprite.Visible = true;
                 }
             }
 
@@ -57,7 +53,7 @@ namespace Erikduss
             UnitSettingsConfig loadedUnitSettings;
 
             //select the correct config file.
-            switch (currentAge)
+            switch (unitCreatedAge)
             {
                 case Enums.Ages.AGE_01:
                     loadedUnitSettings = GameSettingsLoader.Instance.unitSettingsManager.Age01_ArchdruidSettingsConfig;
@@ -125,17 +121,17 @@ namespace Erikduss
 
         public void SetNewSpriteFrameMultiplayer(bool isCurrentlyTransformed)
         {
-            currentAnimatedSprite.SpriteFrames = isCurrentlyTransformed ? defaultAnimatedSprite2D : transformedAnimatedSprite2D;
+            characterAnimatedSprite.SpriteFrames = isCurrentlyTransformed ? animatedSpriteFramesAgeBased[(int)unitCreatedAge] : transformedAnimatedSpriteFramesAgeBased[(int)unitCreatedAge];
         }
 
         public void ActivateTransformation()
         {
             //switch the sprite frames.
-            currentAnimatedSprite.SpriteFrames = isTransformed ? defaultAnimatedSprite2D : transformedAnimatedSprite2D;
+            characterAnimatedSprite.SpriteFrames = isTransformed ? animatedSpriteFramesAgeBased[(int)unitCreatedAge] : transformedAnimatedSpriteFramesAgeBased[(int)unitCreatedAge];
 
             isTransformed = !isTransformed; //update bool
 
-            currentAnimatedSprite.Play("Idle");
+            characterAnimatedSprite.Play("Idle");
 
             isTransforming = false;
         }
@@ -154,7 +150,7 @@ namespace Erikduss
             isTransforming = true;
             tranformationTimer = 0;
             transformationDuration = tranformToNormalModeDuration;
-            currentAnimatedSprite.Play("Transform_Back");
+            characterAnimatedSprite.Play("Transform_Back");
 
             SetNewAttackCooldownTimer(transformationDuration);
         }

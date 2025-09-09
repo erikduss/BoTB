@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://tvks0ajglmjf"]
+
+[ext_resource type="Texture2D" uid="uid://bgysvutcj64p6" path="res://Assets/Characters/Ranger/Age_02/Attack/Ranger_Age_2_Attack01.png" id="1_ov3ny"]
+[ext_resource type="Texture2D" uid="uid://dwjhc02ouelo" path="res://Assets/Characters/Ranger/Age_02/Attack/Ranger_Age_2_Attack02.png" id="2_ylv8h"]
+[ext_resource type="Texture2D" uid="uid://dm4agywpvovds" path="res://Assets/Characters/Ranger/Age_02/Attack/Ranger_Age_2_Attack03.png" id="3_rqm0x"]
+[ext_resource type="Texture2D" uid="uid://6d17lskgfnx7" path="res://Assets/Characters/Ranger/Age_02/Attack/Ranger_Age_2_Attack04.png" id="4_pqmi7"]
+[ext_resource type="Texture2D" uid="uid://bl8g61toov5j2" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death01.png" id="5_5x883"]
+[ext_resource type="Texture2D" uid="uid://duqo3pwm10rbk" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death02.png" id="6_7bkjc"]
+[ext_resource type="Texture2D" uid="uid://djx82b5t6wm6w" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death03.png" id="7_6124s"]
+[ext_resource type="Texture2D" uid="uid://btm123xdovk7d" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death04.png" id="8_rrd16"]
+[ext_resource type="Texture2D" uid="uid://f1ct3kaueeq3" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death05.png" id="9_rvdb6"]
+[ext_resource type="Texture2D" uid="uid://bbnvvn5ys8i8d" path="res://Assets/Characters/Ranger/Age_02/Death/Ranger_Age_2_Death06.png" id="10_dhk82"]
+[ext_resource type="Texture2D" uid="uid://b8i0ujo20a7qw" path="res://Assets/Characters/Ranger/Age_02/Idle/Ranger_Age_2_Idle01.png" id="11_uldvr"]
+[ext_resource type="Texture2D" uid="uid://dul5rkhder78c" path="res://Assets/Characters/Ranger/Age_02/Idle/Ranger_Age_2_Idle02.png" id="12_3mxso"]
+[ext_resource type="Texture2D" uid="uid://dmkm00quyeo3y" path="res://Assets/Characters/Ranger/Age_02/Idle/Ranger_Age_2_Idle03.png" id="13_os74n"]
+[ext_resource type="Texture2D" uid="uid://cxneg6ll7p88s" path="res://Assets/Characters/Ranger/Age_02/Walk/Ranger_Age_2_Walking01.png" id="14_bme3l"]
+[ext_resource type="Texture2D" uid="uid://blujjnsiu2ypw" path="res://Assets/Characters/Ranger/Age_02/Walk/Ranger_Age_2_Walking02.png" id="15_8gi3k"]
+[ext_resource type="Texture2D" uid="uid://cvj6k6uk1m5pd" path="res://Assets/Characters/Ranger/Age_02/Walk/Ranger_Age_2_Walking03.png" id="16_700ex"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ov3ny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ylv8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rqm0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pqmi7")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_5x883")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_7bkjc")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_6124s")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_rrd16")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_rvdb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dhk82")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_uldvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3mxso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_os74n")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_bme3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8gi3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_700ex")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

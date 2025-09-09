@@ -1,0 +1,89 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://bjtv3qbkynq3j"]
+
+[ext_resource type="Texture2D" uid="uid://dhetbbi51pbil" path="res://Assets/Characters/Archdruid_Age_2/Transform/Archdruid_Age_2_Transform01.png" id="1_nxbui"]
+[ext_resource type="Texture2D" uid="uid://bayxhunhqa1jw" path="res://Assets/Characters/Archdruid_Age_2/Transform/Archdruid_Age_2_Transform02.png" id="2_iy38f"]
+[ext_resource type="Texture2D" uid="uid://bw8w8rfixcqqj" path="res://Assets/Characters/Archdruid_Age_2/Transform/Archdruid_Age_2_Transform03.png" id="3_twr6e"]
+[ext_resource type="Texture2D" uid="uid://y4ago0mg1ylm" path="res://Assets/Characters/Archdruid_Age_2/Transform/Archdruid_Age_2_Transform04.png" id="4_djfyl"]
+[ext_resource type="Texture2D" uid="uid://5w8786anj5n8" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death01.png" id="5_s2el5"]
+[ext_resource type="Texture2D" uid="uid://bko0t8vx3omhs" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death02.png" id="6_elg3p"]
+[ext_resource type="Texture2D" uid="uid://dmldbg7dkwpmn" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death03.png" id="7_l0hy5"]
+[ext_resource type="Texture2D" uid="uid://opchntx7s18l" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death04.png" id="8_5i6x1"]
+[ext_resource type="Texture2D" uid="uid://cuqrrgxth1spm" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death05.png" id="9_m4dhc"]
+[ext_resource type="Texture2D" uid="uid://cm08sv5h8orb6" path="res://Assets/Characters/Archdruid_Age_2/Death/Archdruid_Age_2_Death06.png" id="10_jep77"]
+[ext_resource type="Texture2D" uid="uid://phmyfhcc8h2p" path="res://Assets/Characters/Archdruid_Age_2/Idle/Archdruid_Age_2_Idle01.png" id="11_6hix5"]
+[ext_resource type="Texture2D" uid="uid://4ejukwmfbmvg" path="res://Assets/Characters/Archdruid_Age_2/Idle/Archdruid_Age_2_Idle02.png" id="12_rvncr"]
+[ext_resource type="Texture2D" uid="uid://bbxa0ech3ujdc" path="res://Assets/Characters/Archdruid_Age_2/Idle/Archdruid_Age_2_Idle03.png" id="13_tgeei"]
+[ext_resource type="Texture2D" uid="uid://mfjn2r0t30pl" path="res://Assets/Characters/Archdruid_Age_2/Walk/Archdruid_Age_2_Walking01.png" id="14_eupc3"]
+[ext_resource type="Texture2D" uid="uid://jlg5se6hqp68" path="res://Assets/Characters/Archdruid_Age_2/Walk/Archdruid_Age_2_Walking02.png" id="15_yt1p1"]
+[ext_resource type="Texture2D" uid="uid://8hpmnmvofc63" path="res://Assets/Characters/Archdruid_Age_2/Walk/Archdruid_Age_2_Walking03.png" id="16_iy552"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("1_nxbui")
+}, {
+"duration": 0.75,
+"texture": ExtResource("2_iy38f")
+}, {
+"duration": 0.75,
+"texture": ExtResource("3_twr6e")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_djfyl")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_s2el5")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_elg3p")
+}, {
+"duration": 0.7,
+"texture": ExtResource("7_l0hy5")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_5i6x1")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_m4dhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jep77")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_6hix5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rvncr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_tgeei")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_eupc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yt1p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_iy552")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

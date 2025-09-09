@@ -15,11 +15,11 @@ namespace Erikduss
 		public Enums.TeamOwner characterOwner = Enums.TeamOwner.NONE; //this will be set, this should NEVER be none.
         public Enums.UnitTypes unitType = Enums.UnitTypes.Warrior;
 
-		public List<AnimatedSprite2D> animatedSpritesAgeBased = new List<AnimatedSprite2D>();
-		public AnimatedSprite2D currentAnimatedSprite;
+        [Export] public SpriteFrames[] animatedSpriteFramesAgeBased = new SpriteFrames[2];
+		public AnimatedSprite2D characterAnimatedSprite;
         public CollisionShape2D unitCollisionShape;
 
-		public Enums.Ages currentAge = Enums.Ages.AGE_01;
+		public Enums.Ages unitCreatedAge = Enums.Ages.AGE_01;
 
         public BaseCharacter CurrentTarget
         {
@@ -146,7 +146,7 @@ namespace Erikduss
                     AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
 
                     spriteComponent.Visible = false;
-                    animatedSpritesAgeBased.Add(spriteComponent);
+                    characterAnimatedSprite = spriteComponent;
                 }
 
                 if(childNode is CollisionShape2D)
@@ -155,14 +155,17 @@ namespace Erikduss
                 }
             }
 
+            //testing
+            unitCreatedAge = Enums.Ages.AGE_02;
+
             //Get the correct animated sprite to enable.
-            currentAnimatedSprite = animatedSpritesAgeBased[((int)currentAge)];
-            currentAnimatedSprite.Visible = true;
+            characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[((int)unitCreatedAge)];
+            characterAnimatedSprite.Visible = true;
 
             if(loadDefaultValues && unitType != Enums.UnitTypes.TrainingDummy)
             {
                 //Set the default values
-                UnitSettingsConfig defaultUnitValues = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (currentAge.ToString() + "_" + unitType.ToString())).FirstOrDefault().Value;
+                UnitSettingsConfig defaultUnitValues = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (unitCreatedAge.ToString() + "_" + unitType.ToString())).FirstOrDefault().Value;
 
                 currentHealth = defaultUnitValues.unitHealth;
                 maxHealth = defaultUnitValues.unitHealth;
@@ -178,7 +181,7 @@ namespace Erikduss
                 GD.Print("We are from team 2!");
 
                 movementSpeed = -movementSpeed; // this one needs to go the other direction.
-                currentAnimatedSprite.FlipH = true;
+                characterAnimatedSprite.FlipH = true;
                 CollisionLayer = 0b100;
                 CollisionMask = 0b100111; //This is needed to make sure we dont collide with out own base, but we do with the enemy base.
             }
@@ -283,8 +286,11 @@ namespace Erikduss
 
                 if(deathTimer >= deathTimerDuration)
                 {
-                    int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
-                    GDSync.CallFuncOn(otherClient, new Callable(this, "DestroyOnMultiplayerClient"), [true]);
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(this, "DestroyOnMultiplayerClient"), [true]);
+                    }
 
                     QueueFree();
                 }
@@ -518,7 +524,7 @@ namespace Erikduss
 
             GameManager.Instance.unitsSpawner.RemoveAliveUnitFromTeam(characterOwner, unitType, uniqueID);
 
-            currentAnimatedSprite.Play("Death");
+            characterAnimatedSprite.Play("Death");
         }
 
         public virtual void DealDamage()

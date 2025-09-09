@@ -1,122 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://cj06luuhbij86"]
+[gd_scene load_steps=9 format=3 uid="uid://cj06luuhbij86"]
 
 [ext_resource type="Script" uid="uid://ccnwvydg4eq03" path="res://Scripts/Characters/Assassin.cs" id="1_yt6yp"]
-[ext_resource type="Texture2D" uid="uid://gejwrku81i6q" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-1.png" id="2_yiuow"]
-[ext_resource type="Texture2D" uid="uid://b608osgcefoo0" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-2.png" id="3_asxhw"]
-[ext_resource type="Texture2D" uid="uid://6gu3fww25vqt" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-3.png" id="4_mmudw"]
-[ext_resource type="Texture2D" uid="uid://cq1m5bl8evbc0" path="res://Assets/Characters/Assassin/Attack/Assassin_Age_1-Attack_Frame-4.png" id="5_0n7nj"]
-[ext_resource type="Texture2D" uid="uid://bhre3msw54fvf" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-1.png" id="6_j10u5"]
-[ext_resource type="Texture2D" uid="uid://bd6p3tpfgsf8m" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-2.png" id="7_dpgc0"]
-[ext_resource type="Texture2D" uid="uid://12xdtcmbnawg" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-3.png" id="8_j5875"]
-[ext_resource type="Texture2D" uid="uid://dyhvv2al586ei" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-4.png" id="9_7i7bb"]
-[ext_resource type="Texture2D" uid="uid://cxy51re8tmsqx" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-5.png" id="10_mji30"]
-[ext_resource type="Texture2D" uid="uid://bo3phvuxsoaog" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-6.png" id="11_dwl88"]
-[ext_resource type="Texture2D" uid="uid://4spfiwn205eb" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-1.png" id="12_cs3rj"]
-[ext_resource type="Texture2D" uid="uid://l3lxt3j7wvyv" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-2.png" id="13_q4tdk"]
-[ext_resource type="Texture2D" uid="uid://bqdff047mx1on" path="res://Assets/Characters/Assassin/Idle/Assassin_Age_1-Idle_Frame-3.png" id="14_248xu"]
-[ext_resource type="Texture2D" uid="uid://i1sdxfen1frd" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-1.png" id="15_8sssv"]
-[ext_resource type="Texture2D" uid="uid://diwlt4k406dsu" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-2.png" id="16_4fgls"]
-[ext_resource type="Texture2D" uid="uid://psj3xjo568ab" path="res://Assets/Characters/Assassin/Walk/Assassin_Age_1-Walk_Frame-3.png" id="17_ai11p"]
+[ext_resource type="SpriteFrames" uid="uid://do7w3pswhghlr" path="res://Assets/Animation_SpriteFrames/Age_1/Assassin.tres" id="2_txpvw"]
+[ext_resource type="SpriteFrames" uid="uid://tmt77opsbqj7" path="res://Assets/Animation_SpriteFrames/Age_2/Assassin_Age_2.tres" id="3_ylx88"]
 [ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="18_am1c8"]
-[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_lrsr3"]
-[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_g5ran"]
-[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_4u5fi"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_eeuvw"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_pg2ht"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_kw3gp"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wqsl0"]
-animations = [{
-"frames": [{
-"duration": 0.75,
-"texture": ExtResource("2_yiuow")
-}, {
-"duration": 0.75,
-"texture": ExtResource("3_asxhw")
-}, {
-"duration": 0.75,
-"texture": ExtResource("4_mmudw")
-}, {
-"duration": 0.75,
-"texture": ExtResource("5_0n7nj")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.5,
-"texture": ExtResource("6_j10u5")
-}, {
-"duration": 0.5,
-"texture": ExtResource("7_dpgc0")
-}, {
-"duration": 0.7,
-"texture": ExtResource("8_j5875")
-}, {
-"duration": 0.7,
-"texture": ExtResource("9_7i7bb")
-}, {
-"duration": 0.7,
-"texture": ExtResource("10_mji30")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_dwl88")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.25,
-"texture": ExtResource("12_cs3rj")
-}, {
-"duration": 1.25,
-"texture": ExtResource("13_q4tdk")
-}, {
-"duration": 1.25,
-"texture": ExtResource("14_248xu")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_8sssv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_4fgls")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_ai11p")
-}],
-"loop": true,
-"name": &"Walking",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_lrsr3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_g5ran")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_4u5fi")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"Walking",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
@@ -125,26 +15,21 @@ size = Vector2(41, 39)
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_yt6yp")
+animatedSpriteFramesAgeBased = [ExtResource("2_txpvw"), ExtResource("3_ylx88")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_wqsl0")
-animation = &"Death"
+[node name="AnimationController" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_txpvw")
+animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
 script = ExtResource("18_am1c8")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h", "animation", "frame")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"
-
-[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_7gtr4")
-animation = &"Idle"
-autoplay = "Idle"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 

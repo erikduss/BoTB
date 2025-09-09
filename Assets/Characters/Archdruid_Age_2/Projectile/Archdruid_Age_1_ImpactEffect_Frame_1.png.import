@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dug3g02efj2mw"
-path="res://.godot/imported/Archdruid_Age_1_ImpactEffect_Frame_1.png-e50374b922bc44099948b092c56db46b.ctex"
+path="res://.godot/imported/Archdruid_Age_1_ImpactEffect_Frame_1.png-2b7c0873ed7ebcea59d527878322497d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Archdruid/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png"
-dest_files=["res://.godot/imported/Archdruid_Age_1_ImpactEffect_Frame_1.png-e50374b922bc44099948b092c56db46b.ctex"]
+source_file="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png"
+dest_files=["res://.godot/imported/Archdruid_Age_1_ImpactEffect_Frame_1.png-2b7c0873ed7ebcea59d527878322497d.ctex"]
 
 [params]
 

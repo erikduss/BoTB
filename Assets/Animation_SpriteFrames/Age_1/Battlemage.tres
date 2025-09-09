@@ -1,0 +1,110 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://cbrlqjfhxno34"]
+
+[ext_resource type="Texture2D" uid="uid://c0nqnwrk83cyo" path="res://Assets/Characters/Battlemage/Alternative_Attack/Battlemage_Age_1_AlternativeAttack01.png" id="1_tielu"]
+[ext_resource type="Texture2D" uid="uid://1at7lpgyqat5" path="res://Assets/Characters/Battlemage/Alternative_Attack/Battlemage_Age_1_AlternativeAttack02.png" id="2_xj30e"]
+[ext_resource type="Texture2D" uid="uid://b5fal8afr2air" path="res://Assets/Characters/Battlemage/Alternative_Attack/Battlemage_Age_1_AlternativeAttack03.png" id="3_f7ong"]
+[ext_resource type="Texture2D" uid="uid://c0pxc4nk1huuk" path="res://Assets/Characters/Battlemage/Alternative_Attack/Battlemage_Age_1_AlternativeAttack04.png" id="4_n4wqj"]
+[ext_resource type="Texture2D" uid="uid://b6ph3hnh8aobm" path="res://Assets/Characters/Battlemage/Attack/Battlemage_Age_1_Attack01.png" id="5_uhv45"]
+[ext_resource type="Texture2D" uid="uid://dq1m8w7uauoox" path="res://Assets/Characters/Battlemage/Attack/Battlemage_Age_1_Attack02.png" id="6_kdmke"]
+[ext_resource type="Texture2D" uid="uid://8jrkogxmclxr" path="res://Assets/Characters/Battlemage/Attack/Battlemage_Age_1_Attack03.png" id="7_ff31f"]
+[ext_resource type="Texture2D" uid="uid://ckl6monpbtnb1" path="res://Assets/Characters/Battlemage/Attack/Battlemage_Age_1_Attack04.png" id="8_vee5o"]
+[ext_resource type="Texture2D" uid="uid://ca8vjy62yxxyt" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death01.png" id="9_1ileb"]
+[ext_resource type="Texture2D" uid="uid://dxbnfdhgmbgq6" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death02.png" id="10_0cepa"]
+[ext_resource type="Texture2D" uid="uid://c1ccw20yrk3ql" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death03.png" id="11_25mjq"]
+[ext_resource type="Texture2D" uid="uid://blti8k1apeqsv" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death04.png" id="12_2h3lx"]
+[ext_resource type="Texture2D" uid="uid://lwek3wi43nxm" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death05.png" id="13_ioif8"]
+[ext_resource type="Texture2D" uid="uid://piplpj7maj8e" path="res://Assets/Characters/Battlemage/Death/Battlemage_Age_1_Death06.png" id="14_x2177"]
+[ext_resource type="Texture2D" uid="uid://sbnqp0ppj0n3" path="res://Assets/Characters/Battlemage/Idle/Battlemage_Age_1_Idle01.png" id="15_t12sy"]
+[ext_resource type="Texture2D" uid="uid://ddn4lvxxdxwvh" path="res://Assets/Characters/Battlemage/Idle/Battlemage_Age_1_Idle02.png" id="16_66c15"]
+[ext_resource type="Texture2D" uid="uid://1kpokgqm1nji" path="res://Assets/Characters/Battlemage/Idle/Battlemage_Age_1_Idle03.png" id="17_kx8m8"]
+[ext_resource type="Texture2D" uid="uid://0esa2kxbtvn5" path="res://Assets/Characters/Battlemage/Walk/Battlemage_Age_1_Walking01.png" id="18_xghq8"]
+[ext_resource type="Texture2D" uid="uid://bvn4pg3gr8cbe" path="res://Assets/Characters/Battlemage/Walk/Battlemage_Age_1_Walking02.png" id="19_ojfod"]
+[ext_resource type="Texture2D" uid="uid://cks4gxefsk0yd" path="res://Assets/Characters/Battlemage/Walk/Battlemage_Age_1_Walking03.png" id="20_024cm"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tielu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xj30e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f7ong")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n4wqj")
+}],
+"loop": false,
+"name": &"Alternative_Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_uhv45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kdmke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ff31f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vee5o")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("9_1ileb")
+}, {
+"duration": 0.5,
+"texture": ExtResource("10_0cepa")
+}, {
+"duration": 0.7,
+"texture": ExtResource("11_25mjq")
+}, {
+"duration": 0.7,
+"texture": ExtResource("12_2h3lx")
+}, {
+"duration": 0.7,
+"texture": ExtResource("13_ioif8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_x2177")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_t12sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_66c15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kx8m8")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_xghq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ojfod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_024cm")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]

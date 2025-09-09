@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm6ir6d8kq4mi"
-path="res://.godot/imported/Assassin_Age01_Idle01.png-8d28e6f6f3cf2e4b1179bbb455510364.ctex"
+path="res://.godot/imported/Assassin_Age01_Idle01.png-260052378270678704abd32189922339.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Assassin/Assassin_Age01_Idle01.png"
-dest_files=["res://.godot/imported/Assassin_Age01_Idle01.png-8d28e6f6f3cf2e4b1179bbb455510364.ctex"]
+source_file="res://Assets/Characters/Assassin_Age_2/Assassin_Age01_Idle01.png"
+dest_files=["res://.godot/imported/Assassin_Age01_Idle01.png-260052378270678704abd32189922339.ctex"]
 
 [params]
 

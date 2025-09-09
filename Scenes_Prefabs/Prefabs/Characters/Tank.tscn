@@ -1,36 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5cheo8ebeacq"]
+[gd_scene load_steps=9 format=3 uid="uid://c5cheo8ebeacq"]
 
 [ext_resource type="Script" uid="uid://xg8g8i2utlbe" path="res://Scripts/Characters/Tank.cs" id="1_s7j8i"]
-[ext_resource type="SpriteFrames" uid="uid://cm5bawlsnyig" path="res://Assets/Animation_SpriteFrames/Tank.tres" id="2_qgsqo"]
+[ext_resource type="SpriteFrames" uid="uid://cm5bawlsnyig" path="res://Assets/Animation_SpriteFrames/Age_1/Tank.tres" id="2_qgsqo"]
+[ext_resource type="SpriteFrames" uid="uid://fxiswerb7er" path="res://Assets/Animation_SpriteFrames/Age_2/Tank_Age_2.tres" id="3_b42go"]
 [ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_j7qmu"]
-[ext_resource type="Texture2D" uid="uid://cg5jcj6xvppyv" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png" id="18_sruqt"]
-[ext_resource type="Texture2D" uid="uid://b20esd2khdady" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle02.png" id="19_kj2t4"]
-[ext_resource type="Texture2D" uid="uid://b787rmxcj6nh6" path="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle03.png" id="20_w8qwd"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_6bjbg"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_vdbgy"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_pr115"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7gtr4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("18_sruqt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_kj2t4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_w8qwd")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"Walking",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
@@ -39,26 +15,21 @@ size = Vector2(41, 39)
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_s7j8i")
+animatedSpriteFramesAgeBased = [ExtResource("2_qgsqo"), ExtResource("3_b42go")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="Animations_Age01" type="AnimatedSprite2D" parent="."]
+[node name="AnimationController" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_qgsqo")
-animation = &"Attack"
+animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="Animations_Age01"]
+[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
 script = ExtResource("3_j7qmu")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h", "animation", "frame")
 interpolated = false
 interpolation_speed = 1.0
 metadata/_custom_type_script = "uid://dp5f7tjsyrske"
-
-[node name="Animations_Age02" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_7gtr4")
-animation = &"Idle"
-autoplay = "Idle"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 

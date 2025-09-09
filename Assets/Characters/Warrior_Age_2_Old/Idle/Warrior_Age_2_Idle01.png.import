@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg5jcj6xvppyv"
-path="res://.godot/imported/Warrior_Age_2_Idle01.png-05c929a07370b56b106fcfeb6da673bd.ctex"
+path="res://.godot/imported/Warrior_Age_2_Idle01.png-75b5c036194f1f49765367d377a78820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Warrior_Age_2/Idle/Warrior_Age_2_Idle01.png"
-dest_files=["res://.godot/imported/Warrior_Age_2_Idle01.png-05c929a07370b56b106fcfeb6da673bd.ctex"]
+source_file="res://Assets/Characters/Warrior_Age_2_Old/Idle/Warrior_Age_2_Idle01.png"
+dest_files=["res://.godot/imported/Warrior_Age_2_Idle01.png-75b5c036194f1f49765367d377a78820.ctex"]
 
 [params]
 

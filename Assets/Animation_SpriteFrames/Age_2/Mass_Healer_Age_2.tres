@@ -1,0 +1,93 @@
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://bbcimyxih8lob"]
+
+[ext_resource type="Texture2D" uid="uid://w7dtmdsoqakn" path="res://Assets/Characters/Mass_Healer_Age_2/Attack/Mass_Healer_Age_2-Attack_Frame-1.png" id="1_g17gr"]
+[ext_resource type="Texture2D" uid="uid://6skedasmlp25" path="res://Assets/Characters/Mass_Healer_Age_2/Attack/Mass_Healer_Age_2-Attack_Frame-2.png" id="2_f8ig8"]
+[ext_resource type="Texture2D" uid="uid://bwwqf5v0d7n0o" path="res://Assets/Characters/Mass_Healer_Age_2/Attack/Mass_Healer_Age_2-Attack_Frame-3.png" id="3_ahrgl"]
+[ext_resource type="Texture2D" uid="uid://dpaew0eebwbos" path="res://Assets/Characters/Mass_Healer_Age_2/Attack/Mass_Healer_Age_2-Attack_Frame-4.png" id="4_fuqjt"]
+[ext_resource type="Texture2D" uid="uid://dalk000l77dyu" path="res://Assets/Characters/Mass_Healer_Age_2/Attack/Mass_Healer_Age_2-Attack_Frame-5.png" id="5_53olp"]
+[ext_resource type="Texture2D" uid="uid://tsyxws6lhadx" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-1.png" id="6_yw5b0"]
+[ext_resource type="Texture2D" uid="uid://c3fu6q0n68emx" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-2.png" id="7_a08d5"]
+[ext_resource type="Texture2D" uid="uid://kv6ajp5jwksc" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-3.png" id="8_fdl12"]
+[ext_resource type="Texture2D" uid="uid://wivlux3nsbhw" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-4.png" id="9_2o1ve"]
+[ext_resource type="Texture2D" uid="uid://beajulg0dpsu7" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-5.png" id="10_so0ck"]
+[ext_resource type="Texture2D" uid="uid://chln6tahs7tvn" path="res://Assets/Characters/Mass_Healer_Age_2/Death/Mass_Healer_Age_2-Death_Frame-6.png" id="11_p2bkf"]
+[ext_resource type="Texture2D" uid="uid://dnbwflhxuxbnq" path="res://Assets/Characters/Mass_Healer_Age_2/Idle/Mass_Healer_Age_2-Idle_Frame-1.png" id="12_b7855"]
+[ext_resource type="Texture2D" uid="uid://bp1k5gh2es8xx" path="res://Assets/Characters/Mass_Healer_Age_2/Idle/Mass_Healer_Age_2-Idle_Frame-2.png" id="13_csxdw"]
+[ext_resource type="Texture2D" uid="uid://76pebsd1yy25" path="res://Assets/Characters/Mass_Healer_Age_2/Idle/Mass_Healer_Age_2-Idle_Frame-3.png" id="14_qjdo0"]
+[ext_resource type="Texture2D" uid="uid://bufo24buhxfyh" path="res://Assets/Characters/Mass_Healer_Age_2/Walk/Mass_Healer_Age_2-Walk_Frame-1.png" id="15_4old6"]
+[ext_resource type="Texture2D" uid="uid://bwcrbtrb2wbuh" path="res://Assets/Characters/Mass_Healer_Age_2/Walk/Mass_Healer_Age_2-Walk_Frame-2.png" id="16_o7bds"]
+[ext_resource type="Texture2D" uid="uid://baydp61wqt65y" path="res://Assets/Characters/Mass_Healer_Age_2/Walk/Mass_Healer_Age_2-Walk_Frame-3.png" id="17_uaad3"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g17gr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f8ig8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ahrgl")
+}, {
+"duration": 0.75,
+"texture": ExtResource("4_fuqjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_53olp")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("6_yw5b0")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_a08d5")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_fdl12")
+}, {
+"duration": 0.7,
+"texture": ExtResource("9_2o1ve")
+}, {
+"duration": 0.7,
+"texture": ExtResource("10_so0ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_p2bkf")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_b7855")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_csxdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qjdo0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_4old6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_o7bds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uaad3")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
