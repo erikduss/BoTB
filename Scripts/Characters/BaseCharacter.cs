@@ -155,9 +155,6 @@ namespace Erikduss
                 }
             }
 
-            //testing
-            unitCreatedAge = Enums.Ages.AGE_02;
-
             //Get the correct animated sprite to enable.
             characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[((int)unitCreatedAge)];
             characterAnimatedSprite.Visible = true;

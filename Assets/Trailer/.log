@@ -1,0 +1,595 @@
+C:/Program Files/Krita (x64)/bin/ffmpeg.exe -hide_banner -y -v debug -r 50 -start_number 0 -start_number_range 1 -i G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png -vf palettegen=stats_mode=full:reserve_transparent=1 -y G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png 
+=====================================================
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-r' ... matched as option 'r' (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument '50'.
+Reading option '-start_number' ... matched as AVOption 'start_number' with argument '0'.
+Reading option '-start_number_range' ... matched as AVOption 'start_number_range' with argument '1'.
+Reading option '-i' ... matched as input url with argument 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'palettegen=stats_mode=full:reserve_transparent=1'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option y (overwrite output files) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option y (overwrite output files) with argument 1.
+Successfully parsed a group of options.
+Parsing a group of options: input url G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png.
+Applying option r (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument 50.
+Successfully parsed a group of options.
+Opening an input file: G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png.
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0000.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0001.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0002.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0003.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0004.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0005.png' for reading
+[file @ 0000027c7e43bac0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0006.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0007.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0008.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0009.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0010.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0011.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0012.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0013.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0014.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0015.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0016.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0017.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0018.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0019.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0020.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0021.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0022.png' for reading
+[file @ 0000027c7e43bac0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0023.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0024.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0025.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0026.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0027.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0028.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0029.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0030.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0031.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0032.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0033.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0034.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0035.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0036.png' for reading
+[file @ 0000027c7e43bac0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0037.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0038.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0039.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0040.png' for reading
+[file @ 0000027c7e43c700] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0041.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0042.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0043.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0044.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0045.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0046.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0047.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0048.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0049.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 18026 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0050.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0051.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0052.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0053.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0054.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0055.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0056.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0057.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0058.png' for reading
+[file @ 0000027c7e43c700] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0059.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17615 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0060.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0061.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0062.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0063.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0064.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0065.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0066.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0067.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0068.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0069.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 17859 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0070.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0071.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0072.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0073.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0074.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0075.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0076.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0077.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0078.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0079.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0080.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0081.png' for reading
+[file @ 0000027c7e43c700] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0082.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0083.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0084.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0085.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0086.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0087.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0088.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0089.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0090.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0091.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0092.png' for reading
+[file @ 0000027c7e43bf80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0093.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0094.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0095.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0096.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0097.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0098.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0099.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0100.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0101.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0102.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0103.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0104.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0105.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0106.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0107.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0108.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0109.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0110.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0111.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0112.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0113.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0114.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0115.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0116.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0117.png' for reading
+[file @ 0000027c7e43c700] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0118.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0119.png' for reading
+[file @ 0000027c7e43bd80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 20156 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0120.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0121.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0122.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0123.png' for reading
+[file @ 0000027c7e43bac0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0124.png' for reading
+[file @ 0000027c7e43c600] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0125.png' for reading
+[file @ 0000027c7e43c340] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c7e459f40] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] max_analyze_duration 5000000 reached at 5000000 microseconds st:0
+Input #0, image2, from 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png':
+  Duration: 00:00:05.64, start: 0.000000, bitrate: N/A
+  Stream #0:0, 125, 1/25: Video: png, 1 reference frame, rgba(pc, gbr/unknown/unknown), 512x256 [SAR 3937:3937 DAR 2:1], 0/1, 25 fps, 25 tbr, 25 tbn
+Successfully opened the file.
+Parsing a group of options: output url G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument palettegen=stats_mode=full:reserve_transparent=1.
+Successfully parsed a group of options.
+Opening an output file: G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png.
+[out#0/image2 @ 0000027c7e44af40] No explicit maps, mapping streams automatically...
+[vost#0:0/png @ 0000027c7e457900] Created video stream from input stream 0:0
+[AVFilterGraph @ 0000027c002e6d80] Setting 'stats_mode' to value 'full'
+[AVFilterGraph @ 0000027c002e6d80] Setting 'reserve_transparent' to value '1'
+detected 16 logical cores
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (png (native) -> png (native))
+[vost#0:0/png @ 0000027c7e457900] Starting thread...
+[vf#0:0 @ 0000027c7e43c340] Starting thread...
+[vist#0:0/png @ 0000027c7e43da80] [dec:png @ 0000027c002ed440] Starting thread...
+[in#0/image2 @ 0000027c7e44a840] Starting thread...
+Press [q] to stop, [?] for help
+[AVFilterGraph @ 0000027c7e4a5180] Setting 'stats_mode' to value 'full'
+[AVFilterGraph @ 0000027c7e4a5180] Setting 'reserve_transparent' to value '1'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'video_size' to value '512x256'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'pix_fmt' to value '26'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'time_base' to value '1/50'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'pixel_aspect' to value '3937/3937'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'colorspace' to value '0'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'range' to value '2'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] Setting 'frame_rate' to value '50/1'
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] w:512 h:256 pixfmt:rgba tb:1/50 fr:50/1 sar:3937/3937 csp:gbr range:pc
+[format @ 0000027c7e436380] Setting 'pix_fmts' to value 'rgb24|rgba|rgb48be|rgba64be|pal8|gray|ya8|gray16be|ya16be|monob'
+[auto_scale_0 @ 0000027c7e436b80] w:iw h:ih flags:'' interl:0
+[Parsed_palettegen_0 @ 0000027c7e435b80] auto-inserting filter 'auto_scale_0' between the filter 'graph -1 input from stream 0:0' and the filter 'Parsed_palettegen_0'
+[auto_scale_1 @ 0000027c7e436880] w:iw h:ih flags:'' interl:0
+[format @ 0000027c7e436380] auto-inserting filter 'auto_scale_1' between the filter 'Parsed_palettegen_0' and the filter 'format'
+[AVFilterGraph @ 0000027c7e4a5180] query_formats: 4 queried, 3 merged, 6 already done, 0 delayed
+[auto_scale_1 @ 0000027c7e436880] picking rgba out of 10 ref:bgra alpha:1
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c00fc8a40] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c00fdba80] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c00fef3c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c010023c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c01015400] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c01028440] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c007ce040] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c007e1980] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c007f5280] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c00808bc0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c0081c4c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c011c6ec0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c011d3e80] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c011e77c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c011fb0c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c001590c0] [swscaler @ 0000027c0120ea00] Forcing full internal H chroma due to input having non subsampled chroma
+[auto_scale_0 @ 0000027c7e436b80] w:512 h:256 fmt:rgba csp:gbr range:pc sar:3937/3937 -> w:512 h:256 fmt:bgra csp:gbr range:pc sar:1/1 flags:0x00000004
+[auto_scale_0 @ 0000027c7e436b80] [framesync @ 0000027c7e4f5ee8] Selected 1/50 time base
+[auto_scale_0 @ 0000027c7e436b80] [framesync @ 0000027c7e4f5ee8] Sync level 1
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c01239300] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c0124c340] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c0125f380] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c01272380] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012853c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c01298400] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012ab440] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012be440] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012d1480] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012e44c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c012f7500] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c0130a500] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c0131d540] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c01330580] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c013435c0] Forcing full internal H chroma due to input having non subsampled chroma
+[swscaler @ 0000027c01222300] [swscaler @ 0000027c013565c0] Forcing full internal H chroma due to input having non subsampled chroma
+[auto_scale_1 @ 0000027c7e436880] w:16 h:16 fmt:bgra csp:gbr range:pc sar:1/1 -> w:16 h:16 fmt:rgba csp:gbr range:pc sar:1/1 flags:0x00000004
+[auto_scale_1 @ 0000027c7e436880] [framesync @ 0000027c7e4f5b28] Selected 1/50 time base
+[auto_scale_1 @ 0000027c7e436880] [framesync @ 0000027c7e4f5b28] Sync level 1
+[graph -1 input from stream 0:0 @ 0000027c7e435c80] video frame properties congruent with link at pts_time: 0
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0126.png' for reading
+[file @ 0000027c7e43be80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c010380c0] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0127.png' for reading
+[file @ 0000027c7e43c7c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c010387c0] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0128.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037880] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0129.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038e80] Statistics: 19886 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0130.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037740] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0131.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037740] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0132.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038240] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0133.png' for reading
+[file @ 0000027c7e43c700] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037740] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0134.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037740] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0135.png' for reading
+[file @ 0000027c7e43c400] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038640] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0136.png' for reading
+[file @ 0000027c7e43c040] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038640] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0137.png' for reading
+[file @ 0000027c7e43c8c0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038e80] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0138.png' for reading
+[file @ 0000027c7e43bbc0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037740] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0139.png' for reading
+[file @ 0000027c7e43bc80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038380] Statistics: 20030 bytes read, 0 seeks
+[image2 @ 0000027c7e453c80] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame0140.png' for reading
+[file @ 0000027c7e43c140] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01037880] Statistics: 20030 bytes read, 0 seeks
+[in#0/image2 @ 0000027c7e44a840] EOF while reading input
+[in#0/image2 @ 0000027c7e44a840] Terminating thread with return code 0 (success)
+[vist#0:0/png @ 0000027c7e43da80] [dec:png @ 0000027c002ed440] Decoder thread received EOF packet
+[vist#0:0/png @ 0000027c7e43da80] [dec:png @ 0000027c002ed440] Decoder returned EOF, finishing
+[vist#0:0/png @ 0000027c7e43da80] [dec:png @ 0000027c002ed440] Terminating thread with return code 0 (success)
+[auto_scale_0 @ 0000027c7e436b80] [framesync @ 0000027c7e4f5ee8] Sync level 0
+[Parsed_palettegen_0 @ 0000027c7e435b80] 255(+1) colors generated out of 543 colors; ratio=0.469613
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF000000
+    Last message repeated 14 times
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF020202
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF3F3F3F
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF684523
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF684524
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF7F7F7F
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF8C8C8C
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FF8F8F8F
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFA4000B
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFAAAAAA
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFF2F2F2
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFF3F3F3
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFFD560A
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFFEFEFE
+[Parsed_palettegen_0 @ 0000027c7e435b80] Duped color: FFFFFFFF
+    Last message repeated 10 times
+Output #0, image2, to 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png':
+  Metadata:
+    encoder         : Lavf61.7.100
+  Stream #0:0, 0, 1/50: Video: png, 1 reference frame, rgba(pc, gbr/unknown/unknown, progressive), 16x16 [SAR 1:1 DAR 1:1], 0/1, q=2-31, 200 kb/s, 50 fps, 50 tbn
+      Metadata:
+        encoder         : Lavc61.19.101 png
+[out#0/image2 @ 0000027c7e44af40] Starting thread...
+[auto_scale_1 @ 0000027c7e436880] [framesync @ 0000027c7e4f5b28] Sync level 0
+[out_#0:0 @ 0000027c7e435280] EOF on sink link out_#0:0:default.
+[vf#0:0 @ 0000027c7e43c340] Filtergraph returned EOF, finishing
+[vf#0:0 @ 0000027c7e43c340] All consumers returned EOF
+[vost#0:0/png @ 0000027c7e457900] Encoder thread received EOF
+[vost#0:0/png @ 0000027c7e457900] Terminating thread with return code 0 (success)
+[image2 @ 0000027c7e4f16c0] Opening 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_000001.png' for writing
+[file @ 0000027c7e436d80] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0000027c01038a80] Statistics: 838 bytes written, 0 seeks, 1 writeouts
+[out#0/image2 @ 0000027c7e44af40] All streams finished
+[out#0/image2 @ 0000027c7e44af40] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0000027c7e43c340] Terminating thread with return code 0 (success)
+[out#0/image2 @ 0000027c7e44af40] Output file #0 (G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png):
+[out#0/image2 @ 0000027c7e44af40]   Output stream #0:0 (video): 1 frames encoded; 1 packets muxed (838 bytes); 
+[out#0/image2 @ 0000027c7e44af40]   Total: 1 packets (838 bytes) muxed
+[out#0/image2 @ 0000027c7e44af40] video:1KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.02 bitrate=N/A speed=0.409x    
+[in#0/image2 @ 0000027c7e44a840] Input file #0 (G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png):
+[in#0/image2 @ 0000027c7e44a840]   Input stream #0:0 (video): 141 packets read (2666480 bytes); 141 frames decoded; 0 decode errors; 
+[in#0/image2 @ 0000027c7e44a840]   Total: 141 packets (2666480 bytes) demuxed
+Input #0, image2, from 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/frame%04d.png':
+  Duration: 00:00:05.64, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: png, rgba(pc, gbr/unknown/unknown), 512x256 [SAR 3937:3937 DAR 2:1], 25 fps, 25 tbr, 25 tbn
+Input #1, image2, from 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/KritaTempPalettegen_%06d.png':
+  Duration: 00:00:00.04, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: png, rgba(pc, gbr/unknown/unknown), 16x16 [SAR 1:1 DAR 1:1], 25 fps, 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (png) -> paletteuse
+  Stream #1:0 (png) -> paletteuse
+  paletteuse:default -> Stream #0:0 (gif)
+Press [q] to stop, [?] for help
+Output #0, gif, to 'G:/Godot/Git/BoTB/Assets/Trailer/Steam/AnimatedUnitsPreviewTransparent_Gif.gif':
+  Metadata:
+    encoder         : Lavf61.7.100
+  Stream #0:0: Video: gif, pal8(pc, gbr/unknown/unknown, progressive), 512x256 [SAR 1:1 DAR 2:1], q=2-31, 200 kb/s, 50 fps, 100 tbn
+      Metadata:
+        encoder         : Lavc61.19.101 gif
+[out#0/gif @ 0000022fae6da700] video:704KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.002773%
+frame=  141 fps=0.0 q=-0.0 Lsize=     704KiB time=00:00:02.82 bitrate=2046.3kbits/s speed=14.8x    
