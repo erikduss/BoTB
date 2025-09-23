@@ -127,8 +127,6 @@ namespace Erikduss
 		{
             GDSync.ExposeFunction(new Callable(this, "DestroyOnMultiplayerClient"));
 
-            unitCreatedAge = Enums.Ages.AGE_02;
-
             if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
 
             if (GameManager.Instance.isHostOfMultiplayerMatch && GameManager.Instance.isMultiplayerMatch)

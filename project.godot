@@ -26,7 +26,7 @@ All Units in the game will have unique powers & abilities to make sure the playe
 
 Battle of the Bookworms will contain many different types of enemies/NPCs/Game Ai. 
 This means that every match should feel different! Every enemy you face will have a unique strategy."
-config/version="0.0.0.2"
+config/version="0.0.1.0"
 run/main_scene="uid://bu6ivnqktjcap"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 boot_splash/image="uid://dp1txd8rg7mwp"

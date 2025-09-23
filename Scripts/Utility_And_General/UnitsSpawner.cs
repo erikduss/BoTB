@@ -77,7 +77,7 @@ namespace Erikduss
                     AddUnitToQueue(Enums.TeamOwner.TEAM_02, Enums.UnitTypes.TrainingDummy, Enums.Ages.AGE_01);
                 }
             }
-		}
+        }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)

@@ -170,8 +170,11 @@ namespace Erikduss
                 GD.Print("P1 has: " + player01Script.playerAbilityCurrentCooldown);
                 GD.Print("P2 has: " + player02Script.playerAbilityCurrentCooldown);
 
-                player01Script.SyncCurrency();
-                player02Script.SyncCurrency();
+                if (isMultiplayerMatch)
+                {
+                    player01Script.SyncCurrency();
+                    player02Script.SyncCurrency();
+                }
             }
 
             if (isMultiplayerMatch)

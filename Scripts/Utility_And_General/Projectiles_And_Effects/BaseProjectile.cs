@@ -95,7 +95,7 @@ namespace Erikduss
             if (projectileOwnerChar.CurrentTarget != null && body.GetInstanceId() == projectileOwnerChar.CurrentTarget.GetInstanceId() && !projectileOwnerChar.IsDeadOrDestroyed)
             {
                 dealtDamage = true;
-                if (GameManager.Instance.isHostOfMultiplayerMatch)
+                if (GameManager.Instance.isHostOfMultiplayerMatch || !GameManager.Instance.isMultiplayerMatch)
                 {
                     projectileOwnerChar.DealDamage();
                 }
@@ -108,7 +108,7 @@ namespace Erikduss
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
-                        if (GameManager.Instance.isHostOfMultiplayerMatch)
+                        if (GameManager.Instance.isHostOfMultiplayerMatch || !GameManager.Instance.isMultiplayerMatch)
                         {
                             projectileOwnerChar.DealDamage();
                         }
@@ -123,7 +123,7 @@ namespace Erikduss
                     {
                         //We hit the enemy's base. Possibly needs to change some variables still to make sure it works.
                         dealtDamage = true;
-                        if (GameManager.Instance.isHostOfMultiplayerMatch)
+                        if (GameManager.Instance.isHostOfMultiplayerMatch || !GameManager.Instance.isMultiplayerMatch)
                         {
                             projectileOwnerChar.DealDamage();
                         }
@@ -142,7 +142,7 @@ namespace Erikduss
 
                     dealtDamage = true;
                     projectileOwnerChar.CurrentTarget = enemyChar;
-                    if (GameManager.Instance.isHostOfMultiplayerMatch)
+                    if (GameManager.Instance.isHostOfMultiplayerMatch || !GameManager.Instance.isMultiplayerMatch)
                     {
                         projectileOwnerChar.DealDamage();
                     }

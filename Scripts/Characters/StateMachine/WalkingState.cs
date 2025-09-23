@@ -87,6 +87,8 @@ namespace Erikduss
                     if (!druid.isTransforming && !character.unitHasReachedEnemyHomeBase) //we should not transform back if we are at the home base.
                     {
                         //there's a bug with the druid that it infinitly transforms when against another druid.
+                        //likely fixed?
+
                         druid.TransformBack();
                         return;
                     }
@@ -516,7 +518,7 @@ namespace Erikduss
                 return false;
             }
 
-            return true;
+            return false;
         }
     }
 }
