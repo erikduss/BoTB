@@ -47,6 +47,8 @@ namespace Erikduss
 
             GDSync.ClientJoined += Client_Joined;
             GDSync.ClientLeft += Client_Left;
+
+            GDSync.SteamJoinRequest += SteamJoinRequest;
         }
 
         protected override void Dispose(bool disposing)
@@ -66,6 +68,8 @@ namespace Erikduss
 
             GDSync.ClientJoined -= Client_Joined;
             GDSync.ClientLeft -= Client_Left;
+
+            GDSync.SteamJoinRequest -= SteamJoinRequest;
 
             base.Dispose(disposing);
         }
@@ -88,6 +92,19 @@ namespace Erikduss
         public void JoinLobby(string lobbyName, string lobbyPassword = "")
         {
             GDSync.LobbyJoin(lobbyName, lobbyPassword);
+        }
+
+        public void SteamJoinRequest(string lobbyName, bool hasPassword)
+        {
+            if (!hasPassword)
+            {
+                JoinLobby(lobbyName);
+            }
+            else
+            {
+                //lobby has a password
+
+            }
         }
 
         public void Connected()

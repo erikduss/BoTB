@@ -43,6 +43,7 @@ AudioManager="*res://Scripts/Utility_And_General/Audio/AudioManager.cs"
 MultiplayerManager="*res://Scripts/Multiplayer/MultiplayerManager.cs"
 GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
 GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
+SteamManager="*res://Scripts/Multiplayer/SteamManager.gd"
 
 [display]
 
