@@ -28,7 +28,7 @@ animatedSprite = NodePath("Line2D/AnimatedSprite2D")
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(5.54626, -67)
 scale = Vector2(0.854626, 1)
-points = PackedVector2Array(0, 0, 140.943, 46)
+points = PackedVector2Array(0, 0, 0, 0)
 texture = ExtResource("2_uenm2")
 texture_mode = 2
 
@@ -40,7 +40,7 @@ autoplay = "default"
 [node name="PropertySynchronizer3" type="Node" parent="Line2D/AnimatedSprite2D"]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h")
+properties = PackedStringArray("flip_h", "frame")
 interpolated = false
 interpolation_speed = 1.0
 extrapolation = null
@@ -51,7 +51,7 @@ metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 [node name="PropertySynchronizer2" type="Node" parent="Line2D"]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("position", "points", "visible")
+properties = PackedStringArray("points", "visible")
 interpolated = false
 interpolation_speed = 1.0
 extrapolation = null
@@ -62,7 +62,7 @@ metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 [node name="PropertySynchronizer4" type="Node" parent="."]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("position")
+properties = PackedStringArray("global_position", "visible")
 interpolated = false
 interpolation_speed = 1.0
 extrapolation = null

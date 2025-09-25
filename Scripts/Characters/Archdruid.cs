@@ -31,11 +31,12 @@ namespace Erikduss
                 {
                     foreach (Node childNode in this.GetChildren())
                     {
+                        //this is needed, otherwise the characteraniumatedsprite is null and its needed to multiplayer switch
                         if (childNode is AnimatedSprite2D)
                         {
                             AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
 
-                            spriteComponent.Visible = false;
+                            //spriteComponent.Visible = false;
                             characterAnimatedSprite = spriteComponent;
                         }
                     }
@@ -147,6 +148,12 @@ namespace Erikduss
 
         public void TransformBack()
         {
+            if (!GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                GD.Print("we get in here as non host.");
+                return;
+            }
+
             isTransforming = true;
             tranformationTimer = 0;
             transformationDuration = tranformToNormalModeDuration;
