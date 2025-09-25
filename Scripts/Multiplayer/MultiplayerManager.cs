@@ -78,7 +78,7 @@ namespace Erikduss
 
         public void CreateNewLobby(string lobbyName = "defaultLobby", string lobbyPassword = "")
         {
-            GDSync.CreateLobby(lobbyName, lobbyPassword, true, 2);
+            GDSync.LobbyCreate(lobbyName, lobbyPassword, true, 2);
 
             isHostOfLobby = true;
 
@@ -87,7 +87,7 @@ namespace Erikduss
 
         public void JoinLobby(string lobbyName, string lobbyPassword = "")
         {
-            GDSync.JoinLobby(lobbyName, lobbyPassword);
+            GDSync.LobbyJoin(lobbyName, lobbyPassword);
         }
 
         public void Connected()

@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://mq6g4a7817p" path="res://Assets/Characters/Assassin_Age_2/BleedingEffect/AssassingBleedEffect_06.png" id="7_1ityx"]
 [ext_resource type="Texture2D" uid="uid://c2i5bw7tfdjpt" path="res://Assets/Characters/Assassin_Age_2/BleedingEffect/AlternativeColor/AssassingBleedEffect_G_06.png" id="7_rmfk8"]
 [ext_resource type="Texture2D" uid="uid://bo3phvuxsoaog" path="res://Assets/Characters/Assassin/Death/Assassin_Age_1-Death_Frame-6.png" id="8_k8xt4"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="9_dq5oc"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="9_dq5oc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jdio1"]
 animations = [{
@@ -84,30 +84,39 @@ destroyTime = 4.0
 sprite_frames = SubResource("SpriteFrames_jdio1")
 animation = &"Bleeding"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimatedBleedingSprites"]
+[node name="PropertySynchronizer3" type="Node" parent="AnimatedBleedingSprites"]
 script = ExtResource("9_dq5oc")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
 [node name="AnimatedBleedingSprites_G" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ec1t7")
 animation = &"Bleeding"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimatedBleedingSprites_G"]
+[node name="PropertySynchronizer4" type="Node" parent="AnimatedBleedingSprites_G"]
 script = ExtResource("9_dq5oc")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="PropertySynchronizer2" type="Node" parent="."]
+[node name="PropertySynchronizer4" type="Node" parent="."]
 script = ExtResource("9_dq5oc")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

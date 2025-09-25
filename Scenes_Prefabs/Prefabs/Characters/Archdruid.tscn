@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Age_1/Archdruid.tres" id="2_0sdww"]
 [ext_resource type="SpriteFrames" uid="uid://c45m8u8gsn3xe" path="res://Assets/Animation_SpriteFrames/Age_1/Archdruid_Transformed.tres" id="3_4veot"]
 [ext_resource type="SpriteFrames" uid="uid://cciowkwkcmctn" path="res://Assets/Animation_SpriteFrames/Age_2/Archdruid_Transformed_Age_2.tres" id="4_0sdww"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_reo3g"]
 [ext_resource type="SpriteFrames" uid="uid://bjtv3qbkynq3j" path="res://Assets/Animation_SpriteFrames/Age_2/Archdruid_Age_2.tres" id="5_4veot"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="6_4veot"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="25_iivj8"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="26_bs43b"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="27_28tm7"]
@@ -27,14 +27,16 @@ sprite_frames = ExtResource("2_0sdww")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
-script = ExtResource("4_reo3g")
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+script = ExtResource("6_4veot")
 node_path = NodePath("..")
-reliable = true
-properties = PackedStringArray("animation", "frame", "flip_h")
+properties = PackedStringArray("flip_h", "animation", "frame")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 
@@ -52,10 +54,13 @@ attackDuration = 0.7
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer" type="Node" parent="."]
-script = ExtResource("4_reo3g")
+[node name="PropertySynchronizer3" type="Node" parent="."]
+script = ExtResource("6_4veot")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cpujyr4eehuei" path="res://Scripts/Characters/Shaman.cs" id="1_8fxp8"]
 [ext_resource type="SpriteFrames" uid="uid://1jiij33arghg" path="res://Assets/Animation_SpriteFrames/Age_1/Shaman.tres" id="2_57kgq"]
 [ext_resource type="SpriteFrames" uid="uid://bqskj4bpwnoef" path="res://Assets/Animation_SpriteFrames/Age_2/Shaman_Age_2.tres" id="3_c11oa"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_57kgq"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="6_thu5g"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="7_ehv66"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="8_2lle0"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="18_tylac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
@@ -23,13 +23,16 @@ sprite_frames = ExtResource("2_57kgq")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
-script = ExtResource("18_tylac")
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+script = ExtResource("4_57kgq")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "animation", "frame")
+properties = PackedStringArray("flip_h", "animation", "frame", "sprite_frames")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 
@@ -47,10 +50,13 @@ attackDuration = 0.6
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer" type="Node" parent="."]
-script = ExtResource("18_tylac")
+[node name="PropertySynchronizer3" type="Node" parent="."]
+script = ExtResource("4_57kgq")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

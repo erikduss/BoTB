@@ -486,7 +486,7 @@ namespace Erikduss
 
             if (GameManager.Instance.isMultiplayerMatch)
             {
-                GDSync.CreateSyncedEvent("PauseGameToggle");
+                GDSync.SyncedEventCreate("PauseGameToggle");
             }
             else
             {

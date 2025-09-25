@@ -285,7 +285,7 @@ namespace Erikduss
                 {
                     if (GameManager.Instance.isMultiplayerMatch)
                     {
-                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
                         GDSync.CallFuncOn(otherClient, new Callable(this, "DestroyOnMultiplayerClient"), [true]);
                     }
 

@@ -10,7 +10,7 @@ config_version=5
 
 [GD-Sync]
 
-version="0.10"
+version="0.12"
 csharp=true
 publicKey="2c95c65d4574b939"
 privateKey="4ead5fac4c33a701"
@@ -40,9 +40,9 @@ buses/default_bus_layout="uid://db020m2himdaw"
 
 GameSettingsLoader="*res://Scripts/Utility_And_General/GameData/DataManagers/GameSettingsLoader.cs"
 AudioManager="*res://Scripts/Utility_And_General/Audio/AudioManager.cs"
+MultiplayerManager="*res://Scripts/Multiplayer/MultiplayerManager.cs"
 GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
 GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
-MultiplayerManager="*res://Scripts/Multiplayer/MultiplayerManager.cs"
 
 [display]
 

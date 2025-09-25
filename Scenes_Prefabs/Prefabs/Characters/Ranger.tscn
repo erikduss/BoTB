@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qs3a20qhivj1" path="res://Scripts/Characters/Ranger.cs" id="1_ejyat"]
 [ext_resource type="SpriteFrames" uid="uid://0hil3akmecs6" path="res://Assets/Animation_SpriteFrames/Age_1/Ranger.tres" id="2_wnj2w"]
 [ext_resource type="SpriteFrames" uid="uid://tvks0ajglmjf" path="res://Assets/Animation_SpriteFrames/Age_2/Ranger_Age_2.tres" id="3_jgqkb"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="3_rja5j"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_jgqkb"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="21_5x4al"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="22_rddlg"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="23_wdw20"]
@@ -23,13 +23,16 @@ sprite_frames = ExtResource("2_wnj2w")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
-script = ExtResource("3_rja5j")
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+script = ExtResource("4_jgqkb")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "animation", "frame")
+properties = PackedStringArray("flip_h", "animation", "frame", "sprite_frames")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 
@@ -47,10 +50,13 @@ attackDuration = 0.6
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer" type="Node" parent="."]
-script = ExtResource("3_rja5j")
+[node name="PropertySynchronizer3" type="Node" parent="."]
+script = ExtResource("4_jgqkb")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

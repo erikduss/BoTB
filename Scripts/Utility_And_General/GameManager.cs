@@ -105,7 +105,7 @@ namespace Erikduss
 
                     isHostOfMultiplayerMatch = true;
 
-                    int clientID = GDSync.GetClientID();
+                    int clientID = GDSync.GetClientId();
 
                     GD.Print("I am the host!" + clientID);
 
@@ -117,7 +117,7 @@ namespace Erikduss
                     //GDSync.SetGDSyncOwner(instantiatedPlayer, clientID);
 
                     //spawn other player
-                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
                     Node otherInstantiatedPlayer = GDSync.MultiplayerInstantiate(playerSceneNodePrefab, this);
                     //AddChild(otherInstantiatedPlayer);
                     otherInstantiatedPlayer.Name = otherClientID.ToString();
@@ -182,7 +182,7 @@ namespace Erikduss
                 if (isHostOfMultiplayerMatch)
                 {
                     //this will call it for all clients
-                    GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+                    GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
                 }
             }
             else
@@ -221,7 +221,7 @@ namespace Erikduss
                 if (isMultiplayerMatch)
                 {
                     //dont think we need to be the host to do this.
-                    GDSync.CreateSyncedEvent("PauseGameToggle");
+                    GDSync.SyncedEventCreate("PauseGameToggle");
                 }
                 else
                 {
@@ -297,7 +297,7 @@ namespace Erikduss
             {
                 //this will call it for all clients
                 GD.Print("Send update event!");
-                GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+                GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
             }
         }
 
@@ -359,7 +359,7 @@ namespace Erikduss
             player02Script.playerCurrentCurrencyAmount -= amount;
 
             //this will call it for all clients
-            GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+            GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
         }
 
         public void ProcessSpawnRequestPlayer2(int unitType)
@@ -377,7 +377,7 @@ namespace Erikduss
             if (isMultiplayerMatch)
             {
                 //this will call it for all clients
-                GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+                GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
             }
             else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
@@ -451,7 +451,7 @@ namespace Erikduss
                 //we want to prevent double updates.
                 if(addedPowerUpProgress != GameSettingsLoader.powerUpProgressAmountIdle)
                 {
-                    GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+                    GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
                 }
             }
             else if (playerTeam == Enums.TeamOwner.TEAM_01)

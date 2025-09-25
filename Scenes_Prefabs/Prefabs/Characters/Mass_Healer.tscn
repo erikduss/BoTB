@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://ifc4l70hg747" path="res://Scripts/Characters/Mass_Healer.cs" id="1_sggt1"]
 [ext_resource type="SpriteFrames" uid="uid://dony4rrjmxrg8" path="res://Assets/Animation_SpriteFrames/Age_1/Mass_Healer.tres" id="2_ktua6"]
 [ext_resource type="SpriteFrames" uid="uid://bbcimyxih8lob" path="res://Assets/Animation_SpriteFrames/Age_2/Mass_Healer_Age_2.tres" id="3_fp86b"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="4_ktua6"]
 [ext_resource type="Script" uid="uid://ypoyj5jbe2km" path="res://Scripts/Characters/StateMachine/IdleState.cs" id="6_xynyu"]
 [ext_resource type="Script" uid="uid://bt5bi7vemca8" path="res://Scripts/Characters/StateMachine/WalkingState.cs" id="7_7oie8"]
 [ext_resource type="Script" uid="uid://erv5snpa11ax" path="res://Scripts/Characters/StateMachine/AttackState.cs" id="8_ocdob"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="19_ldjog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
@@ -23,13 +23,16 @@ sprite_frames = ExtResource("2_ktua6")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer" type="Node" parent="AnimationController"]
-script = ExtResource("19_ldjog")
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+script = ExtResource("4_ktua6")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "animation", "frame")
+properties = PackedStringArray("flip_h", "animation", "frame", "sprite_frames")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
 [node name="StateMachine_States" type="Node2D" parent="."]
 
@@ -46,10 +49,13 @@ script = ExtResource("8_ocdob")
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer" type="Node" parent="."]
-script = ExtResource("19_ldjog")
+[node name="PropertySynchronizer3" type="Node" parent="."]
+script = ExtResource("4_ktua6")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

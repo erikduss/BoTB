@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cd5vpg4qtl03k"]
 
 [ext_resource type="Script" uid="uid://c65tpkkgjmr3x" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/BattlemageFireballLogic.cs" id="1_ajpov"]
-[ext_resource type="Texture2D" uid="uid://cumjrosnom000" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_1.png" id="2_qpgyh"]
-[ext_resource type="Texture2D" uid="uid://dmgrbgamd1lwj" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png" id="3_bj6f4"]
-[ext_resource type="Texture2D" uid="uid://coaroqw0rnrw4" path="res://Assets/Characters/Battlemage/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_3.png" id="4_27mrg"]
+[ext_resource type="Texture2D" uid="uid://cumjrosnom000" path="res://Assets/Characters/Battlemage_Age_2/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_1.png" id="2_qpgyh"]
+[ext_resource type="Texture2D" uid="uid://dmgrbgamd1lwj" path="res://Assets/Characters/Battlemage_Age_2/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_2.png" id="3_bj6f4"]
+[ext_resource type="Texture2D" uid="uid://coaroqw0rnrw4" path="res://Assets/Characters/Battlemage_Age_2/Fireblast_Projectile/Battlemage_Age_1_Fireblast_Frame_3.png" id="4_27mrg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ce1yr"]
 animations = [{

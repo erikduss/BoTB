@@ -294,7 +294,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedSimpleSoldier = (SimpleSoldier)GDSync.MultiplayerInstantiate(simpleSoldierPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedSimpleSoldier, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedSimpleSoldier, GDSync.GetClientId());
                     }
                     else
                     {
@@ -331,7 +331,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedRanger = (Ranger)GDSync.MultiplayerInstantiate(rangerPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedRanger, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedRanger, GDSync.GetClientId());
                     }
                     else
                     {
@@ -367,7 +367,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedAssassin = (Assassin)GDSync.MultiplayerInstantiate(assassinPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedAssassin, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedAssassin, GDSync.GetClientId());
                     }
                     else
                     {
@@ -403,7 +403,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedEnforcer = (Enforcer)GDSync.MultiplayerInstantiate(enforcerPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedEnforcer, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedEnforcer, GDSync.GetClientId());
                     }
                     else
                     {
@@ -439,7 +439,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedTank = (Tank)GDSync.MultiplayerInstantiate(tankPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedTank, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedTank, GDSync.GetClientId());
                     }
                     else
                     {
@@ -475,7 +475,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedBattlemage = (Battlemage)GDSync.MultiplayerInstantiate(battleMagePrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedBattlemage, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedBattlemage, GDSync.GetClientId());
                     }
                     else
                     {
@@ -511,7 +511,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedMassHealer = (Mass_Healer)GDSync.MultiplayerInstantiate(massHealerPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedMassHealer, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedMassHealer, GDSync.GetClientId());
                     }
                     else
                     {
@@ -547,7 +547,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedShaman = (Shaman)GDSync.MultiplayerInstantiate(shamanPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedShaman, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedShaman, GDSync.GetClientId());
                     }
                     else
                     {
@@ -583,7 +583,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedArchdruid = (Archdruid)GDSync.MultiplayerInstantiate(archdruidPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedArchdruid, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedArchdruid, GDSync.GetClientId());
                     }
                     else
                     {
@@ -618,7 +618,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedTrainingDummy = (TrainingDummy)GDSync.MultiplayerInstantiate(trainingDummyPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedTrainingDummy, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedTrainingDummy, GDSync.GetClientId());
                     }
                     else
                     {
@@ -658,7 +658,7 @@ namespace Erikduss
                     {
                         //we only instantiate through the host, due to it being synced either way.
                         instantiatedNoType = (SimpleSoldier)GDSync.MultiplayerInstantiate(simpleSoldierPrefab, this);
-                        GDSync.SetGDSyncOwner(instantiatedNoType, GDSync.GetClientID());
+                        GDSync.SetGDSyncOwner(instantiatedNoType, GDSync.GetClientId());
                     }
                     else
                     {

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdxmb8lmp5fhg" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_RangedAttackBeam.png" id="2_uenm2"]
 [ext_resource type="Texture2D" uid="uid://cftjjxs5afue7" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_1.png" id="3_w1vaf"]
 [ext_resource type="Texture2D" uid="uid://cliqs8g2c0r1r" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_RangedAttackEffect_Frame_2.png" id="4_hkwja"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_ttvl5"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_ttvl5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xvfye"]
 animations = [{
@@ -37,26 +37,35 @@ rotation = -1.31598
 sprite_frames = SubResource("SpriteFrames_xvfye")
 autoplay = "default"
 
-[node name="PropertySynchronizer" type="Node" parent="Line2D/AnimatedSprite2D"]
+[node name="PropertySynchronizer3" type="Node" parent="Line2D/AnimatedSprite2D"]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("flip_h", "frame")
+properties = PackedStringArray("flip_h")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="PropertySynchronizer" type="Node" parent="Line2D"]
+[node name="PropertySynchronizer2" type="Node" parent="Line2D"]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("points", "visible")
+properties = PackedStringArray("position", "points", "visible")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="PropertySynchronizer2" type="Node" parent="."]
+[node name="PropertySynchronizer4" type="Node" parent="."]
 script = ExtResource("5_ttvl5")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position", "visible")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dug3g02efj2mw" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_1.png" id="2_nimok"]
 [ext_resource type="Texture2D" uid="uid://ba8b1i2tkrfvk" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_2.png" id="3_8gcgf"]
 [ext_resource type="Texture2D" uid="uid://duscv4ffw3so4" path="res://Assets/Characters/Archdruid_Age_2/Projectile/Archdruid_Age_1_ImpactEffect_Frame_3.png" id="4_pox1a"]
-[ext_resource type="Script" uid="uid://dp5f7tjsyrske" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_nimok"]
+[ext_resource type="Script" uid="uid://ddv3pb3w5c16j" path="res://addons/GD-Sync/Scripts/Types/PropertySynchronizer.gd" id="5_nimok"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c6tpr"]
 animations = [{
@@ -33,18 +33,24 @@ sprite_frames = SubResource("SpriteFrames_c6tpr")
 autoplay = "default"
 frame_progress = 0.00956301
 
-[node name="PropertySynchronizer" type="Node" parent="AnimatedSprite2D"]
+[node name="PropertySynchronizer3" type="Node" parent="AnimatedSprite2D"]
 script = ExtResource("5_nimok")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="PropertySynchronizer2" type="Node" parent="."]
+[node name="PropertySynchronizer4" type="Node" parent="."]
 script = ExtResource("5_nimok")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("position")
 interpolated = false
 interpolation_speed = 1.0
-metadata/_custom_type_script = "uid://dp5f7tjsyrske"
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

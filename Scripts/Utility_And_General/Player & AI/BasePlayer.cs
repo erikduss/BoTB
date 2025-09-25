@@ -39,13 +39,13 @@ namespace Erikduss
                     {
                         GameManager.Instance.player01Script = this;
                         playerTeam = Enums.TeamOwner.TEAM_01;
-                        Name = (MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First()).ToString();
+                        Name = (MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First()).ToString();
                     }
                     else
                     {
                         GameManager.Instance.player02Script = this;
                         playerTeam = Enums.TeamOwner.TEAM_02;
-                        Name = GDSync.GetClientID().ToString();
+                        Name = GDSync.GetClientId().ToString();
                     }
 
                     //if (this.Name == GDSync.GetClientID().ToString())
