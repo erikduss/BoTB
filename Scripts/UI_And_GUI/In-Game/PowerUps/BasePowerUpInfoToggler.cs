@@ -89,6 +89,19 @@ namespace Erikduss
         {
             BasePlayer player = GameManager.Instance.clientTeamOwner == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script : GameManager.Instance.player02Script;
 
+            if(!player.hasUnlockedPowerUpCurrently)
+            {
+                GD.Print("Clicking power up!");
+                GD.Print(player.playerTeam);
+                GD.Print(player.playerCurrentPowerUpProgressAmount);
+                GD.Print(player.playerCurrentPowerUpRerollsAmount);
+                GD.Print(player.playerCurrentAmountOfPowerUpsOwed);
+                GD.Print(player.hasUnlockedPowerUpCurrently);
+
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+
             player.hasUnlockedPowerUpCurrently = false;
 
             GameManager.Instance.inGameHUDManager.RefreshPowerUp(false);

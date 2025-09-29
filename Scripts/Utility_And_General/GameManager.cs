@@ -54,7 +54,7 @@ namespace Erikduss
 
         #region Ability Variables
 
-        public int playerAbilityCooldown = 10; //seconds 180
+        public int playerAbilityCooldown = 180; //seconds 180
 
         private float playerAbilityUpdateTimer = 0;
         private float playerAbilityCooldownReductionRate = 1f; //every second we reduce it by 1
@@ -437,7 +437,7 @@ namespace Erikduss
                 {
                     inGameHUDManager.RefreshPowerUp(false);
                 }
-                else if (playerTeam == Enums.TeamOwner.TEAM_01)
+                else if (playerTeam == Enums.TeamOwner.TEAM_01) //singleplayer
                 {
                     inGameHUDManager.RefreshPowerUp(false);
                     inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);

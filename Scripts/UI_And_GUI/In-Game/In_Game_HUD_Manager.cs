@@ -244,6 +244,16 @@ namespace Erikduss
 
             BasePlayer player = GameManager.Instance.GetLocalClientPlayerScript();
 
+            if(player != null)
+            {
+                GD.Print("Refreshing power up!");
+                GD.Print(player.playerTeam);
+                GD.Print(player.playerCurrentPowerUpProgressAmount);
+                GD.Print(player.playerCurrentPowerUpRerollsAmount);
+                GD.Print(player.playerCurrentAmountOfPowerUpsOwed);
+                GD.Print(player.hasUnlockedPowerUpCurrently);
+            }
+
             if (spendRerollToken)
             {
                 if (player.playerCurrentPowerUpRerollsAmount < 1)

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Erikduss
@@ -115,6 +116,12 @@ namespace Erikduss
             }
 
             healthBarValueLabel.Text = CurrentHealth.ToString();
+
+
+            if (MultiplayerManager.Instance.isUsingMultiplayer)
+            {
+                GDSync.ExposeNode(this);
+            }
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -124,6 +131,12 @@ namespace Erikduss
 
         public void TakeDamage(int rawDamage)
         {
+            if(GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
+                GDSync.CallFuncOn(otherClient, new Callable(this, "TakeDamage"), [rawDamage]);
+            }
+
             currentHealth -= rawDamage;
 
             //award teams with power up progress.
