@@ -94,12 +94,22 @@ namespace Erikduss
             }
 
             GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+
+            Input.JoyConnectionChanged += ReselectControlElementFocusOnControllerChange;
         }
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
 		}
+
+        protected override void Dispose(bool disposing)
+        {
+            //might break opening and closing options.
+            GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
+            Input.JoyConnectionChanged -= ReselectControlElementFocusOnControllerChange;
+            base.Dispose(disposing);
+        }
 
         public void SetLoadedValues()
         {
@@ -446,6 +456,28 @@ namespace Erikduss
             }
 
             currentlySelectedControl = control;
+        }
+
+        private void ReselectControlElementFocusOnControllerChange(long device, bool isConnected)
+        {
+            bool hasControllerConnected = false;
+
+            if (Input.GetConnectedJoypads().Count > 0)
+            {
+                hasControllerConnected = true;
+            }
+
+            if (hasControllerConnected || GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                //change color back
+                if (currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+
+                    currentlySelectedControl.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+                }
+            }
         }
 
         public void ResetControllerModeColorOverride()

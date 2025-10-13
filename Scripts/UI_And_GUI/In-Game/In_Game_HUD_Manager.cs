@@ -117,6 +117,8 @@ namespace Erikduss
             GetViewport().GuiFocusChanged += OnControlElementFocusChanged;
             optionsPanel.VisibilityChanged += OptionsPanelClosed;
             GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated += UpdateLanguage;
+
+            Input.JoyConnectionChanged += ReselectControlElementFocusOnControllerChange;
         }
 
         public void UnsubscribeFromEvents()
@@ -124,6 +126,8 @@ namespace Erikduss
             GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
             optionsPanel.VisibilityChanged -= OptionsPanelClosed;
             GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
+
+            Input.JoyConnectionChanged -= ReselectControlElementFocusOnControllerChange;
         }
 
         public void SelectFirstControlInShop()
@@ -326,10 +330,18 @@ namespace Erikduss
                 }
             }
 
-            //RefreshFocusConnections();
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                if(GameManager.Instance.GetLocalClientPlayerScript().GetInstanceId() != player.GetInstanceId())
+                {
+                    return;
+                }
+            }
 
-            //if (!spendRerollToken) SelectFirstControlInShop();
+            GD.Print("we are the local player and need to refresh connections.");
 
+            RefreshFocusConnections();
+            if (!spendRerollToken) SelectFirstControlInShop();
         }
 
         public bool DoesThePlayerHaveAPowerUpUnlocked(BasePlayer player)
@@ -583,6 +595,28 @@ namespace Erikduss
             }
 
             currentlySelectedControl = control;
+        }
+
+        private void ReselectControlElementFocusOnControllerChange(long device, bool isConnected)
+        {
+            bool hasControllerConnected = false;
+
+            if (Input.GetConnectedJoypads().Count > 0)
+            {
+                hasControllerConnected = true;
+            }
+
+            if (hasControllerConnected || GameSettingsLoader.Instance.useHighlightFocusMode)
+            {
+                //change color back
+                if (currentlySelectedControl != null)
+                {
+                    currentlySelectedControl.SelfModulate = new Color(1, 1, 1);
+                    AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
+
+                    currentlySelectedControl.SelfModulate = GameSettingsLoader.Instance.focussedControlColor;
+                }
+            }
         }
     }
 }

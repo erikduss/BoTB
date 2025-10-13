@@ -73,10 +73,15 @@ namespace Erikduss
             if (Input.GetConnectedJoypads().Count > 0)
             {
                 userHasControllerConnected = true;
+                //TODO: when a control change is detected, the game should pause and a popup should appear with information about it.
+                useHighlightFocusMode = true;
             }
             else
             {
                 userHasControllerConnected = false;
+
+                //should prob not happen, or at least be prompted to.
+                useHighlightFocusMode = false;
             }
 
             GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
