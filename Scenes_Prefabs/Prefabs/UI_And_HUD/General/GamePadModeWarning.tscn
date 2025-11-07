@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4wrfbgd4ql3q"]
+
+[ext_resource type="Script" uid="uid://b7ii62mw3avk7" path="res://Scripts/UI_And_GUI/General/GamepadModeWarning.cs" id="1_csf7n"]
+[ext_resource type="Texture2D" uid="uid://88m5ckc1wfrm" path="res://Assets/UI/GenericButton.png" id="2_umduy"]
+[ext_resource type="Texture2D" uid="uid://bgk6pg7dr3p80" path="res://Assets/UI/GenericButton_Hover.png" id="3_0thxc"]
+[ext_resource type="BitMap" uid="uid://1be02usg7yph" path="res://Assets/UI/ClickMaskGeneric.png" id="4_ax8sp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y57m4"]
+font_size = 280
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_krd8t"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_upb8f"]
+font_size = 64
+
+[node name="GamepadChangesWarning" type="Control" node_paths=PackedStringArray("descriptionLabel", "returnButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_csf7n")
+descriptionLabel = NodePath("Panel/Panel/GamepadWarningDescription")
+returnButton = NodePath("Panel/Panel/ColorRect/ReturnButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -245.0
+offset_right = 480.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 590.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="ReturnButton" type="TextureButton" parent="Panel/Panel/ColorRect"]
+offset_left = 375.0
+offset_top = 350.0
+offset_right = 631.0
+offset_bottom = 606.0
+focus_neighbor_left = NodePath("../SaveButton")
+focus_neighbor_right = NodePath("../SaveButton")
+focus_next = NodePath("../SaveButton")
+focus_previous = NodePath("../SaveButton")
+texture_normal = ExtResource("2_umduy")
+texture_hover = ExtResource("3_0thxc")
+texture_click_mask = ExtResource("4_ax8sp")
+
+[node name="ButtonText" type="Label" parent="Panel/Panel/ColorRect/ReturnButton"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RETURN_BUTTON"
+label_settings = SubResource("LabelSettings_y57m4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GamepasWarningTitleWarning" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 264.0
+scale = Vector2(0.5, 0.5)
+text = "GAMEPAD_WARNING"
+label_settings = SubResource("LabelSettings_krd8t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GamepadWarningDescription" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_top = 158.0
+offset_right = 1920.0
+offset_bottom = 608.0
+scale = Vector2(0.5, 0.5)
+label_settings = SubResource("LabelSettings_upb8f")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Panel/Panel/ColorRect/ReturnButton" to="." method="ClosePanel"]

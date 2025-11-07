@@ -33,6 +33,11 @@ namespace Erikduss
         public static float powerUpProgressMultiplierOtherUnitDamage = 0.5f;
         public static float powerUpProgressMultiplierOwnUnitHealing = 0.5f;
 
+        public PackedScene gamepadWarningPanel = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/GamePadModeWarning.tscn");
+        private Control currentlyInstantiatedWarning;
+        public bool hasInstatiatedWarning = false;
+        public Control previouslySelectedControlBeforeControllerChange;
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
@@ -75,6 +80,27 @@ namespace Erikduss
                 userHasControllerConnected = true;
                 //TODO: when a control change is detected, the game should pause and a popup should appear with information about it.
                 useHighlightFocusMode = true;
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+
+                if (hasInstatiatedWarning)
+                {
+                    previouslySelectedControlBeforeControllerChange.GrabFocus();
+                    currentlyInstantiatedWarning.QueueFree();
+
+                    hasInstatiatedWarning = false;
+                }
+                else
+                {
+                    if (GetViewport().GuiGetFocusOwner() != null)
+                    {
+                        previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                    }
+
+                    currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
+                    GetViewport().AddChild(currentlyInstantiatedWarning);
+
+                    hasInstatiatedWarning = true;
+                }
             }
             else
             {
@@ -82,6 +108,27 @@ namespace Erikduss
 
                 //should prob not happen, or at least be prompted to.
                 useHighlightFocusMode = false;
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+
+                if (hasInstatiatedWarning)
+                {
+                    previouslySelectedControlBeforeControllerChange.GrabFocus();
+                    currentlyInstantiatedWarning.QueueFree();
+
+                    hasInstatiatedWarning = false;
+                }
+                else
+                {
+                    if(GetViewport().GuiGetFocusOwner() != null)
+                    {
+                        previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                    }
+
+                    currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
+                    GetViewport().AddChild(currentlyInstantiatedWarning);
+
+                    hasInstatiatedWarning = true;
+                }
             }
 
             GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
