@@ -37,6 +37,7 @@ namespace Erikduss
         private Control currentlyInstantiatedWarning;
         public bool hasInstatiatedWarning = false;
         public Control previouslySelectedControlBeforeControllerChange;
+        private bool initializedDevices = false;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -67,7 +68,7 @@ namespace Erikduss
 
             InitializeAllUnits();
 
-            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+            await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             //playerGlobalSettingsManager.LoadGlobalPlayerSettings();
         }
 
@@ -78,28 +79,40 @@ namespace Erikduss
             if (Input.GetConnectedJoypads().Count > 0)
             {
                 userHasControllerConnected = true;
-                //TODO: when a control change is detected, the game should pause and a popup should appear with information about it.
                 useHighlightFocusMode = true;
                 Input.MouseMode = Input.MouseModeEnum.Captured;
 
-                if (hasInstatiatedWarning)
+                //we dont want to show this during initialize
+                if (initializedDevices)
                 {
-                    previouslySelectedControlBeforeControllerChange.GrabFocus();
-                    currentlyInstantiatedWarning.QueueFree();
-
-                    hasInstatiatedWarning = false;
-                }
-                else
-                {
-                    if (GetViewport().GuiGetFocusOwner() != null)
+                    if (hasInstatiatedWarning)
                     {
-                        previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                        previouslySelectedControlBeforeControllerChange.GrabFocus();
+                        currentlyInstantiatedWarning.QueueFree();
+
+                        hasInstatiatedWarning = false;
                     }
+                    else
+                    {
+                        if (GetViewport().GuiGetFocusOwner() != null)
+                        {
+                            previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                        }
 
-                    currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
-                    GetViewport().AddChild(currentlyInstantiatedWarning);
+                        currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
+                        GetViewport().AddChild(currentlyInstantiatedWarning);
 
-                    hasInstatiatedWarning = true;
+                        hasInstatiatedWarning = true;
+
+                        //only pause when the game is in progress.
+                        if (GameManager.Instance != null)
+                        {
+                            if (GameManager.Instance.matchDuration > 0)
+                            {
+                                GameManager.Instance.ToggleGameIsPaused(true);
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -110,26 +123,31 @@ namespace Erikduss
                 useHighlightFocusMode = false;
                 Input.MouseMode = Input.MouseModeEnum.Visible;
 
-                if (hasInstatiatedWarning)
+                if (initializedDevices)
                 {
-                    previouslySelectedControlBeforeControllerChange.GrabFocus();
-                    currentlyInstantiatedWarning.QueueFree();
-
-                    hasInstatiatedWarning = false;
-                }
-                else
-                {
-                    if(GetViewport().GuiGetFocusOwner() != null)
+                    if (hasInstatiatedWarning)
                     {
-                        previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                        previouslySelectedControlBeforeControllerChange.GrabFocus();
+                        currentlyInstantiatedWarning.QueueFree();
+
+                        hasInstatiatedWarning = false;
                     }
+                    else
+                    {
+                        if (GetViewport().GuiGetFocusOwner() != null)
+                        {
+                            previouslySelectedControlBeforeControllerChange = GetViewport().GuiGetFocusOwner();
+                        }
 
-                    currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
-                    GetViewport().AddChild(currentlyInstantiatedWarning);
+                        currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
+                        GetViewport().AddChild(currentlyInstantiatedWarning);
 
-                    hasInstatiatedWarning = true;
+                        hasInstatiatedWarning = true;
+                    }
                 }
             }
+
+            initializedDevices = true;
 
             GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
         }

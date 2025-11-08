@@ -15,8 +15,11 @@ namespace Erikduss
 
         public bool handleInput = true;
 
+        //navigation selecting
         [Export] public Control defaultControlSelected;
         private Control currentlySelectedControl = null;
+
+        [Export] private Control singleplayerGameButton;
 
         [Export] private Control mainTitleScreenUI;
         [Export] private Control matchPrepScreenUI;
@@ -132,12 +135,18 @@ namespace Erikduss
         {
             mainTitleScreenUI.Visible = false;
             matchPrepScreenUI.Visible = true;
+
+            //select singleplayer button
+            singleplayerGameButton.GrabFocus();
         }
 
         public void HideMatchPrepUI()
         {
             mainTitleScreenUI.Visible = true;
             matchPrepScreenUI.Visible = false;
+
+            //select main start button
+            defaultControlSelected.GrabFocus();
         }
 
         public void ShowLobbyCreateUI()

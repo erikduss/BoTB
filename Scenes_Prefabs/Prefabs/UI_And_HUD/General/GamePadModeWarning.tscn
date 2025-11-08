@@ -52,6 +52,7 @@ offset_bottom = 590.0
 color = Color(0, 0, 0, 0.784314)
 
 [node name="ReturnButton" type="TextureButton" parent="Panel/Panel/ColorRect"]
+layout_mode = 0
 offset_left = 375.0
 offset_top = 350.0
 offset_right = 631.0

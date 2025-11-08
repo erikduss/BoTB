@@ -301,21 +301,37 @@ namespace Erikduss
             }
         }
 
-		public void ToggleGameIsPaused()
+		public void ToggleGameIsPaused(bool forceSetPaused = false)
 		{
-            gameIsPaused = !gameIsPaused;
-            GD.Print("Game is paused: " + gameIsPaused);
+            if (!forceSetPaused)
+            {
+                gameIsPaused = !gameIsPaused;
+                GD.Print("Game is paused: " + gameIsPaused);
 
-			if (gameIsPaused)
-			{
-                //Open pause panel
-                inGameHUDManager.ShowPauseMenu();
+                if (gameIsPaused)
+                {
+                    //Open pause panel
+                    inGameHUDManager.ShowPauseMenu();
+                }
+                else
+                {
+                    //close pause panel
+                    inGameHUDManager.HidePauseMenu();
+                }
             }
-            else
-			{
-				//close pause panel
-				inGameHUDManager.HidePauseMenu();
-			}
+            else if(!gameIsPaused)
+            {
+                if (isMultiplayerMatch)
+                {
+                    //dont think we need to be the host to do this.
+                    GDSync.SyncedEventCreate("PauseGameToggle");
+                }
+                else
+                {
+                    gameIsPaused = true;
+                    inGameHUDManager.ShowPauseMenu();
+                }
+            }
         }
 
 		//bool to inducate succes state of removing the currency.
