@@ -20,6 +20,8 @@ namespace Erikduss
         private Control currentlySelectedControl = null;
 
         [Export] private Control singleplayerGameButton;
+        [Export] private Control createLobbyDefaultSelectedButton;
+        [Export] private Control joinLobbyDefaultSelectedButton;
 
         [Export] private Control mainTitleScreenUI;
         [Export] private Control matchPrepScreenUI;
@@ -155,6 +157,9 @@ namespace Erikduss
             matchPrepScreenUI.Visible = false;
 
             createLobbyPanel.Visible = true;
+
+            //select start button
+            createLobbyDefaultSelectedButton.GrabFocus();
         }
 
         public void HideLobbyCreateUI()
@@ -166,6 +171,9 @@ namespace Erikduss
 
             lobbyCreateNameLineEdit.Text = string.Empty;
             lobbyCreatePasswordLineEdit.Text = string.Empty;
+
+            //select singleplayer button
+            singleplayerGameButton.GrabFocus();
         }
 
         public void ShowLobbyJoinUI()
@@ -174,6 +182,9 @@ namespace Erikduss
             matchPrepScreenUI.Visible = false;
 
             joinLobbyPanel.Visible = true;
+
+            //show defauly button
+            joinLobbyDefaultSelectedButton.GrabFocus();
         }
 
         public void HideLobbyJoinUI()
@@ -185,6 +196,9 @@ namespace Erikduss
 
             lobbyJoinNameLineEdit.Text = string.Empty;
             lobbyJoinPasswordLineEdit.Text = string.Empty;
+
+            //select singleplayer button
+            singleplayerGameButton.GrabFocus();
         }
 
         public void AttemptToCreateLobbyButtonPressed()

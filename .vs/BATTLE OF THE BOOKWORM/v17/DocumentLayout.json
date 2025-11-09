@@ -292,8 +292,7 @@
               "ViewState": "AgIAACwBAAAAAAAAAAAAAEABAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-09T12:31:43.885Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -305,8 +304,7 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\General\\GamepadModeWarning.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T19:09:56.146Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T19:09:56.146Z"
             },
             {
               "$type": "Document",
@@ -318,8 +316,7 @@
               "RelativeToolTip": "Scripts\\Utility_And_General\\GameData\\DataManagers\\GameSettingsLoader.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAAAFYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T10:47:13.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T10:47:13.353Z"
             },
             {
               "$type": "Document",
@@ -331,8 +328,7 @@
               "RelativeToolTip": "Scripts\\UI_And_GUI\\In-Game\\In_Game_HUD_Manager.cs",
               "ViewState": "AgIAAOwBAAAAAAAAAAAmwPMBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T12:09:29.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T12:09:29.047Z"
             },
             {
               "$type": "Document",
@@ -342,7 +338,7 @@
               "RelativeDocumentMoniker": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "ToolTip": "G:\\Godot\\Git\\BoTB\\Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
               "RelativeToolTip": "Scripts\\UI_And_GUI\\TitleScreen\\TitleScreenManager.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJMAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAABQBAAAAAAAAAAAAABwBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T13:38:38.722Z",
               "EditorCaption": ""

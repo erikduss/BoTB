@@ -57,7 +57,7 @@ project/assembly_name="Battle Of The Bookworm"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/admob/plugin.cfg")
+enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/admob/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg")
 
 [input]
 
