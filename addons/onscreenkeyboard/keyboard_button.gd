@@ -22,7 +22,7 @@ func _init(_key_data):
 	size_flags_horizontal = SIZE_EXPAND_FILL
 	size_flags_vertical = SIZE_EXPAND_FILL
 
-	focus_mode = FOCUS_NONE
+	focus_mode = Control.FOCUS_ALL
 
 	if key_data.has("display"):
 		text = key_data.get("display")
