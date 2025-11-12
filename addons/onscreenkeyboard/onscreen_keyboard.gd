@@ -1,6 +1,6 @@
 @tool
 extends PanelContainer
-class_name OnScreenKeyboard
+
 ###########################
 ## SETTINGS
 ###########################
@@ -94,9 +94,6 @@ var layouts = []
 var keys = []
 var capslock_keys = []
 var uppercase = false
-var current_keys = []
-var current_key_index : Vector2 = Vector2(0,0)
-var current_key
 
 var tween_position
 var tween_speed = .2
@@ -132,36 +129,10 @@ func show():
 func hide():
 	_hide_keyboard()
 
-func focus_current_key(index : Vector2):
-	if current_key:
-		current_key.modulate = Color(1, 1, 1, 1)
-	current_key = current_keys[index.y][index.x]
-	current_key.modulate = Color(1, 0.8, 0.2, 1)
-
 var released = true
 func _update_auto_display_on_input(event):
 	if auto_show == false:
 		return
-	
-	if visible and event is InputEventKey or event is InputEventJoypadButton and event.is_released():
-		var move = {
-			"ui_down": Vector2(0, 1),
-			"ui_up": Vector2(0, -1),
-			"ui_right": Vector2(1, 0),
-			"ui_left": Vector2(-1, 0)}
-		for action in move:
-			if event.is_action_released(action):
-				var new_index = current_key_index + move[action]
-				new_index.y = clamp(new_index.y, 0, current_keys.size() - 1)
-				new_index.x = clamp(new_index.x, 0, current_keys[new_index.y].size() - 1)
-				
-				if new_index != current_key_index:
-					current_key_index = new_index
-					focus_current_key(current_key_index)
-					break
-	if visible and event is InputEventJoypadButton:
-		if event.is_action_released("ui_accept"):
-			current_key.emit_signal("released", current_key.key_data)
 
 	if event is InputEventMouseButton:
 		released = !released
@@ -233,7 +204,6 @@ var prev_prev_layout = null
 var previous_layout = null
 var current_layout = null
 
-
 func set_active_layout_by_name(name):
 	for layout in layouts:
 		if layout.get_meta("layout_name") == str(name):
@@ -245,17 +215,7 @@ func set_active_layout_by_name(name):
 func _show_layout(layout):
 	layout.show()
 	current_layout = layout
-	set_current_keys(current_layout)
-	current_key_index = Vector2(0,0)
-	focus_current_key(current_key_index)
 
-func set_current_keys(layout):
-	current_keys.clear()
-	var v_box = layout.get_child(0) as VBoxContainer
-	for h_box in v_box.get_children():
-		var button_row = h_box.get_children()
-		current_keys.append(button_row)
-		
 
 func _hide_layout(layout):
 	layout.hide()
@@ -460,11 +420,8 @@ func _create_keyboard(layout_data):
 				keys.push_back(new_key)
 
 			base_vbox.add_child(key_row)
-		
+
 		layout_container.add_child(base_vbox)
-		if index == 0:
-			set_current_keys(layout_container)
-			focus_current_key(current_key_index)
 		index+=1
 
 

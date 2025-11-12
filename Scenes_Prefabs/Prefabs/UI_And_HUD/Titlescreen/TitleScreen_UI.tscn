@@ -682,6 +682,7 @@ offset_top = 613.0
 offset_right = 1646.0
 offset_bottom = 891.0
 script = ExtResource("10_nii0d")
+auto_show = false
 metadata/_custom_type_script = "uid://clrxinew1leis"
 
 [connection signal="mouse_entered" from="MainTitleScreenUI/StartButton" to="." method="PlayGenericButtonHoverSound"]
