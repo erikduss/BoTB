@@ -38,6 +38,7 @@ namespace Erikduss
         public bool hasInstatiatedWarning = false;
         public Control previouslySelectedControlBeforeControllerChange;
         private bool initializedDevices = false;
+        private int amountOfDevicesConnectedPreviously = -1;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -75,6 +76,11 @@ namespace Erikduss
         public void ControllerConnectionChanged(long device, bool isConnected)
         {
             //gets called when a device is already connected on game launch.
+
+            if(Input.GetConnectedJoypads().Count == amountOfDevicesConnectedPreviously)
+            {
+                return;
+            }
 
             if (Input.GetConnectedJoypads().Count > 0)
             {
@@ -147,6 +153,7 @@ namespace Erikduss
                 }
             }
 
+            amountOfDevicesConnectedPreviously = Input.GetConnectedJoypads().Count;
             initializedDevices = true;
 
             GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
