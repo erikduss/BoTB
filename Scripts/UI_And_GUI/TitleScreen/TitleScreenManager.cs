@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Erikduss
 {
@@ -19,9 +20,10 @@ namespace Erikduss
         [Export] public Control defaultControlSelected;
         private Control currentlySelectedControl = null;
 
-        [Export] private Control singleplayerGameButton;
+        [Export] public Control singleplayerGameButton;
         [Export] private Control createLobbyDefaultSelectedButton;
         [Export] private Control joinLobbyDefaultSelectedButton;
+        [Export] public Control createdLobbyDefaultSelectedButton;
 
         [Export] private Control mainTitleScreenUI;
         [Export] private Control matchPrepScreenUI;
@@ -282,6 +284,43 @@ namespace Erikduss
         public void OpenAdsTestingScene()
         {
             GetTree().ChangeSceneToFile("res://addons/admob/sample/Main.tscn");
+        }
+
+        public void UpdateNavigationMultiplayerLobby()
+        {
+            //full lobby
+            if (lobbyMultiplayerManager.currentPlayers.Count > 1)
+            {
+                //top neighbors of default buttons.
+                lobbyMultiplayerManager.returnButtonControl.FocusNeighborTop = lobbyMultiplayerManager.currentPlayers.Last().GetChild(1).GetPath();
+                lobbyMultiplayerManager.confirmButtonControl.FocusNeighborTop = lobbyMultiplayerManager.currentPlayers.Last().GetChild(1).GetPath();
+
+                //bottom neighbors of default buttons.
+                lobbyMultiplayerManager.returnButtonControl.FocusNeighborBottom = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+                lobbyMultiplayerManager.confirmButtonControl.FocusNeighborBottom = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+
+                //neighbors of first lobby player
+                lobbyMultiplayerManager.currentPlayers.First().FocusNeighborBottom = lobbyMultiplayerManager.currentPlayers.Last().GetChild(1).GetPath();
+                lobbyMultiplayerManager.currentPlayers.First().FocusNeighborTop = lobbyMultiplayerManager.returnButtonControl.GetPath();
+
+                //neighbors of second (last) lobby player
+                lobbyMultiplayerManager.currentPlayers.Last().FocusNeighborTop = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+                lobbyMultiplayerManager.currentPlayers.Last().FocusNeighborBottom = lobbyMultiplayerManager.returnButtonControl.GetPath();
+            }
+            else //only one in lobby atm
+            {
+                //top neighbors of default buttons.
+                lobbyMultiplayerManager.returnButtonControl.FocusNeighborTop = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+                lobbyMultiplayerManager.confirmButtonControl.FocusNeighborTop = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+
+                //bottom neighbors of default buttons.
+                lobbyMultiplayerManager.returnButtonControl.FocusNeighborBottom = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+                lobbyMultiplayerManager.confirmButtonControl.FocusNeighborBottom = lobbyMultiplayerManager.currentPlayers.First().GetChild(1).GetPath();
+
+                //neighbors of first lobby player
+                lobbyMultiplayerManager.currentPlayers.First().FocusNeighborBottom = lobbyMultiplayerManager.returnButtonControl.GetPath();
+                lobbyMultiplayerManager.currentPlayers.First().FocusNeighborTop = lobbyMultiplayerManager.returnButtonControl.GetPath();
+            }
         }
 
         private void OnControlElementFocusChanged(Control control)

@@ -60,6 +60,9 @@ var style_special_keys:StyleBoxFlat = null
 
 signal layout_changed
 
+var lastFocussedObject
+var defaultKeyboardKeyToFocus
+
 ###########################
 ## PANEL 
 ###########################
@@ -106,6 +109,8 @@ func _init_keyboard():
 		_create_keyboard(default_layout.data)
 	else:
 		_create_keyboard(_load_json(custom_layout_file))
+		
+	assignAllKeysNeighbors()
 
 	# init positioning without animation
 	var tmp_anim = animate
@@ -167,6 +172,12 @@ func _hide_keyboard(key_data=null):
 		animate_position(Vector2(position.x, new_y_pos), true)
 	else:
 		change_visibility(false)
+		
+	var lastFocussedObjectAsControl = lastFocussedObject as Control
+	if lastFocussedObjectAsControl != null:
+		lastFocussedObjectAsControl.grab_focus()
+	else:
+		find_next_valid_focus().grab_focus()
 
 
 func _show_keyboard(key_data=null):
@@ -174,6 +185,17 @@ func _show_keyboard(key_data=null):
 	if animate:
 		var new_y_pos = get_viewport().get_visible_rect().size.y - size.y
 		animate_position(Vector2(position.x, new_y_pos))
+		
+	var keyToSelect = defaultKeyboardKeyToFocus as Control
+	keyToSelect.grab_focus()
+	
+func _move_keyboardToControl(new_position):
+	var fixedPosition = new_position as Vector2
+	fixedPosition.x += 400
+	fixedPosition.y -= 75
+	set_global_position(fixedPosition)
+	return
+
 
 
 func animate_position(new_position, trigger_visibility:bool=false):
@@ -286,8 +308,20 @@ func _key_released(key_data):
 
 		input_event_key.keycode = key
 		input_event_key.unicode = key
-
-		Input.parse_input_event(input_event_key)
+		
+		if input_event_key.keycode != 44 && input_event_key.keycode != 46 && input_event_key.keycode != 4194309 && input_event_key.keycode != 32 && input_event_key.keycode != 4194319 && input_event_key.keycode != 4194308 && input_event_key.keycode != 4194321:
+			var lastFocussedObjectLineEdit = lastFocussedObject as LineEdit
+			lastFocussedObjectLineEdit.text = lastFocussedObjectLineEdit.text + OS.get_keycode_string(input_event_key.keycode) 
+		else:
+			if input_event_key.keycode == 4194309:
+				#enter
+				_hide_keyboard()
+			if input_event_key.keycode == 4194308:
+				#backspace
+				var lastFocussedObjectLineEdit = lastFocussedObject as LineEdit
+				lastFocussedObjectLineEdit.text = lastFocussedObjectLineEdit.text.left(-1)
+		
+		##Input.parse_input_event(input_event_key)
 
 		###########################
 		## DISABLE CAPSLOCK AFTER 
@@ -380,6 +414,7 @@ func _create_keyboard(layout_data):
 					if key.get("type") == "switch-layout":
 						new_key.released.connect(_switch_layout)
 						_set_key_style("normal",new_key, style_special_keys)
+						new_key.disabled = true
 					elif key.get("type") == "special":
 						_set_key_style("normal",new_key, style_special_keys)
 					elif key.get("type") == "special-shift":
@@ -387,6 +422,7 @@ func _create_keyboard(layout_data):
 						new_key.toggle_mode = true
 						capslock_keys.push_back(new_key)
 						_set_key_style("normal",new_key, style_special_keys)
+						defaultKeyboardKeyToFocus = new_key
 					elif key.get("type") == "special-hide-keyboard":
 						new_key.released.connect(_hide_keyboard)
 						_set_key_style("normal",new_key, style_special_keys)
@@ -424,6 +460,46 @@ func _create_keyboard(layout_data):
 		layout_container.add_child(base_vbox)
 		index+=1
 
+func assignAllKeysNeighbors():
+	var index = 0
+	for key in keys: 
+		var keyControl = key as Button
+		
+		#Every row: 
+		#row 1 -> 11 keys
+		#row 2 -> 10 keys
+		#row 3 -> 9 keys
+		#row 4 -> 7 keys
+		
+		#specifics for left & right assignment
+		if index == 0:
+			keyControl.focus_neighbor_left = keyControl.get_path()
+		if index == 10:
+			keyControl.focus_neighbor_right = keyControl.get_path()
+		if index == 11:
+			keyControl.focus_neighbor_left = keyControl.get_path()
+		if index == 20:
+			keyControl.focus_neighbor_right = keyControl.get_path()
+		if index == 21:
+			keyControl.focus_neighbor_left = keyControl.get_path()
+		if index == 29:
+			keyControl.focus_neighbor_right = keyControl.get_path()
+		if index == 30:
+			keyControl.focus_neighbor_left = keyControl.get_path()
+		if index == 36:
+			keyControl.focus_neighbor_right = keyControl.get_path()
+		
+		#specifics for top and bottom 
+		if index < 11:
+			keyControl.focus_neighbor_top = keyControl.get_path()
+		if index < 37 && index > 29:
+			keyControl.focus_neighbor_bottom = keyControl.get_path()
+		
+		#decided to not set middle buttons etc cus its a lot of extra work.
+		#instead, just put the keyboard on the right of the box instead of over other buttons.
+		
+		index += 1
+
 
 ###########################
 ## LOAD SETTINGS
@@ -458,6 +534,13 @@ func _load_file(file_path):
 ###########################
 ## HELPER
 ###########################
+
+func OpenKeyboardClickEvent(event):
+	if event is InputEvent:
+		if event.is_action("ui_accept"):
+			lastFocussedObject = get_viewport().gui_get_focus_owner()
+			_move_keyboardToControl(lastFocussedObject.global_position)
+			_show_keyboard()
 
 func is_keyboard_focus_object_complete_on_enter(focus_object):
 	if focus_object is LineEdit:

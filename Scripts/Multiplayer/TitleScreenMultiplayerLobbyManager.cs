@@ -22,7 +22,11 @@ namespace Erikduss
         [Export] public Label lobbyNameLabel;
         [Export] public TextureButton startGameButton;
 
-        List<Control> currentPlayers = new List<Control>();
+        public List<Control> currentPlayers = new List<Control>();
+
+        //navigation
+        [Export] public Control returnButtonControl;
+        [Export] public Control confirmButtonControl;
 
         public int amountOfPlayersCurrentlyReady = 0;
 
@@ -105,6 +109,7 @@ namespace Erikduss
             GDSync.LobbyLeave();
 
             lobbyPanel.Visible = false;
+            titleScreenManager.singleplayerGameButton.GrabFocus();
 
             networkingDebug.Text = "Networking Status: ";
             networkingDebug.Visible = false;
@@ -134,6 +139,7 @@ namespace Erikduss
         {
             lobbyNameLabel.Text = GDSync.LobbyGetName();
             lobbyPanel.Visible = true;
+            titleScreenManager.createdLobbyDefaultSelectedButton.GrabFocus();
 
             if (!isTheHost) startGameButton.Disabled = true;
         }
@@ -153,6 +159,7 @@ namespace Erikduss
             currentPlayers.Add(playerPanel);
 
             UpdateReadyCheck(false, false);
+            titleScreenManager.UpdateNavigationMultiplayerLobby();
         }
 
         public void ClientLeftLobby(int clientID)
@@ -197,7 +204,9 @@ namespace Erikduss
             }
 
             UpdateReadyCheck(false, false);
+            titleScreenManager.UpdateNavigationMultiplayerLobby();
         }
+
         public void UpdateReadyCheck(bool ready, bool updateAmountReady = true)
         {
             if (updateAmountReady)

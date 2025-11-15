@@ -32,7 +32,7 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_htfmo"]
 font_size = 48
 
-[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "singleplayerGameButton", "createLobbyDefaultSelectedButton", "joinLobbyDefaultSelectedButton", "mainTitleScreenUI", "matchPrepScreenUI", "createLobbyPanel", "joinLobbyPanel", "lobbyCreateNameLineEdit", "lobbyCreatePasswordLineEdit", "lobbyJoinNameLineEdit", "lobbyJoinPasswordLineEdit", "lobbyMultiplayerManager")]
+[node name="TitleScreenUi" type="Control" node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "singleplayerGameButton", "createLobbyDefaultSelectedButton", "joinLobbyDefaultSelectedButton", "createdLobbyDefaultSelectedButton", "mainTitleScreenUI", "matchPrepScreenUI", "createLobbyPanel", "joinLobbyPanel", "lobbyCreateNameLineEdit", "lobbyCreatePasswordLineEdit", "lobbyJoinNameLineEdit", "lobbyJoinPasswordLineEdit", "lobbyMultiplayerManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,6 +46,7 @@ defaultControlSelected = NodePath("MainTitleScreenUI/StartButton")
 singleplayerGameButton = NodePath("MatchPrepScreenUI/PreLobbyPanel/SingleplayerButton")
 createLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton")
 joinLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton")
+createdLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ReturnButton")
 mainTitleScreenUI = NodePath("MainTitleScreenUI")
 matchPrepScreenUI = NodePath("MatchPrepScreenUI/PreLobbyPanel")
 createLobbyPanel = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby")
@@ -208,7 +209,7 @@ text = "Networking Status:
 label_settings = SubResource("LabelSettings_px6yw")
 autowrap_mode = 3
 
-[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("titleScreenManager", "networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton")]
+[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("titleScreenManager", "networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton", "returnButtonControl", "confirmButtonControl")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
@@ -220,6 +221,8 @@ playerPanelParent = NodePath("../LobbyPanel/CreatedMultiplayerLobby/BackgroundOp
 lobbyPanel = NodePath("../LobbyPanel/CreatedMultiplayerLobby")
 lobbyNameLabel = NodePath("../LobbyPanel/CreatedMultiplayerLobby/BackgroundOpacityForText/LobbyName")
 startGameButton = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton")
+returnButtonControl = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ReturnButton")
+confirmButtonControl = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton")
 
 [node name="SingleplayerButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
 layout_mode = 0
@@ -631,10 +634,12 @@ offset_left = 525.0
 offset_top = 700.0
 offset_right = 781.0
 offset_bottom = 956.0
-focus_neighbor_left = NodePath("../SaveButton")
-focus_neighbor_right = NodePath("../SaveButton")
-focus_next = NodePath("../SaveButton")
-focus_previous = NodePath("../SaveButton")
+focus_neighbor_left = NodePath("../ReturnButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ReturnButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../ReturnButton")
+focus_previous = NodePath("../ReturnButton")
 texture_normal = ExtResource("13_j6v8c")
 texture_hover = ExtResource("14_he7sw")
 texture_disabled = ExtResource("10_s1ljj")
@@ -656,10 +661,12 @@ offset_left = 225.0
 offset_top = 700.0
 offset_right = 481.0
 offset_bottom = 956.0
-focus_neighbor_left = NodePath("../SaveButton")
-focus_neighbor_right = NodePath("../SaveButton")
-focus_next = NodePath("../SaveButton")
-focus_previous = NodePath("../SaveButton")
+focus_neighbor_left = NodePath("../ConfirmStartButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ConfirmStartButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../ConfirmStartButton")
+focus_previous = NodePath("../ConfirmStartButton")
 texture_normal = ExtResource("13_j6v8c")
 texture_hover = ExtResource("14_he7sw")
 texture_click_mask = ExtResource("15_j6v8c")
@@ -683,6 +690,7 @@ offset_right = 1646.0
 offset_bottom = 891.0
 script = ExtResource("10_nii0d")
 auto_show = false
+animate = false
 metadata/_custom_type_script = "uid://clrxinew1leis"
 
 [connection signal="mouse_entered" from="MainTitleScreenUI/StartButton" to="." method="PlayGenericButtonHoverSound"]
@@ -695,8 +703,12 @@ metadata/_custom_type_script = "uid://clrxinew1leis"
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/CreateLobbyButton" to="." method="ShowLobbyCreateUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/JoinLobbyButton" to="." method="ShowLobbyJoinUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/ReturnButton" to="." method="HideMatchPrepUI"]
+[connection signal="gui_input" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyName/NameInputField" to="OnscreenKeyboard" method="OpenKeyboardClickEvent"]
+[connection signal="gui_input" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyPassword/PasswordInputField" to="OnscreenKeyboard" method="OpenKeyboardClickEvent"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ConfirmCreateLobbyButton" to="." method="AttemptToCreateLobbyButtonPressed"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton" to="." method="HideLobbyCreateUI"]
+[connection signal="gui_input" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyName/NameInputField" to="OnscreenKeyboard" method="OpenKeyboardClickEvent"]
+[connection signal="gui_input" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/LobbyPassword/PasswordInputField" to="OnscreenKeyboard" method="OpenKeyboardClickEvent"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ConfirmJoinLobbyButton" to="." method="AttemptToJoinLobbyButtonPressed"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton" to="." method="HideLobbyJoinUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton" to="MatchPrepScreenUI/PreLobbyPanel" method="StartGameButtonPressed"]

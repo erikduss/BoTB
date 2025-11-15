@@ -57,6 +57,26 @@ namespace Erikduss
             InitializeWorld();
         }
 
+        public override void _Notification(int what)
+        {
+            base._Notification(what);
+
+            //we need to release the mouse if we are tabbing out, otherwise its very annoying for the user.
+            if (Input.GetConnectedJoypads().Count == 0)
+            {
+                return;
+            }
+
+            if (what == NotificationApplicationFocusOut)
+            {
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+            }
+            else if (what == NotificationApplicationFocusIn)
+            {
+                Input.MouseMode = Input.MouseModeEnum.Captured;
+            }
+        }
+
         async void InitializeWorld()
         {
             if (GameUserOptionsManager.availableLanguageTranslations.Contains(OS.GetLocaleLanguage()))
