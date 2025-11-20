@@ -128,6 +128,15 @@ namespace Erikduss
                         currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
                         GetViewport().AddChild(currentlyInstantiatedWarning);
 
+                        //pausing doesnt need to happen on controller being pluggin in.
+                        //if(GameManager.Instance != null)
+                        //{
+                        //    if (!GameManager.Instance.gameIsPaused)
+                        //    {
+                        //        GameManager.Instance.ToggleGameIsPaused(true);
+                        //    }
+                        //}
+
                         hasInstatiatedWarning = true;
 
                         //only pause when the game is in progress.
@@ -167,6 +176,15 @@ namespace Erikduss
 
                         currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
                         GetViewport().AddChild(currentlyInstantiatedWarning);
+
+                        if (GameManager.Instance != null)
+                        {
+                            if (!GameManager.Instance.gameIsPaused)
+                            {
+                                GameManager.Instance.ToggleGameIsPaused(true);
+                                previouslySelectedControlBeforeControllerChange = GameManager.Instance.inGameHUDManager.pauseMenuReturnControl;
+                            }
+                        }
 
                         hasInstatiatedWarning = true;
                     }

@@ -28,7 +28,7 @@ namespace Erikduss
         [Export] private Control refreshButtonControl;
         [Export] private Control pauseButtonControl;
 
-        [Export] private Control pauseMenuReturnControl;
+        [Export] public Control pauseMenuReturnControl;
 
         private Control currentlySelectedControl = null;
 
@@ -446,6 +446,18 @@ namespace Erikduss
                 }
 
                 controlIndex++;
+            }
+
+            //sometimes gets called before power up is generated.
+            if (currentShownPowerUp != null)
+            {
+                currentShownPowerUp.FocusNeighborLeft = refreshButtonControl.GetPath();
+                currentShownPowerUp.FocusNeighborRight = powerUpRefreshButton.GetPath();
+                currentShownPowerUp.FocusNeighborTop = ageAbilityControl.GetPath();
+                currentShownPowerUp.FocusNeighborBottom = ageUpControl.GetPath();
+
+                refreshButtonControl.FocusNeighborRight = currentShownPowerUp.GetPath();
+                powerUpRefreshButton.FocusNeighborLeft = currentShownPowerUp.GetPath();
             }
 
             ageUpControl.FocusNeighborTop = currentUnitsInShop[0].GetPath();
