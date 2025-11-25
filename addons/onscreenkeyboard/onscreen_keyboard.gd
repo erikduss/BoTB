@@ -536,11 +536,12 @@ func _load_file(file_path):
 ###########################
 
 func OpenKeyboardClickEvent(event):
-	if event is InputEvent:
-		if event.is_action("ui_accept"):
-			lastFocussedObject = get_viewport().gui_get_focus_owner()
-			_move_keyboardToControl(lastFocussedObject.global_position)
-			_show_keyboard()
+	if Input.get_connected_joypads().size() > 0:
+		if event is InputEvent:
+			if event.is_action("ui_accept"):
+				lastFocussedObject = get_viewport().gui_get_focus_owner()
+				_move_keyboardToControl(lastFocussedObject.global_position)
+				_show_keyboard()
 
 func is_keyboard_focus_object_complete_on_enter(focus_object):
 	if focus_object is LineEdit:
