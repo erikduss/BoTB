@@ -332,6 +332,11 @@ namespace Erikduss
 
             if (GameManager.Instance.isMultiplayerMatch)
             {
+                if(player == null)
+                {
+                    return;
+                }
+
                 if(GameManager.Instance.GetLocalClientPlayerScript().GetInstanceId() != player.GetInstanceId())
                 {
                     return;
@@ -353,7 +358,18 @@ namespace Erikduss
         {
             if (currentLockedPowerUpInfo != null)
             {
-                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(GameManager.Instance.GetLocalClientPlayerScript().playerCurrentPowerUpProgressAmount);
+                BasePlayer localPlayer = GameManager.Instance.GetLocalClientPlayerScript();
+
+                currentLockedPowerUpInfo.UpdatePowerUpProgressLabel(localPlayer.playerCurrentPowerUpProgressAmount);
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    if (localPlayer.playerCurrentPowerUpProgressAmount > GameSettingsLoader.progressNeededToUnlockPower)
+                    {
+                        GD.Print("Refresh powerup for me: " + localPlayer.playerTeam);
+                        GameManager.Instance.inGameHUDManager.RefreshPowerUp(false);
+                    }
+                }
             }
         }
 
@@ -587,6 +603,8 @@ namespace Erikduss
             gameOverInfoScript.matchDurationLabel.Text = minutes + " " + Tr("MINUTES") + " " + seconds + " " + Tr("SECONDS");
 
             gameOverNode.Visible = true;
+
+            gameOverInfoScript.returnButton.GrabFocus();
         }
 
         private void OnControlElementFocusChanged(Control control)

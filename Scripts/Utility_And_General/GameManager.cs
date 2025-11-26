@@ -296,7 +296,6 @@ namespace Erikduss
             if(isMultiplayerMatch && updatePlayerHudMultiplayer)
             {
                 //this will call it for all clients
-                GD.Print("Send update event!");
                 GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
             }
         }
@@ -451,7 +450,16 @@ namespace Erikduss
 
                 if (isMultiplayerMatch)
                 {
-                    inGameHUDManager.RefreshPowerUp(false);
+                    //always the host, and we are the host when we are here.
+                    if(playerTeam == TeamOwner.TEAM_01)
+                    {
+                        inGameHUDManager.RefreshPowerUp(false);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(GameManager.Instance.inGameHUDManager, "RefreshPowerUp"), [false]);
+                    }
                 }
                 else if (playerTeam == Enums.TeamOwner.TEAM_01) //singleplayer
                 {
@@ -467,6 +475,7 @@ namespace Erikduss
                 //we want to prevent double updates.
                 if(addedPowerUpProgress != GameSettingsLoader.powerUpProgressAmountIdle)
                 {
+                    //this also refreshes the power up shop if needed. (locked powerup completed)
                     GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
                 }
             }

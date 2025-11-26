@@ -10,6 +10,7 @@ namespace Erikduss
         [Export] public Label matchDurationLabel;
         [Export] public Label currencyRewardLabel;
 
+        [Export] public Control returnButton;
 
         public void ReturnButtonClicked()
         {

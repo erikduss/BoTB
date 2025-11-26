@@ -14,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 320
 font_color = Color(0, 0, 0, 1)
 
-[node name="GameOverPanel" type="Control" node_paths=PackedStringArray("outcomeLabel", "matchDurationLabel", "currencyRewardLabel")]
+[node name="GameOverPanel" type="Control" node_paths=PackedStringArray("outcomeLabel", "matchDurationLabel", "currencyRewardLabel", "returnButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -24,6 +24,7 @@ script = ExtResource("2_os25c")
 outcomeLabel = NodePath("GameOverBackground/OutcomeLabel")
 matchDurationLabel = NodePath("GameOverBackground/MatchDuration/MatchDurationValueLabel")
 currencyRewardLabel = NodePath("GameOverBackground/CurrencyReward/CurrencyRewardValueLabel")
+returnButton = NodePath("GameOverBackground/ReturnButton")
 
 [node name="GameOverBackground" type="TextureRect" parent="."]
 layout_mode = 0
@@ -108,6 +109,12 @@ offset_top = 240.0
 offset_right = 316.0
 offset_bottom = 496.0
 scale = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 texture_normal = ExtResource("2_u1cy3")
 texture_hover = ExtResource("3_os25c")
 texture_click_mask = ExtResource("4_ryq5u")
