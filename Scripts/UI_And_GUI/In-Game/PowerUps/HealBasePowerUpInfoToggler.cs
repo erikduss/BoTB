@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
@@ -7,9 +8,18 @@ namespace Erikduss
     {
         public override void ProcessPowerUpEffect()
         {
-            GameManager.Instance.team01HomeBase.HealDamage(100);
-
             base.ProcessPowerUpEffect();
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                if (!GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "AwardPlayer2WithPowerupBuff"), [PowerupType.HealBase.ToString()]);
+                    return;
+                }
+            }
+
+            GameManager.Instance.team01HomeBase.HealDamage(GameSettingsLoader.powerUpBaseHealAmount);
         }
     }
 }

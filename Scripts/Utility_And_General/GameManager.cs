@@ -97,6 +97,8 @@ namespace Erikduss
                 GDSync.ExposeFunction(new Callable(this, "SpendNonHostClientCurrency"));
                 GDSync.ExposeFunction(new Callable(this, "ProcessSpawnRequestPlayer2")); 
                 GDSync.ExposeFunction(new Callable(this, "ProcessExecuteAbilityRequestPlayer2"));
+                GDSync.ExposeFunction(new Callable(inGameHUDManager, "RefreshPowerUp"));
+                GDSync.ExposeFunction(new Callable(this, "AwardPlayer2WithPowerupBuff"));
 
 
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
@@ -457,6 +459,7 @@ namespace Erikduss
                     }
                     else
                     {
+                        playerToChangePowerUpProgressFor.hasUnlockedPowerUpCurrently = true;
                         int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
                         GDSync.CallFuncOn(otherClient, new Callable(GameManager.Instance.inGameHUDManager, "RefreshPowerUp"), [false]);
                     }
@@ -482,6 +485,34 @@ namespace Erikduss
             else if (playerTeam == Enums.TeamOwner.TEAM_01)
             {
                 inGameHUDManager.UpdateCurrentLockedPowerUpProgress();
+            }
+        }
+
+        public void AwardPlayer2WithPowerupBuff(PowerupType powerupType)
+        {
+            switch (powerupType)
+            {
+                case PowerupType.GoldGain:
+                        currencyGainPercentagePlayer02 += GameSettingsLoader.powerUpGoldGainExtraAmount;
+                    break;
+                case PowerupType.HealBase:
+                        team02HomeBase.HealDamage(GameSettingsLoader.powerUpBaseHealAmount);
+                    break;
+                case PowerupType.AbilityEmpower:
+                        EffectsAndProjectilesSpawner.Instance.team02AbilityEmpowerAmount += GameSettingsLoader.powerUpAbilityEmpowerAmount;
+                    break;
+                default:
+                    break;
+            }
+
+            //this needs to get updated by the host.
+            player02Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+
+            if (player02Script.playerCurrentAmountOfPowerUpsOwed <= 0)
+            {
+                GD.Print("Only 1 powerup owed which was this one that we bought.");
+                
+                player02Script.hasUnlockedPowerUpCurrently = false;
             }
         }
 

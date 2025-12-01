@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
@@ -7,11 +8,20 @@ namespace Erikduss
     {
         public override void ProcessPowerUpEffect()
         {
+            base.ProcessPowerUpEffect();
+
             GD.Print("Award gold gain buff");
 
-            GameManager.Instance.currencyGainPercentagePlayer01 += 20;
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                if (!GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "AwardPlayer2WithPowerupBuff"), [PowerupType.GoldGain.ToString()]);
+                    return;
+                }
+            }
 
-            base.ProcessPowerUpEffect();
+            GameManager.Instance.currencyGainPercentagePlayer01 += GameSettingsLoader.powerUpGoldGainExtraAmount;
         }
     }
 }

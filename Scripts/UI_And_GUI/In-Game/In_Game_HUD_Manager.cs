@@ -256,6 +256,7 @@ namespace Erikduss
                 GD.Print(player.playerCurrentPowerUpRerollsAmount);
                 GD.Print(player.playerCurrentAmountOfPowerUpsOwed);
                 GD.Print(player.hasUnlockedPowerUpCurrently);
+                GD.Print("Are we spending reroll?: " + spendRerollToken);
             }
 
             if (spendRerollToken)
@@ -326,6 +327,15 @@ namespace Erikduss
 
                 if(player != null)
                 {
+                    if (GameManager.Instance.isMultiplayerMatch)
+                    {
+                        if (!GameManager.Instance.isHostOfMultiplayerMatch)
+                        {
+                            //we need to call to the host that we bought a new powerup.
+
+                        }
+                    }
+
                     player.hasUnlockedPowerUpCurrently = false;
                 }
             }

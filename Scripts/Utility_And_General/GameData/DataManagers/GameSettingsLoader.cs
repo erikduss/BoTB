@@ -33,6 +33,11 @@ namespace Erikduss
         public static float powerUpProgressMultiplierOtherUnitDamage = 0.5f;
         public static float powerUpProgressMultiplierOwnUnitHealing = 0.5f;
 
+        //Strength Values of Powerups
+        public static int powerUpGoldGainExtraAmount = 20;
+        public static int powerUpBaseHealAmount = 100;
+        public static int powerUpAbilityEmpowerAmount = 1;
+
         public PackedScene gamepadWarningPanel = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/General/GamePadModeWarning.tscn");
         private Control currentlyInstantiatedWarning;
         public bool hasInstatiatedWarning = false;

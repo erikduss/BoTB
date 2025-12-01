@@ -32,6 +32,13 @@ namespace Erikduss
 			TrainingDummy
 		}
 
+		public enum PowerupType
+		{
+			GoldGain,
+			AbilityEmpower,
+			HealBase
+		}
+
 		public enum UnitSettingsConfigHeader
 		{
 			CONFIG_SETTINGS,
