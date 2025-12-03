@@ -106,7 +106,10 @@ namespace Erikduss
         protected override void Dispose(bool disposing)
         {
             //might break opening and closing options.
-            GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            if (GetViewport() != null)
+            {
+                GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            }
             Input.JoyConnectionChanged -= ReselectControlElementFocusOnControllerChange;
             base.Dispose(disposing);
         }

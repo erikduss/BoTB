@@ -118,6 +118,10 @@ namespace Erikduss
 
             //reset everything
             MultiplayerManager.Instance.currentPlayerID = 1;
+            MultiplayerManager.Instance.playersAreInGame = false;
+            MultiplayerManager.Instance.isUsingMultiplayer = false;
+            MultiplayerManager.Instance.isHostOfLobby = false;
+            MultiplayerManager.Instance.isCurrentlyConnectedToServices = false;
 
             for (int i = 0; i < currentPlayers.Count; i++)
             {
@@ -128,6 +132,7 @@ namespace Erikduss
             }
 
             currentPlayers.Clear();
+            GDSync.StopMultiplayer();
         }
 
         private void ClearLastLobby()

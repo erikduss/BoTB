@@ -123,7 +123,10 @@ namespace Erikduss
 
         public void UnsubscribeFromEvents()
         {
-            GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            if(GetViewport() != null)
+            {
+                GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
+            }
             optionsPanel.VisibilityChanged -= OptionsPanelClosed;
             GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
 
@@ -587,6 +590,11 @@ namespace Erikduss
 
         public void InGameExitButtonClicked()
         {
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                MultiplayerManager.Instance.titlescreenMultiplayerLobby.LeaveCurrentLobby();
+            }
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             AudioManager.Instance.ClearAudioPlayers();
             //We return back to the main menu.\

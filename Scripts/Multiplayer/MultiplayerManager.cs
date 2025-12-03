@@ -125,7 +125,26 @@ namespace Erikduss
                 titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Disconnected from Multiplayer Services.";
             }
 
-            isCurrentlyConnectedToServices = false;
+            DisconnectPlayer();
+        }
+
+        public void DisconnectPlayer()
+        {
+            //we only need to do this when we are in the game.
+            if (playersAreInGame)
+            {
+                //force end the game.
+                GameManager.Instance.EndCurrentGame(true);
+                titlescreenMultiplayerLobby.LeaveCurrentLobby();
+            }
+        }
+
+        public void SendPlayerBackToMainMenu()
+        {
+            AudioManager.Instance.ClearAudioPlayers();
+            //We return back to the main menu.\
+            GameManager.Instance.QueueFree();
+            GetTree().ChangeSceneToFile("res://Scenes_Prefabs/Scenes/TitleScreen.tscn");
         }
 
         public void Connection_Failed(int error)
@@ -253,6 +272,8 @@ namespace Erikduss
             playersInLobby.Remove(clientID);
 
             currentPlayerID--;
+
+            DisconnectPlayer();
         }
     }
 }

@@ -411,7 +411,7 @@ namespace Erikduss
             ResetPlayerAbilityCooldown(TeamOwner.TEAM_02);
         }
 
-        public void EndCurrentGame()
+        public void EndCurrentGame(bool forceEndGame = false)
         {
             if (!gameIsFinished)
             {
@@ -432,6 +432,13 @@ namespace Erikduss
                 else
                 {
                     //Did the player leave?
+                    if (forceEndGame)
+                    {
+                        //We should show "Victory" or "Defeat" depending on the outcome. (Ingame hud manager)
+                        string outcomeValue = Tr("DISCONNECT");
+
+                        inGameHUDManager.GameOverTriggered(outcomeValue);
+                    }
                 }
             }
         }
