@@ -99,6 +99,9 @@ namespace Erikduss
                 GDSync.ExposeFunction(new Callable(this, "ProcessExecuteAbilityRequestPlayer2"));
                 GDSync.ExposeFunction(new Callable(inGameHUDManager, "RefreshPowerUp"));
                 GDSync.ExposeFunction(new Callable(this, "AwardPlayer2WithPowerupBuff"));
+                GDSync.ExposeFunction(new Callable(this, "SpendPlayer2PowerupRefresh"));
+                GDSync.ExposeFunction(new Callable(this, "Player2LockedPowerupChanged"));
+                GDSync.ExposeFunction(new Callable(this, "Player2UnlockedNewPowerup"));
 
 
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
@@ -236,7 +239,32 @@ namespace Erikduss
             matchDuration += delta;
 
             //if this is a multiplayer game and we are not the host, we dont execute any code below this.
-            if (isMultiplayerMatch && !isHostOfMultiplayerMatch) return;
+            if (isMultiplayerMatch && !isHostOfMultiplayerMatch)
+            {
+                //we have access to our updated values on the non host client, so we can get our own powerup as non host but we still need a process function for this.
+
+                bool giveNewPowerUp = false;
+
+                //not set yet
+                if (GetLocalClientPlayerScript() == null) return;
+
+                //this is synced through the host so we always have an updated value.
+                if(GetLocalClientPlayerScript().playerCurrentPowerUpProgressAmount >= GameSettingsLoader.progressNeededToUnlockPower)
+                {
+                    giveNewPowerUp  = true;
+                }
+                else if (!GetLocalClientPlayerScript().hasUnlockedPowerUpCurrently && GetLocalClientPlayerScript().playerCurrentAmountOfPowerUpsOwed > 0)
+                {
+                    giveNewPowerUp  = true;
+                }
+
+                if (giveNewPowerUp)
+                {
+                    inGameHUDManager.RefreshPowerUp(false);
+                }
+
+                return;
+            }
 
             bool updatePlayerHudMultiplayer = false;
 
@@ -464,12 +492,12 @@ namespace Erikduss
                     {
                         inGameHUDManager.RefreshPowerUp(false);
                     }
-                    else
-                    {
-                        playerToChangePowerUpProgressFor.hasUnlockedPowerUpCurrently = true;
-                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
-                        GDSync.CallFuncOn(otherClient, new Callable(GameManager.Instance.inGameHUDManager, "RefreshPowerUp"), [false]);
-                    }
+                    //else
+                    //{
+                    //    playerToChangePowerUpProgressFor.hasUnlockedPowerUpCurrently = true;
+                    //    int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
+                    //    GDSync.CallFuncOn(otherClient, new Callable(GameManager.Instance.inGameHUDManager, "RefreshPowerUp"), [false]);
+                    //}
                 }
                 else if (playerTeam == Enums.TeamOwner.TEAM_01) //singleplayer
                 {
@@ -495,8 +523,40 @@ namespace Erikduss
             }
         }
 
+        public void SpendPlayer2PowerupRefresh()
+        {
+            GD.Print("Reduce player 2 powerup owed count by 1");
+            player02Script.playerCurrentPowerUpRerollsAmount -= 1;
+            GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
+        }
+
+        public void Player2LockedPowerupChanged(bool playerHasPowerupUnlocked)
+        {
+            player02Script.hasUnlockedPowerUpCurrently = playerHasPowerupUnlocked;
+        }
+
+        public void Player2UnlockedNewPowerup(bool spendReroll)
+        {
+            //we only remove an owed powerup if its refreshed through any other means than refreshing.
+            if (!spendReroll)
+            {
+                GD.Print("Reduce player 2 powerup owed count by 1");
+                player02Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+                GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
+            }
+        }
+
         public void AwardPlayer2WithPowerupBuff(PowerupType powerupType)
         {
+            if(player02Script.playerCurrentAmountOfPowerUpsOwed < 0 || !player02Script.hasUnlockedPowerUpCurrently)
+            {
+                //player spammed button, prevent purchase and reset to 0.
+                player02Script.playerCurrentAmountOfPowerUpsOwed = 0;
+                player02Script.hasUnlockedPowerUpCurrently = false;
+
+                return;
+            }
+
             switch (powerupType)
             {
                 case PowerupType.GoldGain:
@@ -512,8 +572,11 @@ namespace Erikduss
                     break;
             }
 
-            //this needs to get updated by the host.
-            player02Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+            ////this needs to get updated by the host.
+            //GD.Print("Reduce player 2 powerup owed count by 1");
+            //player02Script.playerCurrentAmountOfPowerUpsOwed -= 1;
+
+            GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
 
             if (player02Script.playerCurrentAmountOfPowerUpsOwed <= 0)
             {

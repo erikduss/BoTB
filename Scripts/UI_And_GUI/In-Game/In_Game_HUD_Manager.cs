@@ -127,7 +127,10 @@ namespace Erikduss
             {
                 GetViewport().GuiFocusChanged -= OnControlElementFocusChanged;
             }
-            optionsPanel.VisibilityChanged -= OptionsPanelClosed;
+            if (optionsPanel != null)
+            {
+                optionsPanel.VisibilityChanged -= OptionsPanelClosed;
+            }
             GameSettingsLoader.Instance.gameUserOptionsManager.LanguageUpdated -= UpdateLanguage;
 
             Input.JoyConnectionChanged -= ReselectControlElementFocusOnControllerChange;
@@ -272,7 +275,16 @@ namespace Erikduss
 
                 AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
 
-                player.playerCurrentPowerUpRerollsAmount -= 1;
+                if(GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "SpendPlayer2PowerupRefresh"), []);
+                }
+
+                if(!GameManager.Instance.isMultiplayerMatch || GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    player.playerCurrentPowerUpRerollsAmount -= 1;
+                }
+                
                 UpdatePlayerPowerUPRerollAmount(player);
             }
 
@@ -312,10 +324,19 @@ namespace Erikduss
                 powerUpsParentNode.AddChild(instantiatedPowerUpButton);
                 currentShownPowerUp = instantiatedPowerUpButton;
 
+                if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+                {
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "Player2UnlockedNewPowerup"), [spendRerollToken]);
+                    GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "Player2LockedPowerupChanged"), [true]);
+                }
+
                 //make sure we only reduce the amount owed if we buy process another powerup
                 if (!spendRerollToken)
                 {
-                    player.playerCurrentAmountOfPowerUpsOwed -= 1;
+                    if (!GameManager.Instance.isMultiplayerMatch || GameManager.Instance.isHostOfMultiplayerMatch)
+                    {
+                        player.playerCurrentAmountOfPowerUpsOwed -= 1;
+                    }
                 }
 
                 player.hasUnlockedPowerUpCurrently = true;
@@ -335,7 +356,10 @@ namespace Erikduss
                         if (!GameManager.Instance.isHostOfMultiplayerMatch)
                         {
                             //we need to call to the host that we bought a new powerup.
-
+                            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+                            {
+                                GDSync.CallFuncOn(GDSync.GetHost(), new Callable(GameManager.Instance, "Player2LockedPowerupChanged"), [false]);
+                            }
                         }
                     }
 

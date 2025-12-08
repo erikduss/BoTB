@@ -14,8 +14,8 @@
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_m2nys"]
-font_size = 24
+[sub_resource type="LabelSettings" id="LabelSettings_j3vve"]
+font_size = 48
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2uw2y"]
@@ -44,6 +44,7 @@ thisUnitType = 5
 [node name="UnitInfo" type="TextureRect" parent="."]
 visible = false
 z_index = -1
+layout_mode = 0
 offset_left = -74.0
 offset_top = 70.0
 offset_right = 182.0
@@ -90,11 +91,12 @@ stretch_mode = 5
 [node name="UnitName" type="Label" parent="UnitInfo/HBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
-offset_left = 73.0
-offset_right = 178.0
-offset_bottom = 80.0
+offset_left = 36.5
+offset_right = 392.5
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
 text = "Warrior"
-label_settings = SubResource("LabelSettings_m2nys")
+label_settings = SubResource("LabelSettings_j3vve")
 horizontal_alignment = 1
 vertical_alignment = 1
 

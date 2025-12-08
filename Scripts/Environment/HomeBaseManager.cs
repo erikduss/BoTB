@@ -246,7 +246,7 @@ namespace Erikduss
             }
             else
             {
-                GD.Print("OTHER VALUE: " + healthPercentage);
+                //GD.Print("OTHER VALUE: " + healthPercentage);
             }
 
             float newFillerWith = healthPercentage * amountOfHealthPerPercentage;
