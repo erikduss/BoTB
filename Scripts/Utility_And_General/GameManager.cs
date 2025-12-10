@@ -527,6 +527,7 @@ namespace Erikduss
         {
             GD.Print("Reduce player 2 powerup owed count by 1");
             player02Script.playerCurrentPowerUpRerollsAmount -= 1;
+            if (player02Script.playerCurrentPowerUpRerollsAmount < 0) player02Script.playerCurrentPowerUpRerollsAmount = 0;
             GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
         }
 

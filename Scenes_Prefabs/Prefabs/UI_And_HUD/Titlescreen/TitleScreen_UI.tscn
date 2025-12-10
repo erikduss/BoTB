@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=19 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" uid="uid://bbbnt1bybj6sy" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="2_uv18o"]
@@ -25,6 +25,9 @@ font_size = 23
 [sub_resource type="LabelSettings" id="LabelSettings_33qjo"]
 font_size = 280
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c84gt"]
+font_size = 56
 
 [sub_resource type="LabelSettings" id="LabelSettings_s1ljj"]
 font_size = 64
@@ -209,7 +212,7 @@ text = "Networking Status:
 label_settings = SubResource("LabelSettings_px6yw")
 autowrap_mode = 3
 
-[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("titleScreenManager", "networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton", "returnButtonControl", "confirmButtonControl")]
+[node name="PreLobbyPanel" type="Control" parent="MatchPrepScreenUI" node_paths=PackedStringArray("titleScreenManager", "networkingDebug", "playerPanelParent", "lobbyPanel", "lobbyNameLabel", "startGameButton", "returnButtonControl", "confirmButtonControl", "lobbyLoadingLabel")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
@@ -223,6 +226,7 @@ lobbyNameLabel = NodePath("../LobbyPanel/CreatedMultiplayerLobby/BackgroundOpaci
 startGameButton = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton")
 returnButtonControl = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ReturnButton")
 confirmButtonControl = NodePath("../LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton")
+lobbyLoadingLabel = NodePath("../LobbyPanel/LoadingLobbyLabel")
 
 [node name="SingleplayerButton" type="TextureButton" parent="MatchPrepScreenUI/PreLobbyPanel"]
 layout_mode = 0
@@ -325,6 +329,17 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="LoadingLobbyLabel" type="Label" parent="MatchPrepScreenUI/LobbyPanel"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 648.0
+offset_right = 1040.0
+offset_bottom = 725.0
+scale = Vector2(0.5, 0.5)
+label_settings = SubResource("LabelSettings_c84gt")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CreatingLobby" type="Control" parent="MatchPrepScreenUI/LobbyPanel"]
 visible = false

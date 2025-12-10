@@ -82,6 +82,12 @@ namespace Erikduss
 
         public void CreateNewLobby(string lobbyName = "defaultLobby", string lobbyPassword = "")
         {
+            if (!GDSync.IsActive())
+            {
+                GD.Print("MP was not active - create");
+                GDSync.StartMultiplayer();
+            }
+
             GDSync.LobbyCreate(lobbyName, lobbyPassword, true, 2);
 
             isHostOfLobby = true;
@@ -91,6 +97,12 @@ namespace Erikduss
 
         public void JoinLobby(string lobbyName, string lobbyPassword = "")
         {
+            if (!GDSync.IsActive())
+            {
+                GD.Print("MP was not active - join");
+                GDSync.StartMultiplayer();
+            }
+
             GDSync.LobbyJoin(lobbyName, lobbyPassword);
         }
 
@@ -130,12 +142,50 @@ namespace Erikduss
 
         public void DisconnectPlayer()
         {
+            if (GDSync.IsActive())
+            {
+                GDSync.LobbyLeave();
+            }
+
+            //reset everything
+            currentPlayerID = 1;
+            playersAreInGame = false;
+            isUsingMultiplayer = false;
+            isHostOfLobby = false;
+            isCurrentlyConnectedToServices = false;
+            playersInLobby.Clear();
+
+            if (GDSync.IsActive())
+            {
+                GDSync.StopMultiplayer();
+            }
+
             //we only need to do this when we are in the game.
             if (playersAreInGame)
             {
                 //force end the game.
-                GameManager.Instance.EndCurrentGame(true);
-                titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                if(GameManager.Instance != null)
+                {
+                    GameManager.Instance.EndCurrentGame(true);
+                }
+
+                if(titlescreenMultiplayerLobby != null)
+                {
+                    titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                }
+            }
+            else
+            {
+                if(titlescreenMultiplayerLobby != null)
+                {
+                    titlescreenMultiplayerLobby.titleScreenManager.LeaveLobbyButtonPressed();
+                }
+                else
+                {
+                    GD.Print("player dc and lobby not found, hard reset.");
+                    //reload scene
+                    SendPlayerBackToMainMenu();
+                }
             }
         }
 
@@ -252,6 +302,7 @@ namespace Erikduss
 
             titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " joined the lobby.";
 
+            GD.Print("Player id: " + currentPlayerID + "Amount of players: " + playersInLobby.Count);
             titlescreenMultiplayerLobby.ClientJoinedLobby(clientID, currentPlayerID);
             currentPlayerID++;
 
@@ -264,14 +315,21 @@ namespace Erikduss
 
             if (!playersAreInGame)
             {
-                titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
+                if(titlescreenMultiplayerLobby != null)
+                {
+                    titlescreenMultiplayerLobby.networkingDebug.Text = titlescreenMultiplayerLobby.networkingDebug.Text + "\n" + "Player " + clientID + " left the lobby.";
 
-                titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
+                    titlescreenMultiplayerLobby.ClientLeftLobby(clientID);
+                }
             }
-            
+
+            GD.Print("Player id: " + currentPlayerID + "Amount of players: " + playersInLobby.Count);
             playersInLobby.Remove(clientID);
 
             currentPlayerID--;
+
+            //we dont wanna dc the host for no reason.
+            if (!playersAreInGame && isHostOfLobby) return; 
 
             DisconnectPlayer();
         }

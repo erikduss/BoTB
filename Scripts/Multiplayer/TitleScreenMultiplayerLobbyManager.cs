@@ -28,6 +28,8 @@ namespace Erikduss
         [Export] public Control returnButtonControl;
         [Export] public Control confirmButtonControl;
 
+        [Export] public Label lobbyLoadingLabel;
+
         public int amountOfPlayersCurrentlyReady = 0;
 
         public override void _Ready()
@@ -36,6 +38,7 @@ namespace Erikduss
 
             playerPanelPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Multiplayer/Lobby/player_lobby_panel.tscn");
 
+            GD.Print("Linking new Multiplayer Titlescreen thing");
             MultiplayerManager.Instance.titlescreenMultiplayerLobby = this;
         }
 
@@ -49,13 +52,19 @@ namespace Erikduss
         {
             InitializeMultiplayerServices();
 
+            lobbyLoadingLabel.Text = "Loading (Max Timeout: " + maxConnectionAttemptTime + ")";
+
             //max 10 seconds timeout
             for (int i = 0; i < maxConnectionAttemptTime; i++)
             {
                 await ToSignal(GetTree().CreateTimer(1f), "timeout");
 
+                lobbyLoadingLabel.Text = "Loading (Max Timeout: " + (maxConnectionAttemptTime - i) + ")";
+
                 if (MultiplayerManager.Instance.isCurrentlyConnectedToServices) break;
             }
+
+            lobbyLoadingLabel.Text = "";
 
             if (MultiplayerManager.Instance.isCurrentlyConnectedToServices)
             {
@@ -71,13 +80,19 @@ namespace Erikduss
         {
             InitializeMultiplayerServices();
 
+            lobbyLoadingLabel.Text = "Loading (Max Timeout: " + maxConnectionAttemptTime + ")";
+
             //max 10 seconds timeout
             for (int i = 0; i < maxConnectionAttemptTime; i++)
             {
                 await ToSignal(GetTree().CreateTimer(1f), "timeout");
 
+                lobbyLoadingLabel.Text = "Loading (Max Timeout: " + (maxConnectionAttemptTime - i) + ")";
+
                 if (MultiplayerManager.Instance.isCurrentlyConnectedToServices) break;
             }
+
+            lobbyLoadingLabel.Text = "";
 
             if (MultiplayerManager.Instance.isCurrentlyConnectedToServices)
             {
@@ -86,6 +101,7 @@ namespace Erikduss
             else
             {
                 GD.PrintErr("FAILED TO CONNECT TO SERVICES");
+                LeaveCurrentLobby();
             }
         }
 
@@ -106,7 +122,10 @@ namespace Erikduss
 
         public async void LeaveCurrentLobby()
         {
-            GDSync.LobbyLeave();
+            if (GDSync.IsActive())
+            {
+                GDSync.LobbyLeave();
+            }
 
             lobbyPanel.Visible = false;
             titleScreenManager.singleplayerGameButton.GrabFocus();
@@ -123,16 +142,23 @@ namespace Erikduss
             MultiplayerManager.Instance.isHostOfLobby = false;
             MultiplayerManager.Instance.isCurrentlyConnectedToServices = false;
 
-            for (int i = 0; i < currentPlayers.Count; i++)
+            if(currentPlayers != null)
             {
-                if (currentPlayers[i] != null && !currentPlayers[i].IsQueuedForDeletion())
+                for (int i = 0; i < currentPlayers.Count; i++)
                 {
-                    currentPlayers[i].CallDeferred("DeleteThisLobbyEntry");
+                    if (currentPlayers[i] != null && !currentPlayers[i].IsQueuedForDeletion())
+                    {
+                        currentPlayers[i].CallDeferred("DeleteThisLobbyEntry");
+                    }
                 }
+                currentPlayers.Clear();
             }
 
-            currentPlayers.Clear();
-            GDSync.StopMultiplayer();
+            if (GDSync.IsActive())
+            {
+                GDSync.StopMultiplayer();
+            }
+            
         }
 
         private void ClearLastLobby()

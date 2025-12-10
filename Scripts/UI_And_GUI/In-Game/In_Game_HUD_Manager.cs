@@ -254,17 +254,6 @@ namespace Erikduss
 
             BasePlayer player = GameManager.Instance.GetLocalClientPlayerScript();
 
-            if(player != null)
-            {
-                GD.Print("Refreshing power up!");
-                GD.Print(player.playerTeam);
-                GD.Print(player.playerCurrentPowerUpProgressAmount);
-                GD.Print(player.playerCurrentPowerUpRerollsAmount);
-                GD.Print(player.playerCurrentAmountOfPowerUpsOwed);
-                GD.Print(player.hasUnlockedPowerUpCurrently);
-                GD.Print("Are we spending reroll?: " + spendRerollToken);
-            }
-
             if (spendRerollToken)
             {
                 if (player.playerCurrentPowerUpRerollsAmount < 1)
@@ -616,7 +605,13 @@ namespace Erikduss
         {
             if (GameManager.Instance.isMultiplayerMatch)
             {
-                MultiplayerManager.Instance.titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                //quite sure this is disposed?
+                if(MultiplayerManager.Instance.titlescreenMultiplayerLobby != null)
+                {
+                    MultiplayerManager.Instance.titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                }
+
+                MultiplayerManager.Instance.DisconnectPlayer();
             }
 
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
