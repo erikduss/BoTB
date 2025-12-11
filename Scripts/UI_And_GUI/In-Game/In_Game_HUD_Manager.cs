@@ -608,10 +608,10 @@ namespace Erikduss
                 //quite sure this is disposed?
                 if(MultiplayerManager.Instance.titlescreenMultiplayerLobby != null)
                 {
-                    MultiplayerManager.Instance.titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                    MultiplayerManager.Instance.titlescreenMultiplayerLobby.Dispose();
                 }
 
-                MultiplayerManager.Instance.DisconnectPlayer();
+                MultiplayerManager.Instance.DisconnectPlayer(true);
             }
 
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);

@@ -7,7 +7,7 @@ namespace Erikduss
 	{
         public static GameSettingsLoader Instance { get; private set; }
 
-        public static bool buildIsADemo = true;
+        public static bool buildIsADemo = false;
         public Color focussedControlColor = new Color(0.6f, 0.6f, 0.5f);
         public bool useHighlightFocusMode = false;
 
@@ -131,18 +131,20 @@ namespace Erikduss
                         }
 
                         currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
-                        GetViewport().AddChild(currentlyInstantiatedWarning);
+                        
 
-                        //pausing doesnt need to happen on controller being pluggin in.
-                        //if(GameManager.Instance != null)
-                        //{
-                        //    if (!GameManager.Instance.gameIsPaused)
-                        //    {
-                        //        GameManager.Instance.ToggleGameIsPaused(true);
-                        //    }
-                        //}
+                        //pausing doesnt need to happen on controller being pluggin in. But we need to link the warning on the hud.
+                        if (GameManager.Instance != null)
+                        {
+                            //this means we are in game.
+                            GameManager.Instance.inGameHUDManager.AddChild(currentlyInstantiatedWarning);
+                        }
+                        else
+                        {
+                            GetViewport().AddChild(currentlyInstantiatedWarning);
+                        }
 
-                        hasInstatiatedWarning = true;
+                            hasInstatiatedWarning = true;
 
                         //only pause when the game is in progress.
                         if (GameManager.Instance != null)
@@ -180,7 +182,6 @@ namespace Erikduss
                         }
 
                         currentlyInstantiatedWarning = (Control)gamepadWarningPanel.Instantiate();
-                        GetViewport().AddChild(currentlyInstantiatedWarning);
 
                         if (GameManager.Instance != null)
                         {
@@ -189,9 +190,15 @@ namespace Erikduss
                                 GameManager.Instance.ToggleGameIsPaused(true);
                                 previouslySelectedControlBeforeControllerChange = GameManager.Instance.inGameHUDManager.pauseMenuReturnControl;
                             }
+
+                            GameManager.Instance.inGameHUDManager.AddChild(currentlyInstantiatedWarning);
+                        }
+                        else
+                        {
+                            GetViewport().AddChild(currentlyInstantiatedWarning);
                         }
 
-                        hasInstatiatedWarning = true;
+                            hasInstatiatedWarning = true;
                     }
                 }
             }

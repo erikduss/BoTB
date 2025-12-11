@@ -127,11 +127,21 @@ namespace Erikduss
                 GDSync.LobbyLeave();
             }
 
-            lobbyPanel.Visible = false;
-            titleScreenManager.singleplayerGameButton.GrabFocus();
+            if(lobbyPanel != null)
+            {
+                lobbyPanel.Visible = false;
+            }
 
-            networkingDebug.Text = "Networking Status: ";
-            networkingDebug.Visible = false;
+            if (titleScreenManager != null)
+            {
+                titleScreenManager.singleplayerGameButton.GrabFocus();
+            }
+            
+            if(networkingDebug != null)
+            {
+                networkingDebug.Text = "Networking Status: ";
+                networkingDebug.Visible = false;
+            }
 
             await ToSignal(GetTree().CreateTimer(2.5f), "timeout");
 

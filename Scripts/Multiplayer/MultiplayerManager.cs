@@ -140,8 +140,36 @@ namespace Erikduss
             DisconnectPlayer();
         }
 
-        public void DisconnectPlayer()
+        public void DisconnectPlayer(bool forceQuit = false)
         {
+            //we only need to do this when we are in the game.
+            if (playersAreInGame)
+            {
+                //force end the game.
+                if(GameManager.Instance != null)
+                {
+                    GameManager.Instance.EndCurrentGame(true);
+                }
+
+                if(titlescreenMultiplayerLobby != null)
+                {
+                    titlescreenMultiplayerLobby.LeaveCurrentLobby();
+                }
+            }
+            else if (!forceQuit)
+            {
+                if(titlescreenMultiplayerLobby != null)
+                {
+                    titlescreenMultiplayerLobby.titleScreenManager.LeaveLobbyButtonPressed();
+                }
+                else
+                {
+                    GD.Print("player dc and lobby not found, hard reset.");
+                    //reload scene
+                    SendPlayerBackToMainMenu();
+                }
+            }
+
             if (GDSync.IsActive())
             {
                 GDSync.LobbyLeave();
@@ -158,34 +186,6 @@ namespace Erikduss
             if (GDSync.IsActive())
             {
                 GDSync.StopMultiplayer();
-            }
-
-            //we only need to do this when we are in the game.
-            if (playersAreInGame)
-            {
-                //force end the game.
-                if(GameManager.Instance != null)
-                {
-                    GameManager.Instance.EndCurrentGame(true);
-                }
-
-                if(titlescreenMultiplayerLobby != null)
-                {
-                    titlescreenMultiplayerLobby.LeaveCurrentLobby();
-                }
-            }
-            else
-            {
-                if(titlescreenMultiplayerLobby != null)
-                {
-                    titlescreenMultiplayerLobby.titleScreenManager.LeaveLobbyButtonPressed();
-                }
-                else
-                {
-                    GD.Print("player dc and lobby not found, hard reset.");
-                    //reload scene
-                    SendPlayerBackToMainMenu();
-                }
             }
         }
 

@@ -100,6 +100,7 @@ namespace Erikduss
                             if(unitNameLabel.LabelSettings.Font.GetStringSize(unitName, HorizontalAlignment.Center, -1, i).X <= originalLabelSize.X)
                             {
                                 //we found a size that fits
+                                unitNameLabel.LabelSettings.FontSize = i * scaleMultiplier; //we need to double the size to make the text sharper, scale is at 0.5
                                 break;
                             }
                         }
