@@ -41,6 +41,11 @@ namespace Erikduss
             }
         }
 
+        public void AgeUpButtonPressed()
+        {
+
+        }
+
         public void ShowAgeUpInfoOnFocus()
         {
             if (!GameSettingsLoader.Instance.useHighlightFocusMode) return;

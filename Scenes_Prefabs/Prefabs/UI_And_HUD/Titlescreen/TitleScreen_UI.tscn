@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://vkc7ljb7gne4"]
+[gd_scene load_steps=20 format=3 uid="uid://vkc7ljb7gne4"]
 
 [ext_resource type="Script" uid="uid://bbbnt1bybj6sy" path="res://Scripts/UI_And_GUI/TitleScreen/TitleScreenManager.cs" id="1_7dscw"]
 [ext_resource type="Texture2D" uid="uid://ba811ifejhmkr" path="res://Assets/Environment/Background_DarkBasic.jpg" id="2_uv18o"]
 [ext_resource type="Texture2D" uid="uid://5cil1evarrf5" path="res://Assets/Trailer/GameTitle.png" id="3_s3ws6"]
+[ext_resource type="PackedScene" uid="uid://dp281h3baucsq" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/Charms/ValeriaCharityCharm.tscn" id="4_px6yw"]
 [ext_resource type="BitMap" uid="uid://desyasys2va0r" path="res://Assets/UI/StartButton_ClickMask.png" id="5_3h1cd"]
 [ext_resource type="Script" uid="uid://clrxinew1leis" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="10_nii0d"]
 [ext_resource type="Texture2D" uid="uid://bob13l8o4au1k" path="res://Assets/UI/GenericButton_Disabled.png" id="10_s1ljj"]
@@ -178,6 +179,19 @@ text = "EXIT_BUTTON"
 label_settings = SubResource("LabelSettings_j61ag")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ValeriaCharityCharm" parent="." instance=ExtResource("4_px6yw")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1906.0
+offset_top = 874.0
+offset_right = 1906.0
+offset_bottom = 874.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(-1, 1)
 
 [node name="GameVersionLabel" type="Label" parent="."]
 layout_mode = 0

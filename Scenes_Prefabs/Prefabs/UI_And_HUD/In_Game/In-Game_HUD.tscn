@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc6fmve3t0dyp"]
+[gd_scene load_steps=31 format=3 uid="uid://bc6fmve3t0dyp"]
 
 [ext_resource type="Script" uid="uid://b24cdk5w8kra2" path="res://Scripts/UI_And_GUI/In-Game/In_Game_HUD_Manager.cs" id="1_xnpt7"]
 [ext_resource type="Texture2D" uid="uid://coxgep53pdaw2" path="res://Assets/UI/Ingame_UI/CurrencyPanel.png" id="2_d1xrq"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bdafram0ww6ol" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/powerup_refresh_button.tscn" id="13_5yawq"]
 [ext_resource type="PackedScene" uid="uid://b8bxjggric8q3" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age01_upgrade_button.tscn" id="15_yfhd6"]
 [ext_resource type="PackedScene" uid="uid://drd6t22hn0wvm" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age01_ability_button.tscn" id="16_yjnc7"]
+[ext_resource type="PackedScene" uid="uid://dp281h3baucsq" path="res://Scenes_Prefabs/Prefabs/UI_And_HUD/Charms/ValeriaCharityCharm.tscn" id="18_ovqk1"]
 [ext_resource type="Texture2D" uid="uid://bhavacday4phc" path="res://Assets/UI/Ingame_UI/pauseButton_Default.png" id="18_uchjm"]
 [ext_resource type="Texture2D" uid="uid://boi3w66ew64v6" path="res://Assets/UI/Ingame_UI/pauseButton_Hover.png" id="19_n2dlf"]
 [ext_resource type="Texture2D" uid="uid://ues2qumbi1fx" path="res://Assets/UI/Ingame_UI/PauseBackgroundPanel.png" id="20_ovqk1"]
@@ -165,6 +166,19 @@ focus_neighbor_bottom = NodePath("../AgeUpgrade/AgeUpgradeContainer/AgeUpgradeBu
 texture_normal = ExtResource("18_uchjm")
 texture_hover = ExtResource("19_n2dlf")
 texture_click_mask = ExtResource("12_yp65u")
+
+[node name="ValeriaCharityCharm" parent="Player_Control_HUD" instance=ExtResource("18_ovqk1")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1922.0
+offset_top = 93.0
+offset_right = 1922.0
+offset_bottom = 93.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(-0.5, 0.5)
 
 [node name="PauseMenuBackground" type="TextureRect" parent="Player_Control_HUD"]
 layout_mode = 0
