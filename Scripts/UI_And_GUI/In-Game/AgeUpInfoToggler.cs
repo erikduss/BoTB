@@ -43,7 +43,7 @@ namespace Erikduss
 
         public void AgeUpButtonPressed()
         {
-
+            GameManager.Instance.AttemptToLevelUpAge();
         }
 
         public void ShowAgeUpInfoOnFocus()

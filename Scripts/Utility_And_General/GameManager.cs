@@ -101,8 +101,8 @@ namespace Erikduss
                 GDSync.ExposeFunction(new Callable(this, "AwardPlayer2WithPowerupBuff"));
                 GDSync.ExposeFunction(new Callable(this, "SpendPlayer2PowerupRefresh"));
                 GDSync.ExposeFunction(new Callable(this, "Player2LockedPowerupChanged"));
-                GDSync.ExposeFunction(new Callable(this, "Player2UnlockedNewPowerup"));
-
+                GDSync.ExposeFunction(new Callable(this, "Player2UnlockedNewPowerup")); 
+                GDSync.ExposeFunction(new Callable(this, "LevelupPlayer2ToNewAge"));
 
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
                 {
@@ -405,6 +405,63 @@ namespace Erikduss
 
             //this will call it for all clients
             GDSync.SyncedEventCreate("SyncUpdatePlayerHud");
+        }
+
+        public void AttemptToLevelUpAge()
+        {
+            //check for gold requirement
+            BasePlayer playerToCheck = GetLocalClientPlayerScript();
+
+            int ageUpCost = GameSettingsLoader.age1UpgradeToAge2Cost;
+
+            if (playerToCheck.playerCurrentCurrencyAmount < ageUpCost) {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+            //other requirements?
+
+            //Attempt to spend the currency, if this fails we stop.
+            if (!SpendPlayerCurrency(ageUpCost, clientTeamOwner))
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickedFailedAudioClip);
+                return;
+            }
+
+            if (isMultiplayerMatch && !isHostOfMultiplayerMatch)
+            {
+                //call the function on the host to spend our currency.
+                GDSync.CallFuncOn(GDSync.GetHost(), new Callable(this, "LevelupPlayer2ToNewAge"), []);
+            }
+            else
+            {
+                LevelupPlayerToNewAge(playerToCheck);
+            }
+        }
+
+        public void LevelupPlayerToNewAge(BasePlayer playerToSetFor)
+        {
+            playerToSetFor.currentAgeOfPlayer = Ages.AGE_02;
+
+            if(playerToSetFor.playerTeam == TeamOwner.TEAM_01)
+            {
+                inGameHUDManager.SetAgeUpButtonToNewAge();
+            }
+            else
+            {
+
+            }
+        }
+
+        public void LevelupPlayer2ToNewAge()
+        {
+            int ageUpCost = GameSettingsLoader.age1UpgradeToAge2Cost;
+
+            if (player02Script.playerCurrentCurrencyAmount < ageUpCost)
+            {
+                GD.Print("Player 2 didnt have enough, is their currency already recuded?");
+            }
+
+            LevelupPlayerToNewAge(player02Script);
         }
 
         public void ProcessSpawnRequestPlayer2(int unitType)

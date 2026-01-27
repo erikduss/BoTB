@@ -37,7 +37,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 512
 font_color = Color(0, 0, 0, 1)
 
-[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel", "ageUpControl", "ageAbilityControl", "refreshButtonControl", "pauseButtonControl", "pauseMenuReturnControl", "powerUpsParentNode", "powerUpRefreshButton")]
+[node name="In-gameHud" type="Control" node_paths=PackedStringArray("currencyAmountLabel", "unitShopParentNode", "pauseMenuNode", "gameOverNode", "optionsPanel", "ageUpControl", "ageAbilityControl", "refreshButtonControl", "pauseButtonControl", "pauseMenuReturnControl", "ageUpControlParent", "powerUpsParentNode", "powerUpRefreshButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +55,7 @@ ageAbilityControl = NodePath("Player_Control_HUD/AgeAbility/AgeAbilityContainer/
 refreshButtonControl = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/ShopRefreshButton")
 pauseButtonControl = NodePath("Player_Control_HUD/PauseButton")
 pauseMenuReturnControl = NodePath("Player_Control_HUD/PauseMenuBackground/ReturnButton")
+ageUpControlParent = NodePath("Player_Control_HUD/AgeUpgrade/AgeUpgradeContainer")
 powerUpsParentNode = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/PowerUpsContainer")
 powerUpRefreshButton = NodePath("Player_Control_HUD/Currency&UnitShop/HBoxContainer/PowerUpRefreshButton")
 

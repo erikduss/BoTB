@@ -154,6 +154,8 @@ namespace Erikduss
         {
             Enums.Ages currentAge = team == Enums.TeamOwner.TEAM_01 ? GameManager.Instance.player01Script.currentAgeOfPlayer : GameManager.Instance.player02Script.currentAgeOfPlayer;
 
+            GD.Print("Age of player: " + currentAge);
+
             //Add to queue
             AddUnitToQueue(team, unitType, currentAge);
         }

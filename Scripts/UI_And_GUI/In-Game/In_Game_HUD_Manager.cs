@@ -23,12 +23,14 @@ namespace Erikduss
         public List<Control> currentUnitsInShop = new List<Control>();
 
         //needed for focus selection
-        [Export] private Control ageUpControl;
+        [Export] public Control ageUpControl;
         [Export] private Control ageAbilityControl;
         [Export] private Control refreshButtonControl;
         [Export] private Control pauseButtonControl;
 
         [Export] public Control pauseMenuReturnControl;
+
+        [Export] private Control ageUpControlParent;
 
         private Control currentlySelectedControl = null;
 
@@ -60,6 +62,8 @@ namespace Erikduss
         public PackedScene goldGainPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/GoldGain_powerup_button.tscn");
         public PackedScene abilityEmpowerPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/AbilityEmpower_powerup_button.tscn");
         public PackedScene healBasePowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/HealBase_powerup_button.tscn");
+
+        public PackedScene age2AgeUpPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age02_upgrade_button.tscn");
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -506,6 +510,14 @@ namespace Erikduss
             ageAbilityControl.FocusNeighborBottom = currentUnitsInShop[0].GetPath();
 
             pauseButtonControl.FocusNeighborRight = currentUnitsInShop[0].GetPath();
+        }
+
+        public void SetAgeUpButtonToNewAge()
+        {
+            ageUpControl.QueueFree();
+
+            ageUpControl = (Control)age2AgeUpPrefab.Instantiate();
+            ageUpControlParent.AddChild(ageUpControl);
         }
 
         private int UnitTheShopRolledFor()

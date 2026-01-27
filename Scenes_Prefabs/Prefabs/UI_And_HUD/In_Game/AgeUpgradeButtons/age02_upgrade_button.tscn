@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8bxjggric8q3"]
+[gd_scene load_steps=10 format=3 uid="uid://dkedssqtdxb1"]
 
-[ext_resource type="Texture2D" uid="uid://b4m2i7fhajl2x" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Default_button.png" id="1_044jc"]
-[ext_resource type="Texture2D" uid="uid://cug33b0okulke" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Hover_button.png" id="2_05wng"]
-[ext_resource type="BitMap" uid="uid://dlgq6h1ph38n8" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Clickmask.png" id="3_tka4x"]
-[ext_resource type="Script" uid="uid://bca60t5d28dsv" path="res://Scripts/UI_And_GUI/In-Game/AgeUpInfoToggler.cs" id="4_02ldh"]
-[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_hwocq"]
-[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_cvnfc"]
+[ext_resource type="Texture2D" uid="uid://cug33b0okulke" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Hover_button.png" id="2_rrcbr"]
+[ext_resource type="BitMap" uid="uid://dlgq6h1ph38n8" path="res://Assets/UI/Ingame_UI/Age_Upgrade_Buttons/Age01Upgrade_Clickmask.png" id="3_dtu2u"]
+[ext_resource type="Script" uid="uid://bca60t5d28dsv" path="res://Scripts/UI_And_GUI/In-Game/AgeUpInfoToggler.cs" id="4_6vpd6"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="5_5ltf1"]
+[ext_resource type="Texture2D" uid="uid://ds2n52y0ukkld" path="res://Assets/UI/Ingame_UI/Icons/Coins.png" id="6_be4qq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jcxrx"]
 font_size = 48
@@ -23,15 +22,15 @@ font_color = Color(0, 0, 0, 1)
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[node name="Age01UpgradeButton" type="TextureButton"]
+[node name="Age02UpgradeButton" type="TextureButton"]
 offset_right = 192.0
 offset_bottom = 192.0
-texture_normal = ExtResource("1_044jc")
-texture_hover = ExtResource("2_05wng")
-texture_click_mask = ExtResource("3_tka4x")
+texture_normal = ExtResource("2_rrcbr")
+texture_hover = ExtResource("2_rrcbr")
+texture_click_mask = ExtResource("3_dtu2u")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("4_02ldh")
+script = ExtResource("4_6vpd6")
 
 [node name="AgeUpgradeInfo" type="TextureRect" parent="."]
 visible = false
@@ -43,7 +42,7 @@ offset_right = 421.0
 offset_bottom = 360.0
 pivot_offset = Vector2(128, 0)
 mouse_filter = 2
-texture = ExtResource("5_hwocq")
+texture = ExtResource("5_5ltf1")
 
 [node name="AgeUpText" type="Label" parent="AgeUpgradeInfo"]
 custom_minimum_size = Vector2(420, 150)
@@ -72,7 +71,7 @@ layout_mode = 2
 offset_left = 60.0
 offset_right = 90.0
 offset_bottom = 30.0
-texture = ExtResource("6_cvnfc")
+texture = ExtResource("6_be4qq")
 expand_mode = 1
 stretch_mode = 5
 
@@ -82,7 +81,7 @@ offset_left = 90.0
 offset_right = 136.0
 offset_bottom = 28.0
 scale = Vector2(0.5, 0.5)
-text = "250"
+text = "9999999"
 label_settings = SubResource("LabelSettings_l0gp8")
 
 [node name="BoxContainer" type="BoxContainer" parent="AgeUpgradeInfo"]
@@ -103,7 +102,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="AgeUpDescription2" type="Label" parent="AgeUpgradeInfo"]
-visible = false
 custom_minimum_size = Vector2(410, 100)
 layout_mode = 2
 offset_left = 23.0
@@ -120,4 +118,3 @@ autowrap_mode = 3
 [connection signal="focus_exited" from="." to="." method="HideAgeUpInfoOnLoseFocus"]
 [connection signal="mouse_entered" from="." to="." method="ShowAgeUpInfoOnHover"]
 [connection signal="mouse_exited" from="." to="." method="HideAgeUpInfoOnLoseHover"]
-[connection signal="pressed" from="." to="." method="AgeUpButtonPressed"]
