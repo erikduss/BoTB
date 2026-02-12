@@ -32,6 +32,7 @@ namespace Erikduss
 
         [Export] private Control ageUpControlParent;
 
+        private Control currentlyActiveAgeUpControl = null;
         private Control currentlySelectedControl = null;
 
         #region Buy Buttons
@@ -81,6 +82,8 @@ namespace Erikduss
             availablePowerUpButtons.Add(goldGainPowerUpButtonPrefab);
             availablePowerUpButtons.Add(abilityEmpowerPowerUpButtonPrefab);
             availablePowerUpButtons.Add(healBasePowerUpButtonPrefab);
+
+            currentlyActiveAgeUpControl = ageAbilityControl;
 
             HidePauseMenu();
             gameOverNode.Visible = false;
@@ -464,7 +467,7 @@ namespace Erikduss
                 Control childControl = (Control)child;
 
                 //this is always the same.
-                childControl.FocusNeighborBottom = ageUpControl.GetPath();
+                childControl.FocusNeighborBottom = currentlyActiveAgeUpControl.GetPath();
                 childControl.FocusNeighborTop = ageAbilityControl.GetPath();
 
                 int leftNeightborIndex = controlIndex - 1;
@@ -500,13 +503,16 @@ namespace Erikduss
                 currentShownPowerUp.FocusNeighborLeft = refreshButtonControl.GetPath();
                 currentShownPowerUp.FocusNeighborRight = powerUpRefreshButton.GetPath();
                 currentShownPowerUp.FocusNeighborTop = ageAbilityControl.GetPath();
-                currentShownPowerUp.FocusNeighborBottom = ageUpControl.GetPath();
+                currentShownPowerUp.FocusNeighborBottom = currentlyActiveAgeUpControl.GetPath();
 
                 refreshButtonControl.FocusNeighborRight = currentShownPowerUp.GetPath();
                 powerUpRefreshButton.FocusNeighborLeft = currentShownPowerUp.GetPath();
             }
 
-            ageUpControl.FocusNeighborTop = currentUnitsInShop[0].GetPath();
+            currentlyActiveAgeUpControl.FocusNeighborTop = currentUnitsInShop[0].GetPath();
+            currentlyActiveAgeUpControl.FocusNeighborBottom = ageAbilityControl.GetPath();
+
+            ageAbilityControl.FocusNeighborTop = currentlyActiveAgeUpControl.GetPath();
             ageAbilityControl.FocusNeighborBottom = currentUnitsInShop[0].GetPath();
 
             pauseButtonControl.FocusNeighborRight = currentUnitsInShop[0].GetPath();
@@ -516,8 +522,14 @@ namespace Erikduss
         {
             ageUpControl.QueueFree();
 
-            ageUpControl = (Control)age2AgeUpPrefab.Instantiate();
-            ageUpControlParent.AddChild(ageUpControl);
+            Control newageUpControl = (Control)age2AgeUpPrefab.Instantiate();
+            ageUpControlParent.AddChild(newageUpControl);
+
+            currentlyActiveAgeUpControl = newageUpControl;
+
+            RefreshFocusConnections();
+
+            currentlyActiveAgeUpControl.GrabFocus();
         }
 
         private int UnitTheShopRolledFor()
