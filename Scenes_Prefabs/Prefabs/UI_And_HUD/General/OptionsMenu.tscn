@@ -43,7 +43,7 @@ bg_color = Color(0.450648, 0.450648, 0.450648, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpqcs"]
 bg_color = Color(0.45098, 0.45098, 0.45098, 1)
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "languageOptionButton", "controllerModeColorPickerButton")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "showCharmsOptionButton", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "languageOptionButton", "controllerModeColorPickerButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +60,7 @@ screenDragSensitivityValueLabel = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS
 screenDragSensitivitySlider = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity/DragSensitivitySlider")
 screenSidesSensitivityValueLabel = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesValue")
 screenSidesSensitivitySlider = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider")
+showCharmsOptionButton = NodePath("Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility/ShowCharmsOptionButton")
 displayModeOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode/DisplayModeOptionButton")
 screenResolutionsOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton")
 limitFPSOptionButton = NodePath("Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS/LimitFPSOptionButton")
@@ -86,9 +87,10 @@ offset_bottom = 1080.0
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="AUDIO_SETTINGS" type="Control" parent="Panel/TabContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../GRAPHICS_SETTINGS")
 focus_neighbor_top = NodePath("../../BottomButtons/ReturnButton")
@@ -203,7 +205,6 @@ text = "50%"
 label_settings = SubResource("LabelSettings_adsjs")
 
 [node name="GAMEPLAY_SETTINGS" type="Control" parent="Panel/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -328,8 +329,8 @@ scale = Vector2(1.25, 1.25)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../DragSensitivity/DragSensitivitySlider")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
-focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_neighbor_bottom = NodePath("../../CharmVisibility/ShowCharmsOptionButton")
+focus_next = NodePath("../../CharmVisibility/ShowCharmsOptionButton")
 focus_previous = NodePath("../../DragSensitivity/DragSensitivitySlider")
 theme_override_icons/grabber = ExtResource("2_865cf")
 theme_override_icons/grabber_highlight = ExtResource("3_81y48")
@@ -345,6 +346,42 @@ offset_right = 1167.0
 offset_bottom = 45.0
 text = "Default"
 label_settings = SubResource("LabelSettings_adsjs")
+
+[node name="CharmVisibility" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 400.0
+offset_right = 1560.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility"]
+layout_mode = 0
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 45.0
+text = "SHOW_CHARMS"
+label_settings = SubResource("LabelSettings_adsjs")
+horizontal_alignment = 2
+
+[node name="ShowCharmsOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility"]
+layout_mode = 0
+offset_left = 324.0
+offset_right = 763.0
+offset_bottom = 45.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ScreenSidesSensitivity/ScreenSidesSlider")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
+focus_previous = NodePath("../../ScreenSidesSensitivity/ScreenSidesSlider")
+theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
+selected = 0
+item_count = 2
+popup/item_0/text = "ENABLED_OPTION"
+popup/item_0/id = 0
+popup/item_1/text = "DISABLED_OPTION"
+popup/item_1/id = 1
 
 [node name="GRAPHICS_SETTINGS" type="Control" parent="Panel/TabContainer"]
 visible = false
@@ -718,6 +755,7 @@ layout_mode = 1
 [connection signal="item_selected" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled/ScreenMovementOptionButton" to="." method="ScreenMovementTypeSelected"]
 [connection signal="value_changed" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity/DragSensitivitySlider" to="." method="ScreenDragSensitivitySliderOnValueChanged"]
 [connection signal="value_changed" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity/ScreenSidesSlider" to="." method="ScreenSidesSensitivitySliderOnValueChanged"]
+[connection signal="item_selected" from="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility/ShowCharmsOptionButton" to="." method="ShowCharmsOptionSelected"]
 [connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode/DisplayModeOptionButton" to="." method="DisplayModeSelected"]
 [connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution/ScreenResolutionOptionButton" to="." method="ScreenResolutionSelected"]
 [connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS/LimitFPSOptionButton" to="." method="LimitFpsOptionSelected"]

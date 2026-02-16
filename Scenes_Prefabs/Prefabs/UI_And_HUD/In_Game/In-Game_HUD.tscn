@@ -173,13 +173,12 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1922.0
-offset_top = 93.0
-offset_right = 1922.0
-offset_bottom = 93.0
+offset_left = 1839.0
+offset_top = 128.0
+offset_right = 1839.0
+offset_bottom = 128.0
 grow_horizontal = 1
 grow_vertical = 1
-scale = Vector2(-0.5, 0.5)
 
 [node name="PauseMenuBackground" type="TextureRect" parent="Player_Control_HUD"]
 layout_mode = 0

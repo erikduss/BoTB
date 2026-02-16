@@ -185,13 +185,12 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 1906.0
-offset_top = 874.0
-offset_right = 1906.0
-offset_bottom = 874.0
+offset_left = 1840.0
+offset_top = 834.0
+offset_right = 1840.0
+offset_bottom = 834.0
 grow_horizontal = 1
 grow_vertical = 1
-scale = Vector2(-1, 1)
 
 [node name="GameVersionLabel" type="Label" parent="."]
 layout_mode = 0

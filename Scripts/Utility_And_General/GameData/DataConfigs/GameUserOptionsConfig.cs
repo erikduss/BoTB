@@ -17,6 +17,7 @@ namespace Erikduss
         public Enums.ScreenMovementType screenMovement = Enums.ScreenMovementType.Use_Both;
         public int addedDragSensitivity = 0;
         public int addedSidesSensitivity = 0;
+        public bool showCharms = true;
 
         #endregion
 

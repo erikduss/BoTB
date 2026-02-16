@@ -73,6 +73,7 @@ namespace Erikduss
             SetAudioBusVolume("Other");
             SetFPSLimitingMode();
             SetHemophobiaMode();
+            SetCharmsVisibility();
             SetControllerHighlightMode();
             SetControllerFocusColor();
             SetLanguage();
@@ -154,6 +155,19 @@ namespace Erikduss
         public void SetHemophobiaMode()
         {
             GameSettingsLoader.Instance.useAlternativeBloodColor = currentlySavedUserOptions.enableHemophobiaMode;
+        }
+
+        public void SetCharmsVisibility()
+        {
+            GameSettingsLoader.Instance.showCharms = currentlySavedUserOptions.showCharms;
+
+            if (GameSettingsLoader.Instance.currentCharmsLoaded.Count > 0)
+            {
+                foreach(var charm in GameSettingsLoader.Instance.currentCharmsLoaded)
+                {
+                    charm.SetCharmVisibility();
+                }
+            }
         }
 
         public void SetControllerFocusColor()
@@ -438,6 +452,15 @@ namespace Erikduss
                     {
                         requiresToBeSaved = true;
                     }
+
+                    if (config.HasSectionKey(section, "showCharms"))
+                    {
+                        currentlySavedUserOptions.showCharms = (bool)config.GetValue(section, "showCharms");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else if (section == Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString())
                 {
@@ -566,6 +589,7 @@ namespace Erikduss
             config.SetValue(Enums.UserOptionsConfigHeader.GAMEPLAY_SETTINGS.ToString(), "ScreenMovement", userOptionsToSave.screenMovement.ToString());
             config.SetValue(Enums.UserOptionsConfigHeader.GAMEPLAY_SETTINGS.ToString(), "AddedDragSensitivity", userOptionsToSave.addedDragSensitivity);
             config.SetValue(Enums.UserOptionsConfigHeader.GAMEPLAY_SETTINGS.ToString(), "AddedSidesSensitivity", userOptionsToSave.addedSidesSensitivity);
+            config.SetValue(Enums.UserOptionsConfigHeader.GAMEPLAY_SETTINGS.ToString(), "showCharms", userOptionsToSave.showCharms);
 
             config.SetValue(Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString(), "DisplayMode", userOptionsToSave.displayMode.ToString());
             config.SetValue(Enums.UserOptionsConfigHeader.GRAPHICS_SETTINGS.ToString(), "ScreenResolution", userOptionsToSave.screenResolution.ToString());
@@ -613,6 +637,7 @@ namespace Erikduss
                 currentlySavedUserOptions.screenMovement = newOptions.screenMovement;
                 currentlySavedUserOptions.addedDragSensitivity = newOptions.addedDragSensitivity;
                 currentlySavedUserOptions.addedSidesSensitivity = newOptions.addedSidesSensitivity;
+                currentlySavedUserOptions.showCharms = newOptions.showCharms;
 
                 currentlySavedUserOptions.displayMode = newOptions.displayMode;
                 currentlySavedUserOptions.screenResolution = newOptions.screenResolution;
@@ -633,6 +658,7 @@ namespace Erikduss
                 overriddenUserOptions.screenMovement = newOptions.screenMovement;
                 overriddenUserOptions.addedDragSensitivity = newOptions.addedDragSensitivity;
                 overriddenUserOptions.addedSidesSensitivity = newOptions.addedSidesSensitivity;
+                overriddenUserOptions.showCharms = newOptions.showCharms;
 
                 overriddenUserOptions.displayMode = newOptions.displayMode;
                 overriddenUserOptions.screenResolution = newOptions.screenResolution;
@@ -655,6 +681,7 @@ namespace Erikduss
             overriddenUserOptions.screenMovement = currentlySavedUserOptions.screenMovement;
             overriddenUserOptions.addedDragSensitivity = currentlySavedUserOptions.addedDragSensitivity;
             overriddenUserOptions.addedSidesSensitivity = currentlySavedUserOptions.addedSidesSensitivity;
+            overriddenUserOptions.showCharms = currentlySavedUserOptions.showCharms;
 
             overriddenUserOptions.displayMode = currentlySavedUserOptions.displayMode;
             overriddenUserOptions.screenResolution = currentlySavedUserOptions.screenResolution;

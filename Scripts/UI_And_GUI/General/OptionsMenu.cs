@@ -55,6 +55,8 @@ namespace Erikduss
         [Export] public Label screenSidesSensitivityValueLabel;
         [Export] public Slider screenSidesSensitivitySlider;
 
+        [Export] public OptionButton showCharmsOptionButton;
+
         //Graphics Settings
         [Export] public OptionButton displayModeOptionButton;
         [Export] public OptionButton screenResolutionsOptionButton;
@@ -126,6 +128,7 @@ namespace Erikduss
             screenMovementTypeOptionButton.Selected = (int)currSavedConfig.screenMovement;
             screenDragSensitivitySlider.Value = currSavedConfig.addedDragSensitivity;
             screenSidesSensitivitySlider.Value = currSavedConfig.addedSidesSensitivity;
+            showCharmsOptionButton.Selected = currSavedConfig.showCharms ? 0 : 1;
 
             displayModeOptionButton.Selected = (int)currSavedConfig.displayMode;
 
@@ -210,7 +213,7 @@ namespace Erikduss
 
             //check if the gameplay section is the same
             if (currSavedConfig.screenMovement != overrideConfig.screenMovement || currSavedConfig.addedDragSensitivity != overrideConfig.addedDragSensitivity ||
-                currSavedConfig.addedSidesSensitivity != overrideConfig.addedSidesSensitivity)
+                currSavedConfig.addedSidesSensitivity != overrideConfig.addedSidesSensitivity || currSavedConfig.showCharms != overrideConfig.showCharms)
             {
                 changesWarning = changesWarning + " \n  - " + Tr("GAMEPLAY_SETTINGS");
                 hasChangedSettings = true;
@@ -436,6 +439,16 @@ namespace Erikduss
             GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.enableHemophobiaMode = value == 0 ? false : true;
         }
 
+        public void ShowCharmsOptionSelected(int value)
+        {
+            if (allowSFXFromOptionsMenu)
+            {
+                AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.dropdownSelectionAudioClip);
+            }
+
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.showCharms = value == 0 ? true : false;
+        }
+
         public void PlayGenericButtonHoverSound()
         {
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonHoverAudioClip);
@@ -523,10 +536,10 @@ namespace Erikduss
             //Gameplay Section
             else if (optionsTabContainer.CurrentTab == 1)
             {
-                returnButtonControl.FocusNeighborTop = screenSidesSensitivitySlider.GetPath();
+                returnButtonControl.FocusNeighborTop = showCharmsOptionButton.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 
-                saveButtonControl.FocusNeighborTop = screenSidesSensitivitySlider.GetPath();
+                saveButtonControl.FocusNeighborTop = showCharmsOptionButton.GetPath();
                 saveButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 
                 //we need to set the first element to link to the tab bar

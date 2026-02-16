@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Erikduss
 {
@@ -22,6 +23,7 @@ namespace Erikduss
 
         //Change these to loading in through a file later.
         public bool useAlternativeBloodColor = false;
+        public bool showCharms = true;
         public int assassinBleedApplyChance = 35; //this is a percentage (0-100)
         public int enforcerStunApplyChance = 70; //this is a percentage (0-100)
         public int tankBuffApplyChance = 70; //this is a percentage (0-100)
@@ -47,6 +49,8 @@ namespace Erikduss
         public Control previouslySelectedControlBeforeControllerChange;
         private bool initializedDevices = false;
         private int amountOfDevicesConnectedPreviously = -1;
+
+        public List<ValeriaCharityCharm> currentCharmsLoaded = new List<ValeriaCharityCharm>();
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
