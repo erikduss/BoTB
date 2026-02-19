@@ -37,15 +37,25 @@ namespace Erikduss
 
         #region Buy Buttons
 
-        public PackedScene warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/simple_soldier_buy_button.tscn");
-        public PackedScene assassinBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Assassin_buy_button.tscn");
-        public PackedScene battlemageBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Battlemage_buy_button.tscn");
-        public PackedScene enforcerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Enforcer_buy_button.tscn");
-        public PackedScene masshealerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/MassHealer_buy_button.tscn");
-        public PackedScene rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Ranger_buy_button.tscn");
-        public PackedScene tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Tank_buy_button.tscn");
-        public PackedScene archdruidBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Archdruid_buy_button.tscn");
-        public PackedScene shamanBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Shaman_buy_button.tscn");
+        public PackedScene warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/simple_soldier_buy_button.tscn");
+        public PackedScene assassinBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Assassin_buy_button.tscn");
+        public PackedScene battlemageBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Battlemage_buy_button.tscn");
+        public PackedScene enforcerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Enforcer_buy_button.tscn");
+        public PackedScene masshealerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/MassHealer_buy_button.tscn");
+        public PackedScene rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Ranger_buy_button.tscn");
+        public PackedScene tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Tank_buy_button.tscn");
+        public PackedScene archdruidBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Archdruid_buy_button.tscn");
+        public PackedScene shamanBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age01/Shaman_buy_button.tscn");
+
+        public PackedScene age02_warriorBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_simple_soldier_buy_button.tscn");
+        public PackedScene age02_assassinBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Assassin_buy_button.tscn");
+        public PackedScene age02_battlemageBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Battlemage_buy_button.tscn");
+        public PackedScene age02_enforcerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Enforcer_buy_button.tscn");
+        public PackedScene age02_masshealerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_MassHealer_buy_button.tscn");
+        public PackedScene age02_rangerBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Ranger_buy_button.tscn");
+        public PackedScene age02_tankBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Tank_buy_button.tscn");
+        public PackedScene age02_archdruidBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Archdruid_buy_button.tscn");
+        public PackedScene age02_shamanBuyButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/UnitBuyButtons/In-Use/Age02/Age02_Shaman_buy_button.tscn");
 
         #endregion
 
@@ -69,15 +79,7 @@ namespace Erikduss
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
-			availableUnitsBuyButtons.Add(warriorBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(assassinBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(battlemageBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(enforcerBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(masshealerBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
-            availableUnitsBuyButtons.Add(shamanBuyButtonPrefab);
+            SetAvailableUnitsInShop(Enums.Ages.AGE_01);
 
             availablePowerUpButtons.Add(goldGainPowerUpButtonPrefab);
             availablePowerUpButtons.Add(abilityEmpowerPowerUpButtonPrefab);
@@ -99,6 +101,36 @@ namespace Erikduss
             {
                 RefreshUnitShop(false);
                 RefreshPowerUp(false);
+            }
+        }
+
+        public void SetAvailableUnitsInShop(Enums.Ages age)
+        {
+            availableUnitsBuyButtons.Clear();
+
+            if (age == Ages.AGE_01)
+            {
+                availableUnitsBuyButtons.Add(warriorBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(assassinBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(battlemageBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(enforcerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(masshealerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(rangerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(tankBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(archdruidBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(shamanBuyButtonPrefab);
+            }
+            else
+            {
+                availableUnitsBuyButtons.Add(age02_warriorBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_assassinBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_battlemageBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_enforcerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_masshealerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_rangerBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_tankBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_archdruidBuyButtonPrefab);
+                availableUnitsBuyButtons.Add(age02_shamanBuyButtonPrefab);
             }
         }
 

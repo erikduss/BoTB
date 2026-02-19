@@ -163,13 +163,13 @@ namespace Erikduss
         #region Warrior
         public static UnitSettingsConfig Age02_Warrior = new UnitSettingsConfig()
         {
-            unitCost = 10,
+            unitCost = 15,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Warrior",
             unitDescription = "Attacks of this unit damages additional units, up to 2 extra units.",
-            unitHealth = 15,
-            unitArmour = 15,
-            unitAttack = 7,
+            unitHealth = 20,
+            unitArmour = 20,
+            unitAttack = 9,
             unitMovementSpeed = 50,
             unitDetectionRange = 30
         };
@@ -178,13 +178,13 @@ namespace Erikduss
         #region Ranger
         public static UnitSettingsConfig Age02_Ranger = new UnitSettingsConfig()
         {
-            unitCost = 10,
+            unitCost = 15,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Ranger",
             unitDescription = "On kill, double the attack speed of this unit for a short time. This unit cannot move during this period.",
-            unitHealth = 20,
-            unitArmour = 10,
-            unitAttack = 9,
+            unitHealth = 25,
+            unitArmour = 15,
+            unitAttack = 11,
             unitMovementSpeed = 50,
             unitDetectionRange = 130
         };
@@ -193,13 +193,13 @@ namespace Erikduss
         #region Assassin
         public static UnitSettingsConfig Age02_Assassin = new UnitSettingsConfig()
         {
-            unitCost = 5,
+            unitCost = 8,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Assassin",
             unitDescription = "On attack, has a chance to inflict bleeding on the target, armoured targets have a smaller chance to bleed.",
-            unitHealth = 10,
-            unitArmour = 10,
-            unitAttack = 4,
+            unitHealth = 15,
+            unitArmour = 15,
+            unitAttack = 6,
             unitMovementSpeed = 75,
             unitDetectionRange = 30
         };
@@ -208,13 +208,13 @@ namespace Erikduss
         #region Enforcer
         public static UnitSettingsConfig Age02_Enforcer = new UnitSettingsConfig()
         {
-            unitCost = 4,
+            unitCost = 7,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Enforcer",
             unitDescription = "On attack, has a chance to stun the target for a short amount of time.",
-            unitHealth = 30,
-            unitArmour = 20,
-            unitAttack = 1,
+            unitHealth = 35,
+            unitArmour = 25,
+            unitAttack = 2,
             unitMovementSpeed = 60,
             unitDetectionRange = 30
         };
@@ -223,13 +223,13 @@ namespace Erikduss
         #region Tank
         public static UnitSettingsConfig Age02_Tank = new UnitSettingsConfig()
         {
-            unitCost = 10,
+            unitCost = 15,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Tank",
             unitDescription = "On attack, has a chance to increase the attack speed of up to 2 units behind this.",
-            unitHealth = 30,
-            unitArmour = 30,
-            unitAttack = 1,
+            unitHealth = 35,
+            unitArmour = 35,
+            unitAttack = 2,
             unitMovementSpeed = 35,
             unitDetectionRange = 30
         };
@@ -238,12 +238,12 @@ namespace Erikduss
         #region MassHealer
         public static UnitSettingsConfig Age02_Mass_Healer = new UnitSettingsConfig()
         {
-            unitCost = 25,
+            unitCost = 30,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "MassHealer",
             unitDescription = "Can't attack, heals up to 6 allies (plus self) around this unit at once. On spawn, Heal all allied units that are currently on the battlefield.",
-            unitHealth = 10,
-            unitArmour = 10,
+            unitHealth = 15,
+            unitArmour = 15,
             unitAttack = 0,
             unitMovementSpeed = 50,
             unitDetectionRange = 130
@@ -253,13 +253,13 @@ namespace Erikduss
         #region Battlemage
         public static UnitSettingsConfig Age02_Battlemage = new UnitSettingsConfig()
         {
-            unitCost = 15,
+            unitCost = 20,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Battlemage",
             unitDescription = "After 3 regular attacks, unleash a very powerful magic attack that deals damage to up to 3 units.",
-            unitHealth = 20,
-            unitArmour = 10,
-            unitAttack = 4,
+            unitHealth = 25,
+            unitArmour = 15,
+            unitAttack = 7,
             unitMovementSpeed = 50,
             unitDetectionRange = 130
         };
@@ -268,13 +268,13 @@ namespace Erikduss
         #region Archdruid
         public static UnitSettingsConfig Age02_Archdruid = new UnitSettingsConfig()
         {
-            unitCost = 150,
+            unitCost = 175,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Archdruid",
             unitDescription = "Can transform into a very powerful Melee and Ranged unit.",
-            unitHealth = 50,
-            unitArmour = 50,
-            unitAttack = 15,
+            unitHealth = 55,
+            unitArmour = 55,
+            unitAttack = 18,
             unitMovementSpeed = 50,
             unitDetectionRange = 150
         };
@@ -283,13 +283,13 @@ namespace Erikduss
         #region Shaman
         public static UnitSettingsConfig Age02_Shaman = new UnitSettingsConfig()
         {
-            unitCost = 8,
+            unitCost = 12,
             unitAvailableInAge = Enums.Ages.AGE_02,
             unitName = "Shaman",
             unitDescription = "While alive on the battlefield, enhance your special Age power. (Age 1: increase the amount of meteors spawned by 1)",
-            unitHealth = 20,
-            unitArmour = 10,
-            unitAttack = 6,
+            unitHealth = 25,
+            unitArmour = 15,
+            unitAttack = 8,
             unitMovementSpeed = 50,
             unitDetectionRange = 130
         };

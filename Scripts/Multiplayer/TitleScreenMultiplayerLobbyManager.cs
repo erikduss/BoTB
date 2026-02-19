@@ -73,6 +73,7 @@ namespace Erikduss
             else
             {
                 GD.PrintErr("FAILED TO CONNECT TO SERVICES");
+                titleScreenManager.LeaveLobbyButtonPressed();//automatically redirect user to main menu
             }
         }
 
@@ -101,7 +102,7 @@ namespace Erikduss
             else
             {
                 GD.PrintErr("FAILED TO CONNECT TO SERVICES");
-                LeaveCurrentLobby();
+                titleScreenManager.LeaveLobbyButtonPressed();
             }
         }
 

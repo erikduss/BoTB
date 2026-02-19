@@ -442,14 +442,10 @@ namespace Erikduss
         {
             playerToSetFor.currentAgeOfPlayer = Ages.AGE_02;
 
-            if(playerToSetFor.playerTeam == TeamOwner.TEAM_01)
-            {
-                inGameHUDManager.SetAgeUpButtonToNewAge();
-            }
-            else
-            {
+            inGameHUDManager.SetAgeUpButtonToNewAge();
 
-            }
+            inGameHUDManager.SetAvailableUnitsInShop(Ages.AGE_02);
+            inGameHUDManager.RefreshUnitShop(false);
         }
 
         public void LevelupPlayer2ToNewAge()
