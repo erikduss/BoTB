@@ -520,6 +520,9 @@ namespace Erikduss
             //audio section
             if (optionsTabContainer.CurrentTab == 0)
             {
+                if (!otherAudioSlider.IsInsideTree() || !musicAudioSlider.IsInsideTree()) 
+                    return;
+
                 returnButtonControl.FocusNeighborTop = otherAudioSlider.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 
@@ -536,6 +539,9 @@ namespace Erikduss
             //Gameplay Section
             else if (optionsTabContainer.CurrentTab == 1)
             {
+                if (!showCharmsOptionButton.IsInsideTree() || !screenMovementTypeOptionButton.IsInsideTree())
+                    return;
+
                 returnButtonControl.FocusNeighborTop = showCharmsOptionButton.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 
@@ -551,6 +557,9 @@ namespace Erikduss
             //Graphics section
             else if (optionsTabContainer.CurrentTab == 2)
             {
+                if (!fpsLimitSlider.IsInsideTree() || !displayModeOptionButton.IsInsideTree())
+                        return;
+
                 returnButtonControl.FocusNeighborTop = fpsLimitSlider.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 
@@ -565,6 +574,9 @@ namespace Erikduss
             }
             else
             {
+                if (!hemoPhobiaModeOptionButton.IsInsideTree() || !controllerModeOptionButton.IsInsideTree()) 
+                    return;
+
                 returnButtonControl.FocusNeighborTop = hemoPhobiaModeOptionButton.GetPath();
                 returnButtonControl.FocusNeighborBottom = optionsTabContainer.GetTabBar().GetPath();
 

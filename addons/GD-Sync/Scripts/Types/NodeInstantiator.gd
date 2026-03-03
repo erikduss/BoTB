@@ -3,7 +3,7 @@
 extends Node
 class_name NodeInstantiator
 
-#Copyright (c) 2025 GD-Sync.
+#Copyright (c) 2026 GD-Sync.
 #All rights reserved.
 #
 #Redistribution and use in source form, with or without modification,
@@ -178,7 +178,7 @@ func _send_remote_instantiate(node : Node, starting_properties : Dictionary) -> 
 				if _contains_object(new_value): continue
 				changed_properties[name] = new_value
 	
-	GDSync.call_func(_instantiate_remote, [node.get_meta("GDID"), changed_properties])
+	GDSync.call_func(_instantiate_remote, node.get_meta("GDID"), changed_properties)
 	node.propagate_call("remove_meta", ["PauseSync"])
 
 func _contains_object(value) -> bool:

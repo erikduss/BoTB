@@ -1,6 +1,6 @@
 extends Node
 
-#Copyright (c) 2025 GD-Sync.
+#Copyright (c) 2026 GD-Sync.
 #All rights reserved.
 #
 #Redistribution and use in source form, with or without modification,
@@ -40,6 +40,11 @@ func _ready():
 
 func perform_https_request(endpoint : String, message : Dictionary) -> Dictionary:
 	logger.write_log("Making HTTP request. <"+endpoint+"><"+str(message)+">", "[HTTP]")
+	
+	if !GDSync.is_active():
+		logger.write_error("Failed HTTP request as the plugin is not active. <"+endpoint+">", "[HTTP]")
+		push_error("You must first start the plugin using GDSync.start_multiplayer() before using any cloudstorage functions.")
+		return {"Code" : 1}
 	
 	var request : HTTPRequest = HTTPRequest.new()
 	request.timeout = 20

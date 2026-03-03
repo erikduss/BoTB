@@ -133,7 +133,7 @@ namespace Erikduss
         {
             if(GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
             {
-                int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientId()).First();
+                int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
                 GDSync.CallFuncOn(otherClient, new Callable(this, "TakeDamage"), [rawDamage]);
             }
 

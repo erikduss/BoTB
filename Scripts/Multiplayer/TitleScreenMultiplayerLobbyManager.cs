@@ -108,7 +108,7 @@ namespace Erikduss
 
         public void StartGameButtonPressed()
         {
-            GD.Print("There are currently: " + GDSync.LobbyGetPlayerCount() + " players in the lobby");
+            GD.Print("There are currently: " + GDSync.GetLobbyPlayerCount() + " players in the lobby");
 
             startGameButton.Disabled = true;
 
@@ -118,14 +118,14 @@ namespace Erikduss
             MultiplayerManager.Instance.playersAreInGame = true;
             MultiplayerManager.Instance.isUsingMultiplayer = true;
 
-            GDSync.SyncedEventCreate("LoadToGame");
+            GDSync.CreateSyncedEvent("LoadToGame");
         }
 
         public async void LeaveCurrentLobby()
         {
             if (GDSync.IsActive())
             {
-                GDSync.LobbyLeave();
+                GDSync.LeaveLobby();
             }
 
             if(lobbyPanel != null)
@@ -179,7 +179,7 @@ namespace Erikduss
 
         public void OpenLobby(bool isTheHost)
         {
-            lobbyNameLabel.Text = GDSync.LobbyGetName();
+            lobbyNameLabel.Text = GDSync.GetLobbyName();
             lobbyPanel.Visible = true;
             titleScreenManager.createdLobbyDefaultSelectedButton.GrabFocus();
 
@@ -194,7 +194,7 @@ namespace Erikduss
             playerPanel.Name = clientID.ToString();
             GDSync.SetGDSyncOwner(playerPanel, clientID);
 
-            GD.Print("There are: " + GDSync.LobbyGetPlayerCount() + " players in the lobby." + clientID);
+            GD.Print("There are: " + GDSync.GetLobbyPlayerCount() + " players in the lobby." + clientID);
 
             playerPanel.Position = new Vector2(0, ((playerID * 100) - 50 ));
 

@@ -1,7 +1,7 @@
 extends Node
 class_name MultiplayerClient
 
-#Copyright (c) 2025 GD-Sync.
+#Copyright (c) 2026 GD-Sync.
 #All rights reserved.
 #
 #Redistribution and use in source form, with or without modification,
@@ -197,14 +197,31 @@ var _logger
 
 func _init():
 	_request_processor = preload("res://addons/GD-Sync/Scripts/RequestProcessor.gd").new()
+	_request_processor.GDSync = self
+	
 	_connection_controller = preload("res://addons/GD-Sync/Scripts/ConnectionController.gd").new()
+	_connection_controller.GDSync = self
+	
 	_session_controller = preload("res://addons/GD-Sync/Scripts/SessionController.gd").new()
+	_session_controller.GDSync = self
+	
 	_https_controller = preload("res://addons/GD-Sync/Scripts/HTTPSController.gd").new()
+	_https_controller.GDSync = self
+	
 	_data_controller = preload("res://addons/GD-Sync/Scripts/DataController.gd").new()
+	_data_controller.GDSync = self
+	
 	_node_tracker = preload("res://addons/GD-Sync/Scripts/NodeTracker.gd").new()
+	_node_tracker.GDSync = self
+	
 	_local_server = preload("res://addons/GD-Sync/Scripts/LocalServer.gd").new()
+	_local_server.GDSync = self
+	
 	_steam = preload("res://addons/GD-Sync/Scripts/Steam.gd").new()
+	_steam.GDSync = self
+	
 	_logger = preload("res://addons/GD-Sync/Scripts/Logger.gd").new()
+	_logger.GDSync = self
 
 func _ready():
 	add_child(_request_processor)
@@ -266,10 +283,15 @@ func _manual_connect(address : String) -> void:
 func get_client_id() -> int:
 	return _connection_controller.client_id
 
-## Measures and returns the ping between this and another client. Useful to know how much latency there is between clients.
+## Measures and returns the ping between this client and another client. This only measures network travel time for the message. Useful for checking raw network latency between clients.
 ## If the returned float is -1, the ping calculation failed.
 func get_client_ping(client_id : int) -> float:
-	return await _session_controller.get_ping(client_id)
+	return await _session_controller.get_ping(client_id, true)
+
+## Measures and returns the perceived ping between this client and another client. This includes network travel time plus additional delay caused by frame timing. Useful for estimating player-visible latency..
+## If the returned float is -1, the ping calculation failed.
+func get_client_percieved_ping(client_id : int) -> float:
+	return await _session_controller.get_ping(client_id, false)
 
 ## Returns the Client ID of the last client to perform a remote function call on this client.
 ## Useful for knowing where a remote function call came from.
@@ -318,43 +340,106 @@ func sync_var(object : Object, variable_name : String, reliable : bool = true) -
 func sync_var_on(client_id : int, object : Object, variable_name : String, reliable : bool = true) -> void:
 	_request_processor.create_set_var_request(object, variable_name, client_id, reliable)
 
-## Calls a function on a Node on all other clients in the current lobby, excluding yourself.
+## Calls a function on a Node or Resource on all other clients in the current lobby, excluding yourself. If the request fails to deliver it will reattempt until successful.
 ## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
 ## [br]
 ## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
 ## [br]
 ## [br][b]callable -[/b] The function that you want to call.
-## [br][b]parameters -[/b] Optional parameters. Parameters must be passed in an array, [12, "Woohoo!"].
-## [br][b]reliable -[/b] If reliable, if the request fails to deliver it will reattempt until successful.
-## This may introduce more latency. Use unreliable if the function call is non-essential.
-func call_func(callable : Callable, parameters : Array = [], reliable : bool = true) -> void:
-	_request_processor.create_function_call_request(callable, parameters, -1, reliable)
+## [br][b]parameters -[/b] The parameters of the function you are calling (if it has any).
+func call_func(callable : Callable, ...parameters : Array) -> void:
+	_request_processor.create_function_call_request(callable, parameters, -1, true)
 
-## Calls a function on a Node on a specific client in the current lobby.
+## Calls a function on a Node or Resource on all other clients in the current lobby, excluding yourself. If the request fails to deliver it will not reattempt, may result in lower latency compared to the regular version.
+## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]callable -[/b] The function that you want to call.
+## [br][b]parameters -[/b] The parameters of the function you are calling (if it has any).
+func call_func_unreliable(callable : Callable, ...parameters : Array) -> void:
+	_request_processor.create_function_call_request(callable, parameters, -1, false)
+
+## Calls a function on a Node or Resource on a specific client in the current lobby. If the request fails to deliver it will reattempt until successful.
 ## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
 ## [br]
 ## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
 ## [br]
 ## [br][b]client_id -[/b] The Client ID of the client you want to call the function on.
 ## [br][b]callable -[/b] The function that you want to call.
-## [br][b]parameters -[/b] Optional parameters. Parameters must be passed in an array, [12, "Woohoo!"].
-## [br][b]reliable -[/b] If reliable, if the request fails to deliver it will reattempt until successful.
-## This may introduce more latency. Use unreliable if the function call is non-essential.
-func call_func_on(client_id : int, callable : Callable, parameters : Array = [], reliable  : bool = true) -> void:
-	_request_processor.create_function_call_request(callable, parameters, client_id, reliable)
+## [br][b]parameters -[/b] The parameters of the function you are calling (if it has any).
+func call_func_on(client_id : int, callable : Callable, ...parameters : Array) -> void:
+	_request_processor.create_function_call_request(callable, parameters, client_id, true)
 
-## Calls a function on a Node on all clients in the current lobby, including yourself.
+## Calls a function on a Node or Resource on a specific client in the current lobby. If the request fails to deliver it will not reattempt, may result in lower latency compared to the regular version.
+## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]client_id -[/b] The Client ID of the client you want to call the function on.
+## [br][b]callable -[/b] The function that you want to call.
+## [br][b]parameters -[/b] Optional parameters.
+func call_func_on_unreliable(client_id : int, callable : Callable, ...parameters : Array) -> void:
+	_request_processor.create_function_call_request(callable, parameters, client_id, false)
+
+## Calls a function on a Node or Resource on all clients in the current lobby, including yourself. If the request fails to deliver it will reattempt until successful.
 ## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
 ## [br]
 ## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
 ## [br]
 ## [br][b]callable -[/b] The function that you want to call.
-## [br][b]parameters -[/b] Optional parameters. Parameters must be passed in an array, [12, "Woohoo!"].
-## [br][b]reliable -[/b] If reliable, if the request fails to deliver it will reattempt until successful.
-## This may introduce more latency. Use unreliable if the function call is non-essential.
-func call_func_all(callable : Callable, parameters : Array = [], reliable : bool = true) -> void:
+## [br][b]parameters -[/b] The parameters of the function you are calling (if it has any).
+func call_func_all(callable : Callable, ...parameters : Array) -> void:
 	callable.callv(parameters)
-	_request_processor.create_function_call_request(callable, parameters, -1, reliable)
+	_request_processor.create_function_call_request(callable, parameters, -1, true)
+
+## Calls a function on a Node or Resource on all clients in the current lobby, including yourself. If the request fails to deliver it will not reattempt, may result in lower latency compared to the regular version.
+## Make sure that the function is exposed using [method expose_func] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]callable -[/b] The function that you want to call.
+## [br][b]parameters -[/b] The parameters of the function you are calling (if it has any).
+func call_func_all_unreliable(callable : Callable, ...parameters : Array) -> void:
+	callable.callv(parameters)
+	_request_processor.create_function_call_request(callable, parameters, -1, false)
+
+## Emits a signal on a Node or Resource on all other clients in the current lobby, excluding yourself.
+## Make sure that the signal is exposed using [method expose_signal] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]object -[/b] The object on which you want to emit the signal.
+## [br][b]signal_name -[/b] The name of the signal.
+## [br][b]parameters -[/b] The parameters of the signal you are emitting (if it has any).
+func emit_signal_remote(target_signal : Signal, ...parameters : Array) -> void:
+	var clients : Array = lobby_get_all_clients()
+	clients.erase(get_client_id())
+	_session_controller.emit_signal_on_clients(clients, target_signal, parameters)
+
+## Emits a signal on a Node or Resource on specific client in the current lobby.
+## Make sure that the signal is exposed using [method expose_signal] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]client_id -[/b] The Client ID of the client you want to emit the signal on.
+## [br][b]object -[/b] The object on which you want to emit the signal.
+## [br][b]signal_name -[/b] The name of the signal.
+## [br][b]parameters -[/b] The parameters of the signal you are emitting (if it has any).
+func emit_signal_remote_on(client_id : int, target_signal : Signal, ...parameters : Array) -> void:
+	_session_controller.emit_signal_on_clients([client_id], target_signal, parameters)
+
+## Emits a signal on a Node or Resource on all other clients in the current lobby, including yourself.
+## Make sure that the signal is exposed using [method expose_signal] or [method expose_node]/[method expose_resource].
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]object -[/b] The object on which you want to emit the signal.
+## [br][b]signal_name -[/b] The name of the signal.
+## [br][b]parameters -[/b] The parameters of the signal you are emitting (if it has any).
+func emit_signal_remote_all(target_signal : Signal, ...parameters : Array) -> void:
+	var clients : Array = lobby_get_all_clients()
+	_session_controller.emit_signal_on_clients(clients, target_signal, parameters)
 
 ## Instantiates a Node on all clients in the current lobby.
 ## [br]
@@ -492,8 +577,24 @@ func expose_func(callable : Callable) -> void:
 ## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
 ## [br]
 ## [br][b]callable -[/b] The function you want to hide.
-func hide_function(callable : Callable) -> void:
-	_session_controller.hide_function(callable)
+func hide_func(callable : Callable) -> void:
+	_session_controller.hide_func(callable)
+
+## Exposes a signal so that [method emit_signal_remote], [method emit_signal_remote_on] and [method emit_signal_remote_all] will succeed.
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]signal_name -[/b] The signal you want to expose.
+func expose_signal(target_signal : Signal) -> void:
+	_session_controller.expose_signal(target_signal)
+
+## Hides a signal so that [method emit_signal_remote], [method emit_signal_remote_on] and [method emit_signal_remote_all] will fail.
+## [br]
+## [br][b]IMPORTANT:[/b] For Nodes, make sure the NodePath of the Node matches up on all clients. For Resources, register them using [method register_resource].
+## [br]
+## [br][b]signal_name -[/b] The signal you want to hide.
+func hide_signal(target_signal : Signal) -> void:
+	_session_controller.hide_signal(target_signal)
 
 ## Exposes a variable so that [method sync_var] and [method sync_var_on] will succeed.
 ## [br]
@@ -705,9 +806,13 @@ func lobby_get_player_count() -> int:
 func lobby_get_name() -> String:
 	return GDSync._session_controller.lobby_name
 
+## Get the current lobby visibility. Returns true if the lobby is publicly visible.
+func lobby_get_visibility() -> bool:
+	return _session_controller.get_lobby_visibility()
+
 ## Returns the player limit of the current lobby.
 func lobby_get_player_limit() -> int:
-	return _session_controller.get_player_limit()
+	return _session_controller.get_lobby_player_limit()
 
 ## Returns true if the current lobby has a password.
 func lobby_has_password() -> bool:
@@ -854,7 +959,13 @@ func player_set_username(name : String) -> void:
 	_request_processor.create_set_username_request(name)
 	_session_controller.set_player_data("Username", name)
 
-
+## Gets the username of the player with the given client ID. By default uses the ID of the local player.
+## [br]
+## [br][b]client_id -[/b] The ID of this client.
+## [br][b]default -[/b] The default value to return if the username was not found.
+func player_get_username(client_id : int = get_client_id(), default := "") -> String:
+	if !_connection_controller.valid_connection(): return default
+	return _session_controller.get_player_data(client_id, "Username", default)
 
 
 
@@ -1048,12 +1159,12 @@ func account_remove_friend(friend : String) -> int:
 ##       "Lobby" : {
 ##          "Name" : "Epic Lobby",
 ##          "HasPassword" : false
-##        }
+##       }
 ##    }
 ## }[/codeblock]
 func account_get_friend_status(friend : String) -> Dictionary:
 	if _connection_controller.is_local_check(): return {"Code" : 1}
-	return await _data_controller.account_get_friend_status(friend)
+	return await _data_controller.get_friend_status(friend)
 
 ## Returns an array of all friends with their status. Information besides the FriendStatus is only
 ## available if the friend request is accepted.
@@ -1158,10 +1269,10 @@ func account_has_document(path : String) -> Dictionary:
 ##    "Code" : 0,
 ##    "Result" :
 ##       [
-##          {"ExternallyVisible": true, "Name": "profile", "Path": "saves/profile", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "save1", "Path": "saves/save1", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "save2", "Path": "saves/save2", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "configs", "Path": "saves/configs", "Type": "Collection"}
+##          {"ExternallyVisible" : true, "Name" : "profile", "Path" : "saves/profile", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "save1", "Path" : "saves/save1", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "save2", "Path" : "saves/save2", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "configs", "Path" : "saves/configs", "Type" : "Collection"}
 ##       ]
 ## }[/codeblock]
 func account_browse_collection(path : String) -> Dictionary:
@@ -1217,10 +1328,10 @@ func account_has_external_document(external_username : String, path : String) ->
 ##    "Code" : 0,
 ##    "Result" :
 ##       [
-##          {"ExternallyVisible": true, "Name": "profile", "Path": "saves/profile", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "save1", "Path": "saves/save1", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "save2", "Path": "saves/save2", "Type": "Document"},
-##          {"ExternallyVisible": false, "Name": "configs", "Path": "saves/configs", "Type": "Collection"}
+##          {"ExternallyVisible" : true, "Name" : "profile", "Path" : "saves/profile", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "save1", "Path" : "saves/save1", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "save2", "Path" : "saves/save2", "Type" : "Document"},
+##          {"ExternallyVisible" : false, "Name" : "configs", "Path" : "saves/configs", "Type" : "Collection"}
 ##       ]
 ## }[/codeblock]
 func account_browse_external_collection(external_username : String, path : String) -> Dictionary:
@@ -1270,12 +1381,12 @@ func leaderboard_get_all() -> Dictionary:
 ## [codeblock]
 ## {
 ##    "Code" : 0,
-##    "FinalPage": 7,
+##    "FinalPage" : 7,
 ##    "Result" :
 ##       [
-##          {"Rank": 1, "Score": 828, "Username": "User1"},
-##          {"Rank": 2, "Score": 700, "Username": "User2"},
-##          {"Rank": 3, "Score": 10, "Username": "User3"}
+##          {"Rank" : 1, "Score" : 828, "Username" : "User1", "Data" : {"CustomValue" : 1},
+##          {"Rank" : 2, "Score" : 700, "Username" : "User2"}, "Data" : {},
+##          {"Rank" : 3, "Score" : 10, "Username" : "User3", "Data" : {}}
 ##       ]
 ## }[/codeblock]
 func leaderboard_browse_scores(leaderboard : String, page_size : int, page : int) -> Dictionary:
@@ -1295,7 +1406,8 @@ func leaderboard_browse_scores(leaderboard : String, page_size : int, page : int
 ##    "Result" :
 ##       {
 ##          "Score" : 100,
-##          "Rank" : 1
+##          "Rank" : 1,
+##          "Data" : {"CustomValue" : 1}
 ##       }
 ## }[/codeblock]
 func leaderboard_get_score(leaderboard : String, username : String) -> Dictionary:
@@ -1308,9 +1420,10 @@ func leaderboard_get_score(leaderboard : String, username : String) -> Dictionar
 ## [br]
 ## [br][b]leaderboard -[/b] The name of the leaderboard.
 ## [br][b]score -[/b] The score you want to submit.
-func leaderboard_submit_score(leaderboard : String, score : int) -> int:
+## [br][b]data -[/b] Any extra information you would like to attach to the score. This dictionary can be a maximum of 2048 bytes in size.
+func leaderboard_submit_score(leaderboard : String, score : int, data : Dictionary = {}) -> int:
 	if _connection_controller.is_local_check(): return 1
-	return await _data_controller.submit_score(leaderboard, score)
+	return await _data_controller.submit_score(leaderboard, score, data)
 
 ## Deletes a score from a leaderboard for the currently logged-in account using GD-Sync cloud storage.
 ## [br][br]Returns the result of the request as [constant ENUMS.LEADERBOARD_DELETE_SCORE_RESPONSE_CODE].

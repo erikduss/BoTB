@@ -10,10 +10,14 @@ config_version=5
 
 [GD-Sync]
 
-version="0.12"
+version="0.14"
 csharp=true
 publicKey="2c95c65d4574b939"
 privateKey="4ead5fac4c33a701"
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
@@ -28,7 +32,7 @@ Battle of the Bookworms will contain many different types of enemies/NPCs/Game A
 This means that every match should feel different! Every enemy you face will have a unique strategy."
 config/version="0.1.0.0"
 run/main_scene="uid://bu6ivnqktjcap"
-config/features=PackedStringArray("4.4", "C#", "Mobile")
+config/features=PackedStringArray("4.6", "C#", "Mobile")
 boot_splash/image="uid://dp1txd8rg7mwp"
 config/icon="uid://blj4ca74s6ubh"
 
@@ -42,8 +46,8 @@ GameSettingsLoader="*res://Scripts/Utility_And_General/GameData/DataManagers/Gam
 AudioManager="*res://Scripts/Utility_And_General/Audio/AudioManager.cs"
 MultiplayerManager="*res://Scripts/Multiplayer/MultiplayerManager.cs"
 GDSync="*res://addons/GD-Sync/MultiplayerClient.gd"
-GDSyncSharp="*res://addons/GD-Sync/GDSync.cs"
 SteamManager="*res://Scripts/Multiplayer/SteamManager.gd"
+GDSyncSharp="*uid://b5nttt6dqfibe"
 
 [display]
 

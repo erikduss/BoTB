@@ -88,7 +88,7 @@ namespace Erikduss
                 GDSync.StartMultiplayer();
             }
 
-            GDSync.LobbyCreate(lobbyName, lobbyPassword, true, 2);
+            GDSync.CreateLobby(lobbyName, lobbyPassword, true, 2);
 
             isHostOfLobby = true;
 
@@ -103,7 +103,7 @@ namespace Erikduss
                 GDSync.StartMultiplayer();
             }
 
-            GDSync.LobbyJoin(lobbyName, lobbyPassword);
+            GDSync.JoinLobby(lobbyName, lobbyPassword);
         }
 
         public void SteamJoinRequest(string lobbyName, bool hasPassword)
@@ -172,7 +172,7 @@ namespace Erikduss
 
             if (GDSync.IsActive())
             {
-                GDSync.LobbyLeave();
+                GDSync.LeaveLobby();
             }
 
             //reset everything

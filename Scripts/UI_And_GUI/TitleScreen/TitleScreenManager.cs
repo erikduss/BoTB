@@ -226,7 +226,7 @@ namespace Erikduss
 
         public void AttemptToJoinLobbyButtonPressed()
         {
-            GD.Print("Are we in lobby?: " + GDSync.LobbyGetName());
+            GD.Print("Are we in lobby?: " + GDSync.GetLobbyName());
 
             bool success = DidWeSucceedJoiningALobby();
 

@@ -209,7 +209,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedBleedingEffect = (AssassinBleedingEffect)GDSync.MultiplayerInstantiate(assassinBleedingEffect, unitOwner.CurrentTarget);
-                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientID());
             }
             else
             {
@@ -242,7 +242,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedBleedingEffect = (AssassinBleedingEffect)GDSync.MultiplayerInstantiate(assassinBleedingEffect, bleedTarget);
-                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedBleedingEffect, GDSync.GetClientID());
             }
             else
             {
@@ -274,7 +274,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedStunEffect = (EnforcerStunEffect)GDSync.MultiplayerInstantiate(enforcerStunEffect, unitOwner.CurrentTarget);
-                GDSync.SetGDSyncOwner(instantiatedStunEffect, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedStunEffect, GDSync.GetClientID());
             }
             else
             {
@@ -339,7 +339,7 @@ namespace Erikduss
                 {
                     //we only instantiate through the host, due to it being synced either way.
                     instantiatedBuffEffect = (TankBuffEffect)GDSync.MultiplayerInstantiate(tankBuffEffect, friendlyTeamUnit);
-                    GDSync.SetGDSyncOwner(instantiatedBuffEffect, GDSync.GetClientId());
+                    GDSync.SetGDSyncOwner(instantiatedBuffEffect, GDSync.GetClientID());
                 }
                 else
                 {
@@ -399,7 +399,7 @@ namespace Erikduss
                 {
                     //we only instantiate through the host, due to it being synced either way.
                     instantiatedHealingEffect = (HealingEffect)GDSync.MultiplayerInstantiate(healingEffect, friendlyTeamUnit);
-                    GDSync.SetGDSyncOwner(instantiatedHealingEffect, GDSync.GetClientId());
+                    GDSync.SetGDSyncOwner(instantiatedHealingEffect, GDSync.GetClientID());
                 }
                 else
                 {
@@ -539,7 +539,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedEffect = (ArchdruidRangedEffect)GDSync.MultiplayerInstantiate(archdruidRangedEffect, this);
-                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientID());
             }
             else
             {
@@ -575,7 +575,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedEffect = (ArchdruidRangedEffectImpact)GDSync.MultiplayerInstantiate(archdruidRangedImpact, this);
-                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedEffect, GDSync.GetClientID());
             }
             else
             {
@@ -714,7 +714,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedDamageNumber = (FloatingDamageNumber)GDSync.MultiplayerInstantiate(floatingDamageNumber, this);
-                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientID());
             }
             else
             {
@@ -754,7 +754,7 @@ namespace Erikduss
             {
                 //we only instantiate through the host, due to it being synced either way.
                 instantiatedDamageNumber = (FloatingDamageNumber)GDSync.MultiplayerInstantiate(floatingDamageNumber, this);
-                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientId());
+                GDSync.SetGDSyncOwner(instantiatedDamageNumber, GDSync.GetClientID());
             }
             else
             {
