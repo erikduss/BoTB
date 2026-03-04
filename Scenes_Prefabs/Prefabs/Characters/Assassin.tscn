@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj06luuhbij86"]
+[gd_scene format=3 uid="uid://cj06luuhbij86"]
 
 [ext_resource type="Script" uid="uid://ccnwvydg4eq03" path="res://Scripts/Characters/Assassin.cs" id="1_yt6yp"]
 [ext_resource type="SpriteFrames" uid="uid://do7w3pswhghlr" path="res://Assets/Animation_SpriteFrames/Age_1/Assassin.tres" id="2_txpvw"]
@@ -11,19 +11,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
 
-[node name="Assassin" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+[node name="Assassin" type="CharacterBody2D" unique_id=984391541 node_paths=PackedStringArray("initialStartingState")]
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_yt6yp")
 animatedSpriteFramesAgeBased = [ExtResource("2_txpvw"), ExtResource("3_ylx88")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="AnimationController" type="AnimatedSprite2D" parent="."]
+[node name="AnimationController" type="AnimatedSprite2D" parent="." unique_id=610884378]
 sprite_frames = ExtResource("2_txpvw")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController" unique_id=161521487]
 script = ExtResource("4_ylx88")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h", "animation", "frame", "sprite_frames")
@@ -34,30 +34,29 @@ extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="StateMachine_States" type="Node2D" parent="."]
+[node name="StateMachine_States" type="Node2D" parent="." unique_id=141732811]
 
-[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+[node name="IdleState" type="Node2D" parent="StateMachine_States" unique_id=603891468]
 script = ExtResource("21_eeuvw")
 idleDuration = 0.1
 
-[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+[node name="WalkingState" type="Node2D" parent="StateMachine_States" unique_id=607464363]
 script = ExtResource("22_pg2ht")
 
-[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+[node name="AttackState" type="Node2D" parent="StateMachine_States" unique_id=719278965]
 script = ExtResource("23_kw3gp")
 attackDuration = 0.4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1124690222]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer3" type="Node" parent="."]
+[node name="PropertySynchronizer3" type="Node" parent="." unique_id=1396095100]
 script = ExtResource("4_ylx88")
 node_path = NodePath("..")
 properties = PackedStringArray("position")
-interpolated = false
-interpolation_speed = 1.0
-extrapolation = null
+interpolated = true
+interpolation_speed = 30.0
 extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

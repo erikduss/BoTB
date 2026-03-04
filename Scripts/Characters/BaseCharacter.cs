@@ -126,6 +126,7 @@ namespace Erikduss
         public override void _Ready()
 		{
             GDSync.ExposeFunction(new Callable(this, "DestroyOnMultiplayerClient"));
+            GDSync.ExposeFunction(new Callable(this, "SetNewSpriteFrameMultiplayer"));
 
             if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
 
@@ -133,7 +134,7 @@ namespace Erikduss
             {
                 if (!reloadedReady && uniqueID == -1)
                 {
-                    GD.Print("We reload");
+                    GD.Print("We reload, our age is: " + unitCreatedAge);
                     ReApplyReadyOnMultiplayer();
                     return;
                 }
@@ -159,7 +160,7 @@ namespace Erikduss
             characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[((int)unitCreatedAge)];
             characterAnimatedSprite.Visible = true;
 
-            if(loadDefaultValues && unitType != Enums.UnitTypes.TrainingDummy)
+            if (loadDefaultValues && unitType != Enums.UnitTypes.TrainingDummy)
             {
                 //Set the default values
                 UnitSettingsConfig defaultUnitValues = UnitsDefaultValues.defaultUnitValuesDictionary.Where(a => a.Key == (unitCreatedAge.ToString() + "_" + unitType.ToString())).FirstOrDefault().Value;
@@ -214,6 +215,20 @@ namespace Erikduss
                 currentState = initialStartingState;
             }
             #endregion
+
+            if (GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                GD.Print("Set new age on non host");
+                int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                GD.Print("Calling on: " + otherClient);
+                GDSync.CallFuncOn(otherClient, new Callable(this, "SetNewSpriteFrameForAgeMultiplayer"), []);
+            }
+        }
+
+        public void SetNewSpriteFrameForAgeMultiplayer()
+        {
+            GD.Print("Setting for age: " + unitCreatedAge);
+            characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[((int)unitCreatedAge)];
         }
 
         async void ReApplyReadyOnMultiplayer()
@@ -224,7 +239,6 @@ namespace Erikduss
             }
             
             reloadedReady = true;
-            GD.Print("Is ID set? " + uniqueID);
 
             _Ready();
         }
@@ -232,8 +246,6 @@ namespace Erikduss
         //for some reason, without variables, this throws an error. We dont need any, so we give it a random one.
         public void DestroyOnMultiplayerClient(bool randombool)
         {
-            GD.Print("Random bool: " + randombool);
-
             QueueFree();
         }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0lx5tdd4sonk"]
+[gd_scene format=3 uid="uid://c0lx5tdd4sonk"]
 
 [ext_resource type="Script" uid="uid://dh84ayceemm8e" path="res://Scripts/Characters/Battlemage.cs" id="1_ybu32"]
 [ext_resource type="SpriteFrames" uid="uid://cbrlqjfhxno34" path="res://Assets/Animation_SpriteFrames/Age_1/Battlemage.tres" id="2_16n38"]
@@ -11,19 +11,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
 
-[node name="Battlemage" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+[node name="Battlemage" type="CharacterBody2D" unique_id=1000273994 node_paths=PackedStringArray("initialStartingState")]
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_ybu32")
 animatedSpriteFramesAgeBased = [ExtResource("2_16n38"), ExtResource("3_gj4k4")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="AnimationController" type="AnimatedSprite2D" parent="."]
+[node name="AnimationController" type="AnimatedSprite2D" parent="." unique_id=84920092]
 sprite_frames = ExtResource("2_16n38")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController" unique_id=2118977318]
 script = ExtResource("4_gj4k4")
 node_path = NodePath("..")
 properties = PackedStringArray("flip_h", "animation", "frame", "sprite_frames")
@@ -34,29 +34,28 @@ extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="StateMachine_States" type="Node2D" parent="."]
+[node name="StateMachine_States" type="Node2D" parent="." unique_id=1238631582]
 
-[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+[node name="IdleState" type="Node2D" parent="StateMachine_States" unique_id=113786822]
 script = ExtResource("6_4mogq")
 
-[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+[node name="WalkingState" type="Node2D" parent="StateMachine_States" unique_id=1203526678]
 script = ExtResource("7_ssb0e")
 
-[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+[node name="AttackState" type="Node2D" parent="StateMachine_States" unique_id=1436573860]
 script = ExtResource("8_351fd")
 attackDuration = 0.6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1016590412]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer3" type="Node" parent="."]
+[node name="PropertySynchronizer3" type="Node" parent="." unique_id=2032194399]
 script = ExtResource("4_gj4k4")
 node_path = NodePath("..")
 properties = PackedStringArray("position")
-interpolated = false
-interpolation_speed = 1.0
-extrapolation = null
+interpolated = true
+interpolation_speed = 30.0
 extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

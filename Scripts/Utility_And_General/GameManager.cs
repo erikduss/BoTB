@@ -102,7 +102,8 @@ namespace Erikduss
                 GDSync.ExposeFunction(new Callable(this, "SpendPlayer2PowerupRefresh"));
                 GDSync.ExposeFunction(new Callable(this, "Player2LockedPowerupChanged"));
                 GDSync.ExposeFunction(new Callable(this, "Player2UnlockedNewPowerup")); 
-                GDSync.ExposeFunction(new Callable(this, "LevelupPlayer2ToNewAge"));
+                GDSync.ExposeFunction(new Callable(this, "LevelupPlayer2ToNewAge")); 
+                GDSync.ExposeFunction(new Callable(this, "ConfirmPlayer2LevelupToNewAge"));
 
                 if (GDSync.IsHost() && MultiplayerManager.Instance.isHostOfLobby)
                 {
@@ -448,6 +449,11 @@ namespace Erikduss
             inGameHUDManager.RefreshUnitShop(false);
         }
 
+        public void ConfirmPlayer2LevelupToNewAge()
+        {
+            LevelupPlayerToNewAge(GetLocalClientPlayerScript());
+        }
+
         public void LevelupPlayer2ToNewAge()
         {
             int ageUpCost = GameSettingsLoader.age1UpgradeToAge2Cost;
@@ -457,7 +463,11 @@ namespace Erikduss
                 GD.Print("Player 2 didnt have enough, is their currency already recuded?");
             }
 
-            LevelupPlayerToNewAge(player02Script);
+            player02Script.currentAgeOfPlayer = Ages.AGE_02;
+
+            //confirm tho the other player that they leveled up their age.
+            int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+            GDSync.CallFuncOn(otherClient, new Callable(this, "ConfirmPlayer2LevelupToNewAge"), []);
         }
 
         public void ProcessSpawnRequestPlayer2(int unitType)

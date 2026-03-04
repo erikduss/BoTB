@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy1ojd3ybmach"]
+[gd_scene format=3 uid="uid://dy1ojd3ybmach"]
 
 [ext_resource type="Script" uid="uid://b3nicrwtg42tn" path="res://Scripts/Characters/Archdruid.cs" id="1_c5lht"]
 [ext_resource type="SpriteFrames" uid="uid://dvdcm27bg3fhv" path="res://Assets/Animation_SpriteFrames/Age_1/Archdruid.tres" id="2_0sdww"]
@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfs14"]
 size = Vector2(41, 39)
 
-[node name="Archdruid" type="CharacterBody2D" node_paths=PackedStringArray("initialStartingState")]
+[node name="Archdruid" type="CharacterBody2D" unique_id=348804669 node_paths=PackedStringArray("initialStartingState")]
 collision_layer = 2
 collision_mask = 103
 script = ExtResource("1_c5lht")
@@ -21,13 +21,13 @@ transformedAnimatedSpriteFramesAgeBased = [ExtResource("3_4veot"), ExtResource("
 animatedSpriteFramesAgeBased = [ExtResource("2_0sdww"), ExtResource("5_4veot")]
 initialStartingState = NodePath("StateMachine_States/IdleState")
 
-[node name="AnimationController" type="AnimatedSprite2D" parent="."]
+[node name="AnimationController" type="AnimatedSprite2D" parent="." unique_id=851793133]
 position = Vector2(0, -32)
 sprite_frames = ExtResource("2_0sdww")
 animation = &"Walking"
 autoplay = "Idle"
 
-[node name="PropertySynchronizer2" type="Node" parent="AnimationController"]
+[node name="PropertySynchronizer2" type="Node" parent="AnimationController" unique_id=1496324881]
 script = ExtResource("6_4veot")
 node_path = NodePath("..")
 reliable = true
@@ -39,29 +39,28 @@ extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="StateMachine_States" type="Node2D" parent="."]
+[node name="StateMachine_States" type="Node2D" parent="." unique_id=2130583522]
 
-[node name="IdleState" type="Node2D" parent="StateMachine_States"]
+[node name="IdleState" type="Node2D" parent="StateMachine_States" unique_id=1687479789]
 script = ExtResource("25_iivj8")
 
-[node name="WalkingState" type="Node2D" parent="StateMachine_States"]
+[node name="WalkingState" type="Node2D" parent="StateMachine_States" unique_id=1361109223]
 script = ExtResource("26_bs43b")
 
-[node name="AttackState" type="Node2D" parent="StateMachine_States"]
+[node name="AttackState" type="Node2D" parent="StateMachine_States" unique_id=1851772319]
 script = ExtResource("27_28tm7")
 attackDuration = 0.7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114072337]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_gfs14")
 
-[node name="PropertySynchronizer3" type="Node" parent="."]
+[node name="PropertySynchronizer3" type="Node" parent="." unique_id=894165567]
 script = ExtResource("6_4veot")
 node_path = NodePath("..")
 properties = PackedStringArray("global_position")
-interpolated = false
-interpolation_speed = 1.0
-extrapolation = null
+interpolated = true
+interpolation_speed = 30.0
 extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"

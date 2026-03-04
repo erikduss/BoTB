@@ -78,6 +78,8 @@ namespace Erikduss
             GDSync.SyncVar(this, "playerCurrentAmountOfPowerUpsOwed");
 
             GDSync.SyncVar(this, "hasUnlockedPowerUpCurrently");
+
+            GDSync.SyncVar(this, "currentAgeOfPlayer");
         }
 	}
 }
