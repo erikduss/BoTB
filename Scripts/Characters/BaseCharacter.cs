@@ -125,10 +125,26 @@ namespace Erikduss
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
+            GDSync.ExposeNode(this);
+
             GDSync.ExposeFunction(new Callable(this, "DestroyOnMultiplayerClient"));
             GDSync.ExposeFunction(new Callable(this, "SetNewSpriteFrameMultiplayer"));
 
-            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch) return;
+            if (GameManager.Instance.isMultiplayerMatch && !GameManager.Instance.isHostOfMultiplayerMatch)
+            {
+                foreach (Node childNode in this.GetChildren())
+                {
+                    //this is needed, otherwise the characteraniumatedsprite is null and its needed to multiplayer switch
+                    if (childNode is AnimatedSprite2D)
+                    {
+                        AnimatedSprite2D spriteComponent = childNode.GetNode<AnimatedSprite2D>(childNode.GetPath());
+
+                        //spriteComponent.Visible = false;
+                        characterAnimatedSprite = spriteComponent;
+                    }
+                }
+                return;
+            }
 
             if (GameManager.Instance.isHostOfMultiplayerMatch && GameManager.Instance.isMultiplayerMatch)
             {
@@ -216,19 +232,22 @@ namespace Erikduss
             }
             #endregion
 
-            if (GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
-            {
-                GD.Print("Set new age on non host");
-                int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
-                GD.Print("Calling on: " + otherClient);
-                GDSync.CallFuncOn(otherClient, new Callable(this, "SetNewSpriteFrameForAgeMultiplayer"), []);
-            }
+            //if (GameManager.Instance.isMultiplayerMatch && GameManager.Instance.isHostOfMultiplayerMatch)
+            //{
+            //    GD.Print("Set new age on non host");
+            //    int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+            //    GD.Print("Calling on: " + otherClient);
+            //    GDSync.CallFuncOn(otherClient, new Callable(this, "SetNewSpriteFrameForAgeMultiplayer"), []);
+            //}
         }
 
-        public void SetNewSpriteFrameForAgeMultiplayer()
+        public void SetNewSpriteFrameForAgeMultiplayer(int age)
         {
-            GD.Print("Setting for age: " + unitCreatedAge);
-            characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[((int)unitCreatedAge)];
+            unitCreatedAge = (Enums.Ages)age;
+
+            GD.Print("Setting for age: " + age + " : " + unitCreatedAge);
+
+            characterAnimatedSprite.SpriteFrames = animatedSpriteFramesAgeBased[age];
         }
 
         async void ReApplyReadyOnMultiplayer()

@@ -306,7 +306,6 @@ namespace Erikduss
                     //determine the position based on the team
                     instantiatedSimpleSoldier.GlobalPosition = team == Enums.TeamOwner.TEAM_01 ? team01UnitsSpawnerLocation.Position : team02UnitsSpawnerLocation.Position;
                     instantiatedSimpleSoldier.characterOwner = team;
-                    GD.Print("Set the owner to: " + team.ToString());
                     instantiatedSimpleSoldier.unitCreatedAge = unitAge;
 
                     instantiatedSimpleSoldier.Name = "InstantiatedSimpleSoldier_" + lastUsedUnitID;
@@ -316,6 +315,11 @@ namespace Erikduss
                     if (!GameManager.Instance.isMultiplayerMatch)
                     {
                         AddChild(instantiatedSimpleSoldier);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedSimpleSoldier, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
                     }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
@@ -353,6 +357,11 @@ namespace Erikduss
                     {
                         AddChild(instantiatedRanger);
                     }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedRanger, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedRanger, uniqueUnitName);
@@ -388,6 +397,11 @@ namespace Erikduss
                     if (!GameManager.Instance.isMultiplayerMatch)
                     {
                         AddChild(instantiatedAssassin);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedAssassin, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
                     }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
@@ -425,6 +439,11 @@ namespace Erikduss
                     {
                         AddChild(instantiatedEnforcer);
                     }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedEnforcer, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedEnforcer, uniqueUnitName);
@@ -460,6 +479,11 @@ namespace Erikduss
                     if (!GameManager.Instance.isMultiplayerMatch)
                     {
                         AddChild(instantiatedTank);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedTank, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
                     }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
@@ -497,6 +521,11 @@ namespace Erikduss
                     {
                         AddChild(instantiatedBattlemage);
                     }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedBattlemage, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedBattlemage, uniqueUnitName);
@@ -532,6 +561,11 @@ namespace Erikduss
                     if (!GameManager.Instance.isMultiplayerMatch)
                     {
                         AddChild(instantiatedMassHealer);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedMassHealer, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
                     }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
@@ -569,6 +603,11 @@ namespace Erikduss
                     {
                         AddChild(instantiatedShaman);
                     }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedShaman, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
+                    }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
                     AddUnitToAliveDict(team, instantiatedShaman, uniqueUnitName);
@@ -604,6 +643,11 @@ namespace Erikduss
                     if (!GameManager.Instance.isMultiplayerMatch)
                     {
                         AddChild(instantiatedArchdruid);
+                    }
+                    else
+                    {
+                        int otherClient = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetClientID()).First();
+                        GDSync.CallFuncOn(otherClient, new Callable(instantiatedArchdruid, "SetNewSpriteFrameForAgeMultiplayer"), [(int)unitAge]);
                     }
 
                     uniqueUnitName = (uint)unitType + "_" + lastUsedUnitID;
