@@ -15,3 +15,5 @@ dest_files=["res://Translations/Battle_Of_The_Bookworms_Translations.en.translat
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true

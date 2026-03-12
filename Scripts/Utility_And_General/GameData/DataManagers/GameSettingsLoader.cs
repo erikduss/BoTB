@@ -19,7 +19,7 @@ namespace Erikduss
         public GameUserOptionsManager gameUserOptionsManager = new GameUserOptionsManager();
 
         //Game loop Statics
-        public static int age1UpgradeToAge2Cost = 25;
+        public static int age1UpgradeToAge2Cost = 250;
 
         //Change these to loading in through a file later.
         public bool useAlternativeBloodColor = false;
