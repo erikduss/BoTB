@@ -493,6 +493,8 @@ namespace Erikduss
 
         public async virtual void HealDamage(int healAmount)
         {
+            GD.Print("Being healed for: " + healAmount + " and my age is: " + characterOwner);
+
             if(IsDeadOrDestroyed) return;
 
             currentHealth += healAmount;

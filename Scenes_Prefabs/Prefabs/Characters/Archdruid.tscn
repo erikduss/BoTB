@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_gfs14")
 [node name="PropertySynchronizer3" type="Node" parent="." unique_id=894165567]
 script = ExtResource("6_4veot")
 node_path = NodePath("..")
-properties = PackedStringArray("global_position")
+properties = PackedStringArray("global_position", "collision_layer", "collision_mask")
 interpolated = true
 interpolation_speed = 30.0
 extrapolated = false

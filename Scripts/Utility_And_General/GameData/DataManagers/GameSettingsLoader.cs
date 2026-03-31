@@ -20,6 +20,7 @@ namespace Erikduss
 
         //Game loop Statics
         public static int age1UpgradeToAge2Cost = 250;
+        public static int homeBaseMaxHealthValue = 1000;
 
         //Change these to loading in through a file later.
         public bool useAlternativeBloodColor = false;

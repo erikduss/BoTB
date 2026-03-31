@@ -56,6 +56,9 @@ namespace Erikduss
 
             base._Ready();
 
+            if (characterOwner == Enums.TeamOwner.NONE) return;
+
+            GD.Print("Healing for: " + this.characterOwner);
             EffectsAndProjectilesSpawner.Instance.SpawnMass_Healer_HealingEffect(this, false);
         }
 

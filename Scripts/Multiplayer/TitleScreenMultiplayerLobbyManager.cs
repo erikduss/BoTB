@@ -144,7 +144,7 @@ namespace Erikduss
                 networkingDebug.Visible = false;
             }
 
-            await ToSignal(GetTree().CreateTimer(2.5f), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 
             //reset everything
             MultiplayerManager.Instance.currentPlayerID = 1;
@@ -170,11 +170,6 @@ namespace Erikduss
                 GDSync.StopMultiplayer();
             }
             
-        }
-
-        private void ClearLastLobby()
-        {
-
         }
 
         public void OpenLobby(bool isTheHost)

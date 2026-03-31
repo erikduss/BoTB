@@ -155,10 +155,13 @@ namespace Erikduss
 
         public void ShowLobbyCreateUI()
         {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
             mainTitleScreenUI.Visible = false;
             matchPrepScreenUI.Visible = false;
 
             createLobbyPanel.Visible = true;
+            joinLobbyPanel.Visible = false;
 
             //select start button
             createLobbyDefaultSelectedButton.GrabFocus();
@@ -166,10 +169,13 @@ namespace Erikduss
 
         public void HideLobbyCreateUI()
         {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
             mainTitleScreenUI.Visible = false;
             matchPrepScreenUI.Visible = true;
 
             createLobbyPanel.Visible = false;
+            joinLobbyPanel.Visible = false;
 
             lobbyCreateNameLineEdit.Text = string.Empty;
             lobbyCreatePasswordLineEdit.Text = string.Empty;
@@ -180,10 +186,13 @@ namespace Erikduss
 
         public void ShowLobbyJoinUI()
         {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
             mainTitleScreenUI.Visible = false;
             matchPrepScreenUI.Visible = false;
 
             joinLobbyPanel.Visible = true;
+            createLobbyPanel.Visible = false;
 
             //show defauly button
             joinLobbyDefaultSelectedButton.GrabFocus();
@@ -191,10 +200,13 @@ namespace Erikduss
 
         public void HideLobbyJoinUI()
         {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
             mainTitleScreenUI.Visible = false;
             matchPrepScreenUI.Visible = true;
 
             joinLobbyPanel.Visible = false;
+            createLobbyPanel.Visible = false;
 
             lobbyJoinNameLineEdit.Text = string.Empty;
             lobbyJoinPasswordLineEdit.Text = string.Empty;
@@ -206,6 +218,8 @@ namespace Erikduss
         public void AttemptToCreateLobbyButtonPressed()
         {
             bool success = DidWeSucceedCreatingALobby();
+
+            if (!success) return;
 
             string lobbyName = lobbyCreateNameLineEdit.Text;
             string lobbyPassword = lobbyCreatePasswordLineEdit.Text;
@@ -221,14 +235,17 @@ namespace Erikduss
         {
             if (lobbyCreateNameLineEdit.Text == string.Empty) return false;
 
+            //Requirement for passing lobby creation.
+            if (lobbyCreateNameLineEdit.Text.Length <= 2) return false;
+
             return true;
         }
 
         public void AttemptToJoinLobbyButtonPressed()
         {
-            GD.Print("Are we in lobby?: " + GDSync.GetLobbyName());
-
             bool success = DidWeSucceedJoiningALobby();
+
+            if (!success) return;
 
             string lobbyName = lobbyJoinNameLineEdit.Text;
             string lobbyPassword = lobbyJoinPasswordLineEdit.Text;
@@ -250,6 +267,9 @@ namespace Erikduss
         private bool DidWeSucceedJoiningALobby()
         {
             if (lobbyJoinNameLineEdit.Text == string.Empty) return false;
+
+            //Requirement for passing lobby creation.
+            if (lobbyJoinNameLineEdit.Text.Length <= 2) return false;
 
             return true;
         }

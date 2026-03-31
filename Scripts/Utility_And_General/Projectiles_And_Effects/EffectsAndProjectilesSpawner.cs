@@ -783,6 +783,8 @@ namespace Erikduss
         #region Multiplayer Client Sync Functions
         public void SpawnClientRangerProjectile(int playerTeam, Vector2 projectileSpawnPosition, ulong projectileOwnerInstanceID)
         {
+            GD.Print("Spawn projectile for team: " + playerTeam);
+
             Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
 
             RangerAge1ProjectilePhysics instantiatedProjectile;

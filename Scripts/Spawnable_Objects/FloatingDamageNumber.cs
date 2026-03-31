@@ -64,10 +64,15 @@ namespace Erikduss
 		{
             if (isHealingDamageInstead)
             {
+                textureRect.SelfModulate = overrideColor;
                 healthAmountReducedLabel.Text = "+" + value;
             }
             else
             {
+                if (isHomeBaseDamage)
+                {
+                    textureRect.SelfModulate = homeBaseOverrideColor;
+                }
                 healthAmountReducedLabel.Text = "-" + value;
             }
 		}

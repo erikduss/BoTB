@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bugfy5ssl180s"]
+[gd_scene format=3 uid="uid://bugfy5ssl180s"]
 
 [ext_resource type="Script" uid="uid://b7feh12of88ae" path="res://Scripts/Spawnable_Objects/FloatingDamageNumber.cs" id="1_c8eor"]
 [ext_resource type="Texture2D" uid="uid://c5so22xfk6o01" path="res://Assets/UI/Ingame_UI/Icons/HealthHeart.png" id="1_ftf5v"]
@@ -9,7 +9,7 @@ font_size = 18
 outline_color = Color(1, 0, 0, 1)
 shadow_size = 0
 
-[node name="FloatingDamageNumber" type="Control" node_paths=PackedStringArray("healthAmountReducedLabel", "textureRect")]
+[node name="FloatingDamageNumber" type="Control" unique_id=357290920 node_paths=PackedStringArray("healthAmountReducedLabel", "textureRect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,14 +22,14 @@ script = ExtResource("1_c8eor")
 healthAmountReducedLabel = NodePath("TextureRect/DamageNumber")
 textureRect = NodePath("TextureRect")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=888239196]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("1_ftf5v")
 expand_mode = 3
 
-[node name="DamageNumber" type="Label" parent="TextureRect"]
+[node name="DamageNumber" type="Label" parent="TextureRect" unique_id=1142938293]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 11.0
@@ -41,7 +41,7 @@ label_settings = SubResource("LabelSettings_mv5me")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PropertySynchronizer2" type="Node" parent="TextureRect/DamageNumber"]
+[node name="PropertySynchronizer2" type="Node" parent="TextureRect/DamageNumber" unique_id=1317775991]
 script = ExtResource("3_bappt")
 node_path = NodePath("..")
 properties = PackedStringArray("text")
@@ -52,7 +52,18 @@ extrapolated = false
 max_extrapolation_time = 0.2
 metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
 
-[node name="PropertySynchronizer2" type="Node" parent="."]
+[node name="PropertySynchronizer" type="Node" parent="TextureRect" unique_id=1483530484]
+script = ExtResource("3_bappt")
+node_path = NodePath("..")
+properties = PackedStringArray("self_modulate")
+interpolated = false
+interpolation_speed = 1.0
+extrapolation = null
+extrapolated = false
+max_extrapolation_time = 0.2
+metadata/_custom_type_script = "uid://ddv3pb3w5c16j"
+
+[node name="PropertySynchronizer2" type="Node" parent="." unique_id=1982221977]
 script = ExtResource("3_bappt")
 node_path = NodePath("..")
 properties = PackedStringArray("position")

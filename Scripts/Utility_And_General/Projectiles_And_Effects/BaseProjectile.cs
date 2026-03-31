@@ -73,8 +73,8 @@ namespace Erikduss
                 {
                     if (body.GetInstanceId() == GameManager.Instance.team02HomeBase.StaticBody.GetInstanceId())
                     {
-                        DestroyObject();
-                        destroyTimer = destroyTime;
+                        //DestroyObject();
+                        //destroyTimer = destroyTime;
                         return;
                     }
                 }
@@ -82,8 +82,8 @@ namespace Erikduss
                 {
                     if (body.GetInstanceId() == GameManager.Instance.team01HomeBase.StaticBody.GetInstanceId())
                     {
-                        DestroyObject();
-                        destroyTimer = destroyTime;
+                        //DestroyObject();
+                        //destroyTimer = destroyTime;
                         return;
                     }
                 }
@@ -112,8 +112,8 @@ namespace Erikduss
                         {
                             projectileOwnerChar.DealDamage();
                         }
-                        DestroyObject();
-                        destroyTimer = destroyTime;
+                        //DestroyObject();
+                        //destroyTimer = destroyTime;
                         return;
                     }
                 }
@@ -127,8 +127,8 @@ namespace Erikduss
                         {
                             projectileOwnerChar.DealDamage();
                         }
-                        DestroyObject();
-                        destroyTimer = destroyTime;
+                        //DestroyObject();
+                        //destroyTimer = destroyTime;
                         return;
                     }
                 }

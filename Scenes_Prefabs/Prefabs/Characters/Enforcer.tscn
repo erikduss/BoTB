@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_gfs14")
 [node name="PropertySynchronizer3" type="Node" parent="." unique_id=519097820]
 script = ExtResource("4_ewxm0")
 node_path = NodePath("..")
-properties = PackedStringArray("position")
+properties = PackedStringArray("position", "collision_layer", "collision_mask")
 interpolated = true
 interpolation_speed = 30.0
 extrapolated = false

@@ -32,19 +32,24 @@ namespace Erikduss
         {
             get { return currentHealth; }
         }
-        protected int currentHealth = 1000; //should be set from a general options static value
+        protected int currentHealth = GameSettingsLoader.homeBaseMaxHealthValue; 
 
         public int MaxHealth
         {
             get { return maxHealth; }
         }
-        protected int maxHealth = 1000; //should be set from a general options static value
+        protected int maxHealth = GameSettingsLoader.homeBaseMaxHealthValue; 
         #endregion
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
 		{
             int spriteID = 0;
+
+            if (MultiplayerManager.Instance != null)
+            {
+                GDSync.ExposeNode(this);
+            }
 
             foreach (Node childComponent in this.GetChildren())
             {
@@ -118,7 +123,7 @@ namespace Erikduss
             healthBarValueLabel.Text = CurrentHealth.ToString();
 
 
-            if (MultiplayerManager.Instance.isUsingMultiplayer)
+            if (MultiplayerManager.Instance != null)
             {
                 GDSync.ExposeNode(this);
             }
@@ -163,6 +168,11 @@ namespace Erikduss
 
             EffectsAndProjectilesSpawner.Instance.SpawnHomeBaseFloatingDamageNumber(this, rawDamage);
 
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                SyncHomeBase();
+            }
+
             UpdateBaseHealthbarAndSprite();
         }
 
@@ -175,6 +185,11 @@ namespace Erikduss
             currentHealth += healAmount;
 
             if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+            if (GameManager.Instance.isMultiplayerMatch)
+            {
+                SyncHomeBase();
+            }
 
             UpdateBaseHealthbarAndSprite();
         }
@@ -253,5 +268,9 @@ namespace Erikduss
 
             healthBarFiller.Size = new Vector2(newFillerWith, healthBarFiller.Size.Y);
         }
-	}
+        public void SyncHomeBase()
+        {
+            GDSync.SyncVar(this, "currentHealth");
+        }
+    }
 }
