@@ -27,6 +27,16 @@ namespace Erikduss
         private int comboBuyChance = 12;
         #endregion
 
+        #region Age Upgrade Attempt Timer
+        private float ageUpgradeAttemptTimer = 0;
+        private int ageUpgradeAttemptCooldown = 7; //this will be + or - 4 based on a randomizer.
+        private int ageUpgradeChance = 50; //in percentage
+        #endregion
+
+        #region Redeem Powerup Attempt Timer
+        private float redeemPowerUpAttemptTimer = 0;
+        private int redeemPowerUpAttemptCooldown = 7; //this will be + or - 4 based on a randomizer.
+        #endregion
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -41,8 +51,30 @@ namespace Erikduss
 		{
 			base._Process(delta);
 
+            #region Age Upgrading
+            if (ageUpgradeAttemptTimer <= 0)
+            {
+                AttemptToAgeUp();
+            }
+            else
+            {
+                ageUpgradeAttemptTimer -= (float)delta;
+            }
+            #endregion
+
+            #region Redeem Powerup
+            if (redeemPowerUpAttemptTimer <= 0)
+            {
+                AttemptRedeemPowerUp();
+            }
+            else
+            {
+                redeemPowerUpAttemptTimer -= (float)delta;
+            }
+            #endregion
+
             #region Ability Activation
-			if(playerAbilityCurrentCooldown <= 0)
+            if (playerAbilityCurrentCooldown <= 0)
 			{
 				if (abiltyActivationAttemptTimer <= 0)
 				{
@@ -54,6 +86,7 @@ namespace Erikduss
                 }
 			}
             #endregion
+
 
             #region Unit Buying
             if (unitBuyAttemptTimer <= 0)
@@ -79,33 +112,84 @@ namespace Erikduss
 
             SetNewUnitBuyTimer();
 
-            //we hit the roll
-            if (randRefreshRoll <= refreshChance)
+            //we need to semi smartly check if we need to actually spend gold or if we want to save it.
+
+            int amountOfAliveUnitsTeam1 = GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count;
+            int amountOfAliveUnitsTeam2 = GameManager.Instance.unitsSpawner.team02AliveUnitDictionary.Count;
+
+            int differenceInUnits = amountOfAliveUnitsTeam1 - amountOfAliveUnitsTeam2;
+
+            if(differenceInUnits > -2 || currentAgeOfPlayer == Enums.Ages.AGE_02) //we have 2 more units than the player. We can save up some money.
             {
-                RefreshUnitShop(); //We have a chance to fail this if we dont have enough gold.
-                return;
-            }
+                //we hit the roll
+                if (randRefreshRoll <= refreshChance)
+                {
+                    RefreshUnitShop(); //We have a chance to fail this if we dont have enough gold.
+                }
+                else
+                {
+                    int randUnitFromShophRoll = (int)(GD.Randi() % 3); //number is not inclusive.
 
-            int randUnitFromShophRoll = (int)(GD.Randi() % 3); //number is not inclusive.
-
-            BuyUnitFromShop(randUnitFromShophRoll);
+                    BuyUnitFromShop(randUnitFromShophRoll);
+                }
+            } 
         }
 
-		private void AttemptToActivateOurAbility()
+        private void AttemptToAgeUp()
+        {
+            SetNewAgeUpgradeTimer();
+
+            GD.Print("Check if we need to age up" + playerCurrentCurrencyAmount);
+
+            if (playerCurrentCurrencyAmount > GameSettingsLoader.age1UpgradeToAge2Cost)
+            {
+                if (currentAgeOfPlayer == Enums.Ages.AGE_01)
+                {
+                    int randUpgradeRoll = (int)(GD.Randi() % 100);
+
+                    GD.Print("We try to age up");
+
+                    //we hit the roll
+                    if (randUpgradeRoll <= ageUpgradeChance)
+                    {
+                        AgeUpToNewAge();
+                    }
+                }
+            }
+        }
+
+        private void AttemptRedeemPowerUp()
+        {
+            SetNewRedeemPowerupTimer();
+
+            GD.Print("Check if we need to age up" + playerCurrentCurrencyAmount);
+
+            if (playerCurrentAmountOfPowerUpsOwed > 0)
+            {
+                RedeemNewPowerUp();
+            }
+        }
+
+        private void AttemptToActivateOurAbility()
 		{
 			//we will try doing this about every 5-9 seconds with a 10% chance for it to succeed.
 
-			if (playerAbilityCurrentCooldown > 0) return;
+			if (playerAbilityCurrentCooldown <= 0)
+            {
+                SetNewAbilityActivationTimer();
 
-			SetNewAbilityActivationTimer();
+                int randActivateRoll = (int)(GD.Randi() % 100);
 
-            int randActivateRoll = (int)(GD.Randi() % 100);
-
-			//we hit the roll
-			if(randActivateRoll <= randomActivationChance)
-			{
-				ActivatePlayerAbility();
-			}
+                //we hit the roll
+                if (randActivateRoll <= randomActivationChance)
+                {
+                    //we at least want SOME value.
+                    if (GameManager.Instance.unitsSpawner.team01AliveUnitDictionary.Count > 2)
+                    {
+                        ActivatePlayerAbility();
+                    }
+                }
+            }
         }
 
 		private void SetNewAbilityActivationTimer()
@@ -116,6 +200,26 @@ namespace Erikduss
 			int newCooldownTime = activationAttemptCooldown - randTimerRoll;
 
 			abiltyActivationAttemptTimer = newCooldownTime;
+        }
+
+        private void SetNewAgeUpgradeTimer()
+        {
+            int randTimerRoll = (int)(GD.Randi() % 6);
+            randTimerRoll -= 3;
+
+            int newCooldownTime = ageUpgradeAttemptCooldown - randTimerRoll;
+
+            ageUpgradeAttemptTimer = newCooldownTime;
+        }
+
+        private void SetNewRedeemPowerupTimer()
+        {
+            int randTimerRoll = (int)(GD.Randi() % 6);
+            randTimerRoll -= 3;
+
+            int newCooldownTime = redeemPowerUpAttemptCooldown - randTimerRoll;
+
+            redeemPowerUpAttemptTimer = newCooldownTime;
         }
 
         private void SetNewUnitBuyTimer()

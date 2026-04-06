@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drd6t22hn0wvm"]
+[gd_scene format=3 uid="uid://drd6t22hn0wvm"]
 
 [ext_resource type="Texture2D" uid="uid://og8pjm1f6glw" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age01/MeteorShower_Default_button.png" id="1_twuah"]
 [ext_resource type="Texture2D" uid="uid://b2gxoxunr31g6" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age01/MeteorShower_Hover_button.png" id="2_s7uh6"]

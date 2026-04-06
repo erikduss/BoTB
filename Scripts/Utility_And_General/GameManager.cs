@@ -497,7 +497,14 @@ namespace Erikduss
         {
             GD.Print("received ability execution request");
 
-            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(TeamOwner.TEAM_02);
+            if (player02Script.currentAgeOfPlayer == Ages.AGE_01)
+            {
+                EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(TeamOwner.TEAM_02);
+            }
+            else
+            {
+                EffectsAndProjectilesSpawner.Instance.SpawnArrowRainAgeAbilityProjectiles(TeamOwner.TEAM_02);
+            }
 
             ResetPlayerAbilityCooldown(TeamOwner.TEAM_02);
         }
@@ -562,10 +569,13 @@ namespace Erikduss
                     //    GDSync.CallFuncOn(otherClient, new Callable(GameManager.Instance.inGameHUDManager, "RefreshPowerUp"), [false]);
                     //}
                 }
-                else if (playerTeam == Enums.TeamOwner.TEAM_01) //singleplayer
+                else //singleplayer
                 {
-                    inGameHUDManager.RefreshPowerUp(false);
-                    inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);
+                    if (playerTeam == Enums.TeamOwner.TEAM_01)
+                    {
+                        inGameHUDManager.RefreshPowerUp(false);
+                        inGameHUDManager.UpdatePlayerPowerUPRerollAmount(player01Script);
+                    }
                 }
             }
 
@@ -612,6 +622,8 @@ namespace Erikduss
 
         public void AwardPlayer2WithPowerupBuff(PowerupType powerupType)
         {
+            GD.Print("Award player 2 with powerup: " + powerupType.ToString());
+
             if(player02Script.playerCurrentAmountOfPowerUpsOwed < 0 || !player02Script.hasUnlockedPowerUpCurrently)
             {
                 //player spammed button, prevent purchase and reset to 0.
@@ -636,16 +648,16 @@ namespace Erikduss
                     break;
             }
 
-            ////this needs to get updated by the host.
-            //GD.Print("Reduce player 2 powerup owed count by 1");
-            //player02Script.playerCurrentAmountOfPowerUpsOwed -= 1;
 
-            GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+            if (isMultiplayerMatch)
+            {
+                GDSync.CreateSyncedEvent("SyncUpdatePlayerHud");
+            }
 
             if (player02Script.playerCurrentAmountOfPowerUpsOwed <= 0)
             {
                 GD.Print("Only 1 powerup owed which was this one that we bought.");
-                
+
                 player02Script.hasUnlockedPowerUpCurrently = false;
             }
         }

@@ -1,19 +1,20 @@
-[gd_scene format=3 uid="uid://b7gh5nd0c74i1"]
+[gd_scene format=3 uid="uid://e0y7o6o5r5x7"]
 
-[ext_resource type="Script" uid="uid://2wil4ju2tc1n" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1Projectile.cs" id="1_kplma"]
-[ext_resource type="Script" uid="uid://cs0ovkhs4wh1b" path="res://Scripts/Utility_And_General/Projectiles_And_Effects/RangerAge1ProjectilePhysics.cs" id="1_tbw5w"]
-[ext_resource type="Texture2D" uid="uid://brwv7gmai70lh" path="res://Assets/Characters/Shaman_Age_2/Ranger_Age_1_JavelinProjectile.png" id="1_tp6cb"]
+[ext_resource type="Script" uid="uid://dha85kqhgimq2" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/ArrowRainProjectilePhysics.cs" id="1_qtloh"]
+[ext_resource type="Script" uid="uid://b7pw5kfnt4ml1" path="res://Scripts/Spawnable_Objects/Age_Ability_Powers/ArrowRainProjectile.cs" id="2_g66qc"]
+[ext_resource type="Texture2D" uid="uid://brwv7gmai70lh" path="res://Assets/Characters/Shaman_Age_2/Ranger_Age_1_JavelinProjectile.png" id="3_nys0x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhica"]
 size = Vector2(33, 10)
 
-[node name="RangerAge1Projectile" type="RigidBody2D" unique_id=1573646725 node_paths=PackedStringArray("attachedProjectileScript")]
+[node name="ArrowRainProjectile" type="RigidBody2D" unique_id=1573646725 node_paths=PackedStringArray("attachedProjectileScript")]
+rotation = 1.5707964
 collision_layer = 16
-collision_mask = 6
+collision_mask = 7
 mass = 10.0
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("1_tbw5w")
+script = ExtResource("1_qtloh")
 attachedProjectileScript = NodePath("Node2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=319761350]
@@ -21,12 +22,13 @@ position = Vector2(-6.5, -5)
 shape = SubResource("RectangleShape2D_rhica")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1081061360 node_paths=PackedStringArray("rigidBody", "usedSprite")]
-script = ExtResource("1_kplma")
+script = ExtResource("2_g66qc")
 rigidBody = NodePath("..")
+destroyTime = 5.0
 usedSprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1815559959]
-texture = ExtResource("1_tp6cb")
+texture = ExtResource("3_nys0x")
 
 [connection signal="body_entered" from="." to="Node2D" method="OnCollisionEnter"]
 [connection signal="body_exited" from="." to="Node2D" method="OnCollisionExit"]

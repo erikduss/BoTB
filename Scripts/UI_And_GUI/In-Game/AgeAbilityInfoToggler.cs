@@ -3,9 +3,9 @@ using System;
 
 namespace Erikduss
 {
-	public partial class AgeAbilityInfoToggler : Control
+	public partial class AgeAbilityInfoToggler : TextureButton
 	{
-        [Export] TextureProgressBar abilityProgressbar;
+        [Export] public TextureProgressBar abilityProgressbar;
         Texture2D defaultProgressBarTexture;
         [Export] Texture2D hoverProgressBarTexture;
 

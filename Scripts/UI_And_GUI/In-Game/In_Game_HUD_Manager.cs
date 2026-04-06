@@ -31,8 +31,10 @@ namespace Erikduss
         [Export] public Control pauseMenuReturnControl;
 
         [Export] private Control ageUpControlParent;
+        [Export] private Control ageAbilityControlParent;
 
         private Control currentlyActiveAgeUpControl = null;
+        private Control currentlyActiveAgeAbilityControl = null;
         private Control currentlySelectedControl = null;
 
         #region Buy Buttons
@@ -75,6 +77,7 @@ namespace Erikduss
         public PackedScene healBasePowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/HealBase_powerup_button.tscn");
 
         public PackedScene age2AgeUpPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeUpgradeButtons/age02_upgrade_button.tscn");
+        public PackedScene age2AbilityPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/AgeAbilityButtons/age02_ability_button.tscn");
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -85,7 +88,8 @@ namespace Erikduss
             availablePowerUpButtons.Add(abilityEmpowerPowerUpButtonPrefab);
             availablePowerUpButtons.Add(healBasePowerUpButtonPrefab);
 
-            currentlyActiveAgeUpControl = ageAbilityControl;
+            currentlyActiveAgeUpControl = ageUpControl;
+            currentlyActiveAgeAbilityControl = ageAbilityControl;
 
             HidePauseMenu();
             gameOverNode.Visible = false;
@@ -271,7 +275,14 @@ namespace Erikduss
                 {
                     GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
 
-                    EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                    if (GameManager.Instance.player01Script.currentAgeOfPlayer == Ages.AGE_01)
+                    {
+                        EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                    }
+                    else 
+                    {
+                        EffectsAndProjectilesSpawner.Instance.SpawnArrowRainAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                    }
                 }
                 else
                 {
@@ -282,7 +293,14 @@ namespace Erikduss
             {
                 GameManager.Instance.ResetPlayerAbilityCooldown(GameManager.Instance.clientTeamOwner);
 
-                EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                if (GameManager.Instance.player01Script.currentAgeOfPlayer == Ages.AGE_01)
+                {
+                    EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                }
+                else
+                {
+                    EffectsAndProjectilesSpawner.Instance.SpawnArrowRainAgeAbilityProjectiles(GameManager.Instance.clientTeamOwner);
+                }
             }
                 
         }
@@ -500,7 +518,7 @@ namespace Erikduss
 
                 //this is always the same.
                 childControl.FocusNeighborBottom = currentlyActiveAgeUpControl.GetPath();
-                childControl.FocusNeighborTop = ageAbilityControl.GetPath();
+                childControl.FocusNeighborTop = currentlyActiveAgeAbilityControl.GetPath();
 
                 int leftNeightborIndex = controlIndex - 1;
 
@@ -534,7 +552,7 @@ namespace Erikduss
             {
                 currentShownPowerUp.FocusNeighborLeft = refreshButtonControl.GetPath();
                 currentShownPowerUp.FocusNeighborRight = powerUpRefreshButton.GetPath();
-                currentShownPowerUp.FocusNeighborTop = ageAbilityControl.GetPath();
+                currentShownPowerUp.FocusNeighborTop = currentlyActiveAgeAbilityControl.GetPath();
                 currentShownPowerUp.FocusNeighborBottom = currentlyActiveAgeUpControl.GetPath();
 
                 refreshButtonControl.FocusNeighborRight = currentShownPowerUp.GetPath();
@@ -542,10 +560,10 @@ namespace Erikduss
             }
 
             currentlyActiveAgeUpControl.FocusNeighborTop = currentUnitsInShop[0].GetPath();
-            currentlyActiveAgeUpControl.FocusNeighborBottom = ageAbilityControl.GetPath();
+            currentlyActiveAgeUpControl.FocusNeighborBottom = currentlyActiveAgeAbilityControl.GetPath();
 
-            ageAbilityControl.FocusNeighborTop = currentlyActiveAgeUpControl.GetPath();
-            ageAbilityControl.FocusNeighborBottom = currentUnitsInShop[0].GetPath();
+            currentlyActiveAgeAbilityControl.FocusNeighborTop = currentlyActiveAgeUpControl.GetPath();
+            currentlyActiveAgeAbilityControl.FocusNeighborBottom = currentUnitsInShop[0].GetPath();
 
             pauseButtonControl.FocusNeighborRight = currentUnitsInShop[0].GetPath();
         }
@@ -558,6 +576,22 @@ namespace Erikduss
             ageUpControlParent.AddChild(newageUpControl);
 
             currentlyActiveAgeUpControl = newageUpControl;
+
+            //also set the ability
+            ageAbilityControl.QueueFree();
+
+            Control newageAbilityControl = (Control)age2AbilityPrefab.Instantiate();
+            ageAbilityControlParent.AddChild(newageAbilityControl);
+
+            currentlyActiveAgeAbilityControl = newageAbilityControl;
+
+            abilityCooldownBarScript = newageAbilityControl.GetNode<AgeAbilityInfoToggler>(newageAbilityControl.GetPath());
+            abilityCooldownBar = abilityCooldownBarScript.abilityProgressbar;
+
+            abilityCooldownBarScript.Pressed += PlayerAbilityButtonPressed;
+
+            UpdatePlayerAbilityCooldownBar(GameManager.Instance.GetLocalClientPlayerScript().playerAbilityCurrentCooldown);
+            UpdatePlayerAbilityEmpowerAmount(GameManager.Instance.GetLocalClientPlayerScript().playerTeam);
 
             RefreshFocusConnections();
 

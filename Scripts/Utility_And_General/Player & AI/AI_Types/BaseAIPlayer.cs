@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
@@ -11,6 +12,8 @@ namespace Erikduss
 
         protected List<Enums.UnitTypes> currentUnitsInShop = new List<Enums.UnitTypes>();
         protected List<Enums.UnitTypes> availableUnitsThatCanBeBought = new List<Enums.UnitTypes>();
+
+        protected List<Enums.PowerupType> possiblePowerUps = new List<Enums.PowerupType>();
 
         protected Dictionary<string, int> unitsDefaultValueCosts = new Dictionary<string, int>();
         //if using custom values we would need a dictionary here that loads them in.
@@ -39,6 +42,11 @@ namespace Erikduss
                         unitsDefaultValueCosts.Add(dictionaryID, unitCost);
                     }
                 }
+            }
+
+            for (int i = 0; i < Enum.GetNames(typeof(Enums.PowerupType)).Length; i++)
+            {
+                possiblePowerUps.Add((Enums.PowerupType)i);
             }
 
             //make sure to refresh the shop at the start of the game for free.
@@ -79,7 +87,35 @@ namespace Erikduss
 
             GameManager.Instance.ResetPlayerAbilityCooldown(Enums.TeamOwner.TEAM_02);
 
-            EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_02);
+            if(currentAgeOfPlayer == Enums.Ages.AGE_01)
+            {
+                EffectsAndProjectilesSpawner.Instance.SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner.TEAM_02);
+            }
+            else
+            {
+                EffectsAndProjectilesSpawner.Instance.SpawnArrowRainAgeAbilityProjectiles(Enums.TeamOwner.TEAM_02);
+            }
+        }
+
+        protected virtual void AgeUpToNewAge()
+        {
+            GD.Print("We aged up");
+
+            if (!GameManager.Instance.SpendPlayerCurrency(GameSettingsLoader.age1UpgradeToAge2Cost, Enums.TeamOwner.TEAM_02)) return;
+
+            currentAgeOfPlayer = Ages.AGE_02;
+
+            RefreshUnitShop(false);
+        }
+
+        protected virtual void RedeemNewPowerUp()
+        {
+            if (playerCurrentAmountOfPowerUpsOwed > 0 || hasUnlockedPowerUpCurrently)
+            {
+                int rand = (int)(GD.Randi() % (possiblePowerUps.Count));
+
+                GameManager.Instance.AwardPlayer2WithPowerupBuff(possiblePowerUps[rand]);
+            }
         }
 
         protected virtual void RefreshUnitShop(bool spendPlayerGold = true)

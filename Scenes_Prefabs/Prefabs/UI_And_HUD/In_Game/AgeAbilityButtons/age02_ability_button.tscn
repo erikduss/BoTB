@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://qba218d6c8qj"]
+
+[ext_resource type="Texture2D" uid="uid://343ju744r2tb" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age02/ArrowRain_Default.png" id="1_q2e3f"]
+[ext_resource type="Texture2D" uid="uid://bvca1av3fntbn" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age02/ArrowRain_Hover.png" id="2_jk2sl"]
+[ext_resource type="BitMap" uid="uid://djl8ne5ep1hch" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age01/MeteorShower_ClickMask.png" id="3_ha3r4"]
+[ext_resource type="Script" uid="uid://cdbvnxqwtlqcp" path="res://Scripts/UI_And_GUI/In-Game/AgeAbilityInfoToggler.cs" id="4_kym1o"]
+[ext_resource type="Texture2D" uid="uid://dhnaic3m54nv4" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age02/ArrowRain_Hover_OnCooldown.png" id="5_ha3r4"]
+[ext_resource type="Texture2D" uid="uid://dgk4w1x335prf" path="res://Assets/UI/Ingame_UI/UnitButtons/UnitInfoPanel.png" id="6_tuynr"]
+[ext_resource type="Texture2D" uid="uid://cc17rx7ujspu4" path="res://Assets/UI/Ingame_UI/AgeSpecialAbilities/Age02/ArrowRain_Default_OnCooldown.png" id="7_q2e3f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ga6tc"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxo0j"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bj01e"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[node name="AgeAbilityButton" type="TextureButton" unique_id=1267945910 node_paths=PackedStringArray("abilityProgressbar", "abilityCooldownLabel", "abilityEmpowerLabel")]
+offset_right = 192.0
+offset_bottom = 192.0
+texture_normal = ExtResource("1_q2e3f")
+texture_hover = ExtResource("2_jk2sl")
+texture_click_mask = ExtResource("3_ha3r4")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_kym1o")
+abilityProgressbar = NodePath("CooldownBar")
+hoverProgressBarTexture = ExtResource("5_ha3r4")
+abilityCooldownLabel = NodePath("AbilityUpgradeInfo/AbilityCostInfo/AbilityCooldown")
+abilityEmpowerLabel = NodePath("AbilityUpgradeInfo/AbilityEmpowerInfo/AbilityEmpowerAmount")
+
+[node name="AbilityUpgradeInfo" type="TextureRect" parent="." unique_id=561997278]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 165.0
+offset_top = 40.0
+offset_right = 421.0
+offset_bottom = 360.0
+pivot_offset = Vector2(128, 0)
+mouse_filter = 2
+texture = ExtResource("6_tuynr")
+
+[node name="AbilityText" type="Label" parent="AbilityUpgradeInfo" unique_id=351209247]
+custom_minimum_size = Vector2(105, 125)
+layout_mode = 0
+offset_left = 22.0
+offset_top = 30.0
+offset_right = 439.0
+offset_bottom = 155.0
+scale = Vector2(0.5, 0.5)
+text = "ARROW_RAIN"
+label_settings = SubResource("LabelSettings_ga6tc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityCostInfo" type="Control" parent="AbilityUpgradeInfo" unique_id=163609722]
+anchors_preset = 0
+offset_left = 27.5
+offset_top = 110.0
+offset_right = 227.5
+offset_bottom = 140.0
+
+[node name="AbilityCooldown" type="Label" parent="AbilityUpgradeInfo/AbilityCostInfo" unique_id=1264761995]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 45.0
+scale = Vector2(0.5, 0.5)
+text = "Cooldown: 180s"
+label_settings = SubResource("LabelSettings_gxo0j")
+horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="AbilityUpgradeInfo" unique_id=132259745]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 140.0
+offset_right = 435.0
+offset_bottom = 440.0
+scale = Vector2(0.5, 0.5)
+
+[node name="AbilityDescription" type="Label" parent="AbilityUpgradeInfo/BoxContainer" unique_id=943678588]
+custom_minimum_size = Vector2(410, 200)
+layout_mode = 2
+text = "ARROW_RAIN_DESCRIPTION"
+label_settings = SubResource("LabelSettings_bj01e")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AbilityEmpowerInfo" type="Control" parent="AbilityUpgradeInfo" unique_id=1986499979]
+anchors_preset = 0
+offset_left = 27.5
+offset_top = 265.0
+offset_right = 227.5
+offset_bottom = 295.0
+
+[node name="AbilityEmpowerAmount" type="Label" parent="AbilityUpgradeInfo/AbilityEmpowerInfo" unique_id=2139294197]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 45.0
+scale = Vector2(0.5, 0.5)
+text = "Empowered: 0"
+label_settings = SubResource("LabelSettings_gxo0j")
+horizontal_alignment = 1
+
+[node name="CooldownBar" type="TextureProgressBar" parent="." unique_id=125577450]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 192.0
+mouse_filter = 2
+value = 100.0
+texture_progress = ExtResource("7_q2e3f")
+
+[connection signal="focus_entered" from="." to="." method="ShowAgeAbilityInfoOnFocus"]
+[connection signal="focus_exited" from="." to="." method="HideAgeAbilityInfoOnLoseFocus"]
+[connection signal="mouse_entered" from="." to="." method="ShowAgeAbilityInfoOnHover"]
+[connection signal="mouse_exited" from="." to="." method="HideAgeAbilityInfoOnLoseHover"]

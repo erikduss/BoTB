@@ -191,6 +191,8 @@ namespace Erikduss
                 SyncHomeBase();
             }
 
+            healthBarValueLabel.Text = CurrentHealth.ToString();
+
             UpdateBaseHealthbarAndSprite();
         }
 

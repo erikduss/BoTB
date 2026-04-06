@@ -37,12 +37,14 @@ namespace Erikduss
         #region Age Abilities And Effects
 
         public int baseAmountOfMeteorsToSpawn = 10; //this will be loaded in elsewere.
+        public int baseAmountOfArrowsToSpawn = 100; //this will be loaded in elsewere.
         public int team01AbilityEmpowerAmount = 0;
         public int team02AbilityEmpowerAmount = 0;
 
         public PackedScene meteorAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/basic_Meteor.tscn");
         public PackedScene meteorImpactObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Age01_Ability_Meteors/Age01_Meteor_Impact.tscn");
 
+        public PackedScene arrowRainAbilyObjectPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/ArrowRainProjectile.tscn");
         #endregion
 
         private int lastUsedVisualEffectID = 0;
@@ -75,6 +77,7 @@ namespace Erikduss
                 GDSync.ExposeFunction(new Callable(this, "SpawnClientShamanProjectile")); 
                 GDSync.ExposeFunction(new Callable(this, "SpawnClientBattlemageFireball"));
                 GDSync.ExposeFunction(new Callable(this, "SpawnClientMeteorsAgeAbilityProjectiles"));
+                GDSync.ExposeFunction(new Callable(this, "SpawnClientArrowRainAgeAbilityProjectiles"));
             }
         }
 
@@ -600,6 +603,55 @@ namespace Erikduss
             lastUsedVisualEffectID++;
         }
 
+        public void SpawnArrowRainAgeAbilityProjectiles(Enums.TeamOwner arrowRainOwner)
+        {
+            //set it to the correct one for the team.
+            int currentAmountOfArrowsToSpawn = baseAmountOfArrowsToSpawn + ((arrowRainOwner == Enums.TeamOwner.TEAM_01 ? team01AbilityEmpowerAmount : team02AbilityEmpowerAmount) * 10);
+
+            GameManager.Instance.UpdatePlayerPowerUpProgress(arrowRainOwner, GameSettingsLoader.powerUpProgressAmountAbilityUsed);
+
+            for (int i = 0; i < currentAmountOfArrowsToSpawn; i++)
+            {
+                ArrowRainProjectilePhysics instantiatedArrow;
+
+                instantiatedArrow = (ArrowRainProjectilePhysics)arrowRainAbilyObjectPrefab.Instantiate();
+
+                instantiatedArrow.attachedProjectileScript.projectileOwner = arrowRainOwner;
+                //instantiatedArrow.attachedProjectileScript.SetNewOwner(arrowRainOwner);
+
+                float randXValue = (float)(GD.Randi() % (1920));
+                float randYValue = (float)(GD.Randi() % (1000));
+                randYValue -= 500;
+
+                randXValue += arrowRainOwner == Enums.TeamOwner.TEAM_01 ? -300 : 300;
+
+                //GD.Print("Rand X: " + randXValue + " _ " + xVelocity);
+                float xPosMultiplier = (randYValue / 1000f);
+
+                if (xPosMultiplier < 0) xPosMultiplier = -xPosMultiplier;
+
+                xPosMultiplier += 1f;
+
+                float addedValue =  xPosMultiplier;
+
+                randXValue -= addedValue; //this makes it so it can come from outside of the map into the map.
+
+                Vector2 spawnPosition = new Vector2(randXValue, randYValue);
+
+                instantiatedArrow.GlobalPosition = spawnPosition;
+                instantiatedArrow.RotationDegrees = instantiatedArrow.RotationDegrees += arrowRainOwner == Enums.TeamOwner.TEAM_01 ? -25 : 25;
+
+                if (GameManager.Instance.isMultiplayerMatch)
+                {
+                    int owner = arrowRainOwner == Enums.TeamOwner.TEAM_01 ? 1 : 2;
+                    int otherClientID = MultiplayerManager.Instance.playersInLobby.Where(a => a != GDSync.GetHost()).First();
+                    GDSync.CallFuncOn(otherClientID, new Callable(this, "SpawnClientArrowRainAgeAbilityProjectiles"), [owner, spawnPosition]);
+                }
+
+                this.AddChild(instantiatedArrow);
+            }
+        }
+
         public void SpawnMeteorsAgeAbilityProjectiles(Enums.TeamOwner meteorShowerOwner)
         {
             //set it to the correct one for the team.
@@ -938,6 +990,24 @@ namespace Erikduss
             instantiatedMeteor.GlobalPosition = projectileSpawnPosition;
 
             this.AddChild(instantiatedMeteor);
+        }
+
+        public void SpawnClientArrowRainAgeAbilityProjectiles(int playerTeam, Vector2 projectileSpawnPosition)
+        {
+            Enums.TeamOwner projectileTeamOwner = playerTeam == 1 ? Enums.TeamOwner.TEAM_01 : Enums.TeamOwner.TEAM_02;
+
+            ArrowRainProjectilePhysics instantiatedArrow;
+
+            instantiatedArrow = (ArrowRainProjectilePhysics)arrowRainAbilyObjectPrefab.Instantiate();
+
+            instantiatedArrow.attachedProjectileScript.projectileOwner = projectileTeamOwner;
+
+            //instantiate location, velocity, etc.
+
+            instantiatedArrow.GlobalPosition = projectileSpawnPosition;
+            instantiatedArrow.RotationDegrees = instantiatedArrow.RotationDegrees += projectileTeamOwner == Enums.TeamOwner.TEAM_01 ? -25 : 25;
+
+            this.AddChild(instantiatedArrow);
         }
 
         #endregion
