@@ -53,6 +53,8 @@ namespace Erikduss
 
         public List<ValeriaCharityCharm> currentCharmsLoaded = new List<ValeriaCharityCharm>();
 
+        public int selectedDifficulty = 1; //normal, gamemanager is not made yet, so we use this as a setting.
+
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {

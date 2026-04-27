@@ -17,8 +17,12 @@ namespace Erikduss
 		public BasePlayer player01Script; //this is always a real player.
 		public BasePlayer player02Script; //this can be either a bot or a real player. (in the future)
 
-        public PackedScene aiPlayerNode = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/enemy_ai.tscn");
         public PackedScene playerSceneNodePrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/Player_Scene.tscn");
+        
+        //ai players
+        public PackedScene easyAiPlayerNode = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/AI_Players/easy_enemy_ai.tscn");
+        public PackedScene normalAiPlayerNode = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/AI_Players/normal_enemy_ai.tscn");
+        public PackedScene hardAiPlayerNode = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/Spawnable_Objects/AI_Players/hard_enemy_ai.tscn");
 
         [Export] public CameraMovement cameraScript;
         public Enums.TeamOwner clientTeamOwner = Enums.TeamOwner.NONE; //this is set to eithe team 1 or team 2, depending on multiplayer host priority.
@@ -145,7 +149,30 @@ namespace Erikduss
 
                 player01Script = new BasePlayer();
 
-                Node instantiatedAI = aiPlayerNode.Instantiate();
+                Node instantiatedAI = null;
+
+                //based on the difficulty, we select the proper ai.
+                switch (GameSettingsLoader.Instance.selectedDifficulty)
+                {
+                    case 0: //easy
+                            instantiatedAI = easyAiPlayerNode.Instantiate();
+                        break;
+                    case 1: //normal
+                            instantiatedAI = normalAiPlayerNode.Instantiate();
+                        break;
+                    case 2: //hard
+                            instantiatedAI = hardAiPlayerNode.Instantiate();
+                        break;
+                    case 3: //nightmare
+                            instantiatedAI = normalAiPlayerNode.Instantiate();
+                        break;
+                    case 4: //random
+                            instantiatedAI = normalAiPlayerNode.Instantiate();
+                        break;
+                    default: //fallback to normal
+                            instantiatedAI = normalAiPlayerNode.Instantiate();
+                        break;
+                }
 
                 AddChild(instantiatedAI);
 

@@ -24,9 +24,11 @@ namespace Erikduss
         [Export] private Control createLobbyDefaultSelectedButton;
         [Export] private Control joinLobbyDefaultSelectedButton;
         [Export] public Control createdLobbyDefaultSelectedButton;
+        [Export] public Control difficultySelectDefaultSelectedButton;
 
         [Export] private Control mainTitleScreenUI;
         [Export] private Control matchPrepScreenUI;
+        [Export] private Control difficultySelectScreenUI;
 
         [Export] private Control createLobbyPanel;
         [Export] private Control joinLobbyPanel;
@@ -125,8 +127,12 @@ namespace Erikduss
             base._Process(delta);
         }
 
-        public void StartGame()
+        public void StartGame(int difficulty)
         {
+            GD.Print("Difficulty is: " + difficulty);
+
+            GameSettingsLoader.Instance.selectedDifficulty = difficulty;
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             AudioManager.Instance.ClearAudioPlayers();
 
@@ -207,6 +213,41 @@ namespace Erikduss
 
             joinLobbyPanel.Visible = false;
             createLobbyPanel.Visible = false;
+
+            lobbyJoinNameLineEdit.Text = string.Empty;
+            lobbyJoinPasswordLineEdit.Text = string.Empty;
+
+            //select singleplayer button
+            singleplayerGameButton.GrabFocus();
+        }
+
+        public void ShowDifficultySelectUI()
+        {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = false;
+
+            joinLobbyPanel.Visible = false;
+            createLobbyPanel.Visible = false;
+
+            difficultySelectScreenUI.Visible = true;
+
+            //show defauly button
+            difficultySelectDefaultSelectedButton.GrabFocus();
+        }
+
+        public void HideDifficultySelectUI()
+        {
+            lobbyMultiplayerManager.lobbyPanel.Visible = false;
+
+            mainTitleScreenUI.Visible = false;
+            matchPrepScreenUI.Visible = true;
+
+            joinLobbyPanel.Visible = false;
+            createLobbyPanel.Visible = false;
+
+            difficultySelectScreenUI.Visible = false;
 
             lobbyJoinNameLineEdit.Text = string.Empty;
             lobbyJoinPasswordLineEdit.Text = string.Empty;

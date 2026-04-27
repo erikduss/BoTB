@@ -8,6 +8,8 @@ namespace Erikduss
 		[Export] private Label healthAmountReducedLabel;
         [Export] private TextureRect textureRect;
 
+        public BaseCharacter characterThisEffectIsAttachedTo;
+
         public bool isHealingDamageInstead = false;
         private Color overrideColor = new Color(0, 1, 0.5f);
 
@@ -20,7 +22,7 @@ namespace Erikduss
         private bool calledDestroy = false;
         protected float destroyTimer = 0f;
 
-        public BaseCharacter characterThisEffectIsAttachedTo;
+        private float movementSpeed = 1.25f;
 
         public override void _Ready()
         {
@@ -44,8 +46,6 @@ namespace Erikduss
 
             if (GameManager.Instance.gameIsPaused) return;
 
-            SetGlobalPosition(new Vector2(GlobalPosition.X, (GlobalPosition.Y - 0.75f)));
-
             if (!destroyThisAfterTime) return;
 
             if (destroyTimer > destroyTime)
@@ -58,6 +58,15 @@ namespace Erikduss
                 }
             }
             else destroyTimer += (float)delta;
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            base._PhysicsProcess(delta);
+
+            if (GameManager.Instance.gameIsPaused) return;
+
+            SetGlobalPosition(new Vector2(GlobalPosition.X, (GlobalPosition.Y - movementSpeed)));
         }
 
         public void SetHealthLabelValue(int value)

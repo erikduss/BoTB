@@ -6,6 +6,13 @@ namespace Erikduss
 {
     public partial class GoldGainPowerUpInfoToggler : BasePowerUpInfoToggler
     {
+        public override void _Ready()
+        {
+            base._Ready();
+
+            powerupType = PowerupType.GoldGain;
+        }
+
         public override void ProcessPowerUpEffect()
         {
             base.ProcessPowerUpEffect();

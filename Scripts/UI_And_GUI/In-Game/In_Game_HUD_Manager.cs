@@ -69,6 +69,8 @@ namespace Erikduss
 
         public Control currentShownPowerUp;
 
+        private List<PowerupType> possiblePowerups = new List<PowerupType>();
+
         private List<PackedScene> availablePowerUpButtons = new List<PackedScene>();
         public PackedScene lockedPowerUpButtonPrefab = GD.Load<PackedScene>("res://Scenes_Prefabs/Prefabs/UI_And_HUD/In_Game/PowerUpButtons/locked_powerup_button.tscn");
         
@@ -87,6 +89,11 @@ namespace Erikduss
             availablePowerUpButtons.Add(goldGainPowerUpButtonPrefab);
             availablePowerUpButtons.Add(abilityEmpowerPowerUpButtonPrefab);
             availablePowerUpButtons.Add(healBasePowerUpButtonPrefab);
+
+            for (int i = 0; i < Enum.GetNames(typeof(Enums.PowerupType)).Length; i++)
+            {
+                possiblePowerups.Add((Enums.PowerupType)i);
+            }
 
             currentlyActiveAgeUpControl = ageUpControl;
             currentlyActiveAgeAbilityControl = ageAbilityControl;
@@ -353,6 +360,14 @@ namespace Erikduss
                 }
             }
 
+            BasePowerUpInfoToggler currentPowerUp = null;
+
+            //we check which powerup we currently have, so we make sure we don't reroll into it.
+            if (currentShownPowerUp != null)
+            {
+                currentPowerUp = (BasePowerUpInfoToggler)currentShownPowerUp;
+            }
+
             currentShownPowerUp = null;
             currentLockedPowerUpInfo = null;
 
@@ -363,9 +378,53 @@ namespace Erikduss
             //if we unlock a power up from the locked state, or we refresh the shop, we give the player a random powerup option.
             if (powerupsOwed > 0 || spendRerollToken)
             {
-                int randPowerupID = (int)(GD.Randi() % (availablePowerUpButtons.Count));
+                int randPowerupID;
+                Control instantiatedPowerUpButton = null;
 
-                Control instantiatedPowerUpButton = (Control)availablePowerUpButtons[randPowerupID].Instantiate();
+                if (currentPowerUp != null)
+                {
+                    for(int i = 0; i < 10; i++)
+                    {
+                        randPowerupID = (int)(GD.Randi() % (availablePowerUpButtons.Count));
+                        if(currentPowerUp.powerupType != possiblePowerups[randPowerupID])
+                        {
+                            switch (possiblePowerups[randPowerupID])
+                            {
+                                case PowerupType.GoldGain:
+                                    instantiatedPowerUpButton = (Control)goldGainPowerUpButtonPrefab.Instantiate();
+                                    break;
+                                case PowerupType.AbilityEmpower:
+                                    instantiatedPowerUpButton = (Control)abilityEmpowerPowerUpButtonPrefab.Instantiate();
+                                    break;
+                                case PowerupType.HealBase:
+                                    instantiatedPowerUpButton = (Control)healBasePowerUpButtonPrefab.Instantiate();
+                                    break;
+                            }
+
+                            break; //break out of the for loop.
+                        }
+                        else if(i == 9) //last attempt
+                        {
+                            switch (currentPowerUp.powerupType)
+                            {
+                                case PowerupType.GoldGain:
+                                        instantiatedPowerUpButton = (Control)abilityEmpowerPowerUpButtonPrefab.Instantiate();
+                                    break;
+                                case PowerupType.AbilityEmpower:
+                                        instantiatedPowerUpButton = (Control)healBasePowerUpButtonPrefab.Instantiate();
+                                    break;
+                                case PowerupType.HealBase:
+                                        instantiatedPowerUpButton = (Control)goldGainPowerUpButtonPrefab.Instantiate();
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    randPowerupID = (int)(GD.Randi() % (availablePowerUpButtons.Count));
+                    instantiatedPowerUpButton = (Control)availablePowerUpButtons[randPowerupID].Instantiate();
+                }
 
                 powerUpsParentNode.AddChild(instantiatedPowerUpButton);
                 currentShownPowerUp = instantiatedPowerUpButton;
@@ -676,6 +735,12 @@ namespace Erikduss
 
         public void InGameOptionsButtonClicked()
         {
+            //force the pause to still be active.
+            if (!GameManager.Instance.gameIsPaused)
+            {
+                GameManager.Instance.ToggleGameIsPaused(true);
+            }
+
             AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
             //We open the in game options menu.
             optionsPanel.Visible = true;

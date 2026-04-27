@@ -1,12 +1,15 @@
 using Godot;
 using System;
+using static Erikduss.Enums;
 
 namespace Erikduss
 {
 	public partial class BasePowerUpInfoToggler : Control
 	{
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
+        [Export] public PowerupType powerupType;
+
+        // Called when the node enters the scene tree for the first time.
+        public override void _Ready()
 		{
 		}
 

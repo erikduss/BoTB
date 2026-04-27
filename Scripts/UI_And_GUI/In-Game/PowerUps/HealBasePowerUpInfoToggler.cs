@@ -6,6 +6,13 @@ namespace Erikduss
 {
     public partial class HealBasePowerUpInfoToggler : BasePowerUpInfoToggler
     {
+        public override void _Ready()
+        {
+            base._Ready();
+
+            powerupType = PowerupType.HealBase;
+        }
+
         public override void ProcessPowerUpEffect()
         {
             base.ProcessPowerUpEffect();

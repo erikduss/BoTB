@@ -6,6 +6,13 @@ namespace Erikduss
 {
     public partial class AbilityEmpowerPowerUpInfoToggler : BasePowerUpInfoToggler
     {
+        public override void _Ready()
+        {
+            base._Ready();
+
+            powerupType = PowerupType.AbilityEmpower;
+        }
+
         public override void ProcessPowerUpEffect()
         {
             base.ProcessPowerUpEffect();

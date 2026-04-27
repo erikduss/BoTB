@@ -36,7 +36,7 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_htfmo"]
 font_size = 48
 
-[node name="TitleScreenUi" type="Control" unique_id=535672807 node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "singleplayerGameButton", "createLobbyDefaultSelectedButton", "joinLobbyDefaultSelectedButton", "createdLobbyDefaultSelectedButton", "mainTitleScreenUI", "matchPrepScreenUI", "createLobbyPanel", "joinLobbyPanel", "lobbyCreateNameLineEdit", "lobbyCreatePasswordLineEdit", "lobbyJoinNameLineEdit", "lobbyJoinPasswordLineEdit", "lobbyMultiplayerManager")]
+[node name="TitleScreenUi" type="Control" unique_id=535672807 node_paths=PackedStringArray("optionsPanel", "currentVersionLabel", "defaultControlSelected", "singleplayerGameButton", "createLobbyDefaultSelectedButton", "joinLobbyDefaultSelectedButton", "createdLobbyDefaultSelectedButton", "difficultySelectDefaultSelectedButton", "mainTitleScreenUI", "matchPrepScreenUI", "difficultySelectScreenUI", "createLobbyPanel", "joinLobbyPanel", "lobbyCreateNameLineEdit", "lobbyCreatePasswordLineEdit", "lobbyJoinNameLineEdit", "lobbyJoinPasswordLineEdit", "lobbyMultiplayerManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,8 +51,10 @@ singleplayerGameButton = NodePath("MatchPrepScreenUI/PreLobbyPanel/SingleplayerB
 createLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby/ReturnButton")
 joinLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton")
 createdLobbyDefaultSelectedButton = NodePath("MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ReturnButton")
+difficultySelectDefaultSelectedButton = NodePath("MatchPrepScreenUI/DifficultySelectPanel/NormalDifficulty/ConfirmStartNormalButton")
 mainTitleScreenUI = NodePath("MainTitleScreenUI")
 matchPrepScreenUI = NodePath("MatchPrepScreenUI/PreLobbyPanel")
+difficultySelectScreenUI = NodePath("MatchPrepScreenUI/DifficultySelectPanel")
 createLobbyPanel = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby")
 joinLobbyPanel = NodePath("MatchPrepScreenUI/LobbyPanel/JoiningLobby")
 lobbyCreateNameLineEdit = NodePath("MatchPrepScreenUI/LobbyPanel/CreatingLobby/LobbyName/NameInputField")
@@ -372,7 +374,7 @@ layout_mode = 0
 offset_right = 1004.0
 offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
-text = "Creating Lobby"
+text = "LOBBY_CREATE"
 label_settings = SubResource("LabelSettings_s1ljj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -389,7 +391,7 @@ layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
 scale = Vector2(0.5, 0.5)
-text = "Lobby Name"
+text = "LOBBY_NAME"
 label_settings = SubResource("LabelSettings_htfmo")
 vertical_alignment = 1
 
@@ -405,7 +407,7 @@ focus_neighbor_bottom = NodePath("../../LobbyPassword/PasswordInputField")
 focus_next = NodePath("../../LobbyPassword/PasswordInputField")
 focus_previous = NodePath("../../ConfirmCreateLobbyButton")
 theme_override_font_sizes/font_size = 48
-placeholder_text = "Enter Lobby Name"
+placeholder_text = "LOBBY_NAME_INPUT"
 max_length = 16
 
 [node name="LobbyPassword" type="Control" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby" unique_id=1852774004]
@@ -420,7 +422,7 @@ layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
 scale = Vector2(0.5, 0.5)
-text = "Password"
+text = "PASSWORD"
 label_settings = SubResource("LabelSettings_htfmo")
 vertical_alignment = 1
 
@@ -436,7 +438,7 @@ focus_neighbor_bottom = NodePath("../../ConfirmCreateLobbyButton")
 focus_next = NodePath("../../ConfirmCreateLobbyButton")
 focus_previous = NodePath("../../LobbyName/NameInputField")
 theme_override_font_sizes/font_size = 48
-placeholder_text = "Password (Optional)"
+placeholder_text = "PASSWORD_INPUT"
 max_length = 16
 
 [node name="ConfirmCreateLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/CreatingLobby" unique_id=176896223]
@@ -460,7 +462,7 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 2560.0
 scale = Vector2(0.1, 0.1)
-text = "Confirm"
+text = "CONFIRM"
 label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -510,7 +512,7 @@ layout_mode = 0
 offset_right = 1004.0
 offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
-text = "Join Lobby"
+text = "LOBBY_JOIN"
 label_settings = SubResource("LabelSettings_s1ljj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -527,7 +529,7 @@ layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
 scale = Vector2(0.5, 0.5)
-text = "Lobby Name"
+text = "LOBBY_NAME"
 label_settings = SubResource("LabelSettings_htfmo")
 vertical_alignment = 1
 
@@ -543,7 +545,7 @@ focus_neighbor_bottom = NodePath("../../LobbyPassword/PasswordInputField")
 focus_next = NodePath("../../LobbyPassword/PasswordInputField")
 focus_previous = NodePath("../../ConfirmJoinLobbyButton")
 theme_override_font_sizes/font_size = 48
-placeholder_text = "Enter Lobby Name"
+placeholder_text = "LOBBY_NAME_INPUT"
 max_length = 16
 
 [node name="LobbyPassword" type="Control" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby" unique_id=641470194]
@@ -558,7 +560,7 @@ layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
 scale = Vector2(0.5, 0.5)
-text = "Password"
+text = "PASSWORD"
 label_settings = SubResource("LabelSettings_htfmo")
 vertical_alignment = 1
 
@@ -574,7 +576,7 @@ focus_neighbor_bottom = NodePath("../../ConfirmJoinLobbyButton")
 focus_next = NodePath("../../ConfirmJoinLobbyButton")
 focus_previous = NodePath("../../LobbyName/NameInputField")
 theme_override_font_sizes/font_size = 48
-placeholder_text = "Password (Optional)"
+placeholder_text = "PASSWORD_INPUT"
 max_length = 16
 
 [node name="ConfirmJoinLobbyButton" type="TextureButton" parent="MatchPrepScreenUI/LobbyPanel/JoiningLobby" unique_id=265316654]
@@ -598,7 +600,7 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 2560.0
 scale = Vector2(0.1, 0.1)
-text = "Confirm"
+text = "CONFIRM"
 label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -648,7 +650,7 @@ layout_mode = 0
 offset_right = 1004.0
 offset_bottom = 128.0
 scale = Vector2(0.5, 0.5)
-text = "Lobby Name"
+text = "LOBBY_NAME"
 label_settings = SubResource("LabelSettings_s1ljj")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -706,6 +708,252 @@ label_settings = SubResource("LabelSettings_33qjo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DifficultySelectPanel" type="Control" parent="MatchPrepScreenUI" unique_id=1625670867]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundOpacityForText" type="ColorRect" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=705092897]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 1024.0
+color = Color(0, 0, 0, 0.894118)
+
+[node name="Label" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/BackgroundOpacityForText" unique_id=187417837]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+text = "DIFFICULITY_SELECT"
+label_settings = SubResource("LabelSettings_s1ljj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EasyDifficulty" type="Control" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=1694687671]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 304.0
+offset_right = 749.0
+offset_bottom = 434.0
+
+[node name="ConfirmStartEasyButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel/EasyDifficulty" unique_id=688524666]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 224.0
+scale = Vector2(0.75, 0.75)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ReturnButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../NormalDifficulty/ConfirmStartNormalButton")
+focus_next = NodePath("../../NormalDifficulty/ConfirmStartNormalButton")
+focus_previous = NodePath("../../ReturnButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/EasyDifficulty/ConfirmStartEasyButton" unique_id=1759354853]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "EASY_DIFFICULTY"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalDifficulty" type="Control" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=1098197041]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 416.0
+offset_right = 749.0
+offset_bottom = 546.0
+
+[node name="ConfirmStartNormalButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel/NormalDifficulty" unique_id=1804698202]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 224.0
+scale = Vector2(0.75, 0.75)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../EasyDifficulty/ConfirmStartEasyButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HardDifficulty/ConfirmStartHardButton")
+focus_next = NodePath("../../HardDifficulty/ConfirmStartHardButton")
+focus_previous = NodePath("../../EasyDifficulty/ConfirmStartEasyButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/NormalDifficulty/ConfirmStartNormalButton" unique_id=1048239662]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "NORMAL_DIFFICULTY"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HardDifficulty" type="Control" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=478150100]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 528.0
+offset_right = 749.0
+offset_bottom = 658.0
+
+[node name="ConfirmStartHardButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel/HardDifficulty" unique_id=1030545003]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 224.0
+scale = Vector2(0.75, 0.75)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../NormalDifficulty/ConfirmStartNormalButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../NightmareDifficulty/ConfirmStartNightmareButton")
+focus_next = NodePath("../../NightmareDifficulty/ConfirmStartNightmareButton")
+focus_previous = NodePath("../../NormalDifficulty/ConfirmStartNormalButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/HardDifficulty/ConfirmStartHardButton" unique_id=493905768]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "HARD_DIFFICULTY"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NightmareDifficulty" type="Control" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=1491233605]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 640.0
+offset_right = 749.0
+offset_bottom = 770.0
+
+[node name="ConfirmStartNightmareButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel/NightmareDifficulty" unique_id=69370398]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 224.0
+scale = Vector2(0.75, 0.75)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../HardDifficulty/ConfirmStartHardButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../RandomDifficulty/ConfirmStartRandomButton")
+focus_next = NodePath("../../RandomDifficulty/ConfirmStartRandomButton")
+focus_previous = NodePath("../../HardDifficulty/ConfirmStartHardButton")
+disabled = true
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/NightmareDifficulty/ConfirmStartNightmareButton" unique_id=403456035]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "NIGHTMARE_DIFFICULTY"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonText2" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/NightmareDifficulty/ConfirmStartNightmareButton" unique_id=435931132]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 3641.0
+offset_bottom = 2650.0
+scale = Vector2(0.05, 0.05)
+text = "CURRENTLY_UNAVAILABLE"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RandomDifficulty" type="Control" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=266887896]
+anchors_preset = 0
+offset_left = 249.0
+offset_top = 752.0
+offset_right = 749.0
+offset_bottom = 882.0
+
+[node name="ConfirmStartRandomButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel/RandomDifficulty" unique_id=283634543]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 416.0
+offset_bottom = 224.0
+scale = Vector2(0.75, 0.75)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../NightmareDifficulty/ConfirmStartNightmareButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ReturnButton")
+focus_next = NodePath("../../ReturnButton")
+focus_previous = NodePath("../../NightmareDifficulty/ConfirmStartNightmareButton")
+disabled = true
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/RandomDifficulty/ConfirmStartRandomButton" unique_id=1526851637]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RANDOM_DIFFICULTY"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonText2" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/RandomDifficulty/ConfirmStartRandomButton" unique_id=10391162]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 3641.0
+offset_bottom = 2650.0
+scale = Vector2(0.05, 0.05)
+text = "CURRENTLY_UNAVAILABLE"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="TextureButton" parent="MatchPrepScreenUI/DifficultySelectPanel" unique_id=1514200365]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 816.0
+offset_right = 632.0
+offset_bottom = 1072.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../RandomDifficulty/ConfirmStartRandomButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../EasyDifficulty/ConfirmStartEasyButton")
+focus_next = NodePath("../EasyDifficulty/ConfirmStartEasyButton")
+focus_previous = NodePath("../RandomDifficulty/ConfirmStartRandomButton")
+texture_normal = ExtResource("13_j6v8c")
+texture_hover = ExtResource("14_he7sw")
+texture_click_mask = ExtResource("15_j6v8c")
+
+[node name="ButtonText" type="Label" parent="MatchPrepScreenUI/DifficultySelectPanel/ReturnButton" unique_id=1569909038]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 2560.0
+scale = Vector2(0.1, 0.1)
+text = "RETURN_BUTTON"
+label_settings = SubResource("LabelSettings_33qjo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="OnscreenKeyboard" type="PanelContainer" parent="." unique_id=631450330]
 visible = false
 layout_mode = 0
@@ -725,6 +973,7 @@ metadata/_custom_type_script = "uid://clrxinew1leis"
 [connection signal="mouse_entered" from="MainTitleScreenUI/ExitButton" to="." method="PlayGenericButtonHoverSound"]
 [connection signal="pressed" from="MainTitleScreenUI/ExitButton" to="." method="CloseGame"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/SingleplayerButton" to="." method="StartGame"]
+[connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/SingleplayerButton" to="." method="ShowDifficultySelectUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/CreateLobbyButton" to="." method="ShowLobbyCreateUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/JoinLobbyButton" to="." method="ShowLobbyJoinUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/PreLobbyPanel/ReturnButton" to="." method="HideMatchPrepUI"]
@@ -738,3 +987,10 @@ metadata/_custom_type_script = "uid://clrxinew1leis"
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/JoiningLobby/ReturnButton" to="." method="HideLobbyJoinUI"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ConfirmStartButton" to="MatchPrepScreenUI/PreLobbyPanel" method="StartGameButtonPressed"]
 [connection signal="pressed" from="MatchPrepScreenUI/LobbyPanel/CreatedMultiplayerLobby/ReturnButton" to="." method="LeaveLobbyButtonPressed"]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/EasyDifficulty/ConfirmStartEasyButton" to="." method="StartGame" binds= [0]]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/NormalDifficulty/ConfirmStartNormalButton" to="." method="StartGame" binds= [1]]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/HardDifficulty/ConfirmStartHardButton" to="." method="StartGame" binds= [2]]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/NightmareDifficulty/ConfirmStartNightmareButton" to="." method="StartGame" binds= [3]]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/RandomDifficulty/ConfirmStartRandomButton" to="." method="StartGame" binds= [4]]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/ReturnButton" to="." method="HideLobbyCreateUI"]
+[connection signal="pressed" from="MatchPrepScreenUI/DifficultySelectPanel/ReturnButton" to="." method="HideDifficultySelectUI"]
