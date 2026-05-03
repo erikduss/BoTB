@@ -39,6 +39,7 @@ namespace Erikduss
         public bool enableHemophobiaMode = false; //alternate blood color
         public Enums.AvailableLanguages language = Enums.AvailableLanguages.English;
 
+        public bool forceDisableControllers = false;
         #endregion
     }
 }

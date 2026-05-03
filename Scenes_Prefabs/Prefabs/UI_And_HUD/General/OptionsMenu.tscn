@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c42h4mo5xo22v"]
+[gd_scene format=3 uid="uid://c42h4mo5xo22v"]
 
 [ext_resource type="Script" uid="uid://csqwow26dhc21" path="res://Scripts/UI_And_GUI/General/OptionsMenu.cs" id="1_7upg4"]
 [ext_resource type="Texture2D" uid="uid://du8xf3df6mkg4" path="res://Assets/UI/Slider/CustomGrabber.png" id="2_865cf"]
@@ -43,7 +43,7 @@ bg_color = Color(0.450648, 0.450648, 0.450648, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpqcs"]
 bg_color = Color(0.45098, 0.45098, 0.45098, 1)
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "showCharmsOptionButton", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "languageOptionButton", "controllerModeColorPickerButton")]
+[node name="OptionsMenu" type="Control" unique_id=127498680 node_paths=PackedStringArray("musicAudioPercentage", "musicAudioSlider", "otherAudioPercentage", "otherAudioSlider", "screenMovementTypeOptionButton", "screenDragSensitivityValueLabel", "screenDragSensitivitySlider", "screenSidesSensitivityValueLabel", "screenSidesSensitivitySlider", "showCharmsOptionButton", "displayModeOptionButton", "screenResolutionsOptionButton", "limitFPSOptionButton", "fpsLimitSlider", "fpsLimitValueLabel", "returnButtonControl", "saveButtonControl", "optionsTabContainer", "controllerModeOptionButton", "hemoPhobiaModeOptionButton", "languageOptionButton", "controllerModeColorPickerButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,23 +74,22 @@ hemoPhobiaModeOptionButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS
 languageOptionButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section/LanguageOptionButton")
 controllerModeColorPickerButton = NodePath("Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=258188387]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4c8os")
 
-[node name="TabContainer" type="TabContainer" parent="Panel"]
+[node name="TabContainer" type="TabContainer" parent="Panel" unique_id=409136417]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 32
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
-[node name="AUDIO_SETTINGS" type="Control" parent="Panel/TabContainer"]
-visible = false
+[node name="AUDIO_SETTINGS" type="Control" parent="Panel/TabContainer" unique_id=75108706]
 layout_mode = 2
 focus_neighbor_left = NodePath("../GRAPHICS_SETTINGS")
 focus_neighbor_top = NodePath("../../BottomButtons/ReturnButton")
@@ -100,13 +99,13 @@ focus_next = NodePath("../GAMEPLAY_SETTINGS")
 focus_previous = NodePath("../GRAPHICS_SETTINGS")
 metadata/_tab_index = 0
 
-[node name="AudioSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS"]
+[node name="AudioSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS" unique_id=464748988]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection" unique_id=253273992]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -115,14 +114,14 @@ label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
+[node name="MusicSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection" unique_id=2057848167]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 140.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection" unique_id=921835886]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -131,7 +130,7 @@ text = "MUSIC_VOLUME"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="MusicAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
+[node name="MusicAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection" unique_id=726968449]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -8.99998
@@ -151,7 +150,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 value = 50.0
 
-[node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection"]
+[node name="MusicAudioPercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/MusicSliderSection" unique_id=817208248]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -159,15 +158,14 @@ offset_bottom = 45.0
 text = "50%"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="AlternateAudioSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection"]
-layout_mode = 3
+[node name="AlternateAudioSliderSection" type="Control" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection" unique_id=760046285]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 240.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection" unique_id=1005390631]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -176,7 +174,7 @@ text = "OTHER_VOLUME"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="OtherAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
+[node name="OtherAudioSlider" type="HSlider" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection" unique_id=958551467]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -8.99998
@@ -196,7 +194,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 value = 50.0
 
-[node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection"]
+[node name="OtherAudioVolumePercentage" type="Label" parent="Panel/TabContainer/AUDIO_SETTINGS/AudioSection/AlternateAudioSliderSection" unique_id=940752092]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -204,18 +202,18 @@ offset_bottom = 45.0
 text = "50%"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="GAMEPLAY_SETTINGS" type="Control" parent="Panel/TabContainer"]
+[node name="GAMEPLAY_SETTINGS" type="Control" parent="Panel/TabContainer" unique_id=1502060661]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="GameplaySection" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS"]
-layout_mode = 3
+[node name="GameplaySection" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS" unique_id=1311429536]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection" unique_id=851473053]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -224,14 +222,14 @@ label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScreenMovementEnabled" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
+[node name="ScreenMovementEnabled" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection" unique_id=1780873547]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 180.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled" unique_id=202608113]
 layout_mode = 0
 offset_left = -355.0
 offset_right = 311.0
@@ -240,7 +238,7 @@ text = "SCREEN_MOVEMENT"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="ScreenMovementOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled"]
+[node name="ScreenMovementOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenMovementEnabled" unique_id=915426182]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -258,14 +256,14 @@ popup/item_1/id = 1
 popup/item_2/text = "ONLY_SIDES_OPTION"
 popup/item_2/id = 2
 
-[node name="DragSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
+[node name="DragSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection" unique_id=1925953722]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 280.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity" unique_id=1144407979]
 layout_mode = 0
 offset_left = -325.0
 offset_right = 275.0
@@ -274,7 +272,7 @@ text = "DRAG_SENSITIVITY"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
+[node name="DragSensitivitySlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity" unique_id=657465683]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -294,7 +292,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 min_value = -100.0
 
-[node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity"]
+[node name="DragSensitivityValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/DragSensitivity" unique_id=1935705546]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -302,15 +300,14 @@ offset_bottom = 45.0
 text = "Default"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="ScreenSidesSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
-layout_mode = 3
+[node name="ScreenSidesSensitivity" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection" unique_id=93372196]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 380.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity" unique_id=2080831771]
 layout_mode = 0
 offset_left = -325.0
 offset_right = 275.0
@@ -319,7 +316,7 @@ text = "SIDES_SENSITIVITY"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
+[node name="ScreenSidesSlider" type="HSlider" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity" unique_id=2030984871]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -339,7 +336,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_gpqcs")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4c8os")
 min_value = -100.0
 
-[node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity"]
+[node name="ScreenSidesValue" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/ScreenSidesSensitivity" unique_id=1401022425]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -347,15 +344,14 @@ offset_bottom = 45.0
 text = "Default"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="CharmVisibility" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection"]
-layout_mode = 3
+[node name="CharmVisibility" type="Control" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection" unique_id=738770226]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 400.0
 offset_right = 1560.0
 offset_bottom = 440.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility" unique_id=275489412]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 300.0
@@ -364,7 +360,7 @@ text = "SHOW_CHARMS"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="ShowCharmsOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility"]
+[node name="ShowCharmsOptionButton" type="OptionButton" parent="Panel/TabContainer/GAMEPLAY_SETTINGS/GameplaySection/CharmVisibility" unique_id=151782902]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -383,19 +379,18 @@ popup/item_0/id = 0
 popup/item_1/text = "DISABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="GRAPHICS_SETTINGS" type="Control" parent="Panel/TabContainer"]
+[node name="GRAPHICS_SETTINGS" type="Control" parent="Panel/TabContainer" unique_id=1021989334]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="GraphicsSection" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS"]
-layout_mode = 3
+[node name="GraphicsSection" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS" unique_id=2121492134]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection" unique_id=723794699]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -404,15 +399,14 @@ label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScreenMode" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
-layout_mode = 3
+[node name="ScreenMode" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection" unique_id=462044265]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 180.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode" unique_id=1913506050]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -421,7 +415,7 @@ text = "DISPLAY_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="DisplayModeOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode"]
+[node name="DisplayModeOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenMode" unique_id=1733600635]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -432,14 +426,14 @@ focus_neighbor_bottom = NodePath("../../ScreenResolution/ScreenResolutionOptionB
 focus_next = NodePath("../../ScreenResolution/ScreenResolutionOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
-[node name="ScreenResolution" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
+[node name="ScreenResolution" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection" unique_id=1364271125]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 280.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution" unique_id=1575796186]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -448,7 +442,7 @@ text = "SCREEN_RESOLUTION"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="ScreenResolutionOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution"]
+[node name="ScreenResolutionOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/ScreenResolution" unique_id=1579845252]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -461,14 +455,14 @@ focus_next = NodePath("../../LimitFPS/LimitFPSOptionButton")
 focus_previous = NodePath("../../ScreenMode/DisplayModeOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
-[node name="LimitFPS" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
+[node name="LimitFPS" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection" unique_id=1059551488]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 380.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS" unique_id=1127034645]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -477,7 +471,7 @@ text = "LIMIT_FPS"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS"]
+[node name="LimitFPSOptionButton" type="OptionButton" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS" unique_id=88977210]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -501,15 +495,14 @@ popup/item_3/id = 3
 popup/item_4/text = "VSYNC_MAILBOX_OPTION"
 popup/item_4/id = 4
 
-[node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection"]
-layout_mode = 3
+[node name="FPSLimitValue" type="Control" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection" unique_id=262313867]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 400.0
 offset_right = 1560.0
 offset_bottom = 480.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
+[node name="Label" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue" unique_id=637709228]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 250.0
@@ -518,7 +511,7 @@ text = "FPS_LIMIT"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
+[node name="FPSLimitSlider" type="HSlider" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue" unique_id=900178085]
 layout_mode = 0
 offset_left = 273.0
 offset_top = -9.0
@@ -540,7 +533,7 @@ min_value = 15.0
 max_value = 500.0
 value = 144.0
 
-[node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue"]
+[node name="FPSLimitValue" type="Label" parent="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue" unique_id=758146818]
 layout_mode = 0
 offset_left = 951.0
 offset_right = 1167.0
@@ -548,7 +541,7 @@ offset_bottom = 45.0
 text = "144"
 label_settings = SubResource("LabelSettings_adsjs")
 
-[node name="ACCESSIBILITY_SETTINGS" type="Control" parent="Panel/TabContainer"]
+[node name="ACCESSIBILITY_SETTINGS" type="Control" parent="Panel/TabContainer" unique_id=2062459522]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../GRAPHICS_SETTINGS")
@@ -558,13 +551,13 @@ focus_next = NodePath("../GAMEPLAY_SETTINGS")
 focus_previous = NodePath("../GRAPHICS_SETTINGS")
 metadata/_tab_index = 3
 
-[node name="Accessibility Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS"]
+[node name="Accessibility Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS" unique_id=61743307]
 anchors_preset = 0
 offset_top = 59.0
 offset_right = 1920.0
 offset_bottom = 259.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section" unique_id=1431426190]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -573,14 +566,14 @@ label_settings = SubResource("LabelSettings_yf1e0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Controller Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
+[node name="Controller Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section" unique_id=1630612243]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 100.0
 offset_right = 1560.0
 offset_bottom = 140.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section" unique_id=1997072659]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 300.0
@@ -589,13 +582,13 @@ text = "CONTROLLER_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="ControllerModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section"]
+[node name="ControllerModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section" unique_id=746189212]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
 offset_bottom = 45.0
-focus_neighbor_left = NodePath(".")
-focus_neighbor_right = NodePath(".")
+focus_neighbor_left = NodePath("../ForceDisableControllerButton")
+focus_neighbor_right = NodePath("../ForceDisableControllerButton")
 focus_neighbor_bottom = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 focus_next = NodePath("../../ControllerModeColor/OverrideControllerModeColorPicker")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
@@ -605,15 +598,28 @@ popup/item_0/id = 0
 popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="ControllerModeColor" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
-layout_mode = 3
+[node name="ForceDisableControllerButton" type="Button" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section" unique_id=275823962]
+layout_mode = 0
+offset_left = 821.0
+offset_right = 1037.0
+offset_bottom = 45.0
+focus_neighbor_left = NodePath("../ControllerModeOptionButton")
+focus_neighbor_top = NodePath("../ControllerModeOptionButton")
+focus_neighbor_right = NodePath("../ControllerModeOptionButton")
+focus_neighbor_bottom = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
+focus_next = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
+focus_previous = NodePath("../ControllerModeOptionButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gpqcs")
+text = "Force disable"
+
+[node name="ControllerModeColor" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section" unique_id=716170212]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 200.0
 offset_right = 1560.0
 offset_bottom = 240.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor" unique_id=1861059980]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 300.0
@@ -622,7 +628,7 @@ text = "HIGHLIGHT_COLOR"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="OverrideControllerModeColorPicker" type="ColorPickerButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
+[node name="OverrideControllerModeColorPicker" type="ColorPickerButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor" unique_id=1310625199]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -634,7 +640,7 @@ focus_neighbor_bottom = NodePath("../../Hemophobia Mode Section/HemophobiaModeOp
 focus_next = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
 focus_previous = NodePath("../../Controller Mode Section/ControllerModeOptionButton")
 
-[node name="ResetColorButton" type="Button" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor"]
+[node name="ResetColorButton" type="Button" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor" unique_id=508760743]
 layout_mode = 0
 offset_left = 821.0
 offset_right = 1037.0
@@ -648,15 +654,14 @@ focus_previous = NodePath("../../Controller Mode Section/ControllerModeOptionBut
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpqcs")
 text = "RESET_COLOR_BUTTON"
 
-[node name="Hemophobia Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
-layout_mode = 3
+[node name="Hemophobia Mode Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section" unique_id=1789549679]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 300.0
 offset_right = 1560.0
 offset_bottom = 340.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section" unique_id=1227450604]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 300.0
@@ -665,7 +670,7 @@ text = "HEMOPHOBIA_MODE"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="HemophobiaModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section"]
+[node name="HemophobiaModeOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section" unique_id=2141240417]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -683,15 +688,14 @@ popup/item_0/id = 0
 popup/item_1/text = "ENABLED_OPTION"
 popup/item_1/id = 1
 
-[node name="Language Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section"]
-layout_mode = 3
+[node name="Language Section" type="Control" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section" unique_id=926761312]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 400.0
 offset_right = 1560.0
 offset_bottom = 440.0
 
-[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section"]
+[node name="Label" type="Label" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section" unique_id=1148492159]
 layout_mode = 0
 offset_left = -300.0
 offset_right = 300.0
@@ -700,7 +704,7 @@ text = "LANGUAGE"
 label_settings = SubResource("LabelSettings_adsjs")
 horizontal_alignment = 2
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section"]
+[node name="LanguageOptionButton" type="OptionButton" parent="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Language Section" unique_id=1931682552]
 layout_mode = 0
 offset_left = 324.0
 offset_right = 763.0
@@ -713,13 +717,13 @@ focus_next = NodePath("../../../../../BottomButtons/ReturnButton")
 focus_previous = NodePath("../../Hemophobia Mode Section/HemophobiaModeOptionButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_81y48")
 
-[node name="BottomButtons" type="Control" parent="Panel"]
+[node name="BottomButtons" type="Control" parent="Panel" unique_id=569559520]
 anchors_preset = 0
 offset_top = 830.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="ReturnButton" type="TextureButton" parent="Panel/BottomButtons"]
+[node name="ReturnButton" type="TextureButton" parent="Panel/BottomButtons" unique_id=1313092781]
 layout_mode = 0
 offset_left = 450.0
 offset_right = 706.0
@@ -732,7 +736,7 @@ texture_normal = ExtResource("6_81y48")
 texture_hover = ExtResource("7_4c8os")
 texture_click_mask = ExtResource("11_d1vfn")
 
-[node name="SaveButton" type="TextureButton" parent="Panel/BottomButtons"]
+[node name="SaveButton" type="TextureButton" parent="Panel/BottomButtons" unique_id=629862583]
 layout_mode = 0
 offset_left = 1250.0
 offset_right = 1506.0
@@ -745,7 +749,7 @@ texture_normal = ExtResource("9_4c8os")
 texture_hover = ExtResource("10_gpqcs")
 texture_click_mask = ExtResource("11_d1vfn")
 
-[node name="OptionsChangesWarning" parent="." instance=ExtResource("11_4c8os")]
+[node name="OptionsChangesWarning" parent="." unique_id=1914006104 instance=ExtResource("11_4c8os")]
 visible = false
 layout_mode = 1
 
@@ -761,6 +765,7 @@ layout_mode = 1
 [connection signal="item_selected" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/LimitFPS/LimitFPSOptionButton" to="." method="LimitFpsOptionSelected"]
 [connection signal="value_changed" from="Panel/TabContainer/GRAPHICS_SETTINGS/GraphicsSection/FPSLimitValue/FPSLimitSlider" to="." method="FPSLimitSliderOnValueChanged"]
 [connection signal="item_selected" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section/ControllerModeOptionButton" to="." method="ControllerModeOptionSelected"]
+[connection signal="pressed" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Controller Mode Section/ForceDisableControllerButton" to="." method="ForceDisableController"]
 [connection signal="color_changed" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/OverrideControllerModeColorPicker" to="." method="ControllerFocusColorChanged"]
 [connection signal="pressed" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/ControllerModeColor/ResetColorButton" to="." method="ResetControllerModeColorOverride"]
 [connection signal="item_selected" from="Panel/TabContainer/ACCESSIBILITY_SETTINGS/Accessibility Section/Hemophobia Mode Section/HemophobiaModeOptionButton" to="." method="HemophobiaModeOptionSelected"]

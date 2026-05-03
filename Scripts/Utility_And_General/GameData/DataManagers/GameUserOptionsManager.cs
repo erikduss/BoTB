@@ -185,6 +185,15 @@ namespace Erikduss
 
         public void SetControllerHighlightMode()
         {
+            if (currentlySavedUserOptions.forceDisableControllers)
+            {
+                GameSettingsLoader.Instance.userHasControllerConnected = false;
+                GameSettingsLoader.Instance.useHighlightFocusMode = false;
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+
+                return;
+            }
+
             GameSettingsLoader.Instance.useHighlightFocusMode = currentlySavedUserOptions.useHighlightFocusMode;
             if(GetViewport() != null)
             {
@@ -556,6 +565,15 @@ namespace Erikduss
                     {
                         requiresToBeSaved = true;
                     }
+
+                    if (config.HasSectionKey(section, "ForceDisableControllers"))
+                    {
+                        currentlySavedUserOptions.forceDisableControllers = (bool)config.GetValue(section, "ForceDisableControllers");
+                    }
+                    else
+                    {
+                        requiresToBeSaved = true;
+                    }
                 }
                 else
                 {
@@ -601,6 +619,7 @@ namespace Erikduss
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "FocussedControlColor", userOptionsToSave.focussedControlColor);
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "EnableHemophobiaMode", userOptionsToSave.enableHemophobiaMode);
             config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "Language", userOptionsToSave.language.ToString());
+            config.SetValue(Enums.UserOptionsConfigHeader.ACCESSIBILITY_SETTINGS.ToString(), "ForceDisableControllers", userOptionsToSave.forceDisableControllers);
 
             // Save it to a file.
             config.Save(fullFilePath);
@@ -649,6 +668,7 @@ namespace Erikduss
                 currentlySavedUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 currentlySavedUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
                 currentlySavedUserOptions.language = newOptions.language;
+                currentlySavedUserOptions.forceDisableControllers = newOptions.forceDisableControllers;
             }
             else
             {
@@ -670,6 +690,7 @@ namespace Erikduss
                 overriddenUserOptions.focussedControlColor = newOptions.focussedControlColor;
                 overriddenUserOptions.enableHemophobiaMode = newOptions.enableHemophobiaMode;
                 overriddenUserOptions.language = newOptions.language;
+                overriddenUserOptions.forceDisableControllers = newOptions.forceDisableControllers;
             }
         }
 
@@ -693,6 +714,7 @@ namespace Erikduss
             overriddenUserOptions.focussedControlColor = currentlySavedUserOptions.focussedControlColor;
             overriddenUserOptions.enableHemophobiaMode = currentlySavedUserOptions.enableHemophobiaMode;
             overriddenUserOptions.language = currentlySavedUserOptions.language;
+            overriddenUserOptions.forceDisableControllers = currentlySavedUserOptions.forceDisableControllers;
         }
     }
 }

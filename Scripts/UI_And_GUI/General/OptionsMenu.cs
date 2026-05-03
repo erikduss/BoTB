@@ -590,5 +590,12 @@ namespace Erikduss
                 optionsTabContainer.GetTabBar().FocusNeighborBottom = controllerModeOptionButton.GetPath();
             }
         }
+
+        public void ForceDisableController()
+        {
+            AudioManager.Instance.PlaySFXAudioClip(AudioManager.Instance.buttonClickAudioClip);
+            GameSettingsLoader.Instance.gameUserOptionsManager.overriddenUserOptions.forceDisableControllers = true;
+            GameSettingsLoader.Instance.gameUserOptionsManager.CreateNewSaveFile(true);
+        }
     }
 }

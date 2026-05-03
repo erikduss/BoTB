@@ -14,6 +14,7 @@ namespace Erikduss
 
         public bool userLanguageSupported = false;
         public bool userHasControllerConnected = false;
+        public bool neverUserControllers = false;
 
         public UnitsSettingsManager unitSettingsManager = new UnitsSettingsManager();
         public GameUserOptionsManager gameUserOptionsManager = new GameUserOptionsManager();
@@ -77,8 +78,9 @@ namespace Erikduss
             base._Notification(what);
 
             //we need to release the mouse if we are tabbing out, otherwise its very annoying for the user.
-            if (Input.GetConnectedJoypads().Count == 0)
+            if (Input.GetConnectedJoypads().Count == 0 || neverUserControllers)
             {
+                if (Input.MouseMode != Input.MouseModeEnum.Visible) Input.MouseMode = Input.MouseModeEnum.Visible;
                 return;
             }
 
@@ -112,8 +114,48 @@ namespace Erikduss
         {
             //gets called when a device is already connected on game launch.
 
-            if(Input.GetConnectedJoypads().Count == amountOfDevicesConnectedPreviously)
+            if (neverUserControllers)
             {
+                userHasControllerConnected = false;
+                useHighlightFocusMode = false;
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+
+                return;
+            }
+
+            List<string> controllerNames = new List<string>();
+
+            for (int i = 0; i < Input.GetConnectedJoypads().Count; i++)
+            {
+                controllerNames.Add(Input.GetJoyName(i));
+            }
+
+            List<string> actualControllerNames = new List<string>();
+
+            //we want to check if this is an actual controller
+            foreach (string name in controllerNames)
+            {
+                string lowerName = name.ToLower();
+                if (lowerName.Contains("controller"))
+                {
+                    actualControllerNames.Add(name);
+                }
+            }
+
+            if (actualControllerNames.Count == amountOfDevicesConnectedPreviously)
+            {
+                return;
+            }
+
+            //only want to do this if we previously had no controllers connected.
+            if (actualControllerNames.Count <= 0 && amountOfDevicesConnectedPreviously == 0)
+            {
+                //we dont have any actual controllers connected so we dont need to switch to the mode.
+
+                userHasControllerConnected = false;
+                useHighlightFocusMode = false;
+                Input.MouseMode = Input.MouseModeEnum.Visible;
+
                 return;
             }
 
@@ -213,7 +255,7 @@ namespace Erikduss
                 }
             }
 
-            amountOfDevicesConnectedPreviously = Input.GetConnectedJoypads().Count;
+            amountOfDevicesConnectedPreviously = actualControllerNames.Count;
             initializedDevices = true;
 
             GD.Print("User has " + Input.GetConnectedJoypads().Count + "devices connected");
